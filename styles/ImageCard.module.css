@@ -1,0 +1,53 @@
+.flexCard {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	width: 40%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.flexCardText {
+	display: block;
+	padding-left: 0.5rem;
+	text-align: left;
+	padding-top: 0rem;
+	padding-bottom: 0rem;
+	padding-right: 2rem;
+	margin-top: 0rem;
+	margin-bottom: 0rem;
+	width: 100%;
+}
+
+.imageTitle {
+	padding-bottom: 0.5rem;
+}
+
+.imageSubTitle {
+	padding-bottom: 0.5rem;
+	font-style: italic;
+	font-size: 1.0rem;
+	color: #311f28;
+}
+
+@media (max-width: 1200px) {
+	.flexCard {
+		width: 80%;
+	}
+}
+
+@media (max-width: 900px) {
+	.flexCard {
+		flex-direction: column;		
+		width: 100%;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+
+	.flexCardText {
+		margin-left: 0rem;
+		margin-right: 0rem;
+	}
+}

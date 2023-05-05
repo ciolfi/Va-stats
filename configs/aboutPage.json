@@ -1,0 +1,48 @@
+{
+	"pageTitle": "About Us",
+	"titles": {
+		"project_description": "About Vision-Aid STATS",
+		"team_details": "Meet the Team",
+		"survey_title": "Peer Evaluation Survey Here",
+		"toLogIn": "To Log In:",
+
+		"project_goals": "Project Goals",
+		"lighthouse_metrics": "Lighthouse Metrics",
+		"pres": "Team Presentation"
+	},
+	"team": {
+		"members": [
+			{
+				"name": "Piyali Banerjee",
+				"description": "Responsible for managing the app deployment on Vercel and the managing the backend DB deployed via DreamHost. Also will help with project management, database design and integration, and setting up authentication/authorization for users.",
+				"image": "piyali.jpg",
+				"role": "DB Admin and Deployment Lead"
+			},
+			{
+				"name": "Delkhaz Ibrahimi",
+				"description": "Responsible for helping with any project tasks and various aspects of development within our application. Will help with implementation any required aspects of our webpage.",
+				"image": "delkhaz.jpeg",
+				"role": "Team Lead / Team Assitance Developer"
+			},
+			{
+				"name": "Daniel Crawford",
+				"description": "Respsonsible for managing the data in the platform for usability and for validation and veriftication. Will ensure data in integrateable to other features in the site, and assist in consturction of those features. Currently leading graphic design of the application.",
+				"image": "daniel.jpg",
+				"role": "Data Lead"
+			},
+			
+			{
+				"name": "Akshil Verma",
+				"description": "Responsible for developing an efficient Frontend. Will also help out in other tasks such as database management, authorization and authentication, etc.",
+				"image": "akshil.jpg",
+				"role": "Frontend Lead"
+			},
+			{
+				"name": "Dante Colfi",
+				"description": "Dante is graciously serving as the TA and Course Sponsor for the project. He has developed the beginning framework that the team is working from. ",
+				"image": "Dante.png",
+				"role": "TA Course Sponsor"
+			}
+		]
+	}
+}

@@ -1,0 +1,36 @@
+.genericButtonLight {
+	border: 2px solid var(--button-border-light);
+	color: var(--button-text-light);
+	border-radius: 5px;
+	background: rgba(0,0,0,0);
+	padding: 0.7rem 1.2rem;
+	font-size: 1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.genericButtonLight:hover {
+	background: var(--button-background-hover-light);
+}
+
+.genericButtonDark {
+	border: 2px solid var(--button-border-dark);
+	color: var(--button-text-dark);
+	border-radius: 5px;
+	background: rgb(8, 127, 72, 0.7);
+	padding: 0.7rem 1.2rem;
+	font-size: 1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.genericButtonDark:hover {
+	background: var(--button-background-hover-dark);
+}
+
+
+.buttonText {
+	padding-left: 0.5rem;
+}
