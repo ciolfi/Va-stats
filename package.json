@@ -1,6 +1,5 @@
 {
   "name": "nextjs",
-  "homepage": "https://va-stats.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
