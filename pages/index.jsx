@@ -59,7 +59,7 @@ export default function Home() {
 					</h1>
 
 					<p className={styles.subtitle}>
-            Student Training and Tracking  System [STATS]
+            Student Training and Tracking  System [STATS].
 					</p>
 
 					<div className={styles.grid}>
