@@ -87,8 +87,9 @@ export default function Page() {
 
 	const getPageData = async () => {
 		setContentLoading(true);
-    	const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getcoursesdata`;
-		//const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
+    const apiUrlEndpoint = `https://va-stats.vercel.app/api/getcoursesdata`;
+    // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getcoursesdata`;
+		// const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
         setDataResponse(res.courses);
