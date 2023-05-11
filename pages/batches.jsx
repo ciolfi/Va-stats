@@ -93,7 +93,8 @@ export default function Page() {
 
         setContentLoading(true);
 
-		const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getbatchesdata`;
+    const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
+    // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getbatchesdata`;
 		//const apiUrlEndpoint = `http://localhost:3000/api/getbatchesdata`;
 
 
@@ -133,7 +134,8 @@ export default function Page() {
     var result;
 
 	const getUserData = async () => {
-        const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
+        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
         //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
 
         const postData = {
