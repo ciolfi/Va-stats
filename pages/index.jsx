@@ -59,7 +59,7 @@ export default function Home() {
 					</h1>
 
 					<p className={styles.subtitle}>
-            Student Training and Tracking  System [STATS]
+            Student Training and Tracking  System [STATS].
 					</p>
 
 					<div className={styles.grid}>
@@ -73,7 +73,7 @@ export default function Home() {
 							<p>Learn about about our organization.</p>
 						</a>
 
-						<a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
+						<a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" target="_blank" rel="noopener noreferrer" className={styles.card}>
 							<h2>User Guide &rarr;</h2>
 							<p>Learn how to use the VisionAid STATS platform.</p>
 						</a>

@@ -112,7 +112,7 @@ export default function Page() {
                         <label htmlFor='edu_qualifications'>Education qualifications:<span className={styles.requiredelement}>&#42;</span></label>
                         <input type='text' id='edu_qualifications' name='edu_qualifications' required/><br /><br />
 
-                        <label htmlFor='courses'>What courses are you interested in? Go to the <Link href="/courses">Courses page</Link> for a list of available courses.<span className={styles.requiredelement}>&#42;</span></label>
+                        <label htmlFor='courses'>What courses are you interested in? Go to the Courses page for a list of available courses.<span className={styles.requiredelement}>&#42;</span></label>
                         <input type='text' id='courses' name='courses' required/><br /><br />
                     
                         <label htmlFor='location'>What city and state are you from?<span className={styles.requiredelement}>&#42;</span></label>
