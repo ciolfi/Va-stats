@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-Follow instructions in Developer Guide for setting up the local development environment!
+Follow instructions in Developer Guide for setting up the local development environment.
 
 Then, run the development server:
 
