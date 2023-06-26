@@ -68,9 +68,10 @@ const Navbar = (user_role) => {
         <Link href="/" className={'textlogo'}>
           VISION-AID ACADEMY
         </Link>
+        {/*PWA icon 
         <Link href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">
           <Image src={pwaicon} width="48" height="18" alt="PWA logo" />
-        </Link>
+        </Link>*/}
         <div
           onClick={() => setNavActive(!navActive)}
           className={'nav__menu-bar'}>
