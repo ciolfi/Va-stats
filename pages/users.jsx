@@ -1,28 +1,5 @@
-/* This page uses the same 'template' as /students.jsx.
-NOTE: PAGE ACCESS REQUIRES AUTHENTICATION;
-please see authorized users in code below, which are
-also listed in Google Developer console.
-
-This file is reached by clicking 'Users' in the live site;
-It displays 2 cards with the following functionality:
-
-    Left side card - current users.
-    Right side card - a form that adds user information.
-
-User data is brought into the left side card by calling the 
-assetHandler function in pages/api/users.js.
-
-
-
-STYLING NOTE: Most of this view uses the same styling as 
-for the 'Students' view, i.e., CSS classes use the 'student'
-verbiage, although 'users' are involved.
-
-NOTE REGARDING THE TABLE INVOLVED: This table, vausers, and its
-data are automatically created through code, if it does not exist.
-
-IMPORTANT: Change the code in useEffect() below when testing locally. */
-
+/* When host is changed: Change values in
+'API SECTIONS' below */
 
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
@@ -32,11 +9,9 @@ import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-
 import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 import Button from '@/components/Button';
-
 
 export default function Page() {
 
@@ -97,12 +72,9 @@ export default function Page() {
         setContentLoading(false);
     };
 
-
-
-
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getPageData = async () => {
         setContentLoading(true);
-        // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getusersdata`;
         const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
         //const apiUrlEndpoint = `http://localhost:3000/api/getusersdata`;
         const response = await fetch(apiUrlEndpoint);
@@ -118,8 +90,8 @@ export default function Page() {
 
     var result;
 
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
-        // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
         const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
         //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
         const postData = {

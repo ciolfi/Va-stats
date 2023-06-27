@@ -1,3 +1,6 @@
+/* When host is changed: Change values in
+'API SECTIONS' below */
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -7,7 +10,6 @@ import Link from "next/link";
 import Head from 'next/head';
 import Table from "@/components/Table";
 import Image from 'next/image';
-
 
 function formatDate(isoDateString) {
   const date = new Date(isoDateString);
@@ -39,8 +41,6 @@ export default function Page() {
 
   const [contentLoading, setContentLoading] = useState(false);
 
-
-
   const deleteAssignment = async (assignmentName) => {
 
     const response = await fetch('/api/deleteassignment', {
@@ -59,13 +59,11 @@ export default function Page() {
         }
     };
   
+  /* ---------------------------------- API SECTION -----------------------------------*/
   const fetchUnassignedStudents = async (batchId) => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getunassignedstudents`;
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
-      //const apiUrlEndpoint = `http://localhost:3000/api/getunassignedstudents`;
-
-        
+      //const apiUrlEndpoint = `http://localhost:3000/api/getunassignedstudents`; 
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
@@ -79,12 +77,11 @@ export default function Page() {
       setContentLoading(false);
     };
 
+  /* ---------------------------------- API SECTION -----------------------------------*/
   const updateGrade = async (studentId) => {
     setContentLoading(true);
-    // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/updategrade`;
     const apiUrlEndpoint = `https://va-stats.vercel.app/api/updategrade`;
     //const apiUrlEndpoint = `http://localhost:3000/api/updategrade`;
-
     const postData = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -101,24 +98,19 @@ export default function Page() {
     }
     setContentLoading(false);
   };
-
   useEffect(() => {
     fetchUnassignedStudents(id);
   }, [id]);
-
 
     useEffect(() => {
       //console.log("Current unassigned students state: ", unassignedStudents);
     }, [unassignedStudents]);
 
-  
-
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const addStudent = async (studentId) => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addstudenttobatch`;
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/addstudenttobatch`;
       //const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
-
       const postData = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -135,12 +127,11 @@ export default function Page() {
       setContentLoading(false);
     };
 
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const addAssignment = async (assignmentName, batchId) => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addassignment`;
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/addassignment`;
       //const apiUrlEndpoint = `http://localhost:3000/api/addassignment`;
-
       const postData = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -156,13 +147,11 @@ export default function Page() {
       setContentLoading(false);
     };
 
-
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
       //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
-
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
@@ -187,14 +176,11 @@ export default function Page() {
       }
     }, [session]);
 
-
-
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getBatchData = async () => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getbatchdetails`;
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchdetails`;
       //const apiUrlEndpoint = "http://localhost:3000/api/getbatchdetails";
-
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
@@ -206,7 +192,6 @@ export default function Page() {
       const data = await response.json();        
       setBatchData(data);
       //console.log(data);
-
 
       setCourseName(data.coursename);
       setBatchName(data.batch);
@@ -254,9 +239,8 @@ export default function Page() {
             name: student.name,
 
           };
+
           //console.log('Student att : ', studentAttendance);
-
-
           studentAttendance.forEach((attendance) => {
              //console.log('Student data : ', studentData);
             studentData[attendance.date] = attendance.is_present;
@@ -288,10 +272,8 @@ export default function Page() {
     const updateAttendance = async (studentId) => {
       var batchId = id;
       //console.log(studentId);
-
       //console.log('batch id ', batchId);
       //console.log('studnet id ', studentId);
-
       try {
         const response = await fetch('/api/updateattendance', {
           method: 'POST',

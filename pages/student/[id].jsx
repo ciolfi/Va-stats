@@ -1,3 +1,6 @@
+/* When host is changed: Change values in
+'API SECTIONS' below */
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -19,11 +22,10 @@ export default function Page() {
   const [studentName, setStudentName] = useState("");
   var result;
 
+  /* ---------------------------------- API SECTION -----------------------------------*/
 	const getUserData = async () => {
-        // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
         const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
         //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
-
         const postData = {
             method: "Post",
             headers: { "Content-Type": "application/json" },
@@ -34,7 +36,6 @@ export default function Page() {
         const response = await fetch(apiUrlEndpoint, postData);
         const res = await response.json();
         setUserResponse(res.users[0][0]);
-
         setLoading(false);
     };
 
@@ -75,8 +76,9 @@ export default function Page() {
         availableValues: ['UNSTARTED', 'ONGOING', 'COMPLETE'],
       }
     ];
+
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getStudentData = async () => {
-       // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getstudentdetails`;
        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
        //const apiUrlEndpoint = "http://localhost:3000/api/getstudentdetails";
       const postData = {
@@ -87,12 +89,10 @@ export default function Page() {
         }),
       };
       const response = await fetch(apiUrlEndpoint, postData);
-      const data = await response.json();
-         
+      const data = await response.json();        
       setStudentName(data.name);
       setDataResponse(data.batches);
       //console.log("Student data: ", data);
-
       setLoading(false);
     };
 
@@ -153,7 +153,6 @@ export default function Page() {
               <p className={styles.subtitlestudent}>
                 Student: {studentName}
 							</p>
-
               <Table columns={batchesColumns} tableData={dataResponse} isDelete={false} isEditable={false} Title={'Batches List'} FilterButton={true} />
             </div>
           </>
