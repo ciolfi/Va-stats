@@ -1,9 +1,10 @@
 .topRightText {
 	font-size: 0.75rem;
 	position: absolute;
-	top: 0.5rem;
+	/* top: 0.5rem; */
+	top: 0.1rem;
 	right: 0.5rem;
-	padding-bottom: 0.5rem; /* Prevent overlapping by email address */
+	/* padding-bottom: 0.5rem; /* Prevent overlapping by email address */
 }
 
 /* Dropdown menu */
