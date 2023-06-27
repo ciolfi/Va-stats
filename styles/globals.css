@@ -100,7 +100,8 @@ nav {
   background-color: rgb(8, 127, 72);
   color: #000;
   display: flex;
-  height: 10vh;
+  /*height: 10vh;*/
+  height: 13vh; /* Increase to accommodate login text above button */
   justify-content: space-between;
   padding-left: 1em;
 }
