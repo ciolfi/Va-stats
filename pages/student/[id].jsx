@@ -76,7 +76,8 @@ export default function Page() {
       }
     ];
     const getStudentData = async () => {
-       const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getstudentdetails`;
+       // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getstudentdetails`;
+       const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
        //const apiUrlEndpoint = "http://localhost:3000/api/getstudentdetails";
       const postData = {
         method: "Post",

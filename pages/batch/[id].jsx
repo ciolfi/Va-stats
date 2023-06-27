@@ -61,7 +61,8 @@ export default function Page() {
   
   const fetchUnassignedStudents = async (batchId) => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getunassignedstudents`;
+      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getunassignedstudents`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
       //const apiUrlEndpoint = `http://localhost:3000/api/getunassignedstudents`;
 
         
@@ -80,7 +81,8 @@ export default function Page() {
 
   const updateGrade = async (studentId) => {
     setContentLoading(true);
-    const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/updategrade`;
+    // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/updategrade`;
+    const apiUrlEndpoint = `https://va-stats.vercel.app/api/updategrade`;
     //const apiUrlEndpoint = `http://localhost:3000/api/updategrade`;
 
     const postData = {
@@ -113,7 +115,8 @@ export default function Page() {
 
     const addStudent = async (studentId) => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addstudenttobatch`;
+      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addstudenttobatch`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/addstudenttobatch`;
       //const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
 
       const postData = {
@@ -134,7 +137,8 @@ export default function Page() {
 
     const addAssignment = async (assignmentName, batchId) => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addassignment`;
+      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/addassignment`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/addassignment`;
       //const apiUrlEndpoint = `http://localhost:3000/api/addassignment`;
 
       const postData = {
@@ -155,7 +159,8 @@ export default function Page() {
 
     const getUserData = async () => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
+      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getuserdata`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
       //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
 
       const postData = {
