@@ -186,7 +186,8 @@ export default function Page() {
 
     const getBatchData = async () => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getbatchdetails`;
+      // const apiUrlEndpoint = `https://visionaid-stats-ng.vercel.app/api/getbatchdetails`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchdetails`;
       //const apiUrlEndpoint = "http://localhost:3000/api/getbatchdetails";
 
       const postData = {
