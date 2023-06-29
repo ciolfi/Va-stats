@@ -134,7 +134,8 @@ export default function Page() {
     var result;
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
-        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
+        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
         // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
         const postData = {
             method: "Post",
