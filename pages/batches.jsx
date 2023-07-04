@@ -18,7 +18,6 @@ export default function Page() {
 	useForm(); // Form reset
 	const { data: session, status } = useSession();
 
-	// CHANGE URL below for local testing
 	// Note: useState() is the required empty array
 	const [dataResponse, setDataResponse] = useState([]);
 	const [userResponse, setUserResponse] = useState([]);
@@ -26,9 +25,7 @@ export default function Page() {
 	const [courseOptions, setCourseOptions] = useState(() => []);
 	const [showForm, setShowForm] = useState(false);
 	const [contentLoading, setContentLoading] = useState(false);
-
 	const [loading, setLoading] = useState(true);
-
 	const [editingId, setEditingId] = useState(null);
 
     const handleUpdateBatch = async (editedBatch) => {
@@ -210,7 +207,7 @@ export default function Page() {
 		},
 
 	];
-	if (status === 'authenticated') {	
+	if (status === 'authenticated' || status === 'unauthenticated') {	
 		if ((result.length === 0)) {
 			return (
 				<div className='autherrorcontainer'>
