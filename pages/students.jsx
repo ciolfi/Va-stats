@@ -167,39 +167,54 @@ export default function Page() {
 			name: 'Id',
 			width: '6%',
 			accessor: 'id',
-		}, {
+		}, 
+        {
 			name: 'Email',
 			accessor: 'email',
-		}, {
+		}, 
+        {
 			name: 'Name',
 			accessor: 'name',
-		}, {
+		}, 
+        {
 			name: 'Phone Number',
 			accessor: 'phone_number',
-		}, {
+		}, 
+        {
+			name: 'Alt Phone Number',
+			accessor: 'alt_ph_num',
+		}, 
+        {
 			name: 'Gender',
 			accessor: 'gender',
             type: 'enum',
 			availableValues: ['M', 'F', 'Other'],
-		}, {
+		}, 
+        {
 			name: 'Birthdate',
 			accessor: 'age',
-		}, {
+		}, 
+        {
             name: 'Education History',
             accessor: 'edu_qualifications',
-        }, {
+        }, 
+        {
             name: 'Courses of Interest',
             accessor: 'courses',
-        }, {
+        }, 
+        {
 			name: 'Location',
 			accessor: 'location',
-		}, {
+		}, 
+        {
 			name: 'Learning Objective',
 			accessor: 'objectives',
-		},  {
+		},  
+        {
 			name: 'Vision Impairment History',
 			accessor: 'vision_impairment',
-		},  {
+		},  
+        {
 			name: 'Usable Vision',
 			accessor: 'usable_vision',
         },

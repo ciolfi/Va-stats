@@ -97,6 +97,9 @@ export default function Page() {
                     
                         <label htmlFor='phone_number'>Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
                         <input type='text' id='phone_number' name='phone_number' required /><br /><br />
+
+                        <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' id='alt_ph_num' name='alt_ph_num' required /><br /><br />
                     
                         <label htmlFor='gender'>Gender:<span className={styles.requiredelement}>&#42;</span></label>
                         <input list='genders' id='gender' name='gender' required /><br /><br />
