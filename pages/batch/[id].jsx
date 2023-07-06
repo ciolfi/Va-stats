@@ -365,8 +365,11 @@ export default function Page() {
 
 
               <div className={styles.batchContainer}>
+
+                {/* -------------------- Temporary warning ---------------------- */}
                 <div style={styles.batchWarning}>NOTE: Please do not use buttons below until further notice.
                 Please check with Dante for further information: dantec@gatech.edu.</div>
+                
                 <h1>Students</h1>
 
                 <ul className={styles.studentList}>
