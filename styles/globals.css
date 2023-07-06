@@ -53,6 +53,11 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
+.batchWarning {
+  color: red;
+  font-size: 1em;
+}
+
 .autherrorcontainer {
   display: flex;
   flex-direction: column;

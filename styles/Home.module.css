@@ -547,11 +547,6 @@ div .menubutton {
   max-width: 1200px;
 }
 
-.batchWarning {
-  color: red;
-  font-size: 1em;
-}
-
 .studentList {
   display: flex;
   flex-wrap: wrap;
