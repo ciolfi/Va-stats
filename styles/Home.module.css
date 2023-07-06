@@ -541,11 +541,15 @@ div .menubutton {
   background-color: #eaeaea;
 }
 
-
 .batchContainer {
   margin: 0 auto;
   width: 90%;
   max-width: 1200px;
+}
+
+.batchWarning {
+  color: red;
+  font-size: 1em;
 }
 
 .studentList {
