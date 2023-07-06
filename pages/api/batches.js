@@ -1,6 +1,6 @@
 /*
 This function is called from the Courses page (/courses.jsx).
-It executes the query that SHOWS CURRENT COURSES.
+It executes the query that SHOWS CURRENT COURSES (?CURRENT BATCHES).
 */
 
 import { executeQuery } from "../../lib/db";

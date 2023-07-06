@@ -405,7 +405,7 @@ export default function Page() {
                 )}
                 {addingAssignment && (
                   <div>
-                    <label htmlFor="assignmentName">New Assignment:</label>
+                    <label htmlFor="assignmentName">New Assignment Name:</label>
                     <input
                       type="text"
                       id="assignmentName"
