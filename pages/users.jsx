@@ -76,7 +76,7 @@ export default function Page() {
     const getPageData = async () => {
         setContentLoading(true);
         const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
-        //const apiUrlEndpoint = `http://localhost:3000/api/getusersdata`;
+        // const apiUrlEndpoint = `http://localhost:3000/api/getusersdata`;
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
 
