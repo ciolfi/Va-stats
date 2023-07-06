@@ -7,7 +7,7 @@ To view this, see /pages/students.jsx */
 
 
 /* ------------------ General styles begin ---------------- */
-/* Temporary warning in /pages/batch/[id].jsx */
+
 .batchWarning {   
   color: red;
   font-size: 1em;
