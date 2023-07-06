@@ -30,8 +30,7 @@ export default function Page() {
 
   const [addingStudent, setAddingStudent] = useState(false);
   const [addingAssignment, setAddingAssignment] = useState(false);
-
-  // -------------------- UNDER CONSTRUCTION -------------------------- //
+  // ----------------------------- UNDER CONSTRUCTION -------------------------- //
   const [deletingAssignment, setDeletingAssignment] = useState(false);
 
   const [courseName, setCourseName] = useState("");
@@ -432,6 +431,21 @@ export default function Page() {
                     <button onClick={() => addAssignment(assignmentName, id)}>Add Assignment</button>
                   </div>
                 )}
+
+                {/* ---------------------- UNDER CONSTRUCTION --------------------- */}
+                {deletingAssignment && (
+                  <div>
+                    <label htmlFor="assignmentName">Assignment to delete:</label>
+                    <input
+                      type="text"
+                      id="assignmentName"
+                      name="assignmentName"
+                      onChange={(e) => setAssignmentName(e.target.value)}
+                    />
+                    <button onClick={() => deleteAssignment(assignmentName, id)}>Delete Assignment</button>
+                  </div>
+                )}
+
                 </div>
               {attendanceColumn.length > 0 ?
                 <Table columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendance} />
