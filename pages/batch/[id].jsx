@@ -365,7 +365,7 @@ export default function Page() {
 
 
               <div className={styles.batchContainer}>
-                <div style={styles.batchWarning}>NOTE: Please do not use buttons below until further notice.<br></br>
+                <div style={styles.batchWarning}>NOTE: Please do not use buttons below until further notice.
                 Please check with Dante for further information: dantec@gatech.edu.</div>
                 <h1>Students</h1>
 
