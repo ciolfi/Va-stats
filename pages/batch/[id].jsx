@@ -31,6 +31,9 @@ export default function Page() {
   const [addingStudent, setAddingStudent] = useState(false);
   const [addingAssignment, setAddingAssignment] = useState(false);
 
+  // -------------------- UNDER CONSTRUCTION -------------------------- //
+  const [deletingAssignment, setDeletingAssignment] = useState(false);
+
   const [courseName, setCourseName] = useState("");
   const [batchName, setBatchName] = useState("");
   const [batchLength, setBatchLength] = useState("");
@@ -365,6 +368,8 @@ export default function Page() {
 
 
               <div className={styles.batchContainer}>
+
+                {/* -------------------- UNDER CONSTRUCTION WARNING ------------------ */}
                 <div className={styles.batchWarning}>NOTE: Please do not use buttons below until further notice.
                 Please check with Dante for further information: dantec@gatech.edu.</div>
 
@@ -386,6 +391,15 @@ export default function Page() {
                   >
                     Add Assignment
                   </button>
+
+                  {/* ------------------------------- UNDER CONSTRUCTION ------------------------ */}
+                  <button
+                    className={styles.addButton}
+                    onClick={() => setDeletingAssignment(!deletingAssignment)}
+                  >
+                    Delete Assignment
+                  </button>
+
                 </div>
                 {addingStudent && (
                   <div className={styles.unassignedContainer}>
