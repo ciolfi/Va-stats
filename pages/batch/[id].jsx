@@ -365,6 +365,8 @@ export default function Page() {
 
 
               <div className={styles.batchContainer}>
+                <div style="font-size:1em;color:red">NOTE: Please do not use buttons below until further notice.</div>
+                <div style="font-size:1em;color:red">Please check with Dante for further information: dantec@gatech.edu.</div>
                 <h1>Students</h1>
 
                 <ul className={styles.studentList}>
