@@ -11,6 +11,7 @@ To view this, see /pages/students.jsx */
 .batchWarning {   
   color: red;
   font-size: 1em;
+  font-weight: 700;
 }
 
 .requiredelement {
