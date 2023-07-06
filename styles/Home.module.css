@@ -7,11 +7,10 @@ To view this, see /pages/students.jsx */
 
 
 /* ------------------ General styles begin ---------------- */
-
-.batchWarning {   /* Temporary warning in /pages/batch/[id].jsx */
+/* Temporary warning in /pages/batch/[id].jsx */
+.batchWarning {   
   color: red;
   font-size: 1em;
-  font-weight: 700;
 }
 
 .requiredelement {
