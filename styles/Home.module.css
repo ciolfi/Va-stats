@@ -15,8 +15,12 @@ To view this, see /pages/students.jsx */
 }
 
 .csvbutton {
-  border: #000 0.2em;
+  background-color: #28a745;
+  border: none;
   border-radius: 0.2em;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
 }
 
 .requiredelement {
