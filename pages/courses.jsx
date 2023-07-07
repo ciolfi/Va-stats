@@ -68,9 +68,10 @@ export default function Page() {
 	};
 
 	/* ---------------------------------- API SECTION -----------------------------------*/
+	/* NOTE: NEXT_PUBLIC_ is required at the beginning of any browser-dependent env vars */
 	const getPageData = async () => {
 		setContentLoading(true);
-		const apiUrlEndpoint = API_GETCOURSESDATA;
+		const apiUrlEndpoint = NEXT_PUBLIC_GETCOURSESDATA;
 		// const apiUrlEndpoint = 'https://va-stats.vercel.app/api/getcoursesdata';
 		// const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
         const response = await fetch(apiUrlEndpoint);
