@@ -230,6 +230,11 @@ export default function Page() {
 							}
 							<p className={styles.subtitle}>
 								Course Management
+
+								{/* ---------- CSV Download button ---------------- */}
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/courses.php"}>
+                                    <a  target="_blank">Courses CSV</a>
+                                </Link>
 							</p>
 
 							<div className={styles.gridcourses}>
