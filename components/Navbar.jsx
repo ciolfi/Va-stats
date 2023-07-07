@@ -29,7 +29,8 @@ const MENU_LIST = [
   },
   {
     text: "CSV-Staff",
-    href: "https://visionaid.dreamhosters.com/csv"
+    href: "https://visionaid.dreamhosters.com/csv",
+    target: "_blank"
   },
 ];
 
