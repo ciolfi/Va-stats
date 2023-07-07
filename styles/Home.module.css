@@ -21,9 +21,12 @@ To view this, see /pages/students.jsx */
   color: white;
   cursor: pointer;
   font-size: 0.5em;
+  font-weight: 700;
   margin-left: 0.5em;
   opacity: 0.7;
   padding: 0.5rem 1rem;
+  position: relative;
+  top: -0.5em;
 }
 
 .requiredelement {

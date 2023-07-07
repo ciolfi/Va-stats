@@ -28,11 +28,6 @@ const MENU_LIST = [
     text: "Staff",
     href: "/users"
   },
-  {
-    text: "CSV-Staff",
-    href: "https://visionaid.dreamhosters.com/csv",
-    target: "_blank"
-  },
 ];
 
 const Navbar = (user_role) => {
