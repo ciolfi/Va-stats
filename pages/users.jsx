@@ -208,6 +208,11 @@ export default function Page() {
 							}
                             <p className={styles.subtitle}>
                                 All VisionAid Staff
+                                
+                                {/* ---------- CSV Download button ---------------- */}
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}>
+                                    <a  target="_blank">Staff CSV</a>
+                                </Link>
                             </p>
                             <div className={styles.gridcourses}>
                                 {showForm ?
@@ -239,15 +244,9 @@ export default function Page() {
                                             <input type='reset' value='RESET'></input>
                                         </form>
                                     </div>
-                                    : <><Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
-
-                                    {/* ---------- CSV Download button ---------------- */}
-                                    <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}>
-                                        <a target="_blank">Staff CSV</a>
-                                    </Link></>
-                                    
+                                    : <Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
                                 }
-                                <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />                     
+                                <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />
                             </div>
                         </main>
                     </div>
