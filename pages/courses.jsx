@@ -70,8 +70,8 @@ export default function Page() {
 	/* ---------------------------------- API SECTION -----------------------------------*/
 	const getPageData = async () => {
 		setContentLoading(true);
-		const apiUrlEndpoint = '${NEXT_PUBLIC_DOMAIN}/api/getcoursesdata';
-		// const apiUrlEndpoint = 'https://va-stats.vercel.app/api/getcoursesdata';
+		// const apiUrlEndpoint = API_GETCOURSESDATA;
+		const apiUrlEndpoint = 'https://va-stats.vercel.app/api/getcoursesdata';
 		//const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
