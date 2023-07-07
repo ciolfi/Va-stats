@@ -77,7 +77,7 @@ export default function Page() {
 		// const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
 
         // const response = await fetch(apiUrlEndpoint);
-		const response = await fetch(NEXT_PUBLIC_GETCOURSESDATA);
+		const response = await fetch({NEXT_PUBLIC_GETCOURSESDATA});
         const res = await response.json();
         setDataResponse(res.courses);
 		setContentLoading(false);
