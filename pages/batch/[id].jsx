@@ -110,7 +110,7 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const addStudent = async (studentId) => {
       setContentLoading(true);
-      const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatchh';
+      const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
       //const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
       const postData = {
         method: "POST",

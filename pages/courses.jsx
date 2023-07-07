@@ -58,9 +58,8 @@ export default function Page() {
 			},
 			body: JSON.stringify({ id: courseID }),
 		});
-
 		if (response.ok) {
-			// i had to move getpagedata out of useeffect so i could call it here
+			// I had to move getpagedata out of useeffect so i could call it here
 			await getPageData();
 		} else {
 			console.error('Error deleting the courses');
@@ -71,7 +70,7 @@ export default function Page() {
 	/* ---------------------------------- API SECTION -----------------------------------*/
 	const getPageData = async () => {
 		setContentLoading(true);
-		const apiUrlEndpoint = `https://va-stats.vercel.app/api/getcoursesdata`;
+		const apiUrlEndpoint = 'https://va-stats.vercel.app/api/getcoursesdataa';
 		//const apiUrlEndpoint = "http://localhost:3000/api/getcoursesdata";
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
