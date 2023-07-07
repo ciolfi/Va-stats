@@ -14,6 +14,11 @@ To view this, see /pages/students.jsx */
   font-weight: 700;
 }
 
+.csvbutton {
+  border: #000 0.2em;
+  border-radius: 0.2em;
+}
+
 .requiredelement {
   color: red;
 }
