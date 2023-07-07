@@ -239,18 +239,15 @@ export default function Page() {
                                             <input type='reset' value='RESET'></input>
                                         </form>
                                     </div>
-                                    : <Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
-                                }
-                                <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />
+                                    : <><Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
 
-                                {/* ---------- CSV Download button ---------------- */}
-                                {/* <a target="_blank" href="https://visionaid.dreamhosters.com/csv"><Button text={'Staff CSV'}></Button></a> */}
-                                {/* <Link href="https://visionaid.dreamhosters.com/csv" passHref={true}>
-                                    <Button>Staff CSV</Button>
-                                </Link> */}
-                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}>
-                                    <a  target="_blank">Staff CSV</a>
-                                </Link>
+                                    {/* ---------- CSV Download button ---------------- */}
+                                    <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}>
+                                        <a target="_blank">Staff CSV</a>
+                                    </Link></>
+                                    
+                                }
+                                <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />                     
                             </div>
                         </main>
                     </div>
