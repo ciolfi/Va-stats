@@ -242,15 +242,14 @@ export default function Page() {
                                     : <Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
                                 }
                                 <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />
+                                <a target="_blank" href="https://visionaid.dreamhosters.com/csv"><Button text={'Staff CSV'}></Button></a>
                             </div>
                         </main>
                     </div>
-
                 </>
             );
 
         } else {
-
             if ((result.length === 0)) {
                 return (
                     <div className='autherrorcontainer'>
