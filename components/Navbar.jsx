@@ -8,6 +8,7 @@ import Button from './Button';
 import styles from '@/styles/Navbar.module.css';
 import Head from 'next/head';
 
+// NOTE: target=_blank does not currently work (7/7/2023)
 const MENU_LIST = [
   { text: 'Home', href: '/' },
   { text: 'About Us', href: '/about' },

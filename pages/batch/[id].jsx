@@ -53,9 +53,8 @@ export default function Page() {
             body: JSON.stringify({ batchId: id, assignmentName }),
         });
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
-            await getBatchData();
-           
+            // I had to move getpagedata out of useeffect so i could call it here
+            await getBatchData();         
         } else {
             console.error('Error deleting the assignment');
         }
@@ -111,7 +110,7 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const addStudent = async (studentId) => {
       setContentLoading(true);
-      const apiUrlEndpoint = `https://va-stats.vercel.app/api/addstudenttobatch`;
+      const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatchh';
       //const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
       const postData = {
         method: "POST",
