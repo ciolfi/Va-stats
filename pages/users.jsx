@@ -44,7 +44,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
+            // I had to move getpagedata out of useeffect so i could call it here
             await getPageData();
             setEditingId(null);
         } else {
@@ -64,7 +64,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
+            // I had to move getpagedata out of useeffect so i could call it here
             await getPageData();
         } else {
             console.error('Error deleting the batch');
@@ -208,9 +208,9 @@ export default function Page() {
 							}
                             <p className={styles.subtitle}>
                                 All VisionAid Staff
-                                
+
                                 {/* ---------- CSV Download button ---------------- */}
-                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}>
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"}>
                                     <a  target="_blank">Staff CSV</a>
                                 </Link>
                             </p>
