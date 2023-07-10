@@ -300,6 +300,11 @@ export default function Page() {
 							}
                             <p className={styles.subtitle}>
                                 All Students
+
+                                {/* ---------- CSV Download button ---------------- */}
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
+                                    <a  target="_blank">Students CSV</a> 
+                                </Link> 
                             </p>
                             <div className={styles.gridcourses}>
                                 <Table columns={studentsColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteStudent} isEditable={true} isStudent={true} onEditSave={handleUpdateStudent} Title={'Students List'} />
