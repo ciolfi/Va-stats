@@ -268,6 +268,11 @@ export default function Page() {
 							}
 							<p className={styles.subtitle}>
 								Batch Management
+
+								{/* ---------- CSV Download button ---------------- */}
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/batches.php"}>
+                                    <a  target="_blank">Batches CSV</a> 
+                                </Link> 
 							</p>
 
 							<div className={styles.gridcourses}>
