@@ -122,13 +122,13 @@ export default function Page() {
                         <input type='text' id='location' name='location' required /><br /><br />
 
                         <label htmlFor='objectives'>What are your long term learning objectives?<span className={styles.requiredelement}>&#42;</span></label>
-                        <input type='text' id='objectives' name='objectives' required /><br /><br />
+                        <input type='text' id='objectives' name='objectives' /><br /><br />
                     
                         <label htmlFor='vision_impairment'>Provide a brief history of your vision impairment<span className={styles.requiredelement}>&#42;</span></label>
-                        <input type='text' id='vision_impairment' name='vision_impairment' required /><br /><br />
+                        <input type='text' id='vision_impairment' name='vision_impairment' /><br /><br />
                     
                         <label htmlFor='usable_vision'>What is your usable vision in terms of acuity and field?<span className={styles.requiredelement}>&#42;</span></label>
-                        <input type='text' id='usable_vision' name='usable_vision' required /><br /><br />
+                        <input type='text' id='usable_vision' name='usable_vision' /><br /><br />
                     
                         <label htmlFor='total_vision_loss'>What is the percentage of vision loss?<span className={styles.requiredelement}>&#42;</span></label>
                         <input type='text' id='total_vision_loss' name='total_vision_loss' required /><br /><br />
