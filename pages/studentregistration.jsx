@@ -127,7 +127,7 @@ export default function Page() {
                         <label htmlFor='vision_impairment'>Provide a brief history of your vision impairment</label>
                         <input type='text' id='vision_impairment' name='vision_impairment' /><br /><br />
                     
-                        <label htmlFor='usable_vision'>What is your usable vision in terms of acuity and field?<label>
+                        <label htmlFor='usable_vision'>What is your usable vision in terms of acuity and field?</label>
                         <input type='text' id='usable_vision' name='usable_vision' /><br /><br />
                     
                         <label htmlFor='total_vision_loss'>What is the percentage of vision loss?<span className={styles.requiredelement}>&#42;</span></label>
