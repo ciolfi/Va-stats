@@ -73,9 +73,12 @@ export default function Page() {
 							<link rel='apple-touch-icon' href='/apple-touch-icon.png' />
 							<link rel='manifest' href='/manifest.json' />
 
-							<link rel='preconnect'
+							{/* <link rel='preconnect'
 								href='https://fonts.gstatic.com'
-								crossOrigin />
+								crossOrigin /> */}
+                            <link rel='preconnect'
+								href='https://fonts.gstatic.com'
+								crossOrigin="true" />
 
 							<link rel='preload'
 								as='style'
