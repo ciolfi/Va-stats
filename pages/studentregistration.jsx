@@ -18,7 +18,6 @@ data are automatically created through code, if it does not exist.
 
 IMPORTANT: Change the code in useEffect() below when testing locally. */
 
-
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import React from 'react';
@@ -29,8 +28,6 @@ import { useState } from 'react';
 
 // MODAL IMPORTS
 import Modal from "../components/Modal";
-// import {useState} from "react"; (defined above)
-// import "./styles/globals.css"; (can only import globals.css in pages/_app.jsx)
 
 export default function Page() {
     useForm(); // Form reset
