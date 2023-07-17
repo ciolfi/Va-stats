@@ -1,7 +1,7 @@
 /* Modal code is based largely on that found at: tailwindcss.com */
 
 import React from 'react';
-import '../styles/globals.css';
+// import '../styles/globals.css'; (can only import globals in pages/_app.jsx)
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';

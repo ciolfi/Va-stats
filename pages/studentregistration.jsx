@@ -30,7 +30,7 @@ import { useState } from 'react';
 // MODAL IMPORTS
 import Modal from "../components/Modal";
 // import {useState} from "react"; (defined above)
-import "../styles/globals.css";
+// import "./styles/globals.css"; (can only import globals.css in pages/_app.jsx)
 
 export default function Page() {
     useForm(); // Form reset
