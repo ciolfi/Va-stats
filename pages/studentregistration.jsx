@@ -25,24 +25,29 @@ import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
+import { useState } from 'react'; 
 
-import { useState } from 'react'; // NEW CODE
+// MODAL IMPORTS
+import Modal from "../components/Modal";
+import {useState} from "react";
+import "../styles/globals.css";
 
 export default function Page() {
-
     useForm(); // Form reset
     const { data: session, status } = useSession();
-
-    // CHANGE URL below for local testing
     // Note: useState() is the required empty array
     const [dataResponse, setDataResponse] = useState([]);
     const [userResponse, setUserResponse] = useState([]);
     const [contentLoading, setContentLoading] = useState(false);
- 
-    const handleSubmit = () => {
-		setContentLoading(true);
-	};
 
+    // MODAL CONSTANTS
+    const [showModal, setShowModal] = useState(false);
+    const reload=()=>window.location.reload();
+    const handleClose = () => setShowModal(false);
+
+    const handleSubmit = () => {
+		setContentLoading(true);  
+	};
     if (status === 'loading') {
         return <p>Loading...</p>;
     }
@@ -99,7 +104,7 @@ export default function Page() {
                         <input type='text' id='phone_number' name='phone_number' required /><br /><br />
 
                         <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
-                        <input type='text' id='alt_ph_num' name='alt_ph_num' required /><br /><br />
+                        <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
                     
                         <label htmlFor='gender'>Gender:<span className={styles.requiredelement}>&#42;</span></label>
                         <input list='genders' id='gender' name='gender' required /><br /><br />
@@ -136,7 +141,17 @@ export default function Page() {
                         <label htmlFor='source'>How did you hear about the program?<span className={styles.requiredelement}>&#42;</span></label>
                         <input type='text' id='source' name='source' required/><br /><br />
                     
-                        <button type='submit' className={styles.studentsformbutton}>Submit</button>&nbsp;&nbsp;
+                        {/* <button type='submit' className={styles.studentsformbutton}>Submit</button>&nbsp;&nbsp; */}
+                        {/* MODAL CODE BELOW */}
+                        <button 
+                            type='submit' 
+                                className={styles.studentsformbutton} onClick={() => setShowModal(true)} 
+                        >
+                            Submit
+                        </button>
+                        {showModal && <Modal show={showModal} onClick={reload}></Modal>}
+
+                        &nbsp;&nbsp;
                         <input type='reset' value='RESET'></input>
                     </form>
                 </div>
