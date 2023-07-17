@@ -144,17 +144,16 @@ export default function Page() {
                     {/* <button type='submit' className={styles.studentsformbutton}>Submit</button>&nbsp;&nbsp; */}
                     {/* MODAL CODE BELOW */}
                     <button
-                        // type='submit'
+                        type='submit'
                         className={styles.studentsformbutton}
-                        onClick={() => setShowModal(true)}
                     //onClick={() => showModal && <Modal show={showModal} onClick={reload}></Modal>}
                     >
                         Submit
                     </button>
                     &nbsp;&nbsp;
                     <input type='reset' value='RESET'></input>
-                    {showModal && <Modal show={showModal} onClick={reload}></Modal>}
                 </form>
+                {showModal && <Modal show={showModal} onClick={reload}></Modal>}
             </div>
         </>
     );
