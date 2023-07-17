@@ -29,7 +29,7 @@ import { useState } from 'react';
 
 // MODAL IMPORTS
 import Modal from "../components/Modal";
-import {useState} from "react";
+// import {useState} from "react"; (defined above)
 import "../styles/globals.css";
 
 export default function Page() {

@@ -2,13 +2,13 @@
 
 import React from 'react';
 import '../styles/globals.css';
-import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { Fragment, useRef, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 export default function Example() {
-  const [open, setOpen] = useState(true)
-  const cancelButtonRef = useRef(null)
+  const [open, setOpen] = useState(true);
+  const cancelButtonRef = useRef(null);
   
   /* When the modal close (Return) button is clicked, 
   the handleClose constant closes the modal and reloads the page.
@@ -95,5 +95,5 @@ export default function Example() {
       </Dialog>
     </Transition.Root>
 
-  )
+  );
 }
