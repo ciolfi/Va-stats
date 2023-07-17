@@ -146,8 +146,7 @@ export default function Page() {
                     <button
                         // type='submit'
                         className={styles.studentsformbutton}
-                    onClick={() => showModal && <Modal show={showModal}></Modal>}
-                    >
+                    onClick={() => setShowModal(true)}>
                         Submit
                     </button>
                     &nbsp;&nbsp;
