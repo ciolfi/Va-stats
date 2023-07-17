@@ -149,8 +149,8 @@ export default function Page() {
                         >
                             Submit
                         </button>
-                        {showModal && <Modal show={showModal} onClick={reload}></Modal>}
-
+                        {/* {showModal && <Modal show={showModal} onClick={reload}></Modal>} */}
+                        <Modal show={showModal} onClick={reload}></Modal>
                         &nbsp;&nbsp;
                         <input type='reset' value='RESET'></input>
                     </form>
