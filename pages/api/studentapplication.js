@@ -6,7 +6,7 @@ student registration form.
 import { executeQuery } from "../../lib/db";
 
 // MODAL IMPORT
-import Modal from "../components/Modal";
+import Modal from "../../components/Modal";
 
 // MODAL CONSTANTS
 // const [showModal, setShowModal] = useState(false);
