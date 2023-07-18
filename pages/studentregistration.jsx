@@ -26,9 +26,6 @@ import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
 
-// MODAL IMPORTS
-// import Modal from "../components/Modal";
-
 export default function Page() {
     useForm(); // Form reset
     const { data: session, status } = useSession();
@@ -36,11 +33,6 @@ export default function Page() {
     const [dataResponse, setDataResponse] = useState([]);
     const [userResponse, setUserResponse] = useState([]);
     const [contentLoading, setContentLoading] = useState(false);
-
-    // MODAL CONSTANTS
-    // const [showModal, setShowModal] = useState(false);
-    // const reload = () => window.location.reload();
-    // const handleClose = () => setShowModal(false);
 
     const handleSubmit = () => {
         setContentLoading(true);
@@ -50,11 +42,6 @@ export default function Page() {
         return <p>Loading...</p>;
     }
 
-    // IF DOMAIN CHANGES, CHANGE THIS: NEEDED FOR MODAL
-    else if (document.referrer == "https://va-stats.vercel.app/api/studentapplication.js" || document.referrer == "") {
-        alert("Previous page was studentapplication.js");
-    } else 
-    
     return (
         <>
             {contentLoading ?
@@ -148,19 +135,15 @@ export default function Page() {
                     <label htmlFor='source'>How did you hear about the program?<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='source' name='source' required /><br /><br />
 
-                    {/* <button type='submit' className={styles.studentsformbutton}>Submit</button>&nbsp;&nbsp; */}
-                    {/* MODAL CODE BELOW */}
                     <button
                         type='submit'
                         className={styles.studentsformbutton}
-                    //onClick={() => setShowModal(true)}
                     >
                         Submit
                     </button>
                     &nbsp;&nbsp;
                     <input type='reset' value='RESET'></input>
                 </form>
-                {/* {showModal && <Modal show={showModal} onClick={reload}></Modal>} */}
             </div>
         </>
     );

@@ -5,16 +5,7 @@ student registration form.
 
 import { executeQuery } from "../../lib/db";
 
-// MODAL IMPORT
-// import Modal from "../../components/Modal";
-// import "../../styles/globals.css";
-
 export default async function handler(req, res) {
-    // MODAL CONSTANTS
-    // const [showModal, setShowModal] = useState(false);
-    // const [showModal, setShowModal] = null;
-    // const reload=()=>window.location.reload();
-    // const handleClose = () => setShowModal(false);
 
     try {
         const body = req.body;
