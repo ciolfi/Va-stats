@@ -35,10 +35,11 @@ export default async function handler(req, res) {
     res.writeHead(301, {
         Location: '/studentregistration',
     });
-    res.end();
 
     // LOAD CONFIRMATION MODAL
     return (
         <Modal show={showModal} onClick={reload}></Modal>      
     );
+
+    // res.end();  
 }
