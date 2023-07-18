@@ -44,6 +44,8 @@ export default function Page() {
 
     const handleSubmit = () => {
         setContentLoading(true);
+        // ADDED
+        setShowModal(true);
     };
     if (status === 'loading') {
         return <p>Loading...</p>;
@@ -144,9 +146,10 @@ export default function Page() {
                     {/* <button type='submit' className={styles.studentsformbutton}>Submit</button>&nbsp;&nbsp; */}
                     {/* MODAL CODE BELOW */}
                     <button
-                        // type='submit'
+                        type='submit'
                         className={styles.studentsformbutton}
-                    onClick={() => setShowModal(true)}>
+                    //onClick={() => setShowModal(true)}
+                    >
                         Submit
                     </button>
                     &nbsp;&nbsp;
