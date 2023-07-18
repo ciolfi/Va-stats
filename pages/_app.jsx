@@ -9,9 +9,12 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => (
 	<SessionProvider session={session}>
 
 		{/* POPUP CODE */}
-		<Alert />
+		<div className='container'>
+			<Alert />
+			<Component {...pageProps} />
+		</div>
 
-		<Component {...pageProps} />
+		{/* <Component {...pageProps} /> */}
 	</SessionProvider>
 );
 
