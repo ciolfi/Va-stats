@@ -90,14 +90,14 @@ export default function Page() {
             </Head>
 
             {/* ----------- POPUP CODE ----------- */}
-            <div>
+            {/* <div>
                 <h4>Successful Submission!</h4>
-                {/* <Popup position="right center"> */}
-                <Popup position="right top">
+                {/* <Popup position="right center"> 
+                <Popup trigger={submitbutton} position="right top">
                     <div>Thanks for submitting!</div>
                     <button>Return</button>
                 </Popup>
-            </div>
+            </div> */}
 
             <div className={styles.studentapplicationform}>
                 <h2>Student Application Form &rarr;</h2><br />
@@ -149,12 +149,17 @@ export default function Page() {
                     <label htmlFor='source'>How did you hear about the program?<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='source' name='source' required /><br /><br />
 
-                    <button
-                        type='submit'
+                    {/* <button
+                        type='button'
+                        id="submitbutton"
                         className={styles.studentsformbutton}
+                        onclick="handleSubmit()"
                     >
                         Submit
-                    </button>
+                    </button> */}
+
+                    <input type="submit" onclick="return confirm('Registration successful!')" />
+
                     &nbsp;&nbsp;
                     <input type='reset' value='RESET'></input>
                 </form>
