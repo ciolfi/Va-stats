@@ -9,7 +9,7 @@ import { executeQuery } from "../../lib/db";
 import Modal from "../components/Modal";
 
 // MODAL CONSTANTS
-const [showModal, setShowModal] = useState(false);
+// const [showModal, setShowModal] = useState(false);
 const reload = () => window.location.reload();
 const handleClose = () => setShowModal(false);
 
@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       {showModal &&
           <Modal show={showModal} onClick={reload}></Modal>
       }
-    </div>
+    </div>;
 
     // Redirect program flow back to Courses page
     res.writeHead(301, {
