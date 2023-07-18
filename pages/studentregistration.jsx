@@ -38,6 +38,7 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     const handleSubmit = () => {
+        alert("Registration successful!");
         setContentLoading(true);
     };
     
@@ -149,16 +150,14 @@ export default function Page() {
                     <label htmlFor='source'>How did you hear about the program?<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='source' name='source' required /><br /><br />
 
-                    {/* <button
-                        type='button'
+                    <button
+                        type="submit"
                         id="submitbutton"
                         className={styles.studentsformbutton}
                         onclick="handleSubmit()"
                     >
                         Submit
-                    </button> */}
-
-                    <input type="submit" onclick="return confirm('Registration successful!')" />
+                    </button>
 
                     &nbsp;&nbsp;
                     <input type='reset' value='RESET'></input>
