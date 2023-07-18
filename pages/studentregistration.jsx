@@ -47,7 +47,7 @@ export default function Page() {
         // ADDED
         setShowModal(true);
         {showModal &&
-            <Modal show={showModal} onClick={reload}></Modal>
+            <Modal show={showModal} onClick={reload}></Modal>;
         };
     };
     if (status === 'loading') {
