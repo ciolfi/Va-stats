@@ -48,7 +48,7 @@ export default function Page() {
         setShowModal(true);
         {showModal &&
             <Modal show={showModal} onClick={reload}></Modal>
-        }
+        };
     };
     if (status === 'loading') {
         return <p>Loading...</p>;
