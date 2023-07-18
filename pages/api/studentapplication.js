@@ -5,6 +5,14 @@ student registration form.
 
 import { executeQuery } from "../../lib/db";
 
+// MODAL IMPORT
+import Modal from "../components/Modal";
+
+// MODAL CONSTANTS
+const [showModal, setShowModal] = useState(false);
+const reload = () => window.location.reload();
+const handleClose = () => setShowModal(false);
+
 export default async function handler(req, res) {
     try {
         const body = req.body;
@@ -20,11 +28,19 @@ export default async function handler(req, res) {
     } catch (error) {
         console.log(error);
     }
+
+    // LOAD CONFIRMATION MODAL
+    <div className="modalbutton">
+      <button onClick={() => setShowModal(true)} className="modalbutton">SUBMIT</button>
+      {showModal &&
+          <Modal show={showModal} onClick={reload}></Modal>
+      }
+    </div>
+
     // Redirect program flow back to Courses page
     res.writeHead(301, {
         Location: '/studentregistration',
     });
-
     res.end();
 }
 

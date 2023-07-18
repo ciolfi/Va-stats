@@ -27,7 +27,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // MODAL IMPORTS
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 
 export default function Page() {
     useForm(); // Form reset
@@ -38,17 +38,12 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     // MODAL CONSTANTS
-    const [showModal, setShowModal] = useState(false);
-    const reload = () => window.location.reload();
-    const handleClose = () => setShowModal(false);
+    // const [showModal, setShowModal] = useState(false);
+    // const reload = () => window.location.reload();
+    // const handleClose = () => setShowModal(false);
 
     const handleSubmit = () => {
         setContentLoading(true);
-        // ADDED
-        setShowModal(true);
-        {showModal &&
-            <Modal show={showModal} onClick={reload}></Modal>;
-        };
     };
     if (status === 'loading') {
         return <p>Loading...</p>;
