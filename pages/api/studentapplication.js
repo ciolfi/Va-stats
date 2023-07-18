@@ -5,6 +5,10 @@ student registration form.
 
 import { executeQuery } from "../../lib/db";
 
+// POPUP CODE
+import { Alert } from "../../components/Alert";
+import { alertService } from "../../services/alert.service";
+
 export default async function handler(req, res) {
 
     try {
@@ -21,6 +25,10 @@ export default async function handler(req, res) {
     } catch (error) {
         console.log(error);
     }
+
+    // POPUP CODE
+    <Alert />;
+    alertService.success('Success!!', options);
 
     // Redirect program flow back to Student Registration page
     res.writeHead(301, {
