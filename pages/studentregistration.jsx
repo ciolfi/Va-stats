@@ -26,6 +26,9 @@ import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
 
+// POPUP CODE
+import Popup from 'reactjs-popup';
+
 export default function Page() {
     useForm(); // Form reset
     const { data: session, status } = useSession();
@@ -35,6 +38,17 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     const handleSubmit = () => {
+
+        // POPUP CODE
+        <div>
+            <h4>Successful Submission!</h4>
+            {/* <Popup position="right center"> */}
+            <Popup position="right top">
+                <div>Thanks for submitting!</div>
+                <button>Return</button>
+            </Popup>
+        </div>;
+
         setContentLoading(true);
     };
     
