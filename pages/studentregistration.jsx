@@ -45,9 +45,16 @@ export default function Page() {
     const handleSubmit = () => {
         setContentLoading(true);
     };
+    
     if (status === 'loading') {
         return <p>Loading...</p>;
     }
+
+    // IF DOMAIN CHANGES, CHANGE THIS: NEEDED FOR MODAL
+    else if (document.referrer == "https://va-stats.vercel.app/api/studentapplication.js" || document.referrer == "") {
+        alert("Previous page was studentapplication.js");
+    } else 
+    
     return (
         <>
             {contentLoading ?

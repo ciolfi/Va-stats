@@ -6,15 +6,15 @@ student registration form.
 import { executeQuery } from "../../lib/db";
 
 // MODAL IMPORT
-import Modal from "../../components/Modal";
-import "../../styles/globals.css";
+// import Modal from "../../components/Modal";
+// import "../../styles/globals.css";
 
 export default async function handler(req, res) {
     // MODAL CONSTANTS
     // const [showModal, setShowModal] = useState(false);
-    const [showModal, setShowModal] = null;
-    const reload=()=>window.location.reload();
-    const handleClose = () => setShowModal(false);
+    // const [showModal, setShowModal] = null;
+    // const reload=()=>window.location.reload();
+    // const handleClose = () => setShowModal(false);
 
     try {
         const body = req.body;
@@ -35,11 +35,5 @@ export default async function handler(req, res) {
     res.writeHead(301, {
         Location: '/studentregistration',
     });
-
-    // LOAD CONFIRMATION MODAL
-    return (
-        <Modal show={showModal} onClick={reload}></Modal>      
-    );
-
-    // res.end();  
+    res.end(); 
 }
