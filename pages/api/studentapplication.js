@@ -30,12 +30,8 @@ export default async function handler(req, res) {
     }
 
     // LOAD CONFIRMATION MODAL
-    <div className="modalbutton">
-      <button onClick={() => setShowModal(true)} className="modalbutton">SUBMIT</button>
-      {showModal &&
-          <Modal show={showModal} onClick={reload}></Modal>
-      }
-    </div>;
+    {showModal && <Modal show={showModal} onClick={reload}></Modal>;}
+    
 
     // Redirect program flow back to Courses page
     res.writeHead(301, {
