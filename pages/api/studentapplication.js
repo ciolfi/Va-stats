@@ -39,8 +39,6 @@ export default async function handler(req, res) {
 
     // LOAD CONFIRMATION MODAL
     return (
-        // setShowModal(true);
-        showModal && <Modal show={showModal} onClick={reload}></Modal>
-          
+        <Modal show={showModal} onClick={reload}></Modal>      
     );
 }
