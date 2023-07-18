@@ -38,17 +38,6 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     const handleSubmit = () => {
-
-        // POPUP CODE
-        <div>
-            <h4>Successful Submission!</h4>
-            {/* <Popup position="right center"> */}
-            <Popup position="right top">
-                <div>Thanks for submitting!</div>
-                <button>Return</button>
-            </Popup>
-        </div>;
-
         setContentLoading(true);
     };
     
@@ -99,6 +88,17 @@ export default function Page() {
                         href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
                 </noscript>
             </Head>
+
+            {/* ----------- POPUP CODE ----------- */}
+            <div>
+                <h4>Successful Submission!</h4>
+                {/* <Popup position="right center"> */}
+                <Popup position="right top">
+                    <div>Thanks for submitting!</div>
+                    <button>Return</button>
+                </Popup>
+            </div>
+
             <div className={styles.studentapplicationform}>
                 <h2>Student Application Form &rarr;</h2><br />
                 <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
