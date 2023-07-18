@@ -7,13 +7,15 @@ import { executeQuery } from "../../lib/db";
 
 // MODAL IMPORT
 import Modal from "../../components/Modal";
-
-// MODAL CONSTANTS
-// const [showModal, setShowModal] = useState(false);
-const reload = () => window.location.reload();
-const handleClose = () => setShowModal(false);
+import "../../styles/globals.css";
 
 export default async function handler(req, res) {
+    // MODAL CONSTANTS
+    // const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = null;
+    const reload=()=>window.location.reload();
+    const handleClose = () => setShowModal(false);
+
     try {
         const body = req.body;
         const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -29,14 +31,16 @@ export default async function handler(req, res) {
         console.log(error);
     }
 
-    // LOAD CONFIRMATION MODAL
-    {showModal && <Modal show={showModal} onClick={reload}></Modal>;}
-    
-
-    // Redirect program flow back to Courses page
+    // Redirect program flow back to Student Registration page
     res.writeHead(301, {
         Location: '/studentregistration',
     });
     res.end();
-}
 
+    // LOAD CONFIRMATION MODAL
+    return (
+        // setShowModal(true);
+        showModal && <Modal show={showModal} onClick={reload}></Modal>
+          
+    );
+}
