@@ -10,8 +10,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // POPUP CODE
-// import Router from 'next/router';
-import { useRouter } from "next/router";
+import Router from 'next/router';
 
 export default function Page() {
     useForm(); // Form reset
@@ -22,24 +21,17 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     // POPUP CODE
-    const router = useRouter();
     const [route, setRoute] = useState();
-    const handleSubmit = (e) => {
-        e.preventDefault();
+
+    const handleSubmit = () => {
+        // POPUP CODE
         alert("Registration successful!");
-        // router.push("someBasePath/" + route)
-        router.push("https://va-stats.vercel.app/students");
-        // Previous code
+
         setContentLoading(true);
+
+        // POPUP CODE
+        Router.push("https://va-stats.vercel.app/students");
     };
-
-    // const handleSubmit = () => {
-    //     // POPUP CODE
-    //     alert("Registration successful!");
-    //     Router.push('/students');
-
-    //     setContentLoading(true);
-    // };
     
     if (status === 'loading') {
         return <p>Loading...</p>;
