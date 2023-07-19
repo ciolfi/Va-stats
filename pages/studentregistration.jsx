@@ -27,7 +27,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // POPUP CODE
-import Popup from 'reactjs-popup';
+// import Popup from 'reactjs-popup';
+import Router from 'next/router';
 
 export default function Page() {
     useForm(); // Form reset
@@ -38,7 +39,10 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     const handleSubmit = () => {
+        // POPUP CODE
         alert("Registration successful!");
+        Router.push('/students');
+
         setContentLoading(true);
     };
     
