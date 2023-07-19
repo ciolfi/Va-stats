@@ -27,7 +27,7 @@ export default function Page() {
         // POPUP CODE
         alert("Registration successful!");
 
-        setContentLoading(true);
+        // setContentLoading(true);
 
         // POPUP CODE
         Router.push("https://va-stats.vercel.app/students");
