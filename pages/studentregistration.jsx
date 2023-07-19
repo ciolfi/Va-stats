@@ -10,7 +10,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // POPUP CODE
-import Router from 'next/router';
+import Router from "next/router";
 
 export default function Page() {
     useForm(); // Form reset
@@ -30,11 +30,8 @@ export default function Page() {
         // setContentLoading(true);
 
         // POPUP CODE
-        // Router.push("https://va-stats.vercel.app/students");
-        return(
-            // Router.push("https://va-stats.vercel.app/students")
-            Router.replace("https://va-stats.vercel.app/students")
-        );
+        setContentLoading(false);
+        Router.push("/students");
     };
 
     // if (status === 'loading') {
