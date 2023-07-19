@@ -32,7 +32,8 @@ export default function Page() {
         // POPUP CODE
         // Router.push("https://va-stats.vercel.app/students");
         return(
-            Router.push("https://va-stats.vercel.app/students")
+            // Router.push("https://va-stats.vercel.app/students")
+            Router.replace("https://va-stats.vercel.app/students")
         );
     };
 
