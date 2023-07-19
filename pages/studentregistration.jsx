@@ -31,12 +31,12 @@ export default function Page() {
 
         // POPUP CODE
         Router.push("https://va-stats.vercel.app/students");
-        return;
+        Window.close();
     };
 
-    // if (status === 'loading') {
-    //     return <p>Loading...</p>;
-    // }
+    if (status === 'loading') {
+        return <p>Loading...</p>;
+    }
 
     return (
         <>
