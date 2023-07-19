@@ -1,22 +1,5 @@
-/* This page uses the same 'template' as /students.jsx.
-NOTE: PAGE ACCESS REQUIRES AUTHENTICATION;
-please see authorized users in code below, which are
-also listed in Google Developer console.
-This file is reached by clicking 'Courses' in the live site;
-It displays 2 cards with the following functionality:
-Left side card - current courses.
-Right side card - a form that adds course information.
-Course data is brought into the left side card by calling the 
-assetHandler function in pages/api/students.js.
-NOTE REGARDING PHOTOS: Currently, if a student with photo is
-desired, the student must be added via phpMyAdmin.
-STYLING NOTE: Most of this view uses the same styling as 
-for the 'Students' view, i.e., CSS classes use the 'student'
-verbiage, although 'courses' are involved.
-NOTE REGARDING THE TABLE INVOLVED: This table, vacourses, and its
-data are automatically created through code, if it does not exist.
-
-IMPORTANT: Change the code in useEffect() below when testing locally. */
+/* This page registers a new student;
+usually done by a project manager */
 
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
@@ -27,8 +10,8 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // POPUP CODE
-// import Popup from 'reactjs-popup';
-import Router from 'next/router';
+// import Router from 'next/router';
+import { useRouter } from "next/router";
 
 export default function Page() {
     useForm(); // Form reset
@@ -38,13 +21,25 @@ export default function Page() {
     const [userResponse, setUserResponse] = useState([]);
     const [contentLoading, setContentLoading] = useState(false);
 
-    const handleSubmit = () => {
-        // POPUP CODE
+    // POPUP CODE
+    const router = useRouter();
+    const [route, setRoute] = useState();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         alert("Registration successful!");
-        Router.push('/students');
-
+        // router.push("someBasePath/" + route)
+        router.push("https://va-stats.vercel.app/students");
+        // Previous code
         setContentLoading(true);
     };
+
+    // const handleSubmit = () => {
+    //     // POPUP CODE
+    //     alert("Registration successful!");
+    //     Router.push('/students');
+
+    //     setContentLoading(true);
+    // };
     
     if (status === 'loading') {
         return <p>Loading...</p>;
