@@ -25,7 +25,7 @@ export default function Page() {
 
     const handleSubmit = () => {
         // POPUP CODE
-        alert("Registration successful!");
+        alert("Registration successful.");
 
         // setContentLoading(true);
 
