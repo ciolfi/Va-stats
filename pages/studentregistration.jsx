@@ -29,9 +29,9 @@ export default function Page() {
 
         // setContentLoading(true);
 
-        // POPUP CODE
+        // POPUP CODE 
+        Router.push("https://va-stats.vercel.app/students");
         setContentLoading(false);
-        Router.push("/students");
     };
 
     // if (status === 'loading') {
