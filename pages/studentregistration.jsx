@@ -30,8 +30,8 @@ export default function Page() {
         // setContentLoading(true);
 
         // POPUP CODE 
-        Router.push("https://va-stats.vercel.app/students");
-        setContentLoading(false);
+        // Router.push("https://va-stats.vercel.app/students");
+        Router.push("https://va-stats.vercel.app/students", { shallow: true });
     };
 
     // if (status === 'loading') {
