@@ -9,10 +9,6 @@ import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
 
-// MODAL CODE
-// import Modal from "../components/Modal";
-//import {useState} from "react";
-
 // POPUP CODE
 import Router from "next/router";
 
@@ -34,16 +30,8 @@ export default function Page() {
         setContentLoading(true);
 
         // POPUP CODE 
-        Router.push("https://va-stats.vercel.app/students", { shallow: true });
-
-        // MODAL CODE
-        // setShowModal(true);
-        // <div>
-        // {showModal &&
-        //     <Modal onClose={() => setShowModal(false)}>
-        //         Registration was successful!
-        //     </Modal>}
-        // </div>;
+        // Router.push("https://va-stats.vercel.app/students", { shallow: true });
+        Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
     };
 
     // if (status === 'loading') {
@@ -94,16 +82,6 @@ export default function Page() {
                 </noscript>
             </Head>
 
-            {/* ----------- POPUP CODE ----------- */}
-            {/* <div>
-                <h4>Successful Submission!</h4>
-                {/* <Popup position="right center"> 
-                <Popup trigger={submitbutton} position="right top">
-                    <div>Thanks for submitting!</div>
-                    <button>Return</button>
-                </Popup>
-            </div> */}
-
             <div className={styles.studentapplicationform}>
                 <h2>Student Application Form &rarr;</h2><br />
                 <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
@@ -128,7 +106,8 @@ export default function Page() {
                     </datalist>
 
                     <label htmlFor='age'>Birth Date:<span className={styles.requiredelement}>&#42;</span></label>
-                    <input type='date' id='age' name='age' placeholder='MM/DD/YYYY' required /><br /><br />
+                    {/* <input type='date' id='age' name='age' placeholder='MM/DD/YYYY' required /><br /><br /> */}
+                    <input type='date' id='age' name='age' required />&nbsp;(format: MM/DD/YYYY)<br /><br />
 
                     <label htmlFor='edu_qualifications'>Education qualifications:<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='edu_qualifications' name='edu_qualifications' required /><br /><br />
