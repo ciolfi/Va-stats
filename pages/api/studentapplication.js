@@ -27,13 +27,13 @@ export default async function handler(req, res) {
     }
 
     // MODAL CODE
-    setShowModal(true);
-    <div>
-        {showModal &&
-            <Modal onClose={() => setShowModal(false)}>
-                Registration was successful!
-            </Modal>}
-    </div>;
+    // setShowModal(true);
+    // <div>
+    //     {showModal &&
+    //         <Modal onClose={() => setShowModal(false)}>
+    //             Registration was successful!
+    //         </Modal>}
+    // </div>
 
     // Redirect program flow back to Student Registration page
     res.writeHead(301, {
