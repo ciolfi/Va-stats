@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     res.writeHead(301, {
         // Send user to blank Registration page
-        Location: '/studentregistration',
+        Location: '/studentregistration'
     });
     res.end(); 
 }
