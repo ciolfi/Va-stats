@@ -5,6 +5,10 @@ student registration form.
 
 import { executeQuery } from "../../lib/db";
 
+// MODAL CODE
+import Modal from "../../components/Modal";
+import {useState} from "react";
+
 export default async function handler(req, res) {
 
     try {
@@ -23,14 +27,20 @@ export default async function handler(req, res) {
     }
 
     // MODAL CODE
-    
+    setShowModal(true);
+    <div>
+        {showModal &&
+            <Modal onClose={() => setShowModal(false)}>
+                Registration was successful!
+            </Modal>}
+    </div>;
 
     // Redirect program flow back to Student Registration page
     res.writeHead(301, {
-        // Registration page
+        // Send user to Registration page
         // Location: '/studentregistration',
 
-        // Student list page
+        // Send user to Student list page
         Location: '/students',
     });
     res.end(); 
