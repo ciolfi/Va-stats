@@ -10,11 +10,11 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 // MODAL CODE
-import Modal from "../components/Modal";
+// import Modal from "../components/Modal";
 //import {useState} from "react";
 
 // POPUP CODE
-// import Router from "next/router";
+import Router from "next/router";
 
 export default function Page() {
     useForm(); // Form reset
@@ -25,25 +25,25 @@ export default function Page() {
     const [contentLoading, setContentLoading] = useState(false);
 
     // POPUP CODE 
-    // const [route, setRoute] = useState();
+    const [route, setRoute] = useState();
 
     const handleSubmit = () => {
         // POPUP CODE
-        // alert("Registration successful.");
+        alert("Registration successful.");
 
         setContentLoading(true);
 
         // POPUP CODE 
-        // Router.push("https://va-stats.vercel.app/students", { shallow: true });
+        Router.push("https://va-stats.vercel.app/students", { shallow: true });
 
         // MODAL CODE
-        setShowModal(true);
-        <div>
-        {showModal &&
-            <Modal onClose={() => setShowModal(false)}>
-                Registration was successful!
-            </Modal>}
-        </div>;
+        // setShowModal(true);
+        // <div>
+        // {showModal &&
+        //     <Modal onClose={() => setShowModal(false)}>
+        //         Registration was successful!
+        //     </Modal>}
+        // </div>;
     };
 
     // if (status === 'loading') {
