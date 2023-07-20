@@ -38,6 +38,23 @@ export default function Page() {
     //     return <p>Loading...</p>;
     // }
 
+    // Phone number constraints BEGIN
+    const [value, setValue] = useState('');
+
+    const handleChange = event => {
+        const result = event.target.value.replace(/\D/g, '');
+        setValue(result);
+    };
+
+    const checkConstraints = event => {
+        const result = event.target.value;
+        if (result.length !== 10){
+        alert("The phone number should be 10 numbers.");
+        document.getElementById("phnum").value=null;
+        }
+    };
+    // Phone number constraints END
+
     return (
         <>
             {contentLoading ?
@@ -95,7 +112,19 @@ export default function Page() {
                     <input type='text' id='phone_number' name='phone_number' required maxlength="10" pattern="[0]{1}[0-9]{9}"/>&nbsp;(10 numerical characters with no dashes or special characters)<br /><br /> */}
 
                     <label htmlFor='phone_number'>Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
-                    <input type='number' id='phone_number' name='phone_number' required maxlength="10" pattern="[0-9]*" />&nbsp;(10 numerical characters with no dashes or special characters)<br /><br />
+                    {/* <input id='phone_number' name='phone_number' required type="text" inputmode="numeric" pattern="\d*" />&nbsp;(10 numerical characters with no dashes or special characters)<br /><br /> */}
+                    
+                    {/* Phone textbox constraints */}
+                    <input
+                        id="phnum"
+                        type="text"
+                        placeholder="Phone number"
+                        maxLength="10"
+                        required
+                        value={value}
+                        onChange={handleChange}
+                        onBlur={checkConstraints}
+                    />&nbsp;(10 numerical characters with no dashes or special characters)<br /><br />
 
                     <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}></span></label>
                     <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
