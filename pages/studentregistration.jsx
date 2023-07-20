@@ -92,7 +92,7 @@ export default function Page() {
                     <input type='text' id='name' name='name' required /><br /><br />
 
                     <label htmlFor='phone_number'>Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
-                    <input type='text' id='phone_number' name='phone_number' required maxlength="10"/><br /><br />&nbsp;(10-character max; no dashes or special characters, please)
+                    <input type='text' id='phone_number' name='phone_number' required maxlength="10"/>&nbsp;(10-character max; no dashes or special characters, please)<br /><br />
 
                     <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}></span></label>
                     <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
