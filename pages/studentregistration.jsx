@@ -91,8 +91,11 @@ export default function Page() {
                     <label htmlFor='name'>Name:<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='name' name='name' required /><br /><br />
 
+                    {/* <label htmlFor='phone_number'>Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
+                    <input type='text' id='phone_number' name='phone_number' required maxlength="10" pattern="[0]{1}[0-9]{9}"/>&nbsp;(10 numerical characters with no dashes or special characters)<br /><br /> */}
+
                     <label htmlFor='phone_number'>Phone Number:<span className={styles.requiredelement}>&#42;</span></label>
-                    <input type='text' id='phone_number' name='phone_number' required maxlength="10" pattern="[0]{1}[0-9]{9}"/>&nbsp;(10 numerical characters with no dashes or special characters)<br /><br />
+                    <input type='text' id='phone_number' name='phone_number' required maxlength="10" pattern="\d{10}" />&nbsp;(10 numerical characters with no dashes or special characters)<br /><br />
 
                     <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}></span></label>
                     <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
