@@ -31,7 +31,7 @@ export default function Page() {
 
         // POPUP CODE 
         // Router.push("https://va-stats.vercel.app/students", { shallow: true });
-        Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
+        // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
     };
 
     // if (status === 'loading') {
