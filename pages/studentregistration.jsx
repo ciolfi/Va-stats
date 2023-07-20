@@ -38,11 +38,12 @@ export default function Page() {
 
         // MODAL CODE
         setShowModal(true);
+        <div>
         {showModal &&
             <Modal onClose={() => setShowModal(false)}>
                 Registration was successful!
-            </Modal>;
-        };
+            </Modal>}
+        </div>;
     };
 
     // if (status === 'loading') {

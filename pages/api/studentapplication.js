@@ -22,9 +22,16 @@ export default async function handler(req, res) {
         console.log(error);
     }
 
+    // MODAL CODE
+    
+
     // Redirect program flow back to Student Registration page
     res.writeHead(301, {
-        Location: '/studentregistration',
+        // Registration page
+        // Location: '/studentregistration',
+
+        // Student list page
+        Location: '/students',
     });
     res.end(); 
 }
