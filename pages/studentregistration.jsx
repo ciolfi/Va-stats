@@ -31,7 +31,7 @@ export default function Page() {
 
         // POPUP CODE 
         // Router.push("https://va-stats.vercel.app/students", { shallow: true });
-        // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
+        Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
     };
 
     // if (status === 'loading') {
@@ -116,10 +116,11 @@ export default function Page() {
                     
                     {/* Phone textbox constraints */}
                     <input
-                        id="phnum"
-                        type="text"
-                        placeholder="Phone number"
+                        id='phone_number'
                         maxLength="10"
+                        name='phone_number'
+                        // placeholder="Phone number"
+                        type='text'
                         required
                         value={value}
                         onChange={handleChange}
