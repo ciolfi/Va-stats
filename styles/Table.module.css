@@ -7,7 +7,7 @@
 
 .genericTable {
 	border: 1px solid rgba(0,0,0,0.3);
-	
+
 	/* ADDED NEXT TWO LINES */
 	margin-left: 0;
 	margin-right: 0;
@@ -65,7 +65,7 @@
 .tableWrapper::-webkit-scrollbar-thumb {
  	background-color: rgba(104,140,140,0.3);
 	border-radius: 20px;
-  	border: 6px solid black; /* PREV VAL: transparent; */
+  	border: 6px solid transparent; 
 }
 
 .genericTableColumnHeaderAsc {
