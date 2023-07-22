@@ -22,10 +22,11 @@
 	padding: 1rem 1rem;
 	text-align: left;
 	font-weight: 700;
-	font-size: 1rem;
+	font-size: 0.7rem; /* PREV VAL: 1rem; */
 	color: var(--table-text);
 	text-transform: uppercase;
-	word-break: break-all;
+	/* word-break: break-all; REMOVED; this breaks between any characters */
+	word-wrap: break-word;	/* ADDED; use this or 'normal' value*/
 }
 
 .genericTable tbody tr {

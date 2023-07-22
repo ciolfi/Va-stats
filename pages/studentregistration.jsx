@@ -125,7 +125,7 @@ export default function Page() {
                         value={value}
                         onChange={handleChange}
                         onBlur={checkConstraints}
-                    />&nbsp;(10 numerical characters with no dashes or special characters)<br /><br />
+                    />&nbsp;(10 numerical characters; no dashes or special characters)<br /><br />
 
                     <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}></span></label>
                     <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
@@ -140,7 +140,7 @@ export default function Page() {
 
                     <label htmlFor='age'>Birth Date:<span className={styles.requiredelement}>&#42;</span></label>
                     {/* <input type='date' id='age' name='age' placeholder='MM/DD/YYYY' required /><br /><br /> */}
-                    <input type='date' id='age' name='age' required />&nbsp;(format: MM/DD/YYYY)<br /><br />
+                    <input type='date' id='age' name='age' required />&nbsp;<br /><br />
 
                     <label htmlFor='edu_qualifications'>Education qualifications:<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='edu_qualifications' name='edu_qualifications' required /><br /><br />
