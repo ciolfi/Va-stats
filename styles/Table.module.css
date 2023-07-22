@@ -6,10 +6,15 @@
 }
 
 .genericTable {
-	width: 100%;
-	table-layout: fixed;
 	border: 1px solid rgba(0,0,0,0.3);
+	
+	/* ADDED NEXT TWO LINES */
+	margin-left: 0;
+	margin-right: 0;
+
 	position: sticky;
+	table-layout: fixed;
+	width: 100%;
 }
 
 .genericTable thead {
@@ -34,7 +39,7 @@
 }
 
 .genericTable td {
-	padding: 0.25rem;
+	padding: 0.25rem; 
 	text-align: left;
 	vertical-align: middle;
 	font-size: 0.875rem;
@@ -60,7 +65,7 @@
 .tableWrapper::-webkit-scrollbar-thumb {
  	background-color: rgba(104,140,140,0.3);
 	border-radius: 20px;
-  	border: 6px solid transparent;
+  	border: 6px solid black; /* PREV VAL: transparent; */
 }
 
 .genericTableColumnHeaderAsc {
