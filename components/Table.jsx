@@ -86,8 +86,14 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					<tr>
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
+
+							// COL HEADER ROTATION BLOCK BELOW
+							// const rotamt = column.transform(-70);
+							const myrotamt = columns(transform.rotamt(-70));
 							return (
 								<th
+									transform={myrotamt}
+
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
