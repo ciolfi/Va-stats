@@ -20,12 +20,15 @@
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
+	height: auto;				/* ADDED */
 	position: sticky;
   	top: 0;
 }
 /* Basic styling */
 .genericTable th {
-	padding: 1rem 1rem;
+	/* padding: 1rem 1rem; */	/* EDITED */
+	padding: 0rem 1rem;
+	
 	text-align: left;
 	font-weight: 700;
 	font-size: 1rem; /* PREV VAL: 0.7rem; orig: 1 */
@@ -42,8 +45,8 @@ DOM flow, which is needed for the transform to
 look right.  */
 .rotatedth {					/* Nested div */
 	/* border: 2px solid black; */
-	/* height: 130px; */
-	height: auto;
+	height: 130px;
+	/* height: auto; */
 	margin-top: 1em;
 	position: relative;
 }
