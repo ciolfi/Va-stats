@@ -91,7 +91,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
-								<th className={rotatedLabel}
+								// <th className={rotatedLabel}
+								<th
+									transform={rotatedLabel}
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
