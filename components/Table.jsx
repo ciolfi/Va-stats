@@ -32,6 +32,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	// const host = req.headers.get("host");
 	// const prevpg = thecontext.req.headers.referer;
 	const prevpg = document.referrer;
+	const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -105,7 +106,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									if ({document.referrer} == &ldquot;https://va-stats.vercel.app/students&rdquot;) {
+									if (prevpg == studentspgurl) {
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
