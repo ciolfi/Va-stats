@@ -22,7 +22,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
 	/* ROTATED COL HEADER CODE */
-	const rotatedLabel = styles.rotatedthlabel;
+	// const rotatedLabel = styles.rotatedthlabel;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -91,17 +91,20 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
-								// <th className={rotatedLabel}
 								<th
-									transform={rotatedLabel}
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									{/* ROTATED HEADER COL CODE BELOW */}
-									{/* <div className={tableHeaderClassName}> */}
-									<div className={rotatedLabel}>
+									{/* ROTATED HEADER COL CODE BELOW 
+									<div className={tableHeaderClassName}>
 										{column.name}
+										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
+									</div> */}
+									<div className={styles.rotatedth}>	
+										<span className={styles.rotatedthlabel}>
+											{column.name}
+										</span>
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
 								</th>

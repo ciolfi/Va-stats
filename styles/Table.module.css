@@ -40,7 +40,7 @@ https://www.bennadel.com/blog/4338-rotating-table-headers-with-css-transform.htm
 position: absolute takes the element out of the 
 DOM flow, which is needed for the transform to
 look right.  */
-.rotated-th {					/* Nested div */
+.rotatedth {					/* Nested div */
 	border: 2px solid black;
 	height: 130px;
 	margin-top: 1em;
