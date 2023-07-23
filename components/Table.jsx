@@ -88,16 +88,17 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 							const width = column.width ?? 'auto';
 
 							// COL HEADER ROTATION BLOCK BELOW
-							const rotamt = column.transform(-70);
+							// const rotamt = column.transform(-70);
 							return (
 								<th
-									transform={rotamt}
+									// transform={rotamt}
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									<div className={tableHeaderClassName}>
-										{column.name}
+										{/* {column.name} */}
+										{column.name}.transform.ROTATION(-70deg)
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
 								</th>
