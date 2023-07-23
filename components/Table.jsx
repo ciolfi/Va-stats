@@ -1,4 +1,5 @@
-import styles from '@/styles/Table.module.css';
+// import styles from '@/styles/Table.module.css';
+import styles from '../styles/Table.module.css';
 import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
