@@ -24,7 +24,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	/* GET URL REQUESTING THIS COMPONENT 
 	This allows rotation in code below if URL is 
 	https://va-stats.vercel.app/students */
-	const host = req.headers.get("host");
+	//const host = req.headers.get("host");
+	const prevpg = context.req.headers.referer;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -98,7 +99,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									if ({host} == &apos;https://va-stats.vercel.app/students\&apos;) {
+									if ({prevpg} == &apos;https://va-stats.vercel.app/students&apos;) {
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
