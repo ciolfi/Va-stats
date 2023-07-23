@@ -211,7 +211,8 @@ export default function Page() {
 			accessor: 'objectives',
 		},  
         {
-			name: 'Vision Impairment History',
+			// name: 'Vision Impairment History',
+            name: 'Impairment History',
 			accessor: 'vision_impairment',
 		},  
         {

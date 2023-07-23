@@ -21,8 +21,10 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
-	/* ROTATED COL HEADER CODE */
-	// const rotatedLabel = styles.rotatedthlabel;
+	/* GET URL REQUESTING THIS COMPONENT 
+	This allows rotation in code below if URL is 
+	https://va-stats.vercel.app/students */
+	const host = req.headers.get("host");
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -96,17 +98,22 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									{/* ROTATED HEADER COL CODE BELOW 
-									<div className={tableHeaderClassName}>
-										{column.name}
-										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
-									</div> */}
-									<div className={styles.rotatedth}>	
-										<span className={styles.rotatedthlabel}>
+									if ({host} == https://va-stats.vercel.app/students) {
+										<div className={styles.rotatedth}>	
+											<span className={styles.rotatedthlabel}>
+												{column.name}
+											</span>
+											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
+										</div>
+									}
+
+									{/* Original code */}
+									else {
+										<div className={tableHeaderClassName}>
 											{column.name}
-										</span>
-										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
-									</div>
+											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
+										</div>
+									};
 								</th>
 							);
 						})}
