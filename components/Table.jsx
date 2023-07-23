@@ -8,8 +8,8 @@ import { useRouter } from 'next/router';
 
 /* Line below is used for if/else down the page for 
 rotated text */
-import GetServerSideProps from 'next';
-GetServerSideProps(context);
+// import GetServerSideProps from 'next';
+// thecontext = GetServerSideProps(context);
 
 export default function Table({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
@@ -29,8 +29,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	/* GET URL REQUESTING THIS COMPONENT 
 	This allows rotation in code below if URL is 
 	https://va-stats.vercel.app/students */
-	//const host = req.headers.get("host");
-	const prevpg = context.req.headers.referer;
+	// const host = req.headers.get("host");
+	// const prevpg = thecontext.req.headers.referer;
+	const prevpg = document.referrer;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
