@@ -106,7 +106,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									if (prevpg == studentspgurl) {
+									if ({prevpg} == {studentspgurl}) {
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
@@ -114,8 +114,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
 									}
-
-									{/* Original code */}
 									else {
 										<div className={tableHeaderClassName}>
 											{column.name}
