@@ -99,7 +99,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{/* ROTATED HEADER COL CODE BELOW */}
-									<div className={tableHeaderClassName}>
+									{/* <div className={tableHeaderClassName}> */}
+									<div className={rotatedLabel}>
 										{column.name}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
