@@ -21,6 +21,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
+	/* ROTATED COL HEADER CODE */
+	const rotatedLabel = styles.rotated-th_label;
+
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
 	async function saveHandler() {
@@ -88,13 +91,14 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
-								// <th
-								<th className={styles.rotated-th_label}
+								<th
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									<div className={tableHeaderClassName}>
+									{/* ROTATED HEADER COL CODE BELOW */}
+									{/* <div className={tableHeaderClassName}> */}
+									<div className={rotatedLabel}>
 										{column.name}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
