@@ -6,6 +6,11 @@ import Image from 'next/image';
 import Button from './Button';
 import { useRouter } from 'next/router';
 
+/* Line below is used for if/else down the page for 
+rotated text */
+import GetServerSideProps from 'next';
+GetServerSideProps(context);
+
 export default function Table({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
 	const [sortAsc, setSortAsc] = useState(true);
