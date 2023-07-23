@@ -98,7 +98,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 								>
 									<div className={tableHeaderClassName}>
 										{/* {column.name} */}
-										{column.name.transform.ROTATION(-70)}
+										{column.name.transform.text(-70)}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
 								</th>
