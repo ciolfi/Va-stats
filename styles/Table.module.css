@@ -23,16 +23,41 @@
   	top: 0;
 }
 
-.genericTable th {
+/* ---------- TABLE HEADER BEGINS --------- */
+/* Basic styling */
+/* .genericTable th {
 	padding: 1rem 1rem;
 	text-align: left;
 	font-weight: 700;
-	font-size: 0.7rem; /* PREV VAL: 1rem; */
+	font-size: 0.7rem; /* PREV VAL: 1rem; 
 	color: var(--table-text);
 	text-transform: uppercase;
-	/* word-break: break-all; REMOVED; this breaks between any characters */
-	word-wrap: break-word;	/* ADDED; use this or 'normal' value*/
+	/* word-break: break-all; REMOVED; this breaks between any characters 
+	word-wrap: break-word;	/* ADDED; use this or 'normal' value
+} */
+/* Rotation styling */
+/* From: 
+https://www.bennadel.com/blog/4338-rotating-table-headers-with-css-transform.htm 
+position: absolute takes the element out of the 
+DOM flow, which is needed for the transform to
+look right. 
+.rotated-th {
+	border: 2px solid black;
+	height: 130px;
+	margin-top: 1em;
+	position: relative;
 }
+.rotated-th_label {
+	bottom: 5px;
+	left: 50%;
+	position: absolute;
+	transform: rotate(-70deg);
+	transform-origin: center left;
+	white-space: nowrap;
+}
+/* ---------- TABLE HEADER ENDS --------- */
+
+.genericTable th
 
 .genericTable tbody tr {
     width: 100%;

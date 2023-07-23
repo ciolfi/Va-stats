@@ -282,7 +282,15 @@ div .menubutton {
   width: 24%;
 }
 
-
+/* Rotated students column heading */
+.studentsColumns {
+  bottom: 5px;
+  left: 50%;
+  position: absolute;
+  transform: rotate(-70deg);
+  transform-origin: center left;
+  white-space: nowrap;
+}
 
 /* ---------------- Gen Students styles end --------------- */
 
@@ -442,12 +450,12 @@ div .menubutton {
     width: 100vw;
   }
 
-    .studentapplicationform {
-      left: -1em;
-      max-width: 1000vw;
-      position: relative;
-      width: 1000vw;
-    }
+  .studentapplicationform {
+    left: -1em;
+    max-width: 1000vw;
+    position: relative;
+    width: 1000vw;
+  }
 
   .footer {
     bottom: 0;
