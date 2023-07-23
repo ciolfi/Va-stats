@@ -28,7 +28,7 @@
 .genericTable th {
 	/* padding: 1rem 1rem; */	/* EDITED */
 	padding: 0rem 1rem;
-	
+
 	text-align: left;
 	font-weight: 700;
 	font-size: 1rem; /* PREV VAL: 0.7rem; orig: 1 */
@@ -45,8 +45,8 @@ DOM flow, which is needed for the transform to
 look right.  */
 .rotatedth {					/* Nested div */
 	/* border: 2px solid black; */
-	height: 130px;
-	/* height: auto; */
+	/* height: 130px; */
+	height: 25vh;
 	margin-top: 1em;
 	position: relative;
 }

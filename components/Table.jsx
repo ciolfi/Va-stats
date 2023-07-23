@@ -110,7 +110,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 								</th>
 							);
 						})}
-						{isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>}
+						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
+						{isDelete || isEditable? <th width={'8%'}>Actions</th> : <></>}
 					</tr>
 				</thead>
 				<tbody>
