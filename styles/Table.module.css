@@ -17,15 +17,14 @@
 	width: 100%;
 }
 
+/* ---------- TABLE HEADER BEGINS --------- */
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
 	position: sticky;
   	top: 0;
 }
-
-/* ---------- TABLE HEADER BEGINS --------- */
 /* Basic styling */
-	.genericTable th {
+.genericTable th {
 	padding: 1rem 1rem;
 	text-align: left;
 	font-weight: 700;
@@ -41,13 +40,13 @@ https://www.bennadel.com/blog/4338-rotating-table-headers-with-css-transform.htm
 position: absolute takes the element out of the 
 DOM flow, which is needed for the transform to
 look right.  */
-.rotated-th {
+.rotated-th {					/* Nested div */
 	border: 2px solid black;
 	height: 130px;
 	margin-top: 1em;
 	position: relative;
 }
-.rotated-th_label {
+.rotated-th_label {				/* span in the above div */
 	bottom: 5px;
 	left: 50%;
 	position: absolute;
