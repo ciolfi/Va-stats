@@ -98,7 +98,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									if ({host} == https://va-stats.vercel.app/students) {
+									if ({host} == &apos;https://va-stats.vercel.app/students\&apos;) {
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
