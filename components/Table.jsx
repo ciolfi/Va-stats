@@ -22,7 +22,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
 	/* ROTATED COL HEADER CODE */
-	const rotatedLabel = styles.rotated-th_label;
+	const rotatedLabel = styles.rotatedthlabel;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 

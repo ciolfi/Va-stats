@@ -46,7 +46,7 @@ look right.  */
 	margin-top: 1em;
 	position: relative;
 }
-.rotated-th_label {				/* span in the above div */
+.rotatedthlabel {				/* span in the above div */
 	bottom: 5px;
 	left: 50%;
 	position: absolute;
