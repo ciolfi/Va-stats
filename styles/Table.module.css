@@ -28,7 +28,7 @@
 	padding: 1rem 1rem;
 	text-align: left;
 	font-weight: 700;
-	font-size: 0.7rem; /* PREV VAL: 1rem; */
+	font-size: 1rem; /* PREV VAL: 0.7rem; orig: 1 */
 	color: var(--table-text);
 	text-transform: uppercase;
 	/* word-break: break-all; REMOVED; this breaks between any characters  */
@@ -41,8 +41,9 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right.  */
 .rotatedth {					/* Nested div */
-	border: 2px solid black;
-	height: 130px;
+	/* border: 2px solid black; */
+	/* height: 130px; */
+	height: auto;
 	margin-top: 1em;
 	position: relative;
 }
