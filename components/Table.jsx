@@ -91,14 +91,14 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
-								<th
+								<th className={rotatedLabel}
 									key={column.accessor}
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{/* ROTATED HEADER COL CODE BELOW */}
 									{/* <div className={tableHeaderClassName}> */}
-									<div className={rotatedLabel}>
+									<div>
 										{column.name}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
