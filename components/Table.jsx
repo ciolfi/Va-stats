@@ -1,15 +1,11 @@
-// import styles from '@/styles/Table.module.css';
+/* THIS PAGE: Handles the code for all tables in the app. */
+
 import styles from '../styles/Table.module.css';
 import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from './Button';
 import { useRouter } from 'next/router';
-
-/* Line below is used for if/else down the page for 
-rotated text */
-// import GetServerSideProps from 'next';
-// thecontext = GetServerSideProps(context);
 import { usePathname } from 'next/navigation';
 
 export default function Table({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
@@ -21,22 +17,18 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const orig = useRef(JSON.parse(JSON.stringify(tableData)));
 	const inputClassName = styles.editableInput;
 	const [showOriginal, setShowOriginal] = useState(false);
-
 	const router = useRouter();
-
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
-	/* GET URL REQUESTING THIS COMPONENT 
+	/* STUDENTS PAGE:
 	This allows rotation in code below if 
 	URL is /students */
-
-	// const pathname = usePathname();	// Use relative path, e.g., /students
 	const pathname = usePathname().toString();	// Use relative path, e.g., /students
 	const studentspgurl = "/students";
-	// const isMatch = pathname.equals((studentspgurl).toString());
 	const isMatch = (pathname == studentspgurl);
 
+	/* BATCHES PAGE */
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
 	async function saveHandler() {
@@ -109,15 +101,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									{/* if ({prevpg} == {studentspgurl}) { */}
-										{/* <div className={styles.rotatedth}>	
-											<span className={styles.rotatedthlabel}>
-												{column.name}
-											</span>
-											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
-										</div> */}
-									{/* } */}
-
 									{isMatch ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>

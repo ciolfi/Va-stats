@@ -113,7 +113,8 @@ look right.  */
 .genericTableHeader {
 	display: flex;
 	flex-direction: row;
-	align-items: inherit;
+	/* align-items: inherit; */
+	align-items: left;
 	justify-content: space-between;
 	position: sticky;
 	top: 0;
