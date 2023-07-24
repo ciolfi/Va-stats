@@ -35,8 +35,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 
 	// const prevpg = document.referrer;
 	// const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
-	const studentspgurl = "https://va-stats.vercel.app/students";
 	const pathname = usePathname();
+	const studentspgurl = encodeURIComponent("https://va-stats.vercel.app/students");
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
