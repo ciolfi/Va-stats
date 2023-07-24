@@ -107,6 +107,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
+								// const decstudentspgurl =
 								<th
 									key={column.accessor}
 									width={width}
@@ -121,18 +122,20 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 										</div> */}
 									{/* } */}
 
-									{pathname}.equals(decodeURIComponent({studentspgurl})) ?
+									{pathname.equals(decodeURIComponent({studentspgurl})) ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
 											</span>
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									:
+										:
 										<div className={tableHeaderClassName}>
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
+									}
+									
 									{/* const data = 
 									{data.status === 'success' ? "data" : "not data"} */}
 								</th>
