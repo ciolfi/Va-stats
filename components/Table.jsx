@@ -36,9 +36,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	// const prevpg = document.referrer;
 	// const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
 	const pathname = usePathname();	// Use relative path, e.g., /students
-	console.log(pathname);
 	const studentspgurl = encodeURIComponent("/students");
-	console.log(studentspgurl);
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -107,7 +105,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
-								// const decstudentspgurl =
 								<th
 									key={column.accessor}
 									width={width}
@@ -135,12 +132,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
 									}
-									
-									{/* const data = 
-									{data.status === 'success' ? "data" : "not data"} */}
 								</th>
 							);
-						})}
+						})};
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
 						{isDelete || isEditable? <th width={'8%'}>Actions</th> : <></>}
 					</tr>
