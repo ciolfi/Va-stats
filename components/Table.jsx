@@ -31,9 +31,10 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	This allows rotation in code below if 
 	URL is /students */
 
-	const pathname = usePathname();	// Use relative path, e.g., /students
-	// const studentspgurl = decodeURIComponent("/students");
-	// const isMatch = pathname.equals(studentspgurl);
+	// const pathname = usePathname();	// Use relative path, e.g., /students
+	const pathname = usePathname().toString();	// Use relative path, e.g., /students
+	const studentspgurl = decodeURIComponent("/students").toString();
+	const isMatch = pathname.equals(studentspgurl);
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -101,10 +102,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					<tr>
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
-
-							const studentspgurl = decodeURIComponent("/students").toString();
-							const pathname = pathname.toString();
-							const isMatch = pathname.equals(studentspgurl);
 							return (
 								<th
 									key={column.accessor}
