@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 rotated text */
 // import GetServerSideProps from 'next';
 // thecontext = GetServerSideProps(context);
+import { usePathname } from 'next/navigation';
 
 export default function Table({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
@@ -31,8 +32,11 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	https://va-stats.vercel.app/students */
 	// const host = req.headers.get("host");
 	// const prevpg = thecontext.req.headers.referer;
-	const prevpg = document.referrer;
-	const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
+
+	// const prevpg = document.referrer;
+	// const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
+	const studentspgurl = "https://va-stats.vercel.app/students";
+	const pathname = usePathname();
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -107,19 +111,27 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{/* if ({prevpg} == {studentspgurl}) { */}
+										{/* <div className={styles.rotatedth}>	
+											<span className={styles.rotatedthlabel}>
+												{column.name}
+											</span>
+											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
+										</div> */}
+									{/* } */}
+									if ({pathname} == {studentspgurl}) {
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
 											</span>
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									{/* } */}
-									{/* else {
+									}
+									else {
 										<div className={tableHeaderClassName}>
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									}; */}
+									};
 								</th>
 							);
 						})}
