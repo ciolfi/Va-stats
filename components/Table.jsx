@@ -33,7 +33,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 
 	// const pathname = usePathname();	// Use relative path, e.g., /students
 	const pathname = usePathname().toString();	// Use relative path, e.g., /students
-	const studentspgurl = encodeURIComponent("/students");
+	const studentspgurl = "/students";
 	// const isMatch = pathname.equals((studentspgurl).toString());
 	const isMatch = (pathname == studentspgurl);
 
