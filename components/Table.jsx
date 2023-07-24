@@ -131,7 +131,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									};
+									}
 								</th>
 							);
 						})}
