@@ -119,7 +119,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 										</div> */}
 									{/* } */}
 
-									{pathname.equals(decodeURIComponent({studentspgurl})) ?
+									{{pathname}.equals(decodeURIComponent({studentspgurl})) ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
@@ -131,7 +131,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									}
+									};
 								</th>
 							);
 						})};
