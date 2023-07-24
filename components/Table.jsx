@@ -34,7 +34,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	// const pathname = usePathname();	// Use relative path, e.g., /students
 	const pathname = usePathname().toString();	// Use relative path, e.g., /students
 	const studentspgurl = encodeURIComponent("/students");
-	const isMatch = pathname.equals((studentspgurl).toString());
+	// const isMatch = pathname.equals((studentspgurl).toString());
+	const isMatch = (pathname == studentspgurl);
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
