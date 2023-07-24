@@ -106,8 +106,9 @@ look right.  */
 }
 
 .actionItem {
-	margin-right: 0.3rem;
 	cursor: pointer;
+	margin-right: 0.3rem;
+	text-align: left;
 }
 
 .genericTableHeader {
@@ -115,7 +116,7 @@ look right.  */
 	flex-direction: row;
 	/* align-items: inherit; */
 	align-items: left;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	position: sticky;
 	top: 0;
 	background-color: white;
