@@ -113,28 +113,27 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{/* if ({prevpg} == {studentspgurl}) { */}
-										<div className={styles.rotatedth}>	
+										{/* <div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
 											</span>
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
-										</div>
+										</div> */}
 									{/* } */}
 
-									{/* if ({pathname} == decodeURIComponent({studentspgurl})) {
+									{{pathname}.equals(decodeURIComponent({studentspgurl})) ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
 											</span>
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									}
-									else {
+									:
 										<div className={tableHeaderClassName}>
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									} */}
+									}
 
 									{/* const data = 
 									{data.status === 'success' ? "data" : "not data"} */}
