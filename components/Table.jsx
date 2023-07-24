@@ -28,15 +28,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
 	/* GET URL REQUESTING THIS COMPONENT 
-	This allows rotation in code below if URL is 
-	https://va-stats.vercel.app/students */
-	// const host = req.headers.get("host");
-	// const prevpg = thecontext.req.headers.referer;
+	This allows rotation in code below if 
+	URL is /students */
 
-	// const prevpg = document.referrer;
-	// const studentspgurl = "https://va-stats.vercel.app/students&rdquot";
 	const pathname = usePathname();	// Use relative path, e.g., /students
-	const studentspgurl = encodeURIComponent("/students");
+	// const studentspgurl = decodeURIComponent("/students");
+	// const isMatch = pathname.equals(studentspgurl);
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -104,6 +101,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					<tr>
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
+
+							const studentspgurl = decodeURIComponent("/students");
+							const isMatch = pathname.equals(studentspgurl);
 							return (
 								<th
 									key={column.accessor}
@@ -119,7 +119,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 										</div> */}
 									{/* } */}
 
-									{{pathname}.equals(decodeURIComponent({studentspgurl})) ?
+									{isMatch ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
@@ -131,7 +131,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
-									};
+									}
 								</th>
 							);
 						})};
