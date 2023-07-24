@@ -102,7 +102,8 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 
-							const studentspgurl = decodeURIComponent("/students");
+							const studentspgurl = decodeURIComponent("/students").toString();
+							const pathname = pathname.toString();
 							const isMatch = pathname.equals(studentspgurl);
 							return (
 								<th
