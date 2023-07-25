@@ -26,6 +26,7 @@
 }
 /* Basic styling */
 .genericTable th {
+	border: 2px solid black;
 	/* padding: 1rem 1rem; */	/* EDITED */
 	padding: 0rem 1rem;
 
