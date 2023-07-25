@@ -61,6 +61,7 @@ look right.  */
 /* ---------- TABLE HEADER ENDS --------- */
 
 .genericTable th
+
 .genericTable tbody tr {
     width: 100%;
 }
