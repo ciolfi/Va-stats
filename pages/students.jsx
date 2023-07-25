@@ -165,7 +165,8 @@ export default function Page() {
     const studentsColumns = [
         {
 			name: 'Id',
-			width: '6%',
+			// width: '6%',
+            width: '4%',
 			accessor: 'id',
 		}, 
         {

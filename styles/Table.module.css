@@ -26,17 +26,15 @@
 }
 /* Basic styling */
 .genericTable th {
-	border: 2px solid black;
-	/* padding: 1rem 1rem; */	/* EDITED */
-	padding: 0rem 1rem;
-
-	text-align: left;
-	font-weight: 700;
-	font-size: 1rem; /* PREV VAL: 0.7rem; orig: 1 */
+	/* border: 0px solid black; */
 	color: var(--table-text);
+	font-size: 0.8rem; 				/* PREV: 1rem */
+	font-weight: 700;
+	padding: 0rem 0.8rem;			/* PREV: 1rem 1rem, then 0 1 */
+	text-align: left;
 	text-transform: uppercase;
-	/* word-break: break-all; REMOVED; this breaks between any characters  */
-	word-wrap: break-word;	/* ADDED; use this or 'normal' value  */
+	/* word-break: break-all; 	/* REMOVED; this breaks between any characters  */
+	word-wrap: break-word;		/* ADDED; use this or 'normal' value  */
 }
 /* Rotation styling */
 /* From: 
