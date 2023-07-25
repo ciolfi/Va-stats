@@ -94,7 +94,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
+            // I had to move getpagedata out of useeffect so I could call it here
             await getPageData();
         } else {
             console.error('Error deleting the batch');
@@ -165,8 +165,7 @@ export default function Page() {
     const studentsColumns = [
         {
 			name: 'Id',
-			// width: '6%',
-            width: '4%',
+            width: '4%',            // PREV: 6%
 			accessor: 'id',
 		}, 
         {

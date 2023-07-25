@@ -20,7 +20,7 @@
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
-	height: auto;				/* ADDED */
+	height: auto;					/* ADDED */
 	position: sticky;
   	top: 0;
 }
@@ -33,8 +33,8 @@
 	padding: 0rem 0.8rem;			/* PREV: 1rem 1rem, then 0 1 */
 	text-align: left;
 	text-transform: uppercase;
-	/* word-break: break-all; 	/* REMOVED; this breaks between any characters  */
-	word-wrap: break-word;		/* ADDED; use this or 'normal' value  */
+	/* word-break: break-all; 		/* REMOVED; this breaks between any characters  */
+	word-wrap: break-word;			/* ADDED; use this or 'normal' value  */
 }
 /* Rotation styling */
 /* From: 
