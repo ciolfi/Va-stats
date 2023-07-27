@@ -153,12 +153,12 @@ a.textlogo {
   font-weight: 700;
 }
 
-/* Hamburger menu */
+/* ------------------- Hamburger menu --------------- */
 .nav__menu-bar {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding-right: 1em;
+  padding-right: 2em;       /* PREV: 1em; */
   row-gap: 6px;
 }
 
