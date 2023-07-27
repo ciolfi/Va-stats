@@ -5,7 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import NavItem from './NavItem';
 import Button from './Button';
-import styles from '@/styles/Navbar.module.css';
+// import styles from '@/styles/Navbar.module.css';
+import styles from '../styles/Navbar.module.css';
 import Head from 'next/head';
 
 // NOTE: target=_blank does not currently work (7/7/2023)
@@ -143,6 +144,5 @@ const DropdownMenu = ({ menu, active, setActive, setActiveIdx }) => (
     )}
   </div>
 );
-
 
 export default Navbar;
