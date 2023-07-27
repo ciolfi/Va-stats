@@ -11,7 +11,7 @@ import Head from 'next/head';
 // NOTE: target=_blank does not currently work (7/7/2023)
 const MENU_LIST = [
   { text: 'Home', href: '/' },
-  { text: 'About Us', href: '/about' },
+  // { text: 'About Us', href: '/about' }, Spring 2022 student team
   {
     text: "Students",
     href: "/students",
