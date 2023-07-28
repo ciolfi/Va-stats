@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import NavItem from './NavItem';
 import Button from './Button';
-// import styles from '@/styles/Navbar.module.css';
 import styles from '../styles/Navbar.module.css';
 import Head from 'next/head';
 
@@ -78,10 +77,7 @@ const Navbar = (user_role) => {
         <div
           onClick={() => setNavActive(!navActive)}
           className={'nav__menu-bar'}>
-
-            {/* Added (the 5 menu items) */}
-            <div></div>
-            <div></div>
+            {/* Below DIVs are for the 3 lines of the mobile menu */}
             <div></div>
             <div></div>
             <div></div>

@@ -1,11 +1,11 @@
+/* 'Logged in text' */
 .topRightText {
-	/*font-size: 0.75rem;*/
 	font-size: 0.85rem;
 	position: absolute;
-	/* top: 0.5rem; */
 	top: 0.1rem;
 	right: 0.5rem;
 	/* padding-bottom: 0.5rem; /* Prevent overlapping by email address */
+	margin-bottom: 0.5rem;
 }
 
 /* Dropdown menu */
