@@ -4,7 +4,7 @@ usually done by a project manager */
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import React from 'react';
-// import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';                  /* COMMENT REMOVES SECURITY FOR THIS PAGE */
 import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ import Router from "next/router";
 
 export default function Page() {
     useForm(); // Form reset
-    // const { data: session, status } = useSession();                 /* COMMENTED OUT */
+    // const { data: session, status } = useSession();           /* COMMENT REMOVES SECURITY FOR THIS PAGE */
     // Note: useState() is the required empty array
     const [dataResponse, setDataResponse] = useState([]);
     const [userResponse, setUserResponse] = useState([]);

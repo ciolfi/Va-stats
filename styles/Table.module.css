@@ -18,6 +18,9 @@
 }
 
 /* ---------- TABLE HEADER BEGINS --------- */
+.genericTableHeader{								/* ADDED */
+	margin-right: 1em;
+}
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
 	height: auto;					/* ADDED */
@@ -60,7 +63,6 @@ look right.  */
 /* ---------- TABLE HEADER ENDS --------- */
 
 .genericTable th
-
 .genericTable tbody tr {
     width: 100%;
 }
