@@ -76,10 +76,6 @@ div .menubutton {
   padding: 1em 0;
 }
 
-Table.title {                     /* ADDED */
-  margin-right: 1em;
-}
-
 .title a {
   color: #0b751f;
   text-decoration: none;
@@ -91,10 +87,15 @@ Table.title {                     /* ADDED */
   text-decoration: underline;
 }
 
-.title {
+.title {                          /* Batch course name @ top */
   margin: 0;
   line-height: 1.15;
-  font-size: 2rem;      /* Prev 4rem */   /* ADDED */
+  font-size: 2rem;      
+}
+
+
+.title Table {                   /* ADDED */
+  margin-right: 1em;
 }
 
 .subtitle {
