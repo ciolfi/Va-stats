@@ -20,8 +20,16 @@
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTableHeader {
 	border: 3px solid red;								/* ADDED */
-	padding: 0em 3em;
+	padding: 0em 1em;
 } 
+
+.tableSearch {
+	border: 3px solid blue;	
+	margin-left: 1em;
+	padding: 0.2rem;
+	font-size: 1rem;
+}
+
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
 	height: auto;					/* ADDED-NO */
@@ -127,11 +135,6 @@ look right.  */
 	margin-left: 0.1rem;
 	margin-right: 0.1rem;
 	word-wrap: break-word;
-}
-
-.tableSearch {
-	padding: 0.2rem;
-	font-size: 1rem;
 }
 
 .editableInput {
