@@ -309,6 +309,7 @@ div .menubutton {
   gap: 1rem;
   height: 80vh;
   justify-content: center;
+  margin-right: 1em;              /* ADDED */
   width: 100%;
 }
 
