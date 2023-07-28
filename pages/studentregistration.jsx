@@ -14,7 +14,7 @@ import Router from "next/router";
 
 export default function Page() {
     useForm(); // Form reset
-    const { data: session, status } = useSession();
+    // const { data: session, status } = useSession();                 /* COMMENTED OUT */
     // Note: useState() is the required empty array
     const [dataResponse, setDataResponse] = useState([]);
     const [userResponse, setUserResponse] = useState([]);
