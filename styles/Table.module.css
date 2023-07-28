@@ -18,9 +18,9 @@
 }
 
 /* ---------- TABLE HEADER BEGINS --------- */
-.genericTableHeader{								/* ADDED */
+/* .genericTableHeader {								/* ADDED 
 	margin-right: 1em;
-}
+} */
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
 	height: auto;					/* ADDED */
@@ -33,6 +33,7 @@
 	color: var(--table-text);
 	font-size: 0.8rem; 				/* PREV: 1rem */
 	font-weight: 700;
+	margin-right: 1em;				/* ADDED */
 	padding: 0rem 0.8rem;			/* PREV: 1rem 1rem, then 0 1 */
 	text-align: left;
 	text-transform: uppercase;
