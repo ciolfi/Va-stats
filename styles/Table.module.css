@@ -18,12 +18,12 @@
 }
 
 /* ---------- TABLE HEADER BEGINS --------- */
-/* .genericTableHeader {								/* ADDED 
+.genericTableHeader title{								/* ADDED */
 	margin-right: 1em;
-} */
+} 
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
-	height: auto;					/* ADDED */
+	height: auto;					/* ADDED-NO */
 	position: sticky;
   	top: 0;
 }
