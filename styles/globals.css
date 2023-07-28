@@ -245,7 +245,7 @@ footer a {
 }
 
 @media screen and (min-width: 451px) and (max-width: 767px) {
-  .nav {
+  nav {
     margin-bottom: 1em;
   }
 }
