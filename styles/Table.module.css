@@ -20,8 +20,7 @@
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTableHeader {
 	border: 3px solid red;								/* ADDED */
-	margin-right: 1em;
-	padding: 0em 1em;
+	padding: 0em 3em;
 } 
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
