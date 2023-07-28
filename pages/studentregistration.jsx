@@ -4,7 +4,7 @@ usually done by a project manager */
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import React from 'react';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
