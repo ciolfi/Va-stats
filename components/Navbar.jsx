@@ -74,6 +74,8 @@ const Navbar = (user_role) => {
         {/*<Link href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">
           <Image src={pwaicon} width="48" height="18" alt="PWA logo" />
   </Link>*/}
+
+        {/* Right side menu items */}
         <div
           onClick={() => setNavActive(!navActive)}
           className={'nav__menu-bar'}>
@@ -82,8 +84,6 @@ const Navbar = (user_role) => {
             <div></div>
             <div></div>
         </div>
-
-        {/* Original block  */}
         <div className={`${navActive ? 'active' : ''} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => (
             <div key={menu.text}>
@@ -98,7 +98,6 @@ const Navbar = (user_role) => {
                   setActiveIdx={setActiveIdx}
                 />
               ) : (
-
                 <div
                   onClick={() => {
                     setActiveIdx(idx);

@@ -235,9 +235,12 @@ footer a {
     border-color: transparent;
     margin-top: 1em;
   }
-  /* Hamburger */
+  /* Mobile menu */
   .nav__menu-bar {
     display: visible;
+  }
+  .nav__menu-list {
+    margin-top: 1em;
   }
 }
 
