@@ -202,6 +202,10 @@ div .menubutton {
   flex-grow: 1;
 }
 
+.genericTableHeader {                 /* ADDED */
+  margin-right: 1em;
+}
+
 /* ------------------ General styles end ---------------- */
 
 
@@ -309,7 +313,6 @@ div .menubutton {
   gap: 1rem;
   height: 80vh;
   justify-content: center;
-  margin-right: 1em;              /* ADDED */
   width: 100%;
 }
 
@@ -685,7 +688,6 @@ div .menubutton {
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  /* position: relative; */
   position: absolute;
   top: 50%;
   left: 50%;
