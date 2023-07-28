@@ -244,11 +244,12 @@ footer a {
   } */
 }
 
-/* @media screen and (min-width: 451px) and (max-width: 767px) {
+@media screen and (min-width: 451px) and (max-width: 767px) {
   .nav__menu-bar{
     position: relative;
+    top: 2em;
   }
-} */
+}
 
 @media screen and (min-width: 768px) {
   .nav__menu-bar {
