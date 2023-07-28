@@ -126,14 +126,23 @@ a {
 }
 
 header {
+  border: 0px solid yellow;
   position: sticky;
-  z-index: 30;
+  z-index: 1;
   top: 0;
+}
 
+.coursename {
+  font-size: 1.5em;
+}
+
+title {                 /* Near search box */
+  margin-right: 1.5em;
 }
 
 main {
-  height: 100vh;
+  border: 0px solid cyan;
+  margin-top: -1em;
 }
 
 nav {
@@ -141,7 +150,6 @@ nav {
   background-color: rgb(8, 127, 72);
   color: #000;
   display: flex;
-  /*height: 10vh;*/
   height: 13vh; /* Increase to accommodate login text above button */
   justify-content: space-between;
   padding-left: 1em;
@@ -231,31 +239,51 @@ footer a {
 }
 
 @media screen and (max-width: 450px) {
+  /* Mobile menu */
+  nav {
+    border: 0px solid orange;
+    width: 100vw;
+  }
+  .nav__menu-bar {
+    display: visible;
+  }
+  .nav__menu-list {
+    border: 0px solid cyan;
+    height: 20vh;
+    top: 7em;
+    width: 60vw;
+  }
+  main {
+    /* align-content: flex-start; */
+    align-content: space-between;
+    border: 0px solid blue;
+    display: flex;
+    overflow-x: hidden;
+    padding-left: -2em;
+  }
   footer {
     border-color: transparent;
     margin-top: 1em;
   }
-  /* Mobile menu */
-  .nav__menu-bar {
-    display: visible;
-  }
-  /* .nav__menu-list {
-    margin-top: 1em;
-  } */
 }
 
-@media screen and (min-width: 451px) and (max-width: 767px) {
+@media screen and (min-width: 451px) and (max-width: 852px) {
   nav {
-    margin-bottom: 1em;
+    height: 6em;
   }
+	main {
+    border: 0px solid green;
+    position: relative;
+    top: -7em; 
+  } 
 }
 
 @media screen and (min-width: 768px) {
   .nav__menu-bar {
     display: none;
   }
-
   .nav__menu-list {
+    border: 0px solid cyan;
     position: unset;
     flex-direction: row;
     height: 10vh;
@@ -266,7 +294,6 @@ footer a {
     column-gap: 24px;
     align-items: center;
   }
-
   .nav__link::before {
     content: '';
     position: absolute;
@@ -277,7 +304,6 @@ footer a {
     background-color: black;
     transition: all 0.2s;
   }
-
   .nav__link:hover::before {
     width: 100%;
   }
