@@ -250,7 +250,7 @@ footer a {
   }
 
   .nav__menu-list {
-    /* position: unset; */
+    position: unset;
     flex-direction: row;
     height: 10vh;
     min-height: -moz-fit-content;
