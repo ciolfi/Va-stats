@@ -76,6 +76,10 @@ div .menubutton {
   padding: 1em 0;
 }
 
+Table.title {                     /* ADDED */
+  margin-right: 1em;
+}
+
 .title a {
   color: #0b751f;
   text-decoration: none;
@@ -90,7 +94,7 @@ div .menubutton {
 .title {
   margin: 0;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2rem;      /* Prev 4rem */   /* ADDED */
 }
 
 .subtitle {

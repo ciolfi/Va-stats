@@ -132,13 +132,13 @@ header {
   top: 0;
 }
 
-.coursename {
+/* .coursename {
   font-size: 1.5em;
 }
 
-title {                 /* Near search box */
+title {                 /* Near search box 
   margin-right: 1.5em;
-}
+} */
 
 main {
   border: 0px solid cyan;
