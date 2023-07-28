@@ -1,4 +1,6 @@
-// import '@/styles/globals.css';
+// Mobile menu
+// import Navbar from '../components/Navbar';
+
 import '../styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
 

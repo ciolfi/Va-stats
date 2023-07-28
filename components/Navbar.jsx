@@ -20,7 +20,9 @@ const MENU_LIST = [
       { text: "Student Registration", href: "/studentregistration" },
     ],
   },
-  { text: "Batches", href: "/batches" },
+  { text: "Batches", 
+    href: "/batches" 
+  },
   {
     text: "Courses",
     href: "/courses"
@@ -76,7 +78,16 @@ const Navbar = (user_role) => {
         <div
           onClick={() => setNavActive(!navActive)}
           className={'nav__menu-bar'}>
+
+            {/* Added (the 5 menu items) */}
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
+
+        {/* Original block  */}
         <div className={`${navActive ? 'active' : ''} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => (
             <div key={menu.text}>
@@ -91,6 +102,7 @@ const Navbar = (user_role) => {
                   setActiveIdx={setActiveIdx}
                 />
               ) : (
+
                 <div
                   onClick={() => {
                     setActiveIdx(idx);
@@ -102,6 +114,7 @@ const Navbar = (user_role) => {
               )}
             </div>
           ))}
+
           {!session ? (
             <Button text={'Sign in with Google'} iconSrc={'/icons/google-logo.svg'} onClick={() => signIn('google')} isLight={true} />
           ) : (
@@ -110,6 +123,7 @@ const Navbar = (user_role) => {
               <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} />
             </>
           )}
+
         </div>
       </nav>
     </header>
