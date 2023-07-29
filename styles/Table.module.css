@@ -74,7 +74,7 @@ look right.  */
 	top: 0em; */
 	/* vertical-align: text-bottom */
 	vertical-align: bottom;
-	padding-bottom: 1em;
+	margin-bottom: 0.5em;
 }
 /* ---------- TABLE HEADER ENDS --------- */
 
