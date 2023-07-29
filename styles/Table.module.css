@@ -73,6 +73,7 @@ look right.  */
 	/* position: relative;
 	top: 0em; */
 	/* vertical-align: text-bottom */
+	padding-bottom: 1em;
 	vertical-align: bottom;
 }
 /* ---------- TABLE HEADER ENDS --------- */
