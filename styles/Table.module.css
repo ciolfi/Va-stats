@@ -19,19 +19,19 @@
 
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTableHeader {
-	border: 3px solid red;								/* ADDED */
-	padding: 0em 1em;
+	border: 0px solid red;								/* ADDED */
+	/* padding: 0em 1em; */
 } 
 
 .genericTableHeader h2 {
-	border: 3px solid cyan;	
-	margin-right: 1em;
+	border: 0px solid cyan;	
+	margin-right: 0.5 /*1em;*/
 }
 
 .tableSearch {
-	border: 3px solid blue;	
+	border: 0px solid blue;	
 	margin-left: 1em;
-	padding: 0.2rem;
+	/* padding: 0.2rem; */
 	font-size: 1rem;
 }
 
