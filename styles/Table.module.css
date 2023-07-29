@@ -68,9 +68,9 @@ look right.  */
 	white-space: nowrap;
 }
 /* The far right 'Actions' column heading */
-.actionscolheading {
+th.actionscolheading {
 	position: relative;
-	top: 4em;
+	top: 6em;
 	/* vertical-align: text-bottom; */
 }
 /* ---------- TABLE HEADER ENDS --------- */
