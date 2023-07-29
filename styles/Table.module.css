@@ -70,7 +70,7 @@ look right.  */
 /* The far right 'Actions' column heading */
 .actionscolheading {
 	position: relative;
-	top: 2em;
+	top: 4em;
 	/* vertical-align: text-bottom; */
 }
 /* ---------- TABLE HEADER ENDS --------- */
