@@ -69,9 +69,11 @@ look right.  */
 }
 /* The far right 'Actions' column heading */
 .actionscolheading {
-	position: relative;
-	top: 0em;
-	/* vertical-align: text-bottom; */
+	border: 3px solid blue;
+	/* position: relative;
+	top: 0em; */
+	/* vertical-align: text-bottom */
+	vertical-align: bottom;
 }
 /* ---------- TABLE HEADER ENDS --------- */
 
