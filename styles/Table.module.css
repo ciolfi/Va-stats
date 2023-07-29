@@ -70,11 +70,8 @@ look right.  */
 /* The far right 'Actions' column heading */
 .actionscolheading {
 	border: 3px solid blue;
-	/* position: relative;
-	top: 0em; */
-	/* vertical-align: text-bottom */
+	border-bottom: 0.5em solid blue;
 	vertical-align: bottom;
-	margin-bottom: 0.5em;
 }
 /* ---------- TABLE HEADER ENDS --------- */
 
