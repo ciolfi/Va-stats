@@ -23,6 +23,11 @@
 	padding: 0em 1em;
 } 
 
+.genericTableHeader h2 {
+	border: 3px solid cyan;	
+	margin-right: 1em;
+}
+
 .tableSearch {
 	border: 3px solid blue;	
 	margin-left: 1em;
