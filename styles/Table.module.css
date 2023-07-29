@@ -19,7 +19,7 @@
 
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTableHeader {
-	border: 0px solid red;								/* ADDED */
+	border: 3px solid red;								/* ADDED */
 	/* padding: 0em 1em; */
 } 
 
