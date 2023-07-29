@@ -118,7 +118,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 							);
 						})}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
-						{isDelete || isEditable? <th width={'8%'}>Actions</th> : <></>}
+						{isDelete || isEditable? <th className={styles.actionscolheading} width={'8%'}>Actions</th> : <></>}
 					</tr>
 				</thead>
 				<tbody>
