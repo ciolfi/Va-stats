@@ -35,6 +35,7 @@ To view this, see /pages/students.jsx */
 
 .requiredelement {
   color: red;
+  margin-right: 1em;
 }
 
 .code {
