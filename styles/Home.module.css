@@ -301,8 +301,8 @@ div .menubutton {
 
 /* ---------------- Gen Courses styles begin -------------- */
 
-.gridcourses {
-  border: 3px solid blue;
+.gridcourses {                    /* Entire table */
+  /* border: 3px solid blue; */ 
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -311,6 +311,10 @@ div .menubutton {
   justify-content: center;
   margin-right: 1em;        /* ADDED */
   width: 100%;
+}
+
+.gridcourses Title {
+  border: 3px solid blue;
 }
 
 .cardcourseslist {
