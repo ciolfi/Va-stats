@@ -151,13 +151,13 @@ export default function Page() {
                     <label htmlFor='location'>What city and state are you from?<span className={styles.requiredelement}>&#42;</span></label>
                     <input type='text' id='location' name='location' required /><br /><br />
 
-                    <label htmlFor='objectives'>What are your long term learning objectives?</label>
+                    <label htmlFor='objectives' className={styles.nonrequiredelement}>What are your long term learning objectives?</label>
                     <input type='text' id='objectives' name='objectives' /><br /><br />
 
-                    <label htmlFor='vision_impairment'>Provide a brief history of your vision impairment</label>
+                    <label htmlFor='vision_impairment' className={styles.nonrequiredelement}>Provide a brief history of your vision impairment.</label>
                     <input type='text' id='vision_impairment' name='vision_impairment' /><br /><br />
 
-                    <label htmlFor='usable_vision'>What is your usable vision in terms of acuity and field?</label>
+                    <label htmlFor='usable_vision' className={styles.nonrequiredelement}>What is your usable vision in terms of acuity and field?</label>
                     <input type='text' id='usable_vision' name='usable_vision' /><br /><br />
 
                     <label htmlFor='total_vision_loss'>What is the percentage of vision loss?<span className={styles.requiredelement}>&#42;</span></label>

@@ -38,6 +38,10 @@ To view this, see /pages/students.jsx */
   margin-right: 1em;
 }
 
+.nonrequiredelement {
+  margin-right: 1em;
+}
+
 .code {
   background: #fff;
   border-radius: 5px;
