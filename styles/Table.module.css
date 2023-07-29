@@ -7,11 +7,9 @@
 
 .genericTable {
 	border: 1px solid rgba(0,0,0,0.3);
-
 	/* ADDED NEXT TWO LINES */
 	margin-left: 0;
 	margin-right: 0;
-
 	position: sticky;
 	table-layout: fixed;
 	width: 100%;
@@ -19,25 +17,23 @@
 
 /* ---------- TABLE HEADER BEGINS --------- */
 .genericTableHeader {
-	border: 3px solid red;								/* ADDED */
-	/* padding: 0em 1em; */
+	border: 0px solid red;
 } 
 
 .genericTableHeader h2 {
 	border: 0px solid cyan;	
-	margin-right: 0.5 /*1em;*/
+	margin-right: 0.5;
 }
 
 .tableSearch {
 	border: 1px solid gray;	
 	margin-left: 1em;
-	/* padding: 0.2rem; */
 	font-size: 1rem;
 }
 
 .genericTable thead {
 	background-color: rgba(178,178,178,255);
-	height: auto;					/* ADDED-NO */
+	height: auto;
 	position: sticky;
   	top: 0;
 }
@@ -45,13 +41,11 @@
 .genericTable th {
 	/* border: 0px solid black; */
 	color: var(--table-text);
-	font-size: 0.8rem; 				/* PREV: 1rem */
+	font-size: 0.8rem;
 	font-weight: 700;
-	/* margin-right: 1em;				/* ADDED */
-	padding: 0rem 1rem;			/* PREV: 1rem 1rem, then 0 1 */
+	padding: 0rem 1rem;
 	text-align: left;
 	text-transform: uppercase;
-	/* word-break: break-all; 		/* REMOVED; this breaks between any characters  */
 	word-wrap: break-word;			/* ADDED; use this or 'normal' value  */
 }
 /* Rotation styling */
@@ -61,8 +55,6 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right.  */
 .rotatedth {					/* Nested div */
-	/* border: 2px solid black; */
-	/* height: 130px; */
 	height: 25vh;
 	margin-top: 1em;
 	position: relative;

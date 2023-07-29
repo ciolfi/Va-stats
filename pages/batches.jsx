@@ -8,8 +8,8 @@ import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import React from 'react';
 import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form'; // Form reset
-import { useEffect, useState } from 'react'; // NEW CODE
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 import Button from '@/components/Button';
 
@@ -39,7 +39,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
+            // I had to move getpagedata out of useeffect so i could call it here
             await getPageData();
             setEditingId(null);
         } else {
@@ -59,7 +59,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // i had to move getpagedata out of useeffect so i could call it here
+            // I had to move getpagedata out of useeffect so i could call it here
             await getPageData();
         } else {
             console.error('Error deleting the batch');
