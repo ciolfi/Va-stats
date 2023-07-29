@@ -302,12 +302,14 @@ div .menubutton {
 /* ---------------- Gen Courses styles begin -------------- */
 
 .gridcourses {
+  border: 3px solid blue;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
   height: 80vh;
   justify-content: center;
+  margin-right: 1em;        /* ADDED */
   width: 100%;
 }
 
