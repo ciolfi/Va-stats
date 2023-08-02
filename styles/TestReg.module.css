@@ -153,7 +153,7 @@
 }
 
 /* Register student form buttons */
-.btnresetreg {
+.btnlight {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenlight-background);
   border-color: transparent;
@@ -164,7 +164,19 @@
   margin-right: 2em;
   vertical-align: middle;
 }
-.btnsubmitreg {
+.btnlightgender {
+  font-size: smaller;
+  border-radius: var(--buttonva-borderradius);
+  background-color: var(--vagreenlight-background);
+  border-color: transparent;
+  color: black;
+  font-size: smaller;
+  height: var(--buttonva-height);
+  padding: var(--buttonva-padding);
+  margin-right: 2em;
+  vertical-align: middle;
+}
+.btndark {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenmedium-background);
   border-color: transparent;

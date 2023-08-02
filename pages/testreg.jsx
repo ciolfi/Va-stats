@@ -1,14 +1,17 @@
-"use client";
+'use client';
 import styles from "../styles/TestReg.module.css";
 import React from "react";
 
-// Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
-import { Dropdown } from "@nextui-org/react";
+// Hydration error
+// import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic'
 
-// Date picker
-// import "react-datetime/css/react-datetime.css";
+// Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
+// import {  Button, Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownItem } from "@nextui-org/react";
 
 export default function Home() {
+  // For hydration error
+  // const NoSSR = dynamic(() => import('Button', 'Dropdown', 'DropdownTrigger', 'DropdownItem', 'DropdownMenu'), { ssr: false });
 
   // GENDER DROPDOWN
   const [selectedGender, setSelectedGender] = React.useState(new Set(["Gender/Other"]));
@@ -51,7 +54,7 @@ export default function Home() {
         Student Registration
       </div>
       <div>
-        <form>
+        <form suppressHydrationWarning >
           <div className={styles.grid}>
 
             {/*---------- TRAINEE/TRAINER BEGINS --------*/}
@@ -131,28 +134,32 @@ export default function Home() {
                     <span className={styles.requiredelement}>&#42;</span>
                   </td>
                   <td className={styles.inputtd}>
-                    <Dropdown>
-                      <Dropdown.Trigger>
-                        <Dropdown.Button
-                          className={styles.btnregdropdown}
+                    {/* <Dropdown backdrop="blur">
+                      <DropdownTrigger>
+                        <Button
+                          className={styles.btnlightgender}
                           size="sm"
+                          variant="bordered"
                         >
                           {selectedValueGender}
-                        </Dropdown.Button>
-                      </Dropdown.Trigger>
-                      <Dropdown.Menu
+                        </Button>
+                      </DropdownTrigger>
+                      <DropdownMenu
                         aria-label="Single selection actions"
-                        color="secondary"
+                        backdrop="white"
                         disallowEmptySelection
                         selectionMode="single"
                         selectedKeys={selectedGender}
                         onSelectionChange={setSelectedGender}
+                        color="primary"
+                        variant="shadow"
+                        width="3em"
                       >
-                        <Dropdown.Item key="Female">Female</Dropdown.Item>
-                        <Dropdown.Item key="Male">Male</Dropdown.Item>
-                        <Dropdown.Item key="Other">Other</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
+                        <DropdownItem key="Female">Female</DropdownItem>
+                        <DropdownItem key="Male">Male</DropdownItem>
+                        <DropdownItem key="Other">Other</DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown> */}
                   </td>
                 </tr>
                 {/*--------------- GENDER DROPDOWN ENDS ---------------*/}
@@ -212,7 +219,7 @@ export default function Home() {
                     <table className={styles.tablecoursechoices}>
                       <tr>
 
-                        {/* DROPDOWN: FIRST CHOICE */}
+                        {/* DROPDOWN: FIRST CHOICE
                         <td className={styles.tdfirstchoice}>
                           <Dropdown>
                             <Dropdown.Trigger>
@@ -239,7 +246,7 @@ export default function Home() {
                           </Dropdown>
                         </td>
 
-                        {/* DROPDOWN: SECOND CHOICE */}
+                        {/* DROPDOWN: SECOND CHOICE
                         <td className={styles.tdsecondchoice}>
                           <Dropdown>
                             <Dropdown.Trigger>
@@ -266,7 +273,7 @@ export default function Home() {
                           </Dropdown>
                         </td>
 
-                        {/* DROPDOWN: THIRD CHOICE */}
+                        {/* DROPDOWN: THIRD CHOICE
                         <td className={styles.tdthirdchoice}>
                           <Dropdown>
                             <Dropdown.Trigger>
@@ -291,7 +298,8 @@ export default function Home() {
                               <Dropdown.Item key="CertCca">Certificate Course in Computer Applications(CCA)</Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
-                        </td>
+                        </td> */}
+
                       </tr>
                     </table>
                   </td>
@@ -328,7 +336,7 @@ export default function Home() {
                     </td>
                     <td className={styles.tblcrsabbrev}>CertCca</td>
                   </tr>
-                  <tr className={styles.regrow}>
+                  {/* <tr className={styles.regrow}>
                     <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Basic Braille
@@ -414,29 +422,27 @@ export default function Home() {
                       * The checkboxes are only for your convenience. Check the box for your top three course choices. Then, use the dropdowns above to select your top three. Only your dropdown menu choices will be submitted when you submit the form (not checks from the checkboxes). Note: the course abbreviation is entered as your choice.
                     </td>
                   </tr>
-                </tfoot>
+                </tfoot> */}
+                </tbody>
               </table>
             </div>
             {/*------------- COURSES END -------------*/}
 
-            {/*--------- MISCELLANEOUS BEGINS --------*/}
-            <div
-              className={styles.card}
-            >
+            {/*--------- MISCELLANEOUS CARD BEGINS --------*/}
+            <div className={styles.card}>
               <h2>
                 Miscellaneous
               </h2>
               <table>
-
-                {/*--------------- VISION DROPDOWN BEGINS ---------------*/}
+                
                 <tr className={styles.regrow}>
                   <td className={styles.inputlabel}>
                     Visual acuity (blind or low vision)
                     <span className={styles.requiredelement}>&#42;</span>
                   </td>
-                  <td className={styles.inputtd}>
 
-                    {/*-------------- VISION DROPDOWN BEGINS ------------*/}
+                  {/*-------------- VISION DROPDOWN BEGINS ------------
+                  <td className={styles.inputtd}>
                     <Dropdown>
                       <Dropdown.Trigger>
                         <Dropdown.Button
@@ -449,7 +455,6 @@ export default function Home() {
                       <Dropdown.Menu
                         aria-label="Single selection actions"
                         color="secondary"
-                        // color="black"
                         disallowEmptySelection
                         selectionMode="single"
                         selectedKeys={selectedVision}
@@ -459,9 +464,9 @@ export default function Home() {
                         <Dropdown.Item key="Blind">Blind</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                  </td>
-                </tr>
+                  </td> */}
                 {/*--------------- VISION DROPDOWN ENDS ---------------*/}
+                </tr>
 
                 <tr className={styles.regrow}>
                   <td className={styles.inputlabel}>
@@ -493,8 +498,8 @@ export default function Home() {
                 {/* RESET AND SUBMIT BUTTONS */}
                 <tr>
                   <td className={styles.tdregformbtns} colSpan="2">
-                    <button aria-label="Reset form" className={styles.btnresetreg}>Reset</button>
-                    <button aria-label="Submit form" className={styles.btnsubmitreg}>Submit</button>          
+                    <button aria-label="Reset form" className={styles.btnlight}>Reset</button>
+                    <button aria-label="Submit form" className={styles.btndark}>Submit</button>          
                   </td>
                 </tr>
               </table>
