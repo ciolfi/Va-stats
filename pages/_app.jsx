@@ -1,6 +1,9 @@
 // Mobile menu
 // import Navbar from '../components/Navbar';
 
+// For datepicker
+// import "react-datepicker/dist/react-datepicker.css";
+
 import '../styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
 
