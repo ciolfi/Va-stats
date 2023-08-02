@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ADDED BELOW
-  // swcMinify: false,
   reactStrictMode: true,
   webpack: (config) => {
     config.experiments.topLevelAwait = true ;
