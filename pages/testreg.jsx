@@ -4,7 +4,7 @@ import React from "react";
 
 // Hydration error
 // import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 // Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
 // import {  Button, Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownItem } from "@nextui-org/react";
