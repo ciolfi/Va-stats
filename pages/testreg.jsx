@@ -1,12 +1,12 @@
-// 'use client';
+"use client";
 import styles from "../styles/TestReg.module.css";
 import React from "react";
 
 // Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
 import { Dropdown } from "@nextui-org/react";
 
-// Date grid
-import 'react-datetime/css/react-datetime.css';
+// Date picker
+import "react-datetime/css/react-datetime.css";
 
 export default function Home() {
 
