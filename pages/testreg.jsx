@@ -6,7 +6,7 @@ import React from "react";
 import { Dropdown } from "@nextui-org/react";
 
 // Date picker
-import "react-datetime/css/react-datetime.css";
+// import "react-datetime/css/react-datetime.css";
 
 export default function Home() {
 
