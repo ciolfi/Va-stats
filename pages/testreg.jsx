@@ -2,16 +2,12 @@
 import styles from "../styles/TestReg.module.css";
 import React from "react";
 
-// Hydration error
-// import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
 // Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
-// import {  Button, Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownItem } from "@nextui-org/react";
+import { ButtonGroup, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+// NOTE: below, must import from the pkg, not react
+import {Button} from '@nextui-org/button';
 
 export default function Home() {
-  // For hydration error
-  // const NoSSR = dynamic(() => import('Button', 'Dropdown', 'DropdownTrigger', 'DropdownItem', 'DropdownMenu'), { ssr: false });
 
   // GENDER DROPDOWN
   const [selectedGender, setSelectedGender] = React.useState(new Set(["Gender/Other"]));
@@ -51,13 +47,13 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.title}>
-        Student Registration
+        Student Registration 
       </div>
       <div>
         <form suppressHydrationWarning >
           <div className={styles.grid}>
 
-            {/*---------- TRAINEE/TRAINER BEGINS --------*/}
+            {/*----- TRAINEE/TRAINER BEGINS -------*/}
             <div
               className={styles.card}
             >
@@ -65,143 +61,156 @@ export default function Home() {
                 Trainee/Trainer
               </h2>
               <table className={styles.regtable}>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Email
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Name
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Phone
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}>
-                    <input
-                      className={styles.reginput}
-                      id='phone_number'
-                      maxLength="10"
-                      name='phone_number'
-                      placeholder='10 num only; no dashes'
-                      type='textbox'
-                      required
-                    // value={value}
-                    // onChange={handleChange}
-                    // onBlur={checkConstraints}
-                    />
-                  </td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Alt. Phone
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
-                </tr>
-                <tr className={styles.regrow} >
-                  <td className={styles.inputlabel}>
-                    City/State
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
-                </tr>
-                <tr className={styles.regrow} >
-                  <td className={styles.inputlabel}>
-                    City
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}>(NOT AVAILABLE)</td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    State
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}>(NOT AVAILABLE)</td>
-                </tr>
+                <thead>
+                  <tr></tr>
+                </thead>
+                <tbody>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Email
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                  </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Name
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                  </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Phone
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}>
+                      <input
+                        className={styles.reginput}
+                        id='phone_number'
+                        maxLength="10"
+                        name='phone_number'
+                        placeholder='10 num only; no dashes'
+                        type='textbox'
+                        required
+                      // value={value}
+                      // onChange={handleChange}
+                      // onBlur={checkConstraints}
+                      />
+                    </td>
+                  </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Alt. Phone
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                  </tr>
+                  <tr className={styles.regrow} >
+                    <td className={styles.inputlabel}>
+                      City
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                  </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      State
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                  </tr>
 
-                {/*--------------- GENDER DROPDOWN BEGINS ---------------*/}
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Gender
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}>
-                    {/* <Dropdown backdrop="blur">
-                      <DropdownTrigger>
-                        <Button
-                          className={styles.btnlightgender}
-                          size="sm"
-                          variant="bordered"
+                  {/*--------------- GENDER DROPDOWN BEGINS ---------------*/}
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Gender
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}>
+                      <Dropdown>
+                          <Dropdown.Button
+                            disableRipple
+                            size="sm"
+                            style={{
+                              // backgroundColor below: must be RGB
+                              backgroundColor: 'var(--vagreenmedium-background)',
+                              height: '2em',
+                              marginTop: '0.5em',
+                              width: '100%'
+                            }}
+                            variant="shadow"
+                          >
+                            {selectedValueGender}
+                          </Dropdown.Button>
+                        <Dropdown.Menu
+                          aria-label="Single selection actions"
+                          disallowEmptySelection
+                          selectionMode="single"
+                          selectedKeys={selectedGender}
+                          onSelectionChange={setSelectedGender}
                         >
-                          {selectedValueGender}
-                        </Button>
-                      </DropdownTrigger>
-                      <DropdownMenu
-                        aria-label="Single selection actions"
-                        backdrop="white"
-                        disallowEmptySelection
-                        selectionMode="single"
-                        selectedKeys={selectedGender}
-                        onSelectionChange={setSelectedGender}
-                        color="primary"
-                        variant="shadow"
-                        width="3em"
-                      >
-                        <DropdownItem key="Female">Female</DropdownItem>
-                        <DropdownItem key="Male">Male</DropdownItem>
-                        <DropdownItem key="Other">Other</DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown> */}
-                  </td>
-                </tr>
-                {/*--------------- GENDER DROPDOWN ENDS ---------------*/}
+                          <Dropdown.Item key="Female">Female</Dropdown.Item>
+                          <Dropdown.Item key="Male">Male</Dropdown.Item>
+                          <Dropdown.Item key="Other">Other</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </td>
+                  </tr>
+                  {/*--------------- GENDER DROPDOWN ENDS ---------------*/}
 
-                {/*------------ BIRTHDATE DATE PICKER BEGINS ----------*/}
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Birthdate
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}>
-                    <input type="date" id="birthdaytime" name="birthdaytime" />
-                  </td>
-                </tr>
-                {/*------------ BIRTHDATE DATE PICKER ENDS -------------*/}
+                  {/*------------ BIRTHDATE DATE PICKER BEGINS ----------*/}
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Birthdate
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}>
+                      <input type="date" id="birthdaytime" name="birthdaytime" className={styles.reginput} />
+                    </td>
+                  </tr>
+                  {/*------------ BIRTHDATE DATE PICKER ENDS -------------*/}
 
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Education
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                    placeholder="Degrees, etc, 300-char max"
-                  />
-                  </td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Learning goal(s)
-                    <span className={styles.requiredelement}>&#42;</span>
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                    placeholder="300-char max"
-                  />
-                  </td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Trainer name
-                  </td>
-                  <td className={styles.inputtd}>(NOT AVAILABLE)</td>
-                </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Education
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
+                      placeholder="Degrees, etc, 300-char max"
+                    />
+                    </td>
+                  </tr>
+
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Employment Status
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
+                      placeholder="Degrees, etc, 300-char max"
+                    />
+                    </td>
+                  </tr>
+
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Learning goal(s)
+                      <span className={styles.requiredelement}>&#42;</span>
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
+                      placeholder="300-char max"
+                    />
+                    </td>
+                  </tr>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputlabel}>
+                      Trainer name
+                    </td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
+                    />
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
@@ -213,13 +222,48 @@ export default function Home() {
               <h2>
                 Choose courses
               </h2>
-              <table>
-                <tr>
-                  <td className={styles.tdtablecoursechoices} colSpan="3">
-                    <table className={styles.tablecoursechoices}>
-                      <tr>
 
-                        {/* DROPDOWN: FIRST CHOICE
+              {/* COURSE CHOICES SUBFORM BEGINS */}
+              <table className={styles.tblchoosecourses}>
+                <tbody>
+                  <tr>
+                    <td className={styles.tdcolfirstchoice}><input type="textbox" className={styles.inputcrschoice}
+                      placeholder="1st choice"
+                    /></td>
+                    <td className={styles.tdcolsecondchoice}><input type="textbox" className={styles.inputcrschoice}
+                      placeholder="2nd choice"
+                    /></td>
+                    <td className={styles.tdcolthirdchoice}><input type="textbox"  className={styles.inputcrschoice}
+                      placeholder="3rd choice"
+                    /></td>
+                  </tr>
+                  <tr>
+                    <td className={styles.tdcolfirstchoice}><input type="submit" className={styles.btnsubmitcrschoice}
+                      value="Submit 1st choice"
+                    /></td>
+                    <td className={styles.tdcolsecondchoice}><input type="submit" className={styles.btnsubmitcrschoice}
+                      value="Submit 2nd choice"
+                    /></td>
+                    <td className={styles.tdcolthirdchoice} ><input type="submit"  className={styles.btnsubmitcrschoice}
+                      value="Submit 3rd choice"
+                    /></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <button aria-label="Reset form" className={styles.btncrsesresetdark}>Reset Courses</button>
+
+              <table>
+                <thead>
+                  <tr></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className={styles.tdtablecoursechoices} colSpan="3">
+                      <table className={styles.tablecoursechoices}>
+                        <tr>
+
+                          {/* DROPDOWN: FIRST CHOICE
                         <td className={styles.tdfirstchoice}>
                           <Dropdown>
                             <Dropdown.Trigger>
@@ -273,8 +317,8 @@ export default function Home() {
                           </Dropdown>
                         </td>
 
-                        {/* DROPDOWN: THIRD CHOICE
-                        <td className={styles.tdthirdchoice}>
+                        {/* DROPDOWN: THIRD CHOICE */}
+                        {/* <td className={styles.tdthirdchoice}>
                           <Dropdown>
                             <Dropdown.Trigger>
                               <Dropdown.Button
@@ -287,7 +331,6 @@ export default function Home() {
                             <Dropdown.Menu
                               aria-label="Single selection actions"
                               color="secondary"
-                              // color="black"
                               disallowEmptySelection
                               selectionMode="single"
                               selectedKeys={selectedThirdChoice}
@@ -300,10 +343,11 @@ export default function Home() {
                           </Dropdown>
                         </td> */}
 
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
 
               {/* Courses worksheet */}
@@ -423,6 +467,7 @@ export default function Home() {
                     </td>
                   </tr>
                 </tfoot> */}
+
                 </tbody>
               </table>
             </div>
@@ -434,24 +479,22 @@ export default function Home() {
                 Miscellaneous
               </h2>
               <table>
-                
+
                 <tr className={styles.regrow}>
                   <td className={styles.inputlabel}>
                     Visual acuity (blind or low vision)
                     <span className={styles.requiredelement}>&#42;</span>
                   </td>
 
-                  {/*-------------- VISION DROPDOWN BEGINS ------------
-                  <td className={styles.inputtd}>
+                  {/*-------------- VISION DROPDOWN BEGINS ------------*/}
+                  {/* <td className={styles.inputtd}>
                     <Dropdown>
-                      <Dropdown.Trigger>
                         <Dropdown.Button
                           className={styles.btnregdropdown}
                           size="sm"
                         >
                           {selectedValueVision}
                         </Dropdown.Button>
-                      </Dropdown.Trigger>
                       <Dropdown.Menu
                         aria-label="Single selection actions"
                         color="secondary"
@@ -465,7 +508,7 @@ export default function Home() {
                       </Dropdown.Menu>
                     </Dropdown>
                   </td> */}
-                {/*--------------- VISION DROPDOWN ENDS ---------------*/}
+                  {/*--------------- VISION DROPDOWN ENDS ---------------*/}
                 </tr>
 
                 <tr className={styles.regrow}>
@@ -475,16 +518,9 @@ export default function Home() {
                   </td>
                   <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
                 </tr>
-
                 <tr className={styles.regrow}>
                   <td className={styles.inputlabel}>
-                    Usable vision (acuity, field)
-                  </td>
-                  <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
-                </tr>
-                <tr className={styles.regrow}>
-                  <td className={styles.inputlabel}>
-                    Vision impairment history (brief)
+                    Vision impairment history (brief; feel free to leave it empty)
                   </td>
                   <td className={styles.inputtd}><input type="textbox" placeholder='300-char max' className={styles.reginput} /></td>
                 </tr>
@@ -494,12 +530,12 @@ export default function Home() {
                   </td>
                   <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
                 </tr>
-                
+
                 {/* RESET AND SUBMIT BUTTONS */}
                 <tr>
                   <td className={styles.tdregformbtns} colSpan="2">
-                    <button aria-label="Reset form" className={styles.btnlight}>Reset</button>
-                    <button aria-label="Submit form" className={styles.btndark}>Submit</button>          
+                    <button aria-label="Reset form" className={styles.btnreset}>RESET FORM</button>
+                    <button aria-label="Submit form" className={styles.btnsubmit}>SUBMIT FORM</button>
                   </td>
                 </tr>
               </table>

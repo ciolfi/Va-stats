@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .main {
   border: 0px solid red;
   align-items: left;
@@ -10,11 +14,10 @@
 
 .title {
   border: 0px solid green;
-  font-weight: 700;
   font-size: 1.7em;
+  font-weight: 700;
   left: 0;
-  margin-bottom: 0em;
-  margin-left: 0.3em;
+  margin: 0.5em 0 0 0.3em;
 }
 
 .grid {
@@ -33,7 +36,7 @@
 
 .card {
   border: 0.05rem solid black;
-  padding: 1rem 0rem 1rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   /* border: 1px solid rgba(var(--card-border-rgb), 0); */
@@ -58,68 +61,6 @@
   vertical-align: top;
 }
 
-/* .rowcoursechoices {
-  border: 0px solid yellow;
-  border-bottom: 2px solid black;
-} */
-
-.capcoursewksht {
-  border: 0px solid yellow;
-  border-bottom: 1px solid black;
-}
-
-.tdtablecoursechoices {
-  border: 0px solid blue;
-  height: auto;
-  width: 100%;
-}
-
-.tablecoursechoices {
-  width: 100%;
-}
-
-.tdfirstchoice {
-  border: 0px solid orange;
-  /* padding-top: 0.5em; */
-  vertical-align: top;
-  width: 34%;
-}
-
-.tdsecondchoice {
-  border: 0px solid cyan;
-  width: 33%;
-}
-
-.tdthirdchoice {
-  border: 0px solid blue;
-  width: 33%;
-}
-
-.tblcoursewksht {
-  border: 0px solid cyan;
-  margin-top: 1em;
-  width: 100%;
-}
-
-.tblcrsabbrev {
-  vertical-align: top;
-}
-
-.tblcoursesfoot {
-  border-top: 1px solid black;
-  padding-top: 1em;
-}
-
-.checkboxcourses {
-  vertical-align: top;
-}
-
-.inputlabelcourses {
-  padding-right: 0.5em;
-  text-align: left;
-  vertical-align: top;
-}
-
 .inputtd {      /* Keep input & text top-aligned */
   vertical-align: top; 
 }
@@ -133,9 +74,84 @@
   height: 1.3rem;
 }
 
-.maxthree {
-  font-size: 0.6em;
-  font-weight: 500;
+.tblchoosecourses {
+  border: 3px solid red;
+  margin-bottom: 1em;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.tdcolfirstchoice {
+  border: 3px solid orange;
+  /* padding-top: 0.5em; */
+  vertical-align: top;
+  width: 34%;
+}
+
+.tdcolsecondchoice {
+  border: 3px solid cyan;
+  width: 33%;
+}
+
+.tdcolthirdchoice {
+  border: 3px solid blue;
+  width: 33%;
+}
+
+.tdresetrowleft {
+  text-align: last;
+  border: 3px solid orange;
+  width: 700px;
+}
+
+.inputcrschoice {
+  border-color: 1px solid black;
+  width: 100%;
+}
+
+.btnsubmitcrschoice {
+  border-radius: 0.4rem;
+  background-color: var(--vagreenlight-background);
+  border-color: transparent;
+  color: black;
+  padding: 0 0.2rem;
+}
+
+.btncrsesresetdark {
+  border-radius: var(--buttonva-borderradius);
+  background-color: var(--vagreenmedium-background);
+  border-color: transparent;
+  color: white;
+  float: right;
+  font-size: 1.1rem;
+  margin-bottom: 2em;
+  text-align: center;
+  width: 50%;
+}
+
+.capcoursewksht {
+  border: 0px solid yellow;
+  border-bottom: 1px solid black;
+}
+
+.tblcoursewksht {
+  border: 0px solid cyan;
+  margin-top: 1em;
+  width: 100%;
+}
+
+.tblcrsabbrev {
+  vertical-align: top;
+}
+
+.checkboxcourses {
+  vertical-align: top;
+}
+
+.inputlabelcourses {
+  padding-right: 0.5em;
+  text-align: left;
+  vertical-align: top;
 }
 
 .checkboxcourse {
@@ -153,7 +169,7 @@
 }
 
 /* Register student form buttons */
-.btnlight {
+.btnsubmit {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenlight-background);
   border-color: transparent;
@@ -161,22 +177,11 @@
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
   padding: var(--buttonva-padding);
-  margin-right: 2em;
+  margin-right: 0em;
   vertical-align: middle;
 }
-.btnlightgender {
-  font-size: smaller;
-  border-radius: var(--buttonva-borderradius);
-  background-color: var(--vagreenlight-background);
-  border-color: transparent;
-  color: black;
-  font-size: smaller;
-  height: var(--buttonva-height);
-  padding: var(--buttonva-padding);
-  margin-right: 2em;
-  vertical-align: middle;
-}
-.btndark {
+
+.btnreset {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenmedium-background);
   border-color: transparent;
@@ -184,7 +189,7 @@
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
   padding: var(--buttonva-padding);
-  margin-right: 0em;
+  margin-right: 2em;
   vertical-align: middle;
 }
 
@@ -200,7 +205,6 @@
   text-align: right;
 }
 
-/* 'Additional' code below */
 .description {
   display: inherit;
   justify-content: inherit;

@@ -7,10 +7,16 @@
 import '../styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
 
+// Below required for NextUI components
+import * as React from "react";
+import {NextUIProvider} from "@nextui-org/system";
+
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
-	<SessionProvider session={session}>
-		<Component {...pageProps} />
-	</SessionProvider>
+	<NextUIProvider>
+		<SessionProvider session={session}>
+			<Component {...pageProps} />
+		</SessionProvider>	
+	</NextUIProvider>
 );
 
 export default App;

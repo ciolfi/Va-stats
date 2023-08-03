@@ -1,8 +1,9 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'); */
 
-/* @tailwind base;
+/* Below required for NextUI components */
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 /* MODAL FOR STUDENT REGISTRATION CONFIRMATION */
 .modal-wrapper {
@@ -366,13 +367,14 @@ footer a {
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
 
-  /* ADDED */
+  /* ADDED FOR VA-STATS */
   --buttonva-borderradius: 0.5rem;
   --buttonva-fontsize: 1.1rem;
   --buttonva-height: 1.5rem;
   --buttonva-padding: 0 1rem;
-  --vagreenlight-background: #A8D181;
-  --vagreenmedium-background: #3F7D3C;
+  --vagreenlight-background: #A8D181;    /* rgb(168 209 129) */
+  --vagreenmedium-background: #3F7D3C;  /* rgb(63,125,60) */
+  --vagreenmedium-background: rgb(63,125,60);
   --vagreendark-background: #263F17;
 }
 
