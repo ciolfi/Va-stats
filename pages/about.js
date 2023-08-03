@@ -1,8 +1,8 @@
 import Navbar from '@/components/Navbar';
 import Head from 'next/head';
-import Title from '@/components/Title';
-import styles from '@/styles/About.module.css';
-import { generateTeamCards } from '@/utils/aboutHelper';
+import Title from '../components/Title';
+import styles from '../styles/About.module.css';
+import { generateTeamCards } from '../utils/aboutHelper';
 import aboutConfig from '@/configs/aboutPage.json';
 import React, { useState } from 'react';
 import { Document, Page } from 'react-pdf';
