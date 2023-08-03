@@ -239,13 +239,13 @@ export default function Home() {
                   </tr>
                   <tr>
                     <td className={styles.tdcolfirstchoice}><input type="submit" className={styles.btnsubmitcrschoice}
-                      value="Submit 1st choice"
+                      value="Add 1st choice"
                     /></td>
                     <td className={styles.tdcolsecondchoice}><input type="submit" className={styles.btnsubmitcrschoice}
-                      value="Submit 2nd choice"
+                      value="Add 2nd choice"
                     /></td>
                     <td className={styles.tdcolthirdchoice} ><input type="submit"  className={styles.btnsubmitcrschoice}
-                      value="Submit 3rd choice"
+                      value="Add 3rd choice"
                     /></td>
                   </tr>
                 </tbody>
