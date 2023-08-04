@@ -75,34 +75,38 @@
 }
 
 .tblchoosecourses {
-  border: 3px solid red;
+  border: 0px solid red;
+  border-collapse: separate;
+  border-spacing: 1em 1em;
   margin-bottom: 1em;
   table-layout: fixed;
   width: 100%;
 }
 
 .tdcolfirstchoice {
-  border: 3px solid orange;
-  /* padding-top: 0.5em; */
+  border: 0px solid orange;
   vertical-align: top;
-  width: 34%;
+  /* width: 34%; */
+  width: 31%;
 }
 
 .tdcolsecondchoice {
-  border: 3px solid cyan;
-  width: 33%;
+  border: 0px solid cyan;
+  /* width: 33%; */
+  width: 30%;
 }
 
 .tdcolthirdchoice {
-  border: 3px solid blue;
-  width: 33%;
+  border: 0px solid blue;
+  /* width: 33%; */
+  width: 30%;
 }
 
-.tdresetrowleft {
-  text-align: last;
+/* .tdresetrowleft {
   border: 3px solid orange;
+  text-align: last;
   width: 700px;
-}
+} */
 
 .inputcrschoice {
   border-color: 1px solid black;
@@ -115,6 +119,7 @@
   border-color: transparent;
   color: black;
   padding: 0 0.2rem;
+  width:100%;
 }
 
 .btncrsesresetdark {
@@ -124,7 +129,7 @@
   color: white;
   float: right;
   font-size: 1.1rem;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
   text-align: center;
   width: 50%;
 }

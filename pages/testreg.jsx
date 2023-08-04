@@ -129,7 +129,7 @@ export default function Home() {
                     <td className={styles.inputtd}>
                       <Dropdown>
                           <Dropdown.Button
-                            disableRipple
+                            disableripple
                             size="sm"
                             style={{
                               // backgroundColor below: must be RGB
@@ -352,7 +352,7 @@ export default function Home() {
 
               {/* Courses worksheet */}
               <table className={styles.tblcoursewksht}>
-                <caption className={styles.capcoursewksht}><h3>Courses worksheet*</h3></caption>
+                <caption className={styles.capcoursewksht}><h3>Courses worksheet</h3></caption>
                 <thead>
                   <tr>
                     <th></th><th>Name</th><th>Abbreviation</th>
@@ -360,33 +360,34 @@ export default function Home() {
                 </thead>
                 <tbody>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Spoken English – Beginners
                     </td>
                     <td className={styles.tblcrsabbrev}>EngBegin</td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Mobile Technologies
                     </td>
                     <td className={styles.tblcrsabbrev}>MobileTech</td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Certificate Course in Computer Applications(CCA)
                     </td>
                     <td className={styles.tblcrsabbrev}>CertCca</td>
                   </tr>
-                  {/* <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                  <tr className={styles.regrow}>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Basic Braille
                     </td>
+                    <td className={styles.tblcrsabbrev}>BasicBraille</td>
                   </tr>
-                  <tr className={styles.regrow}>
+                  {/* <tr className={styles.regrow}>
                     <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Job Coaching for Banking and other exams
