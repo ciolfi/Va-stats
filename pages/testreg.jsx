@@ -1,6 +1,8 @@
 'use client';
 import styles from "../styles/TestReg.module.css";
 import React from "react";
+import Head from 'next/head';
+// import { Head } from 'next/head';
 
 // Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
 import { ButtonGroup, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
@@ -44,10 +46,17 @@ export default function Home() {
     [selectedVision]
   );
 
+  // Button multiple classes array with focus and color
+  const btnFocusPlusBg = [styles.btncrsesresetdark, styles.btngetsfocus];
+
   return (
+    <>
+    <Head>
+      <title>Student Registration</title>
+    </Head>
     <main className={styles.main}>
       <div className={styles.title}>
-        Student Registration 
+          Student Registration
       </div>
       <div>
         <form suppressHydrationWarning >
@@ -70,7 +79,7 @@ export default function Home() {
                       Email
                       <span className={styles.requiredelement}>&#42;</span>
                     </td>
-                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} autofocus /></td>
                   </tr>
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
@@ -251,7 +260,8 @@ export default function Home() {
                 </tbody>
               </table>
 
-              <button aria-label="Reset form" className={styles.btncrsesresetdark}>Reset Courses</button>
+              {/* Must use backtick, not vertical single quote */}
+              <button aria-label="Reset form" className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}>Reset Courses</button>
 
               <table>
                 <thead>
@@ -352,7 +362,12 @@ export default function Home() {
 
               {/* Courses worksheet */}
               <table className={styles.tblcoursewksht}>
-                <caption className={styles.capcoursewksht}><h3>Courses worksheet</h3></caption>
+                <caption className={styles.capcoursewksht}>
+                  <h3 className={styles.h3courses}>Courses worksheet</h3>
+                  <span className={styles.coursestip}>
+                    Tip: After tab selects first course, use up/down keys to navigate; tab to exit worksheet section.
+                  </span>
+                </caption>
                 <thead>
                   <tr>
                     <th></th><th>Name</th><th>Abbreviation</th>
@@ -360,96 +375,96 @@ export default function Home() {
                 </thead>
                 <tbody>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Spoken English – Beginners
                     </td>
                     <td className={styles.tblcrsabbrev}>EngBegin</td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Mobile Technologies
                     </td>
                     <td className={styles.tblcrsabbrev}>MobileTech</td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Certificate Course in Computer Applications(CCA)
                     </td>
                     <td className={styles.tblcrsabbrev}>CertCca</td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="radio" name="vacourse" value=""  className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Basic Braille
                     </td>
                     <td className={styles.tblcrsabbrev}>BasicBraille</td>
                   </tr>
                   {/* <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Job Coaching for Banking and other exams
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Excel
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Spoken English - Intermediate Level
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Digital Accessibility Testing
                     </td>
                   </tr>
 
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Corporate Skills Development
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Python
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       HTML, CSS, JavaScript, and ARIA Fundamentals for Accessible Web Development
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Diploma Course in Computer Applications (DCA)
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Life Skills
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Rights of Persons with Disabilities
                     </td>
                   </tr>
                   <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourse} /></td>
+                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
                     <td className={styles.inputlabelcourses}>
                       Android: Low-Vision Series
                     </td>
@@ -479,7 +494,7 @@ export default function Home() {
               <h2>
                 Miscellaneous
               </h2>
-              <table>
+              <table className={styles.tblmisc}>
 
                 <tr className={styles.regrow}>
                   <td className={styles.inputlabel}>
@@ -532,14 +547,22 @@ export default function Home() {
                   <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
                 </tr>
 
-                {/* RESET AND SUBMIT BUTTONS */}
-                <tr>
+                {/* <tr>
                   <td className={styles.tdregformbtns} colSpan="2">
-                    <button aria-label="Reset form" className={styles.btnreset}>RESET FORM</button>
                     <button aria-label="Submit form" className={styles.btnsubmit}>SUBMIT FORM</button>
+                    <button aria-label="Reset form" className={styles.btnreset}>RESET FORM</button>                   
                   </td>
-                </tr>
+                </tr> */}
               </table>
+
+              {/* RESET AND SUBMIT BUTTONS */}
+
+              {/* EXAMPLE:
+              className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`} */}
+
+              <button aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
+              <button aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button> 
+
             </div>
             {/*--------- MISCELLANEOUS CARD ENDS --------*/}
 
@@ -547,5 +570,6 @@ export default function Home() {
         </form>
       </div>
     </main>
+    </>
   );
 }

@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Textbox tabbing focus border */
+.reginput:focus,
+.inputcrschoice:focus,
+.btnsubmitcrschoice:focus,
+.btngetsfocus:focus,
+.btnradiocourse:focus,
+.btngetsfocus:focus {
+  outline: 2px solid blue;
+}
+
 .main {
   border: 0px solid red;
   align-items: left;
@@ -102,12 +112,6 @@
   width: 30%;
 }
 
-/* .tdresetrowleft {
-  border: 3px solid orange;
-  text-align: last;
-  width: 700px;
-} */
-
 .inputcrschoice {
   border-color: 1px solid black;
   width: 100%;
@@ -137,6 +141,15 @@
 .capcoursewksht {
   border: 0px solid yellow;
   border-bottom: 1px solid black;
+  margin-bottom: 1em;
+}
+
+.h3courses {
+  margin-bottom: 1em;
+}
+
+.coursestip {
+  text-align: left;
 }
 
 .tblcoursewksht {
@@ -173,17 +186,22 @@
   width: 95vw;
 }
 
+.tblmisc {
+  margin-bottom: 1em;
+}
+
 /* Register student form buttons */
 .btnsubmit {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenlight-background);
   border-color: transparent;
   color: black;
+  display: block;
+  float: right;
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
   padding: var(--buttonva-padding);
   margin-right: 0em;
-  vertical-align: middle;
 }
 
 .btnreset {
@@ -191,11 +209,14 @@
   background-color: var(--vagreenmedium-background);
   border-color: transparent;
   color: white;
+  display: block;
+  float: right;
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
   padding: var(--buttonva-padding);
-  margin-right: 2em;
-  vertical-align: middle;
+  position: relative;
+  top: 4em;
+  right: -9em;
 }
 
 .btnregdropdown {
@@ -205,7 +226,7 @@
 
 .tdregformbtns {
   border: 0px solid green;
-  padding-top: 2em;
+  padding-top: 1em;
   padding-right: -2em;
   text-align: right;
 }
