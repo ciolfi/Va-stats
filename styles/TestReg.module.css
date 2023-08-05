@@ -81,7 +81,7 @@
 
 .reginput {
   border-color: 1px solid black;
-  height: 1.3rem;
+  height: 1.8em;
 }
 
 .tblchoosecourses {
@@ -96,24 +96,22 @@
 .tdcolfirstchoice {
   border: 0px solid orange;
   vertical-align: top;
-  /* width: 34%; */
   width: 31%;
 }
 
 .tdcolsecondchoice {
   border: 0px solid cyan;
-  /* width: 33%; */
   width: 30%;
 }
 
 .tdcolthirdchoice {
   border: 0px solid blue;
-  /* width: 33%; */
   width: 30%;
 }
 
 .inputcrschoice {
   border-color: 1px solid black;
+  height: 1.8em;
   width: 100%;
 }
 
@@ -122,6 +120,7 @@
   background-color: var(--vagreenlight-background);
   border-color: transparent;
   color: black;
+  height: 1.8em;
   padding: 0 0.2rem;
   width:100%;
 }
@@ -134,8 +133,9 @@
   float: right;
   font-size: 1.1rem;
   margin-bottom: 3em;
+  margin-right: 0.9em;
   text-align: center;
-  width: 50%;
+  width: 40%;
 }
 
 .capcoursewksht {

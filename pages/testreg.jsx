@@ -2,12 +2,10 @@
 import styles from "../styles/TestReg.module.css";
 import React from "react";
 import Head from 'next/head';
-// import { Head } from 'next/head';
 
 // Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
-import { ButtonGroup, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
-// NOTE: below, must import from the pkg, not react
-import { Button } from '@nextui-org/button';
+//import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import { Dropdown } from "@nextui-org/react";
 
 export default function Home() {
 
@@ -16,6 +14,13 @@ export default function Home() {
   const selectedValueGender = React.useMemo(
     () => Array.from(selectedGender).join(", ").replaceAll("_", " "),
     [selectedGender]
+  );
+
+  // EMPLOYMENT STATUS  DROPDOWN
+  const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employment"]));
+  const selectedValueEmpStatus = React.useMemo(
+    () => Array.from(selectedEmpStatus).join(", ").replaceAll("_", " "),
+    [selectedEmpStatus]
   );
 
   // 1st course choice
@@ -39,21 +44,11 @@ export default function Home() {
     [selectedThirdChoice]
   );
 
-  // // Vision dropdown
-  // const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
-  // const selectedValueVision = React.useMemo(
-  //   () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
-  //   [selectedVision]
-  // );
-
   const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
   const selectedValueVision = React.useMemo(
     () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
     [selectedVision]
   );
-
-  // Button multiple classes array with focus and color
-  const btnFocusPlusBg = [styles.btncrsesresetdark, styles.btngetsfocus];
 
   return (
     <>
@@ -135,7 +130,7 @@ export default function Home() {
                       <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
                     </tr>
 
-                    {/*--------------- GENDER DROPDOWN BEGINS ---------------*/}
+                    {/*---------- GENDER DROPDOWN BEGINS -----*/}
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         Gender
@@ -164,16 +159,16 @@ export default function Home() {
                             selectedKeys={selectedGender}
                             onSelectionChange={setSelectedGender}
                           >
-                            <Dropdown.Item key="Female">Female</Dropdown.Item>
+                            <Dropdown.Item key="Female" isSelected>Female</Dropdown.Item>
                             <Dropdown.Item key="Male">Male</Dropdown.Item>
                             <Dropdown.Item key="Other">Other</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
                     </tr>
-                    {/*--------------- GENDER DROPDOWN ENDS ---------------*/}
+                    {/*---------- GENDER DROPDOWN BEGINS -----*/}
 
-                    {/*------------ BIRTHDATE DATE PICKER BEGINS ----------*/}
+                    {/* Birthdate picker */}
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         Birthdate
@@ -183,7 +178,6 @@ export default function Home() {
                         <input type="date" id="birthdaytime" name="birthdaytime" className={styles.reginput} />
                       </td>
                     </tr>
-                    {/*------------ BIRTHDATE DATE PICKER ENDS -------------*/}
 
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -196,16 +190,42 @@ export default function Home() {
                       </td>
                     </tr>
 
+                    {/*---- EMPLOYMENT STATUS DROPDOWN BEGINS -----*/}
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
-                        Employment Status
+                        Employment status
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                        placeholder="Degrees, etc, 300-char max"
-                      />
+                      <td className={styles.inputtd}>
+                        <Dropdown>
+                          <Dropdown.Button
+                            disableripple
+                            size="sm"
+                            style={{
+                              // backgroundColor below: must be RGB
+                              backgroundColor: 'var(--vagreenmedium-background)',
+                              height: '2em',
+                              marginTop: '0.5em',
+                              width: '100%'
+                            }}
+                            variant="shadow"
+                          >
+                            {selectedValueEmpStatus}
+                          </Dropdown.Button>
+                          <Dropdown.Menu
+                            aria-label="Single selection actions"
+                            disallowEmptySelection
+                            selectionMode="single"
+                            selectedKeys={selectedEmpStatus}
+                            onSelectionChange={setSelectedEmpStatus}
+                          >
+                            <Dropdown.Item key="Employed" isSelected>Employed</Dropdown.Item>
+                            <Dropdown.Item key="Unemployed">Unemployed</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </td>
                     </tr>
+                    {/*---- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
 
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -268,103 +288,6 @@ export default function Home() {
 
                 {/* Must use backtick, not vertical single quote */}
                 <button aria-label="Reset form" className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}>Reset Courses</button>
-
-                <table>
-                  <thead>
-                    <tr></tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className={styles.tdtablecoursechoices} colSpan="3">
-                        <table className={styles.tablecoursechoices}>
-                          <tr>
-
-                            {/* DROPDOWN: FIRST CHOICE
-                        <td className={styles.tdfirstchoice}>
-                          <Dropdown>
-                            <Dropdown.Trigger>
-                              <Dropdown.Button
-                                className={styles.btnregdropdown}
-                                size="sm"
-                              >
-                                {selectedValueFirst}
-                              </Dropdown.Button>
-                            </Dropdown.Trigger>
-                            <Dropdown.Menu
-                              aria-label="Single selection actions"
-                              color="secondary"
-                              // color="black"
-                              disallowEmptySelection
-                              selectionMode="single"
-                              selectedKeys={selectedFirstChoice}
-                              onSelectionChange={setSelectedFirst}
-                            >
-                              <Dropdown.Item key="EngBegin">Spoken English – Beginners</Dropdown.Item>
-                              <Dropdown.Item key="MobileTech">Mobile Technologies</Dropdown.Item>
-                              <Dropdown.Item key="CertCca">Certificate Course in Computer Applications(CCA)</Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </td>
-
-                        {/* DROPDOWN: SECOND CHOICE
-                        <td className={styles.tdsecondchoice}>
-                          <Dropdown>
-                            <Dropdown.Trigger>
-                              <Dropdown.Button
-                                className={styles.btnregdropdown}
-                                size="sm"
-                              >
-                                {selectedValueSecond}
-                              </Dropdown.Button>
-                            </Dropdown.Trigger>
-                            <Dropdown.Menu
-                              aria-label="Single selection actions"
-                              color="secondary"
-                              // color="black"
-                              disallowEmptySelection
-                              selectionMode="single"
-                              selectedKeys={selectedSecondChoice}
-                              onSelectionChange={setSelectedSecond}
-                            >
-                              <Dropdown.Item key="EngBegin">Spoken English – Beginners</Dropdown.Item>
-                              <Dropdown.Item key="MobileTech">Mobile Technologies</Dropdown.Item>
-                              <Dropdown.Item key="CertCca">Certificate Course in Computer Applications(CCA)</Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </td>
-
-                        {/* DROPDOWN: THIRD CHOICE */}
-                            {/* <td className={styles.tdthirdchoice}>
-                          <Dropdown>
-                            <Dropdown.Trigger>
-                              <Dropdown.Button
-                                className={styles.btnregdropdown}
-                                size="sm" 
-                              >
-                                {selectedValueThird}
-                              </Dropdown.Button>
-                            </Dropdown.Trigger>
-                            <Dropdown.Menu
-                              aria-label="Single selection actions"
-                              color="secondary"
-                              disallowEmptySelection
-                              selectionMode="single"
-                              selectedKeys={selectedThirdChoice}
-                              onSelectionChange={setSelectedThird}
-                            >
-                              <Dropdown.Item key="EngBegin">Spoken English – Beginners</Dropdown.Item>
-                              <Dropdown.Item key="MobileTech">Mobile Technologies</Dropdown.Item>
-                              <Dropdown.Item key="CertCca">Certificate Course in Computer Applications(CCA)</Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </td> */}
-
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
 
                 {/* Courses worksheet */}
                 <table className={styles.tblcoursewksht}>
@@ -504,7 +427,7 @@ export default function Home() {
 
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
-                      Visual acuity (blind or low vision)
+                      Visual acuity
                       <span className={styles.requiredelement}>&#42;</span>
                     </td>
 
