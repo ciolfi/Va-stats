@@ -150,6 +150,7 @@
 
 .coursestip {
   margin-bottom: 1em;
+  margin-left: 1.5em;
   text-align: left;
 }
 
@@ -192,12 +193,13 @@
   margin-bottom: 1em;
 }
 
-/* div block, containing form submit and form reset btns */
+/* div containing form submit and form reset btns */
 .frmbtnblocksubres {
   border: 0px solid blue;
   float: right;
   height: 8em;
-  width: 12em;
+  position: relative;
+  width: 11em;
 }
 
 /* Register student form buttons */
@@ -209,20 +211,24 @@
   display: block;
   float: right;
   font-size: var(--buttonva-fontsize);
-  margin-right: 0em;
+  height: var(--buttonva-height);
+  overflow: auto;
+  padding: var(--buttonva-padding);
+  width: 9.4em;
 }
 
 .btnreset {
   border-radius: var(--buttonva-borderradius);
   background-color: var(--vagreenmedium-background);
   border-color: transparent;
+  bottom: 0;
   color: white;
-  display: block;
-  float: right;
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
-  position: relative;
-  top: 4em;
+  padding: var(--buttonva-padding);
+  position: absolute;
+  right: 0;
+  width: var(--buttonva-width);
 }
 
 .btnregdropdown {

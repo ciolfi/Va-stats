@@ -2,9 +2,11 @@
 import styles from "../styles/TestReg.module.css";
 import React from "react";
 import Head from 'next/head';
+import { Button } from "@nextui-org/react";
 
-// Dropdowns: gender, 1st choice, 2nd choice, 3rd choice, visual acuity
-//import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+// Dropdowns (gender, visual acuity) and 
+// button (1st choice, 2nd choice, 3rd choice)
+// import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { Dropdown } from "@nextui-org/react";
 
 export default function Home() {
@@ -258,35 +260,55 @@ export default function Home() {
                   Choose courses
                 </h2>
                 <div className={styles.coursestip}>
-                  Tip: Tab to enter course list. Use up/down keys to select first course from list. Then, use <em>First choice</em> button (course appears in box). Repeat for second and third choices. Tab to exit courses section.
+                  <ol>
+                    <li>Choose course from list.</li>
+                    <li>Use <em>Add 1st choice</em> button.</li>
+                    <li>Course abbreviation is added to box.</li>
+                    <li>Repeat for 2nd and 3rd choices.</li>
+                  </ol>
                 </div>
 
                 {/* COURSE CHOICES SUBFORM BEGINS */}
                 <table className={styles.tblchoosecourses}>
-                  <tbody>
-                    <tr>
-                      <td className={styles.tdcolfirstchoice}><input type="textbox" className={styles.inputcrschoice}
-                        placeholder="1st choice"
-                      /></td>
-                      <td className={styles.tdcolsecondchoice}><input type="textbox" className={styles.inputcrschoice}
-                        placeholder="2nd choice"
-                      /></td>
-                      <td className={styles.tdcolthirdchoice}><input type="textbox" className={styles.inputcrschoice}
-                        placeholder="3rd choice"
-                      /></td>
-                    </tr>
-                    <tr>
-                      <td className={styles.tdcolfirstchoice}><input type="submit" className={styles.btnsubmitcrschoice}
-                        value="Add 1st choice"
-                      /></td>
-                      <td className={styles.tdcolsecondchoice}><input type="submit" className={styles.btnsubmitcrschoice}
-                        value="Add 2nd choice"
-                      /></td>
-                      <td className={styles.tdcolthirdchoice} ><input type="submit" className={styles.btnsubmitcrschoice}
-                        value="Add 3rd choice"
-                      /></td>
-                    </tr>
-                  </tbody>
+                  <tr>
+                    <td>
+                      <label>First choice</label>
+                    </td>
+                    <td className={styles.tdcolfirstchoice}>
+                      <input type="textbox" className={styles.inputcrschoice}
+                        placeholder="1st choice" />
+                    </td>
+                    <td className={styles.tdcolfirstchoice} >
+                      <input type="submit" className={styles.btnsubmitcrschoice}
+                        value="Add 1st choice" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Second choice</label>
+                    </td>
+                    <td className={styles.tdcolsecondchoice}>
+                      <input type="textbox" className={styles.inputcrschoice}
+                      placeholder="2nd choice" />
+                    </td>
+                    <td className={styles.tdcolsecondchoice} >
+                      <input type="submit" className={styles.btnsubmitcrschoice}
+                      value="Add 2nd choice" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Third choice</label>
+                    </td>
+                    <td className={styles.tdcolthirdchoice}>
+                      <input type="textbox" className={styles.inputcrschoice}
+                      placeholder="3rd choice" />
+                    </td>
+                    <td className={styles.tdcolthirdchoice}>
+                      <input type="submit" className={styles.btnsubmitcrschoice}
+                      value="Add 3rd choice" />
+                    </td>
+                  </tr>
                 </table>
 
                 {/* Must use backtick, not vertical single quote */}
@@ -294,9 +316,6 @@ export default function Home() {
 
                 {/* Courses worksheet */}
                 <table className={styles.tblcoursewksht}>
-                  {/* <caption className={styles.capcoursewksht}>
-                    <h3 className={styles.h3courses}>Courses worksheet</h3>
-                  </caption> */}
                   <thead>
                     <tr>
                       <th></th><th>Name</th><th>Abbreviation</th>
@@ -325,17 +344,18 @@ export default function Home() {
                       <td className={styles.tblcrsabbrev}>CertCca</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="basicbraille" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Basic Braille
                       </td>
                       <td className={styles.tblcrsabbrev}>BasicBraille</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="jobcoaching" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Job Coaching for Banking and other exams
                       </td>
+                      <td className={styles.tblcrsabbrev}>JobCoaching</td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>

@@ -372,6 +372,7 @@ footer a {
   --buttonva-fontsize: 1.1rem;
   --buttonva-height: 1.5rem;
   --buttonva-padding: 0 1rem;
+  --buttonva-width: auto;
   --vagreenlight-background: #A8D181;    /* rgb(168 209 129) */
   --vagreenmedium-background: #3F7D3C;  /* rgb(63,125,60) */
   --vagreenmedium-background: rgb(63,125,60);
