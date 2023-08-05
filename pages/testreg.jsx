@@ -257,6 +257,9 @@ export default function Home() {
                 <h2>
                   Choose courses
                 </h2>
+                <div className={styles.coursestip}>
+                  Tip: Tab to enter course list. Use up/down keys to select first course from list. Then, use <em>First choice</em> button (course appears in box). Repeat for second and third choices. Tab to exit courses section.
+                </div>
 
                 {/* COURSE CHOICES SUBFORM BEGINS */}
                 <table className={styles.tblchoosecourses}>
@@ -291,12 +294,9 @@ export default function Home() {
 
                 {/* Courses worksheet */}
                 <table className={styles.tblcoursewksht}>
-                  <caption className={styles.capcoursewksht}>
+                  {/* <caption className={styles.capcoursewksht}>
                     <h3 className={styles.h3courses}>Courses worksheet</h3>
-                    <span className={styles.coursestip}>
-                      Tip: After tab selects first course, use up/down keys to navigate; tab to exit worksheet section.
-                    </span>
-                  </caption>
+                  </caption> */}
                   <thead>
                     <tr>
                       <th></th><th>Name</th><th>Abbreviation</th>
@@ -304,21 +304,21 @@ export default function Home() {
                   </thead>
                   <tbody>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="engbegin" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Spoken English – Beginners
                       </td>
                       <td className={styles.tblcrsabbrev}>EngBegin</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="mobiletech" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Mobile Technologies
                       </td>
                       <td className={styles.tblcrsabbrev}>MobileTech</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="certcca" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Certificate Course in Computer Applications(CCA)
                       </td>
@@ -331,88 +331,79 @@ export default function Home() {
                       </td>
                       <td className={styles.tblcrsabbrev}>BasicBraille</td>
                     </tr>
-                    {/* <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Job Coaching for Banking and other exams
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Excel
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Spoken English - Intermediate Level
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Digital Accessibility Testing
-                    </td>
-                  </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Job Coaching for Banking and other exams
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Excel
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Spoken English - Intermediate Level
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Digital Accessibility Testing
+                      </td>
+                    </tr>
 
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Corporate Skills Development
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Python
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      HTML, CSS, JavaScript, and ARIA Fundamentals for Accessible Web Development
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Diploma Course in Computer Applications (DCA)
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Life Skills
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Rights of Persons with Disabilities
-                    </td>
-                  </tr>
-                  <tr className={styles.regrow}>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.btnradiocourse} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Android: Low-Vision Series
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className={styles.inputtd}><input type="checkbox" className={styles.checkboxcourses} /></td>
-                    <td className={styles.inputlabelcourses}>
-                      Listen with Talkback series
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="3" className={styles.tblcoursesfoot}>
-                      * The checkboxes are only for your convenience. Check the box for your top three course choices. Then, use the dropdowns above to select your top three. Only your dropdown menu choices will be submitted when you submit the form (not checks from the checkboxes). Note: the course abbreviation is entered as your choice.
-                    </td>
-                  </tr>
-                </tfoot> */}
-
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Corporate Skills Development
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Python
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        HTML, CSS, JavaScript, and ARIA Fundamentals for Accessible Web Development
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Diploma Course in Computer Applications (DCA)
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Life Skills
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Rights of Persons with Disabilities
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Android: Low-Vision Series
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.checkboxcourses} /></td>
+                      <td className={styles.inputlabelcourses}>
+                        Listen with Talkback series
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -493,13 +484,12 @@ export default function Home() {
                 </tr> */}
                 </table>
 
-                {/* RESET AND SUBMIT BUTTONS */}
-
-                {/* EXAMPLE:
-              className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`} */}
-
-                <button aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
-                <button aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
+                {/* RESET AND SUBMIT BUTTONS 
+                NOTE: Backticks, not vertical single quotes, are required below */}
+                <div className={styles.frmbtnblocksubres}>
+                  <button aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
+                  <button aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
+                </div>
 
               </div>
               {/*--------- MISCELLANEOUS CARD ENDS --------*/}

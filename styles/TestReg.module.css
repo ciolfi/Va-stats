@@ -87,7 +87,7 @@
 .tblchoosecourses {
   border: 0px solid red;
   border-collapse: separate;
-  border-spacing: 1em 1em;
+  border-spacing: 0.5em 0.5em;
   margin-bottom: 1em;
   table-layout: fixed;
   width: 100%;
@@ -132,10 +132,10 @@
   color: white;
   float: right;
   font-size: 1.1rem;
-  margin-bottom: 3em;
-  margin-right: 0.9em;
+  margin-bottom: 2em;
+  margin-right: 0.5em;
   text-align: center;
-  width: 40%;
+  width: 30%;
 }
 
 .capcoursewksht {
@@ -149,6 +149,7 @@
 }
 
 .coursestip {
+  margin-bottom: 1em;
   text-align: left;
 }
 
@@ -162,19 +163,20 @@
   vertical-align: top;
 }
 
-.checkboxcourses {
-  vertical-align: top;
-}
+/* Course radio buttons; not currently styled
+.btnradiocourse {
+} */
 
 .inputlabelcourses {
-  padding-right: 0.5em;
+  padding-left: 0.3em;
+  padding-right: 0.7em;
   text-align: left;
   vertical-align: top;
 }
 
-.checkboxcourse {
+/* .checkboxcourse {
   margin-right: 0.5em;
-}
+} */
 
 .bottomrow {
   border: 0px solid cyan;
@@ -190,6 +192,14 @@
   margin-bottom: 1em;
 }
 
+/* div block, containing form submit and form reset btns */
+.frmbtnblocksubres {
+  border: 0px solid blue;
+  float: right;
+  height: 8em;
+  width: 12em;
+}
+
 /* Register student form buttons */
 .btnsubmit {
   border-radius: var(--buttonva-borderradius);
@@ -199,8 +209,6 @@
   display: block;
   float: right;
   font-size: var(--buttonva-fontsize);
-  height: var(--buttonva-height);
-  padding: var(--buttonva-padding);
   margin-right: 0em;
 }
 
@@ -213,10 +221,8 @@
   float: right;
   font-size: var(--buttonva-fontsize);
   height: var(--buttonva-height);
-  padding: var(--buttonva-padding);
   position: relative;
   top: 4em;
-  right: -9em;
 }
 
 .btnregdropdown {
