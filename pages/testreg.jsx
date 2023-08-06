@@ -3,6 +3,7 @@ import styles from "../styles/TestReg.module.css";
 import React from "react";
 import Head from 'next/head';
 import { Button } from "@nextui-org/react";
+import { useState } from 'react';
 
 // Dropdowns (gender, visual acuity) and 
 // button (1st choice, 2nd choice, 3rd choice)
@@ -25,32 +26,47 @@ export default function Home() {
     [selectedEmpStatus]
   );
 
-  // 1st course choice
-  const [selectedFirstChoice, setSelectedFirst] = React.useState(new Set(["1st choice"]));
-  const selectedValueFirst = React.useMemo(
-    () => Array.from(selectedFirstChoice).join(", ").replaceAll("_", " "),
-    [selectedFirstChoice]
-  );
+  // // 1st course choice
+  // const [selectedFirstChoice, setSelectedFirst] = React.useState(new Set(["1st choice"]));
+  // const selectedValueFirst = React.useMemo(
+  //   () => Array.from(selectedFirstChoice).join(", ").replaceAll("_", " "),
+  //   [selectedFirstChoice]
+  // );
 
-  // 2nd course choice
-  const [selectedSecondChoice, setSelectedSecond] = React.useState(new Set(["2nd choice"]));
-  const selectedValueSecond = React.useMemo(
-    () => Array.from(selectedSecondChoice).join(", ").replaceAll("_", " "),
-    [selectedSecondChoice]
-  );
+  // // 2nd course choice
+  // const [selectedSecondChoice, setSelectedSecond] = React.useState(new Set(["2nd choice"]));
+  // const selectedValueSecond = React.useMemo(
+  //   () => Array.from(selectedSecondChoice).join(", ").replaceAll("_", " "),
+  //   [selectedSecondChoice]
+  // );
 
-  // 3rd course choice
-  const [selectedThirdChoice, setSelectedThird] = React.useState(new Set(["3rd choice"]));
-  const selectedValueThird = React.useMemo(
-    () => Array.from(selectedThirdChoice).join(", ").replaceAll("_", " "),
-    [selectedThirdChoice]
-  );
+  // // 3rd course choice
+  // const [selectedThirdChoice, setSelectedThird] = React.useState(new Set(["3rd choice"]));
+  // const selectedValueThird = React.useMemo(
+  //   () => Array.from(selectedThirdChoice).join(", ").replaceAll("_", " "),
+  //   [selectedThirdChoice]
+  // );
 
   const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
   const selectedValueVision = React.useMemo(
     () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
     [selectedVision]
   );
+
+  // const addFirstCourse = React.useMemo(
+  //   () => Array.from(vacourse).value
+  // );
+  function addFirstChoice() {
+    // alert("You clicked Add 1st choice");
+    // textboxfirstchoice.value = "engbegin";
+    var chosencourse = document.getElementsByName('vacourse');
+    for (let i = 0; i < chosencourse.length; i++) {
+      if (chosencourse[i].checked) {
+        var selecttextbox = document.getElementById("textboxfirstchoice");
+        selecttextbox.value = chosencourse[i].value;
+      }
+    }
+  }
 
   return (
     <>
@@ -89,7 +105,13 @@ export default function Home() {
                         Name
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                      <td className={styles.inputtd}>
+                        <input
+                          placeholder="Firstname Lastname"
+                          type="textbox"
+                          required className={styles.reginput}
+                        />
+                      </td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -243,8 +265,13 @@ export default function Home() {
                       <td className={styles.inputlabel}>
                         Trainer name
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                      />
+                      <td className={styles.inputtd}>
+                        <input
+                          className={styles.reginput}
+                          placeholder="Firstname Lastname"
+                          type="textbox"
+                          required
+                        />
                       </td>
                     </tr>
                   </tbody>
@@ -271,48 +298,66 @@ export default function Home() {
                 {/* COURSE CHOICES SUBFORM BEGINS */}
                 <table className={styles.tblchoosecourses}>
                   <tr>
-                    <td>
+                    <td className={styles.tdlblcrschoice}>
                       <label>First choice</label>
                     </td>
-                    <td className={styles.tdcolfirstchoice}>
-                      <input type="textbox" className={styles.inputcrschoice}
-                        placeholder="1st choice" />
+                    <td className={styles.tdtextboxcrschoice}>
+
+                      {/* <input type="textbox" id="textboxcrschoicefirst" className={styles.inputcrschoice}
+                        placeholder="1st choice" /> */}
+
+                      <input
+                        className={styles.inputcrschoice}
+                        id="textboxfirstchoice"
+                        placeholder="1st choice"
+                        type="text"
+                      />
                     </td>
-                    <td className={styles.tdcolfirstchoice} >
-                      <input type="submit" className={styles.btnsubmitcrschoice}
-                        value="Add 1st choice" />
+                    <td className={styles.tdsubmitcrschoice}>
+                      {/* <input type="submit" id="submitcrschoicefirst" className={styles.btnsubmitcrschoice}
+                        value="Add 1st choice" /> */}
+                      {/* <button type="button" id="submitcrschoicefirst" onClick={() => addFirstChoice()} className={styles.btnsubmitcrschoice}> */}
+                      <button type="button" id="submitcrschoicefirst" onClick={() => addFirstChoice()} className={styles.btnsubmitcrschoice}>
+                        Add 1st choice
+                      </button>
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className={styles.tdlblcrschoice}>
                       <label>Second choice</label>
                     </td>
-                    <td className={styles.tdcolsecondchoice}>
-                      <input type="textbox" className={styles.inputcrschoice}
-                      placeholder="2nd choice" />
+                    <td className={styles.tdtextboxcrschoice}>
+                      <input type="textbox" id="textboxcrschoicesecond" className={styles.inputcrschoice}
+                        placeholder="2nd choice" />
                     </td>
-                    <td className={styles.tdcolsecondchoice} >
-                      <input type="submit" className={styles.btnsubmitcrschoice}
-                      value="Add 2nd choice" />
+                    <td className={styles.tdsubmitcrschoice}>
+                      <input type="submit" id="submitcrschoicesecond" className={styles.btnsubmitcrschoice}
+                        value="Add 2nd choice" />
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className={styles.tdlblcrschoice}>
                       <label>Third choice</label>
                     </td>
-                    <td className={styles.tdcolthirdchoice}>
-                      <input type="textbox" className={styles.inputcrschoice}
-                      placeholder="3rd choice" />
+                    <td className={styles.tdtextboxcrschoice}>
+                      <input type="textbox" id="textboxcrschoicethird" className={styles.inputcrschoice}
+                        placeholder="3rd choice" />
                     </td>
-                    <td className={styles.tdcolthirdchoice}>
-                      <input type="submit" className={styles.btnsubmitcrschoice}
-                      value="Add 3rd choice" />
+                    <td className={styles.tdsubmitcrschoice}>
+                      <input type="submit" id="submitcrschoicethird" className={styles.btnsubmitcrschoice}
+                        value="Add 3rd choice" />
                     </td>
                   </tr>
                 </table>
 
-                {/* Must use backtick, not vertical single quote */}
-                <button aria-label="Reset form" className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}>Reset Courses</button>
+                {/* Must use backtick for multiple classes, not vertical single quote */}
+                <button
+                  aria-label="Reset form"
+                  className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}
+                  type="reset"
+                >
+                  Reset Courses
+                </button>
 
                 {/* Courses worksheet */}
                 <table className={styles.tblcoursewksht}>
@@ -323,106 +368,119 @@ export default function Home() {
                   </thead>
                   <tbody>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="engbegin" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}>                       
+                        <input type="radio" name="vacourse" value="EngBegin" className={styles.btnradiocourse} />
+                      </td>
                       <td className={styles.inputlabelcourses}>
                         Spoken English – Beginners
                       </td>
                       <td className={styles.tblcrsabbrev}>EngBegin</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="mobiletech" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="MobileTech" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Mobile Technologies
                       </td>
                       <td className={styles.tblcrsabbrev}>MobileTech</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="certcca" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="CertCca" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Certificate Course in Computer Applications(CCA)
                       </td>
                       <td className={styles.tblcrsabbrev}>CertCca</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="basicbraille" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="BasicBraille" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Basic Braille
                       </td>
                       <td className={styles.tblcrsabbrev}>BasicBraille</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="jobcoaching" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="JobCoaching" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Job Coaching for Banking and other exams
                       </td>
                       <td className={styles.tblcrsabbrev}>JobCoaching</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="Excel" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Excel
                       </td>
+                      <td className={styles.tblcrsabbrev}>Excel</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="EngInter" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Spoken English - Intermediate Level
                       </td>
+                      <td className={styles.tblcrsabbrev}>EngInter</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="DigAccTesting" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Digital Accessibility Testing
                       </td>
+                      <td className={styles.tblcrsabbrev}>DigAccTesting</td>
                     </tr>
 
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="CorpSkills" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Corporate Skills Development
                       </td>
+                      <td className={styles.tblcrsabbrev}>CorpSkills</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="Python" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Python
                       </td>
+                      <td className={styles.tblcrsabbrev}>Python</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="WebARIA" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         HTML, CSS, JavaScript, and ARIA Fundamentals for Accessible Web Development
                       </td>
+                      <td className={styles.tblcrsabbrev}>WebARIA</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="DiplomaDCA" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Diploma Course in Computer Applications (DCA)
                       </td>
+                      <td className={styles.tblcrsabbrev}>DiplomaDCA</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="LifeSkills" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Life Skills
                       </td>
+                      <td className={styles.tblcrsabbrev}>LifeSkills</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="RightsPWD" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Rights of Persons with Disabilities
                       </td>
+                      <td className={styles.tblcrsabbrev}>RightsPWD</td>
                     </tr>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.btnradiocourse} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="AndroidLowVis" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
                         Android: Low-Vision Series
                       </td>
+                      <td className={styles.tblcrsabbrev}>AndroidLowvis</td>
                     </tr>
                     <tr>
-                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="" className={styles.checkboxcourses} /></td>
+                      <td className={styles.inputtd}><input type="radio" name="vacourse" value="TalkbackSeries" className={styles.checkboxcourses} /></td>
                       <td className={styles.inputlabelcourses}>
                         Listen with Talkback series
                       </td>
+                      <td className={styles.tblcrsabbrev}>TalkbackSeries</td>
                     </tr>
                   </tbody>
                 </table>
@@ -481,7 +539,14 @@ export default function Home() {
                       Percent of vision loss
                       <span className={styles.requiredelement}>&#42;</span>
                     </td>
-                    <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                    <td className={styles.inputtd}>
+                      <input
+                        className={styles.reginput}
+                        placeholder="1-99"
+                        type="textbox"
+                        required
+                      />
+                    </td>
                   </tr>
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
@@ -491,9 +556,15 @@ export default function Home() {
                   </tr>
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
-                      How you found us (e.g., Internet)
+                      How you found us
                     </td>
-                    <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                    <td className={styles.inputtd}>
+                      <input
+                        className={styles.reginput}
+                        placeholder="Internet, friend, etc."
+                        type="textbox"
+                      />
+                    </td>
                   </tr>
 
                   {/* <tr>

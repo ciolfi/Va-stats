@@ -87,26 +87,25 @@
 .tblchoosecourses {
   border: 0px solid red;
   border-collapse: separate;
-  border-spacing: 0.5em 0.5em;
+  border-spacing: 0.5em 1.2em;
   margin-bottom: 1em;
   table-layout: fixed;
   width: 100%;
 }
 
-.tdcolfirstchoice {
+/* Course choice rows */
+.tdlblcrschoice {
   border: 0px solid orange;
   vertical-align: top;
-  width: 31%;
+  width: 27%;
 }
-
-.tdcolsecondchoice {
+.tdtextboxcrschoice {
   border: 0px solid cyan;
-  width: 30%;
+  /* width: 32%; */
 }
-
-.tdcolthirdchoice {
+.tdsubmitcrschoice {
   border: 0px solid blue;
-  width: 30%;
+  width: 27%;
 }
 
 .inputcrschoice {
