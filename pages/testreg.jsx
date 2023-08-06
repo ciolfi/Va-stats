@@ -53,17 +53,28 @@ export default function Home() {
     [selectedVision]
   );
 
-  // const addFirstCourse = React.useMemo(
-  //   () => Array.from(vacourse).value
-  // );
-  function addFirstChoice() {
-    // alert("You clicked Add 1st choice");
-    // textboxfirstchoice.value = "engbegin";
+  // function addFirstChoice() {
+  //   var chosencourse = document.getElementsByName('vacourse');
+  //   for (let i = 0; i < chosencourse.length; i++) {
+  //     if (chosencourse[i].checked) {
+  //       var selecttextbox = document.getElementById("textboxfirstchoice");
+  //       selecttextbox.value = chosencourse[i].value;
+  //     }
+  //   }
+  // }
+
+  function addCourseChoice(coursepriority) {
     var chosencourse = document.getElementsByName('vacourse');
     for (let i = 0; i < chosencourse.length; i++) {
       if (chosencourse[i].checked) {
-        var selecttextbox = document.getElementById("textboxfirstchoice");
-        selecttextbox.value = chosencourse[i].value;
+        if (coursepriority == "firstchoice") {
+          var selecttextbox = document.getElementById("textboxfirstchoice");
+          selecttextbox.value = chosencourse[i].value;
+        }
+        else if (coursepriority == "secondchoice") {
+          var selecttextbox = document.getElementById("textboxsecondchoice");
+          selecttextbox.value = chosencourse[i].value;
+        }
       }
     }
   }
@@ -302,10 +313,6 @@ export default function Home() {
                       <label>First choice</label>
                     </td>
                     <td className={styles.tdtextboxcrschoice}>
-
-                      {/* <input type="textbox" id="textboxcrschoicefirst" className={styles.inputcrschoice}
-                        placeholder="1st choice" /> */}
-
                       <input
                         className={styles.inputcrschoice}
                         id="textboxfirstchoice"
@@ -314,10 +321,7 @@ export default function Home() {
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
-                      {/* <input type="submit" id="submitcrschoicefirst" className={styles.btnsubmitcrschoice}
-                        value="Add 1st choice" /> */}
-                      {/* <button type="button" id="submitcrschoicefirst" onClick={() => addFirstChoice()} className={styles.btnsubmitcrschoice}> */}
-                      <button type="button" id="submitcrschoicefirst" onClick={() => addFirstChoice()} className={styles.btnsubmitcrschoice}>
+                      <button type="button" id="submitcrschoicefirst" onClick={() => addCourseChoice("firstchoice")} className={styles.btnsubmitcrschoice}>
                         Add 1st choice
                       </button>
                     </td>
@@ -327,12 +331,17 @@ export default function Home() {
                       <label>Second choice</label>
                     </td>
                     <td className={styles.tdtextboxcrschoice}>
-                      <input type="textbox" id="textboxcrschoicesecond" className={styles.inputcrschoice}
-                        placeholder="2nd choice" />
+                      <input
+                        className={styles.inputcrschoice}
+                        id="textboxsecondchoice"
+                        placeholder="2nd choice"
+                        type="text"
+                      />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
-                      <input type="submit" id="submitcrschoicesecond" className={styles.btnsubmitcrschoice}
-                        value="Add 2nd choice" />
+                      <button type="button" id="submitcrschoicesecond" onClick={() => addCourseChoice("secondchoice")} className={styles.btnsubmitcrschoice}>
+                        Add 2nd choice
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -340,8 +349,12 @@ export default function Home() {
                       <label>Third choice</label>
                     </td>
                     <td className={styles.tdtextboxcrschoice}>
-                      <input type="textbox" id="textboxcrschoicethird" className={styles.inputcrschoice}
-                        placeholder="3rd choice" />
+                      <input
+                        className={styles.inputcrschoice}
+                        id="textboxthirdchoice"
+                        placeholder="3rd choice"
+                        type="text"
+                      />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
                       <input type="submit" id="submitcrschoicethird" className={styles.btnsubmitcrschoice}
@@ -368,7 +381,7 @@ export default function Home() {
                   </thead>
                   <tbody>
                     <tr className={styles.regrow}>
-                      <td className={styles.inputtd}>                       
+                      <td className={styles.inputtd}>
                         <input type="radio" name="vacourse" value="EngBegin" className={styles.btnradiocourse} />
                       </td>
                       <td className={styles.inputlabelcourses}>
