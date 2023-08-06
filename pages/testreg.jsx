@@ -1,68 +1,40 @@
 'use client';
 import styles from "../styles/TestReg.module.css";
-import React from "react";
+// import React from "react";
 import Head from 'next/head';
-import { Button } from "@nextui-org/react";
-import { useState } from 'react';
-
-// Dropdowns (gender, visual acuity) and 
-// button (1st choice, 2nd choice, 3rd choice)
-// import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import { Dropdown } from "@nextui-org/react";
+
+// Courses form reset
+import * as React from "react";
+import { useForm } from "react-hook-form";
 
 export default function Home() {
 
-  // GENDER DROPDOWN
-  const [selectedGender, setSelectedGender] = React.useState(new Set(["Gender/Other"]));
+  /*-------------- DROPDOWNS BEGIN -----------*/
+  // GENDER
+  const [selectedGender, setSelectedGender] = React.useState(new Set(["Female"]));
   const selectedValueGender = React.useMemo(
     () => Array.from(selectedGender).join(", ").replaceAll("_", " "),
     [selectedGender]
   );
 
-  // EMPLOYMENT STATUS  DROPDOWN
-  const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employment"]));
+  // EMPLOYMENT STATUS
+  const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employed"]));
   const selectedValueEmpStatus = React.useMemo(
     () => Array.from(selectedEmpStatus).join(", ").replaceAll("_", " "),
     [selectedEmpStatus]
   );
 
-  // // 1st course choice
-  // const [selectedFirstChoice, setSelectedFirst] = React.useState(new Set(["1st choice"]));
-  // const selectedValueFirst = React.useMemo(
-  //   () => Array.from(selectedFirstChoice).join(", ").replaceAll("_", " "),
-  //   [selectedFirstChoice]
-  // );
-
-  // // 2nd course choice
-  // const [selectedSecondChoice, setSelectedSecond] = React.useState(new Set(["2nd choice"]));
-  // const selectedValueSecond = React.useMemo(
-  //   () => Array.from(selectedSecondChoice).join(", ").replaceAll("_", " "),
-  //   [selectedSecondChoice]
-  // );
-
-  // // 3rd course choice
-  // const [selectedThirdChoice, setSelectedThird] = React.useState(new Set(["3rd choice"]));
-  // const selectedValueThird = React.useMemo(
-  //   () => Array.from(selectedThirdChoice).join(", ").replaceAll("_", " "),
-  //   [selectedThirdChoice]
-  // );
-
-  const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
+  // VISION
+  // const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
+  const [selectedVision, setSelectedVision] = React.useState(new Set(["LowVision"]));
   const selectedValueVision = React.useMemo(
     () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
     [selectedVision]
   );
+  /*-------------- DROPDOWNS END -----------*/
 
-  // function addFirstChoice() {
-  //   var chosencourse = document.getElementsByName('vacourse');
-  //   for (let i = 0; i < chosencourse.length; i++) {
-  //     if (chosencourse[i].checked) {
-  //       var selecttextbox = document.getElementById("textboxfirstchoice");
-  //       selecttextbox.value = chosencourse[i].value;
-  //     }
-  //   }
-  // }
-
+  /* ADD COURSE CHOICE */
   function addCourseChoice(coursepriority) {
     var chosencourse = document.getElementsByName('vacourse');
     for (let i = 0; i < chosencourse.length; i++) {
@@ -75,8 +47,19 @@ export default function Home() {
           var selecttextbox = document.getElementById("textboxsecondchoice");
           selecttextbox.value = chosencourse[i].value;
         }
+        else if (coursepriority == "thirdchoice") {
+          var selecttextbox = document.getElementById("textboxthirdchoice");
+          selecttextbox.value = chosencourse[i].value;
+        }
       }
     }
+  }
+
+  // COURSES RESET
+  function handleCoursesReset (){
+    document.getElementById("textboxfirstchoice").value = "";
+    document.getElementById("textboxsecondchoice").value = "";
+    document.getElementById("textboxthirdchoice").value = "";
   }
 
   return (
@@ -92,7 +75,7 @@ export default function Home() {
           <form suppressHydrationWarning >
             <div className={styles.grid}>
 
-              {/*----- TRAINEE/TRAINER BEGINS -------*/}
+              {/*------- CARD: TRAINEE/TRAINER BEGINS -------*/}
               <div
                 className={styles.card}
               >
@@ -194,14 +177,14 @@ export default function Home() {
                             selectedKeys={selectedGender}
                             onSelectionChange={setSelectedGender}
                           >
-                            <Dropdown.Item key="Female" isSelected>Female</Dropdown.Item>
+                            <Dropdown.Item key="Female">Female</Dropdown.Item>
                             <Dropdown.Item key="Male">Male</Dropdown.Item>
                             <Dropdown.Item key="Other">Other</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
                     </tr>
-                    {/*---------- GENDER DROPDOWN BEGINS -----*/}
+                    {/*---------- GENDER DROPDOWN ENDS -----*/}
 
                     {/* Birthdate picker */}
                     <tr className={styles.regrow}>
@@ -225,7 +208,7 @@ export default function Home() {
                       </td>
                     </tr>
 
-                    {/*---- EMPLOYMENT STATUS DROPDOWN BEGINS -----*/}
+                    {/*----- EMPLOYMENT STATUS DROPDOWN BEGINS -----*/}
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         Employment status
@@ -254,13 +237,13 @@ export default function Home() {
                             selectedKeys={selectedEmpStatus}
                             onSelectionChange={setSelectedEmpStatus}
                           >
-                            <Dropdown.Item key="Employed" isSelected>Employed</Dropdown.Item>
+                            <Dropdown.Item key="Employed">Employed</Dropdown.Item>
                             <Dropdown.Item key="Unemployed">Unemployed</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
                     </tr>
-                    {/*---- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
+                    {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
 
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -318,6 +301,7 @@ export default function Home() {
                         id="textboxfirstchoice"
                         placeholder="1st choice"
                         type="text"
+                        disabled={true}
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
@@ -336,6 +320,7 @@ export default function Home() {
                         id="textboxsecondchoice"
                         placeholder="2nd choice"
                         type="text"
+                        disabled={true}
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
@@ -354,11 +339,13 @@ export default function Home() {
                         id="textboxthirdchoice"
                         placeholder="3rd choice"
                         type="text"
+                        disabled={true}
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
-                      <input type="submit" id="submitcrschoicethird" className={styles.btnsubmitcrschoice}
-                        value="Add 3rd choice" />
+                      <button type="button" id="submitcrschoicethird" onClick={() => addCourseChoice("thirdchoice")} className={styles.btnsubmitcrschoice}>
+                        Add 3rd choice
+                      </button>
                     </td>
                   </tr>
                 </table>
@@ -367,12 +354,13 @@ export default function Home() {
                 <button
                   aria-label="Reset form"
                   className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}
-                  type="reset"
+                  // type="reset"
+                  onClick={() => handleCoursesReset()}
                 >
                   Reset Courses
                 </button>
 
-                {/* Courses worksheet */}
+                {/*------------- CARD: COURSES LIST BEGINS -------------*/}
                 <table className={styles.tblcoursewksht}>
                   <thead>
                     <tr>
@@ -498,9 +486,9 @@ export default function Home() {
                   </tbody>
                 </table>
               </div>
-              {/*------------- COURSES END -------------*/}
+              {/*------------- CARD: COURSES LIST ENDS -------------*/}
 
-              {/*--------- MISCELLANEOUS CARD BEGINS --------*/}
+              {/*--------- CARD: MISCELLANEOUS BEGINS --------*/}
               <div className={styles.card}>
                 <h2>
                   Miscellaneous
@@ -533,10 +521,9 @@ export default function Home() {
                         </Dropdown.Button>
                         <Dropdown.Menu
                           aria-label="Single selection actions"
-                          // color="secondary"
                           disallowEmptySelection
-                          selectionMode="single"
                           selectedKeys={selectedVision}
+                          selectionMode="single"
                           onSelectionChange={setSelectedVision}
                         >
                           <Dropdown.Item key="LowVision">Low Vision</Dropdown.Item>
@@ -579,26 +566,18 @@ export default function Home() {
                       />
                     </td>
                   </tr>
-
-                  {/* <tr>
-                  <td className={styles.tdregformbtns} colSpan="2">
-                    <button aria-label="Submit form" className={styles.btnsubmit}>SUBMIT FORM</button>
-                    <button aria-label="Reset form" className={styles.btnreset}>RESET FORM</button>                   
-                  </td>
-                </tr> */}
                 </table>
 
                 {/* RESET AND SUBMIT BUTTONS 
                 NOTE: Backticks, not vertical single quotes, are required below */}
                 <div className={styles.frmbtnblocksubres}>
-                  <button aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
-                  <button aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
+                  <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
+                  <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
                 </div>
-
               </div>
-              {/*--------- MISCELLANEOUS CARD ENDS --------*/}
+              {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
 
-            </div>
+            </div>  {/* GRID LAYOUT ENDS */}
           </form>
         </div>
       </main>
