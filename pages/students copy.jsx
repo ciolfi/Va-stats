@@ -1,11 +1,5 @@
-/* 
-FOR LOCAL TESTING:
-- Comment out the relevant blocks designated, 'RESTORE CODE BELOW FOR PRODUCTION...').
-Then uncomment them for production.
-- NOTE: Some formatting is lost during local testing, e.g., 
-CSV button appears as large font text.
-- Per the comments, ensure that correct API endpoints are used for local and production.
-*/
+/* When host is changed: Change values in
+'API SECTIONS' below */
 
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
@@ -80,7 +74,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // I had to move getpagedata out of useeffect so i could call it here (Spr 2023).
+            // i had to move getpagedata out of useeffect so i could call it here
             await getPageData();
             setEditingId(null);
         } else {
@@ -100,7 +94,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // I had to move getpagedata out of useeffect so I could call it here (Spr 2023).
+            // I had to move getpagedata out of useeffect so I could call it here
             await getPageData();
         } else {
             console.error('Error deleting the batch');
@@ -111,8 +105,6 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getPageData = async () => {
         setContentLoading(true);
-
-        // RESTORE CODE BELOW FOR PRODUCTION: REVERSE API ENDPOINTS.
         const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentsdata`;
         // const apiUrlEndpoint = `http://localhost:3000/api/getstudentsdata`;
         const response = await fetch(apiUrlEndpoint);
@@ -138,12 +130,12 @@ export default function Page() {
         setFilteredStudents(filteredStudents);
     }, [dataResponse, searchTerm]);
 
-    /*-------------- BEGIN LOCAL TESTING BLOCK ---------------*/
-    // REVERSE API ENDPOINTS.
+    
     var result;
+    /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
-        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-        const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
         const postData = {
             method: "Post",
             headers: { "Content-Type": "application/json" },
@@ -151,22 +143,29 @@ export default function Page() {
             email: session.user.email
             }),
         };
+        //.log(postData);
         const response = await fetch(apiUrlEndpoint, postData);
         const res = await response.json();
+        //console.log("RERESRS", res.users[0]);
+        setUserResponse(res.users[0]);
+
         setUserResponse(res.users[0]);
         setLoading(false);
-        result = res.users[0];                                
+
+        result = res.users[0];
     };
+
     useEffect(() => {
         getUserData();
     }, [session]);
+
+
     result = userResponse;
-    /*-------------- END LOCAL TESTING BLOCK ---------------*/
     
     const studentsColumns = [
         {
 			name: 'Id',
-            width: '4%',
+            width: '4%',            // PREV: 6%
 			accessor: 'id',
 		}, 
         {
@@ -212,6 +211,7 @@ export default function Page() {
 			accessor: 'objectives',
 		},  
         {
+			// name: 'Vision Impairment History',
             name: 'Impairment History',
 			accessor: 'vision_impairment',
 		},  
@@ -239,7 +239,6 @@ export default function Page() {
         },
 	];
     
-    /*-------------- BEGIN LOCAL TESTING BLOCK ------------*/
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -258,14 +257,9 @@ export default function Page() {
         );
     } else {
         if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM' || result[0].role === 'ADMINISTRATOR')) {
-    /*-------------- END LOCAL TESTING BLOCK ------------*/
-
             return (
                 <>
                     <div className={styles.mynavbar}>
-
-                        {/* RESTORE CODE SECTION BELOW; FOR PRODUCTION:
-                        UNCOMMENT user_role... */}
                         <Navbar user_role={result[0].role} className={styles.navstudents} />
                     </div>
                     <div className={styles.container}>
@@ -308,9 +302,7 @@ export default function Page() {
                             <p className={styles.subtitle}>
                                 All Students
 
-                                {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
-                                {/* RESTORE CODE SECTION BELOW FOR PRODUCTION: 
-                                REMOVE legacyBehavior ATTRIBUTE OF LINK TAG. */}
+                                {/* ---------- CSV Download button ---------------- */}
                                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                                     <a  target="_blank">Students CSV</a> 
                                 </Link> 
@@ -351,8 +343,6 @@ export default function Page() {
                     </div>
                 </>
             );
-
-        /*-------------- BEGIN LOCAL TESTING BLOCK -------------*/
         } else {
             if ((result.length === 0)) {
                 return (
@@ -368,6 +358,5 @@ export default function Page() {
                 );
             }
         }
-    }
-    /*-------------- END LOCAL TESTING BLOCK -------------*/    
+    }    
 }
