@@ -1,10 +1,14 @@
 /* 
 FOR LOCAL TESTING:
+
 - Comment out the relevant blocks designated, 'RESTORE CODE BELOW FOR PRODUCTION...').
 Then uncomment them for production.
 - NOTE: Some formatting is lost during local testing, e.g., 
 CSV button appears as large font text.
 - Per the comments, ensure that correct API endpoints are used for local and production.
+
+Approximate lines involved in local testing modification: 
+116, 143, 242, 313, 355.
 */
 
 import Head from 'next/head';
@@ -80,7 +84,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // I had to move getpagedata out of useeffect so i could call it here (Spr 2023).
+            // I had to move getpagedata out of useeffect so i could call it here (Spr 2023 Team).
             await getPageData();
             setEditingId(null);
         } else {
@@ -100,7 +104,7 @@ export default function Page() {
         });
 
         if (response.ok) {
-            // I had to move getpagedata out of useeffect so I could call it here (Spr 2023).
+            // I had to move getpagedata out of useeffect so I could call it here (Spr 2023 Team).
             await getPageData();
         } else {
             console.error('Error deleting the batch');
@@ -243,7 +247,6 @@ export default function Page() {
     if (loading) {
         return <p>Loading...</p>;
     }
-
     if (status === 'unauthenticated' || result[0].isactive === 0) {
         return (
             <div className='autherrorcontainer'>

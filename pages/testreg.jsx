@@ -3,6 +3,7 @@ import styles from "../styles/TestReg.module.css";
 // import React from "react";
 import Head from 'next/head';
 import { Dropdown } from "@nextui-org/react";
+import Navbar from '../components/Navbar';
 
 // Courses form reset
 import * as React from "react";
@@ -56,7 +57,7 @@ export default function Home() {
   }
 
   // COURSES RESET
-  function handleCoursesReset (){
+  function handleCoursesReset() {
     document.getElementById("textboxfirstchoice").value = "";
     document.getElementById("textboxsecondchoice").value = "";
     document.getElementById("textboxthirdchoice").value = "";
@@ -64,6 +65,12 @@ export default function Home() {
 
   return (
     <>
+      <div className={styles.mynavbar}>
+
+        {/* RESTORE CODE SECTION BELOW; FOR PRODUCTION:
+        UNCOMMENT user_role... */}
+        <Navbar className={styles.navstudents} />
+      </div>
       <Head>
         <title>Student Registration</title>
       </Head>
