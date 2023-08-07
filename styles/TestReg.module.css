@@ -192,6 +192,10 @@
   margin-bottom: 1em;
 }
 
+.btnsubmitcrschoice {
+  height: auto;
+}
+
 /* div containing form submit and form reset btns */
 .frmbtnblocksubres {
   border: 0px solid blue;
@@ -346,11 +350,35 @@
 }
 
 /*---------- MOBILE-Portrait -------------*/
-@media (max-width: 430px) {
+@media (max-width: 431px) {
+
+  .main {
+    border: 0px solid blue;
+    padding-bottom: 1em;
+  }
+
   .grid {
       grid-template-columns: 1fr;
-      margin-bottom: 120px;
+      margin-bottom: 1em;
       max-width: 320px;
+  }
+
+  .card {
+    border: 1px solid black;
+    margin-bottom: 2em;
+    margin-left: 0em;
+    margin-right: 2em;
+    width: 90vw;
+  }
+
+  /* Dropdown button */
+  .btngenderdropdown {
+    z-index: 0;
+  }
+
+  /* Navbar */
+  .navstudents {
+    z-index: 5;
   }
 }
 
@@ -364,13 +392,14 @@
     grid-template-columns: 1fr;
     margin-bottom: 120px;
     /* max-width: 320px; */
-    max-width: 98%;
+    /* max-width: 98%; */
+    padding: 0 0.5em;
     text-align: center;
   }
 
   .card {
     /* height: 100vh; */
-    padding: 1rem 2.5rem;
+    padding: 1rem 0.5rem;
   }
 
   .card h2 {
@@ -444,7 +473,6 @@
   .vercelLogo {
     filter: invert(1);
   }
-
   .logo {
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }

@@ -164,6 +164,7 @@ export default function Home() {
                       <td className={styles.inputtd}>
                         <Dropdown>
                           <Dropdown.Button
+                            classname='btngenderdropdown'
                             disableripple
                             size="sm"
                             style={{
@@ -171,7 +172,7 @@ export default function Home() {
                               backgroundColor: 'var(--vagreenmedium-background)',
                               height: '2em',
                               marginTop: '0.5em',
-                              width: '100%'
+                              width: '100%',
                             }}
                             variant="shadow"
                           >
@@ -371,7 +372,7 @@ export default function Home() {
                 <table className={styles.tblcoursewksht}>
                   <thead>
                     <tr>
-                      <th></th><th>Name</th><th>Abbreviation</th>
+                      <th></th><th>Name</th><th>Abbrev</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -410,7 +411,7 @@ export default function Home() {
                       <td className={styles.inputlabelcourses}>
                         Job Coaching for Banking and other exams
                       </td>
-                      <td className={styles.tblcrsabbrev}>JobCoaching</td>
+                      <td className={styles.tblcrsabbrev}>JobCoach</td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputtd}><input type="radio" name="vacourse" value="Excel" className={styles.btnradiocourse} /></td>
@@ -431,7 +432,7 @@ export default function Home() {
                       <td className={styles.inputlabelcourses}>
                         Digital Accessibility Testing
                       </td>
-                      <td className={styles.tblcrsabbrev}>DigAccTesting</td>
+                      <td className={styles.tblcrsabbrev}>DigAccTest</td>
                     </tr>
 
                     <tr className={styles.regrow}>
@@ -460,7 +461,7 @@ export default function Home() {
                       <td className={styles.inputlabelcourses}>
                         Diploma Course in Computer Applications (DCA)
                       </td>
-                      <td className={styles.tblcrsabbrev}>DiplomaDCA</td>
+                      <td className={styles.tblcrsabbrev}>DiplDCA</td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputtd}><input type="radio" name="vacourse" value="LifeSkills" className={styles.btnradiocourse} /></td>
@@ -481,14 +482,14 @@ export default function Home() {
                       <td className={styles.inputlabelcourses}>
                         Android: Low-Vision Series
                       </td>
-                      <td className={styles.tblcrsabbrev}>AndroidLowvis</td>
+                      <td className={styles.tblcrsabbrev}>AndroidLV</td>
                     </tr>
                     <tr>
                       <td className={styles.inputtd}><input type="radio" name="vacourse" value="TalkbackSeries" className={styles.checkboxcourses} /></td>
                       <td className={styles.inputlabelcourses}>
                         Listen with Talkback series
                       </td>
-                      <td className={styles.tblcrsabbrev}>TalkbackSeries</td>
+                      <td className={styles.tblcrsabbrev}>Talkback</td>
                     </tr>
                   </tbody>
                 </table>

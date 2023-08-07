@@ -171,6 +171,7 @@ a.textlogo {
 }
 
 .nav__menu-list {
+  border: 0px solid yellow;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -180,7 +181,7 @@ a.textlogo {
   right: -288px;
   padding: 24px 16px;
   transition: all 0.2s;
-  min-height: calc(100vh - 60px);
+  min-height: calc(50vh - 60px);
   background-color: rgb(8,127,72);
   color: #000;
 }
@@ -231,21 +232,31 @@ footer a {
   height: auto;
 }
 
+/* Mobile portrait view */
 @media screen and (max-width: 450px) {
-  /* Mobile menu */
+
+  /* Top nav bar */
   nav {
     border: 0px solid orange;
     width: 100vw;
+    z-index: 3;
   }
+
+  /* 3-line mobile menu */
   .nav__menu-bar {
-    display: visible;
-  }
-  .nav__menu-list {
     border: 0px solid cyan;
-    height: 20vh;
+    display: visible; 
+  }
+
+  /* Slide-in menu */
+  .nav__menu-list {
+    border: 0px solid black;
+    max-height: 70px;
     top: 7em;
     width: 60vw;
+    /* z-index: 3; */
   }
+
   main {
     /* align-content: flex-start; */
     align-content: space-between;
@@ -320,7 +331,6 @@ footer a {
   min-width: 160px;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
 }
 
 .dropdown-menu:hover .dropdown-menu-submenu {
