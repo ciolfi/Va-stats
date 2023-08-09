@@ -26,7 +26,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Developer Guide
 
-To learn more on how develop this project, refer to the Developer Guide in the /public/documentation folder
+To learn more on how develop this project, refer to the Developer Guide in the /public/documentation folder. Also, see 'Code Modifications...' section below.
 
 ## User facing documentation
 
@@ -55,3 +55,6 @@ PAGES FOLDER: files requiring mods to API routes:
   - courses.jsx
   - students.jsx
   - users.jsx
+
+.env file: 
+  - Adjust MySQL and NEXTAUTH_URL values

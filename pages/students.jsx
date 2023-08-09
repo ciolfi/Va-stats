@@ -314,7 +314,7 @@ export default function Page() {
                                 {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
                                 {/* RESTORE CODE SECTION BELOW FOR PRODUCTION: 
                                 REMOVE legacyBehavior ATTRIBUTE OF LINK TAG. */}
-                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
+                                <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                                     <a  target="_blank">Students CSV</a> 
                                 </Link> 
                             </p>

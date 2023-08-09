@@ -99,10 +99,11 @@
   vertical-align: top;
   width: 27%;
 }
-.tdtextboxcrschoice {
+
+/* .tdtextboxcrschoice {
   border: 0px solid cyan;
-  /* width: 32%; */
-}
+} */
+
 .tdsubmitcrschoice {
   border: 0px solid blue;
   width: 27%;

@@ -28,13 +28,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const studentspgurl = "/students";
 	const isMatch = (pathname == studentspgurl);
 
-	const batchespgurl = "/batches";
-	// const isMatchBatches = (pathname == batchespgurl);
-
-	// const studentspgurl = "/students";
-	// const batchespgurl = "/batches";
-	// const isMatch = ((pathname == studentspgurl)||(pathname == batchespgurl));
-
 	/* BATCHES PAGE */
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
@@ -97,8 +90,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
 			</div>
-			{/* <table className={styles.genericTable} cellpadding="0" cellspacing="0"> */}
-			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
+			<table className={styles.genericTable} cellpadding="0" cellspacing="0">
 				<thead>
 					<tr>
 						{columns.map((column) => {
@@ -110,7 +102,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{isMatch ?
-									//{isMatch || isMatchBatches ? 
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}

@@ -48,6 +48,7 @@
 	text-transform: uppercase;
 	word-wrap: break-word;			/* ADDED; use this or 'normal' value  */
 }
+
 /* Rotation styling */
 /* From: 
 https://www.bennadel.com/blog/4338-rotating-table-headers-with-css-transform.htm 

@@ -5,9 +5,7 @@ that apply universally to most pages, please see globals.css */
 /* RED ASTERISK for required form field (please include semi-colon): &#42;
 To view this, see /pages/students.jsx */
 
-
 /* ------------------ General styles begin ---------------- */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -184,6 +182,21 @@ div .menubutton {
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.batchTableHeader {
+  /* left: 50%; */
+  /* bottom: 5px; */
+  display: flex;
+  position: relative;
+  transform: rotate(-70deg);
+  transform-origin: center left;
+  white-space: nowrap;
+  height: 11em;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .footer {

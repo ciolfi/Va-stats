@@ -1,8 +1,3 @@
-/*
-This function is called from courses.jsx (Courses link).
-It CREATES A COURSE.
-*/
-
 import { executeQuery } from "../../lib/db";
 
 export default async function handler(req, res) {
@@ -22,11 +17,8 @@ export default async function handler(req, res) {
 
 			/* ---------- DATABASE MODIFICATION SECTION ------------- */
 			// If timestamp is a field, use: user.createdAt.Date (not toString)
-			// NOTE: coursedays does is not a property of 'body' in query below
-			// Also: batch creation with this query may not work locally; 
-			// it may only work on the live site
-			query: "INSERT INTO vabatches (id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, trainingmode, status, cost, currency) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-			values: ['', body.coursename, body.batch, body.coursestart, body.courseend, coursedays, body.coursetimestart+' - '+body.coursetimeend, body.instructor, body.PM, body.TA, body.trainingmode, 'UNSTARTED', body.cost, body.currency],
+			query: "INSERT INTO vabatches (id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, trainingmode, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			values: ['', body.coursename, body.batch, body.coursestart, body.courseend, body.coursedays, body.coursetimestart+' - '+body.coursetimeend, body.instructor, body.PM, body.TA, body.cost, body.currency, body.trainingmode, 'UNSTARTED'],
 
 		});
 	} catch (error) {
