@@ -63,8 +63,8 @@ export default function Page() {
   /* ---------------------------------- API SECTION -----------------------------------*/
   const fetchUnassignedStudents = async (batchId) => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
-      const apiUrlEndpoint = `http://localhost:3000/api/getunassignedstudents`; 
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
+      // const apiUrlEndpoint = `http://localhost:3000/api/getunassignedstudents`; 
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
@@ -81,8 +81,8 @@ export default function Page() {
   /* ---------------------------------- API SECTION -----------------------------------*/
   const updateGrade = async (studentId) => {
     setContentLoading(true);
-    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/updategrade`;
-    const apiUrlEndpoint = `http://localhost:3000/api/updategrade`;
+    const apiUrlEndpoint = `https://va-stats.vercel.app/api/updategrade`;
+    // const apiUrlEndpoint = `http://localhost:3000/api/updategrade`;
     const postData = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -110,8 +110,8 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const addStudent = async (studentId) => {
       setContentLoading(true);
-      // const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
-      const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
+      const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
+      // const apiUrlEndpoint = `http://localhost:3000/api/addstudenttobatch`;
       const postData = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -131,8 +131,8 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const addAssignment = async (assignmentName, batchId) => {
       setContentLoading(true);
-      // sconst apiUrlEndpoint = `https://va-stats.vercel.app/api/addassignment`;
-      const apiUrlEndpoint = `http://localhost:3000/api/addassignment`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/addassignment`;
+      // const apiUrlEndpoint = `http://localhost:3000/api/addassignment`;
       const postData = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -151,8 +151,8 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-      const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+      // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
@@ -180,8 +180,8 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getBatchData = async () => {
       setContentLoading(true);
-      // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchdetails`;
-      const apiUrlEndpoint = "http://localhost:3000/api/getbatchdetails";
+      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchdetails`;
+      // const apiUrlEndpoint = "http://localhost:3000/api/getbatchdetails";
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },

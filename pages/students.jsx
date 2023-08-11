@@ -117,8 +117,8 @@ export default function Page() {
         setContentLoading(true);
 
         // RESTORE CODE BELOW FOR PRODUCTION: REVERSE API ENDPOINTS.
-        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentsdata`;
-        const apiUrlEndpoint = `http://localhost:3000/api/getstudentsdata`;
+        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentsdata`;
+        // const apiUrlEndpoint = `http://localhost:3000/api/getstudentsdata`;
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
 
@@ -146,8 +146,8 @@ export default function Page() {
     // REVERSE API ENDPOINTS.
     var result;
     const getUserData = async () => {
-        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-        const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
         const postData = {
             method: "Post",
             headers: { "Content-Type": "application/json" },
