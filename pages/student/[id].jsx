@@ -24,8 +24,8 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
 	const getUserData = async () => {
-        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-        // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getuserdata`;
         const postData = {
             method: "Post",
             headers: { "Content-Type": "application/json" },
@@ -79,8 +79,8 @@ export default function Page() {
 
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getStudentData = async () => {
-      const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentdetails`;
-      // const apiUrlEndpoint = "http://localhost:3000/api/getstudentdetails";
+      // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentdetails`;
+      const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getstudentdetails`;
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },
