@@ -81,8 +81,8 @@ export default function Page() {
 	/* ---------------------------------- API SECTION -----------------------------------*/
 	const getPageData = async () => {
 		setContentLoading(true);
-		const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
-		// const apiUrlEndpoint = `http://localhost:3000/api/getbatchesdata`;
+		// const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
+		const apiUrlEndpoint = `http://localhost:3000/api/getbatchesdata`;
 		const response = await fetch(apiUrlEndpoint);
 		const res = await response.json();
 		setDataResponse(res.batches);
@@ -116,51 +116,51 @@ export default function Page() {
 	}, [courseResponse]);
 
 	/*------------- BEGIN LOCAL TESTING BLOCK -----------*/
-	var result;
+	// var result;
 
-	const getUserData = async () => {
-		const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-		// const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
-		const postData = {
-			method: "Post",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: session.user.email
-			}),
-		};
-		const response = await fetch(apiUrlEndpoint, postData);
-		const res = await response.json();
-		setUserResponse(res.users[0]);
-		setLoading(false);
-		result = res.users[0];
-	};
+	// const getUserData = async () => {
+	// 	// const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+	// 	const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+	// 	const postData = {
+	// 		method: "Post",
+	// 		headers: { "Content-Type": "application/json" },
+	// 		body: JSON.stringify({
+	// 			email: session.user.email
+	// 		}),
+	// 	};
+	// 	const response = await fetch(apiUrlEndpoint, postData);
+	// 	const res = await response.json();
+	// 	setUserResponse(res.users[0]);
+	// 	setLoading(false);
+	// 	result = res.users[0];
+	// };
 
-	const handleSubmit = () => {
-		setContentLoading(true);
-	};
+	// const handleSubmit = () => {
+	// 	setContentLoading(true);
+	// };
 
-	useEffect(() => {
-		getUserData();
-	}, [session]);
-	result = userResponse;
+	// useEffect(() => {
+	// 	getUserData();
+	// }, [session]);
+	// result = userResponse;
 
-	if (loading) {
-		return <p>Loading...</p>;
-	}
+	// if (loading) {
+	// 	return <p>Loading...</p>;
+	// }
 
-	if (status === 'unauthenticated') {
-		return (
-			<div className='autherrorcontainer'>
-				<Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
-				<span className='autherrortext'>
-					Access denied.&nbsp;
-					<Link href='/' className='autherrorlink'>
-						Please sign in.
-					</Link>
-				</span>
-			</div>
-		);
-	}
+	// if (status === 'unauthenticated') {
+	// 	return (
+	// 		<div className='autherrorcontainer'>
+	// 			<Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+	// 			<span className='autherrortext'>
+	// 				Access denied.&nbsp;
+	// 				<Link href='/' className='autherrorlink'>
+	// 					Please sign in.
+	// 				</Link>
+	// 			</span>
+	// 		</div>
+	// 	);
+	// }
 	/*------------- END LOCAL TESTING BLOCK -----------*/
 
 	const batchesColumns = [
@@ -219,22 +219,22 @@ export default function Page() {
 	];
 
 	/*------------- BEGIN LOCAL TESTING BLOCK -----------*/
-	if (status === 'authenticated' || status === 'unauthenticated') {
-		if ((result.length === 0)) {
-			return (
-				<div className='autherrorcontainer'>
-					<Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
-					<span className='autherrortext'>
-						Not authorized.&nbsp;
-						<Link href='/' className='autherrorlink'>
-							Please try another account.
-						</Link>
-					</span>
-				</div>
-			);
-		}
-		else {
-			if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM')) {
+	// if (status === 'authenticated' || status === 'unauthenticated') {
+	// 	if ((result.length === 0)) {
+	// 		return (
+	// 			<div className='autherrorcontainer'>
+	// 				<Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+	// 				<span className='autherrortext'>
+	// 					Not authorized.&nbsp;
+	// 					<Link href='/' className='autherrorlink'>
+	// 						Please try another account.
+	// 					</Link>
+	// 				</span>
+	// 			</div>
+	// 		);
+	// 	}
+	// 	else {
+	// 		if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM')) {
 				/*------------- END LOCAL TESTING BLOCK -----------*/
 
 				return (
@@ -242,7 +242,7 @@ export default function Page() {
 						<div className={styles.mynavbar}>
 
 							{/* LOCAL TESTING LINE: COMMENT OUT USER_ROLE FOR LOCAL TESTING BELOW */}
-							<Navbar user_role={result[0].role} className={styles.navstudents} />
+							<Navbar /* user_role={result[0].role} */ className={styles.navstudents} />
 						</div>
 						<div className={styles.container}>
 							<Head>
@@ -406,85 +406,85 @@ export default function Page() {
 			}
 
 			/*------------- BEGIN LOCAL TESTING BLOCK ------------*/
-			else {				
-				return (
-					<>
-						<div className={styles.mynavbar}>
-							<Navbar className={styles.navstudents} />
-						</div>
-						<div className={styles.container}>
-							<Head>
-								<title>VisionAid</title>
-								<meta
-									name='description'
-									content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
-								<meta name='theme-color' content='#ffffff' />
-								<link rel='icon' href='/favicon.ico' />
-								<link rel='apple-touch-icon' href='/apple-touch-icon.png' />
-								<link rel='manifest' href='/manifest.json' />
+// 			else {				
+// 				return (
+// 					<>
+// 						<div className={styles.mynavbar}>
+// 							<Navbar className={styles.navstudents} />
+// 						</div>
+// 						<div className={styles.container}>
+// 							<Head>
+// 								<title>VisionAid</title>
+// 								<meta
+// 									name='description'
+// 									content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
+// 								<meta name='theme-color' content='#ffffff' />
+// 								<link rel='icon' href='/favicon.ico' />
+// 								<link rel='apple-touch-icon' href='/apple-touch-icon.png' />
+// 								<link rel='manifest' href='/manifest.json' />
 
-								<link rel='preconnect'
-									href='https://fonts.gstatic.com'
-									crossOrigin />
+// 								<link rel='preconnect'
+// 									href='https://fonts.gstatic.com'
+// 									crossOrigin />
 
-								<link rel='preload'
-									as='style'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+// 								<link rel='preload'
+// 									as='style'
+// 									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
 
-								<link rel='stylesheet'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-									media='print'
-									onLoad="this.media='all'" />
+// 								<link rel='stylesheet'
+// 									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
+// 									media='print'
+// 									onLoad="this.media='all'" />
 
-								<noscript>
-									<link rel='stylesheet'
-										href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-								</noscript>
-							</Head>
+// 								<noscript>
+// 									<link rel='stylesheet'
+// 										href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+// 								</noscript>
+// 							</Head>
 
-							<main className={styles.mainstudents}>
-								<p className={styles.subtitle}>
-									Batch Management
-								</p>
+// 							<main className={styles.mainstudents}>
+// 								<p className={styles.subtitle}>
+// 									Batch Management
+// 								</p>
 
-								<div className={styles.gridcourses}>
-									<Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} />
-								</div>
-								<footer className={styles.footer}>
-									<Link
-										href='privacypolicy.html'
-										target='_blank'
-										rel='noopener noreferrer'
-									>
-										Privacy
-									</Link>&nbsp;|&nbsp;
-									<Link
-										href='termsofservice.html'
-										target='_blank'
-										rel='noopener noreferrer'
-									>
-										Terms
-									</Link>&nbsp;|&nbsp;
-									<a
-										href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-										target='_blank'
-										rel='noopener noreferrer'
-									>
-										<span className={styles.logo}>
-											Powered by{"' '"}
-											<Image src='/vercel.svg'
-												alt='Vercel Logo'
-												width={72}
-												height={16} />
-										</span>
-									</a>
-								</footer>
-							</main>
-						</div>
-					</>
-				);
-		 	}		
- 		}			
- 	}
-}
+// 								<div className={styles.gridcourses}>
+// 									<Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} />
+// 								</div>
+// 								<footer className={styles.footer}>
+// 									<Link
+// 										href='privacypolicy.html'
+// 										target='_blank'
+// 										rel='noopener noreferrer'
+// 									>
+// 										Privacy
+// 									</Link>&nbsp;|&nbsp;
+// 									<Link
+// 										href='termsofservice.html'
+// 										target='_blank'
+// 										rel='noopener noreferrer'
+// 									>
+// 										Terms
+// 									</Link>&nbsp;|&nbsp;
+// 									<a
+// 										href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+// 										target='_blank'
+// 										rel='noopener noreferrer'
+// 									>
+// 										<span className={styles.logo}>
+// 											Powered by{"' '"}
+// 											<Image src='/vercel.svg'
+// 												alt='Vercel Logo'
+// 												width={72}
+// 												height={16} />
+// 										</span>
+// 									</a>
+// 								</footer>
+// 							</main>
+// 						</div>
+// 					</>
+// 				);
+// 		 	}		
+//  		}			
+//  	}
+// }
 /*------------- END LOCAL TESTING BLOCK ------------*/

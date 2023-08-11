@@ -5,8 +5,8 @@ import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } 
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from './Button';
-import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 export default function Table({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
@@ -21,21 +21,15 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
 
-	/* STUDENTS PAGE:
-	This allows rotation in code below if 
-	URL is /students */
-	const pathname = usePathname().toString();	// Use relative path, e.g., /students
+	/* STYLE THE COLUMN HEADER TEXT, E.G., -70 DEG, FOR:
+	students, batches, specific batch */
+	const pathname = usePathname().toString();
 	const studentspgurl = "/students";
-	const isMatch = (pathname == studentspgurl);
-
 	const batchespgurl = "/batches";
-	// const isMatchBatches = (pathname == batchespgurl);
+  	const { id } = router.query;
+	const batchespgurldyn = "/batch/"+id;
+	const isMatch = ((pathname == studentspgurl)||(pathname == batchespgurl)||(pathname == batchespgurldyn));
 
-	// const studentspgurl = "/students";
-	// const batchespgurl = "/batches";
-	// const isMatch = ((pathname == studentspgurl)||(pathname == batchespgurl));
-
-	/* BATCHES PAGE */
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
 
 	async function saveHandler() {
@@ -96,8 +90,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 				<h2>{Title}</h2>
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
-			</div>
-			{/* <table className={styles.genericTable} cellpadding="0" cellspacing="0"> */}
+			</div>			
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
 				<thead>
 					<tr>
