@@ -204,7 +204,7 @@ export default function Page() {
             accessor: 'edu_qualifications',
         }, 
         {
-            name: 'Courses of Interest',
+            name: 'Courses Desired',
             accessor: 'courses',
         }, 
         {

@@ -193,7 +193,7 @@ export default function Page() {
 			name: 'PM',
 			accessor: 'PM',
 		}, {
-			name: 'Teaching Assistant',
+			name: 'TA',
 			accessor: 'TA',
 		},
 		{
@@ -202,7 +202,7 @@ export default function Page() {
 			type: 'enum',
 			availableValues: ['UNSTARTED', 'ONGOING', 'COMPLETE'],
 		}, {
-			name: 'Mode of Training',
+			name: 'Training Mode',
 			accessor: 'trainingmode',
 			type: 'enum',
 			availableValues: ['VIRTUAL', 'IN-PERSON', 'SELF-PACED'],

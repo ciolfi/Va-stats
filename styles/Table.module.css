@@ -43,7 +43,8 @@
 	color: var(--table-text);
 	font-size: 0.8rem;
 	font-weight: 700;
-	padding: 0rem 1rem;
+	/* padding: 0rem 1rem; */
+	padding: 0rem 0rem;
 	text-align: left;
 	text-transform: uppercase;
 	word-wrap: break-word;			/* ADDED; use this or 'normal' value  */
@@ -56,21 +57,29 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right.  */
 .rotatedth {					/* Nested div */
-	height: 25vh;
+	border: 0px solid red;
+	height: 18vh;
 	margin-top: 1em;
 	position: relative;
+	vertical-align: bottom;
 }
 .rotatedthlabel {				/* span in the above div */
-	bottom: 5px;
-	left: 50%;
+	border: 0px solid yellow;
+	bottom: 0px;
+	left: 0.5em;
+	margin-bottom: -0.3em;
 	position: absolute;
+	text-align: left;
 	transform: rotate(-70deg);
 	transform-origin: center left;
+	vertical-align: bottom;
 	white-space: nowrap;
 }
 /* The far right 'Actions' column heading */
 .actionscolheading {
 	border-bottom: 0.7em solid transparent;
+	left: 0em;
+	position: relative;
 	vertical-align: bottom;
 }
 /* ---------- TABLE HEADER ENDS --------- */

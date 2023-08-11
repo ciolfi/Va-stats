@@ -94,6 +94,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
 				<thead>
 					<tr>
+						{/* <th className={styles.actionscolheading} width={'8%'}>
+							Students
+						</th> */}
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
@@ -103,7 +106,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{isMatch ?
-									//{isMatch || isMatchBatches ? 
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
@@ -120,7 +122,10 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 							);
 						})}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
-						{isDelete || isEditable? <th className={styles.actionscolheading} width={'8%'}>Actions</th> : <></>}
+						{isDelete || isEditable? 
+						<th className={styles.actionscolheading} width={'8%'}>
+							Actions
+						</th> : <></>}
 					</tr>
 				</thead>
 				<tbody>

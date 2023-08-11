@@ -1,3 +1,8 @@
+/*  
+THIS FILE: Contains the code to edit the
+attendance dropdown in batches.
+*/
+
 export function generateTableRow(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
 	for (const column of columns) {
@@ -6,14 +11,18 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 			if (column.type === 'enum') {
 				if (column.isAttendance) {
 					cellContent = (
-						<select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '0'}  onChange={(e) => changeHandler(e, column.accessor)}>
+						// <select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '0'}  onChange={(e) => changeHandler(e, column.accessor)}>
+						<select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '1'}  onChange={(e) => changeHandler(e, column.accessor)}>
 							{column.availableValues.map((value) => {
 								if (Number(value) == 1) {
-									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Present" }</option>;
+									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Present" }</option>;
+									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "P" }</option>;
 								} else if (Number(value) == 0) {
-									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Absent" }</option>;
+									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Absent" }</option>;
+									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "A" }</option>;
 								} else if (!value) {
-									return <option key={"0"} value={"0"} selected={true}>{ "Absent" }</option>;
+									// return <option key={"0"} value={"0"} selected={true}>{ "Absent" }</option>;
+									return <option key={"1"} value={"1"} selected={true}>{ "P" }</option>;
 								}
 						})}
 						</select>
@@ -30,10 +39,14 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 			}
 		} else {
 			if (column.isAttendance) {
+				// if (Number(rowData[column.accessor]) == 1) {
+				// 	cellContent = <p>{"Present"}</p>;
 				if (Number(rowData[column.accessor]) == 1) {
-					cellContent = <p>{"Present"}</p>;
-				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
-					cellContent = <p>{"Absent"}</p>;
+					cellContent = <p>{"P"}</p>;
+				// } else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
+				// 	cellContent = <p>{"Absent"}</p>;
+			} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
+				cellContent = <p>{"A"}</p>;
 				}
 			} else {
 				cellContent = <p>{rowData[column.accessor]}</p>;

@@ -58,3 +58,6 @@ PAGES FOLDER: files requiring mods to API routes:
 
 .env file: 
   - Adjust MySQL and NEXTAUTH_URL values
+
+NOTE REGARDING BATCH ATTENDANCE DROPDOWN:
+  - This can be edited in /utils/tableHelper.js

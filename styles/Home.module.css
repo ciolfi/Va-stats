@@ -261,7 +261,7 @@ div .menubutton {
 }
 
 .tablestudentscell {
-  border: 0px solid black;
+  border: 3px solid red;
   padding-right: 1em;
 }
 
@@ -808,7 +808,7 @@ div .menubutton {
 }
 /* Basic styling */
 .genericTable th {
-	/* border: 0px solid black; */
+	border: 3px solid black;
 	color: var(--table-text);
 	font-size: 0.8rem;
 	font-weight: 700;
@@ -817,6 +817,9 @@ div .menubutton {
 	text-transform: uppercase;
 	word-wrap: break-word;			/* ADDED; use this or 'normal' value  */
 }
+.genericTable thead tr th div span:first-child {
+	border: 3px solid black;
+}
 
 /* Rotation styling */
 /* From: 
@@ -824,7 +827,8 @@ https://www.bennadel.com/blog/4338-rotating-table-headers-with-css-transform.htm
 position: absolute takes the element out of the 
 DOM flow, which is needed for the transform to
 look right.  */
-.rotatedth {					/* Nested div */
+div.rotatedth {					/* Nested div */
+  border: 3px solid blue;
 	height: 25vh;
 	margin-top: 1em;
 	position: relative;
@@ -834,6 +838,15 @@ look right.  */
 	left: 50%;
 	position: absolute;
 	transform: rotate(-70deg);
+	transform-origin: center left;
+	white-space: nowrap;
+}
+span.rotatedthlabel:first-child {				/* span in the above div */
+  border: 3px solid red;
+	bottom: 5px;
+	left: 50%;
+	position: absolute;
+	/* transform: rotate(-70deg); */
 	transform-origin: center left;
 	white-space: nowrap;
 }
