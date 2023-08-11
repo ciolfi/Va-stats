@@ -81,8 +81,8 @@ export default function Page() {
 	/* ---------------------------------- API SECTION -----------------------------------*/
 	const getPageData = async () => {
 		setContentLoading(true);
-		const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
-		// const apiUrlEndpoint = `http://localhost:3000/api/getbatchesdata`;
+		// const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
+		const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getbatchesdata`;
 		const response = await fetch(apiUrlEndpoint);
 		const res = await response.json();
 		setDataResponse(res.batches);
@@ -119,8 +119,8 @@ export default function Page() {
 	var result;
 
 	const getUserData = async () => {
-		const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-		// const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+		// const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+		const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getuserdata`;
 		const postData = {
 			method: "Post",
 			headers: { "Content-Type": "application/json" },
