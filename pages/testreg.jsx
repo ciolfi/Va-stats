@@ -1,15 +1,24 @@
 'use client';
-import styles from "../styles/TestReg.module.css";
-// import React from "react";
-import Head from 'next/head';
-import { Dropdown } from "@nextui-org/react";
 import Navbar from '../components/Navbar';
+import styles from "../styles/TestReg.module.css";
+import React from "react";
+import Head from 'next/head';
+import { useState } from 'react';
+import { Dropdown } from "@nextui-org/react";
 
 // Courses form reset
-import * as React from "react";
+// import * as React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Home() {
+// POPUP CODE
+import Router from "next/router";
+
+// export default function Home() {
+export default function Page() {
+  useForm(); // Form reset
+
+  const [contentLoading, setContentLoading] = useState(false);
+  // const [contentLoading, setContentLoading] = useState(true);
 
   /*-------------- DROPDOWNS BEGIN -----------*/
   // GENDER
@@ -27,7 +36,6 @@ export default function Home() {
   );
 
   // VISION
-  // const [selectedVision, setSelectedVision] = React.useState(new Set(["Choose vision"]));
   const [selectedVision, setSelectedVision] = React.useState(new Set(["LowVision"]));
   const selectedValueVision = React.useMemo(
     () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
@@ -63,23 +71,44 @@ export default function Home() {
     document.getElementById("textboxthirdchoice").value = "";
   }
 
+  // SUBMIT FORM
+  const handleSubmit = () => {
+    // POPUP CODE
+    alert("Registration successful.");
+    setContentLoading(true);
+    // Router.push("https://va-stats.vercel.app/students", { shallow: true });
+    // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
+
+    Router.push(process.env.NEXT_PUBLIC_BASE_URL+'testreg', { shallow: true });
+};
+
   return (
     <>
-      <div className={styles.mynavbar}>
+      {contentLoading ?
+        <div className={styles.overlay}>
+            <span className={styles.customLoader}></span>
+        </div>
+        : <></>
+      }
 
-        {/* RESTORE CODE SECTION BELOW; FOR PRODUCTION:
-        UNCOMMENT user_role... */}
+      <div className={styles.mynavbar}>
         <Navbar className={styles.navstudents} />
       </div>
       <Head>
         <title>Student Registration</title>
+
+        {/* AVOID HYDRATION ERRORS w/ meta tag below */}
+        <meta
+          name="format-detection"
+          content="telephone=no, date=no, email=no, address=no"
+        />
       </Head>
-      <main className={styles.main}>
+      <main className={styles.main} suppressHydrationWarning>
         <div className={styles.title}>
           Student Registration
         </div>
         <div>
-          {/* <form suppressHydrationWarning > */}
+          {/* <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
           <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
             <div className={styles.grid}>
 
@@ -100,7 +129,7 @@ export default function Home() {
                         Email
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type='textbox' id='email' name='email'required className={styles.reginput} /></td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -109,8 +138,8 @@ export default function Home() {
                       </td>
                       <td className={styles.inputtd}>
                         <input
-                          placeholder="Firstname Lastname"
-                          type="textbox"
+                          placeholder='Firstname Lastname'
+                          type="textbox" id='name' name='name'
                           required className={styles.reginput}
                         />
                       </td>
@@ -139,21 +168,21 @@ export default function Home() {
                       <td className={styles.inputlabel}>
                         Alt. Phone
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='alt_ph_num' name='alt_ph_num'className={styles.reginput} /></td>
                     </tr>
-                    <tr className={styles.regrow} >
+                    <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         City
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='city' name='city'className={styles.reginput} /></td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         State
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='state' name='state'className={styles.reginput} /></td>
                     </tr>
 
                     {/*---------- GENDER DROPDOWN BEGINS -----*/}
@@ -163,7 +192,8 @@ export default function Home() {
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
                       <td className={styles.inputtd}>
-                        <Dropdown>
+                        <Dropdown 
+                        name='gender'>
                           <Dropdown.Button
                             classname='btngenderdropdown'
                             disableripple
@@ -202,7 +232,7 @@ export default function Home() {
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
                       <td className={styles.inputtd}>
-                        <input type="date" id="birthdaytime" name="birthdaytime" className={styles.reginput} />
+                        <input type="date" id="age" name="age" className={styles.reginput} />
                       </td>
                     </tr>
 
@@ -211,8 +241,8 @@ export default function Home() {
                         Education
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                        placeholder="Degrees, etc, 300-char max"
+                      <td className={styles.inputtd}><input type='textbox' id='edu_qualifications' name='edu_qualifications' required className={styles.reginput}
+                        placeholder='Degrees, etc, 300-char max'
                       />
                       </td>
                     </tr>
@@ -224,7 +254,7 @@ export default function Home() {
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
                       <td className={styles.inputtd}>
-                        <Dropdown>
+                        <Dropdown id='employment_status' name='employment_status'>
                           <Dropdown.Button
                             disableripple
                             size="sm"
@@ -235,32 +265,32 @@ export default function Home() {
                               marginTop: '0.5em',
                               width: '100%'
                             }}
-                            variant="shadow"
+                            variant='shadow'
                           >
                             {selectedValueEmpStatus}
                           </Dropdown.Button>
                           <Dropdown.Menu
-                            aria-label="Single selection actions"
+                            aria-label='Single selection actions'
                             disallowEmptySelection
-                            selectionMode="single"
+                            selectionMode='single'
                             selectedKeys={selectedEmpStatus}
                             onSelectionChange={setSelectedEmpStatus}
                           >
-                            <Dropdown.Item key="Employed">Employed</Dropdown.Item>
-                            <Dropdown.Item key="Unemployed">Unemployed</Dropdown.Item>
+                            <Dropdown.Item key='Employed'>Employed</Dropdown.Item>
+                            <Dropdown.Item key='Unemployed'>Unemployed</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
-                    </tr>
                     {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
+                    </tr>
 
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         Learning goal(s)
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" required className={styles.reginput}
-                        placeholder="300-char max"
+                      <td className={styles.inputtd}><input type='textbox' id='objectives' name='objectives' required className={styles.reginput}
+                        placeholder='300-char max'
                       />
                       </td>
                     </tr>
@@ -271,8 +301,9 @@ export default function Home() {
                       <td className={styles.inputtd}>
                         <input
                           className={styles.reginput}
-                          placeholder="Firstname Lastname"
-                          type="textbox"
+                          placeholder='Firstname Lastname'
+                          type='textbox'
+                          id='trainer_name' name='trainer_name'
                           required
                         />
                       </td>
@@ -298,7 +329,10 @@ export default function Home() {
                   </ol>
                 </div>
 
-                {/* COURSE CHOICES SUBFORM BEGINS */}
+                {/* COURSE CHOICES SUBFORM BEGINS.
+                 UNLIKE OTHER FORM ELEMENTS, ID AND
+                 NAME ARE DIFFERENT DUE TO JS FUNCTIONS
+                 TO HANDLE SELECTION AND FORM RESET. */}
                 <table className={styles.tblchoosecourses}>
                   <tr>
                     <td className={styles.tdlblcrschoice}>
@@ -307,14 +341,15 @@ export default function Home() {
                     <td className={styles.tdtextboxcrschoice}>
                       <input
                         className={styles.inputcrschoice}
-                        id="textboxfirstchoice"
-                        placeholder="1st choice"
-                        type="text"
+                        id='textboxfirstchoice'
+                        name='first_choice'
+                        placeholder='1st choice'
+                        type='text'
                         disabled={true}
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
-                      <button type="button" id="submitcrschoicefirst" onClick={() => addCourseChoice("firstchoice")} className={styles.btnsubmitcrschoice}>
+                      <button type='button' id='submitcrschoicefirst' onClick={() => addCourseChoice('firstchoice')} className={styles.btnsubmitcrschoice}>
                         Add 1st choice
                       </button>
                     </td>
@@ -326,9 +361,10 @@ export default function Home() {
                     <td className={styles.tdtextboxcrschoice}>
                       <input
                         className={styles.inputcrschoice}
-                        id="textboxsecondchoice"
-                        placeholder="2nd choice"
-                        type="text"
+                        id='textboxsecondchoice'
+                        name='second_choice'
+                        placeholder='2nd choice'
+                        type='text'
                         disabled={true}
                       />
                     </td>
@@ -345,14 +381,15 @@ export default function Home() {
                     <td className={styles.tdtextboxcrschoice}>
                       <input
                         className={styles.inputcrschoice}
-                        id="textboxthirdchoice"
-                        placeholder="3rd choice"
-                        type="text"
+                        id='textboxthirdchoice'
+                        name='third_choice'
+                        placeholder='3rd choice'
+                        type='text'
                         disabled={true}
                       />
                     </td>
                     <td className={styles.tdsubmitcrschoice}>
-                      <button type="button" id="submitcrschoicethird" onClick={() => addCourseChoice("thirdchoice")} className={styles.btnsubmitcrschoice}>
+                      <button type='button' id='submitcrschoicethird' onClick={() => addCourseChoice('thirdchoice')} className={styles.btnsubmitcrschoice}>
                         Add 3rd choice
                       </button>
                     </td>
@@ -361,7 +398,7 @@ export default function Home() {
 
                 {/* Must use backtick for multiple classes, not vertical single quote */}
                 <button
-                  aria-label="Reset form"
+                  aria-label='Reset form'
                   className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}
                   // type="reset"
                   onClick={() => handleCoursesReset()}
@@ -435,7 +472,6 @@ export default function Home() {
                       </td>
                       <td className={styles.tblcrsabbrev}>DigAccTest</td>
                     </tr>
-
                     <tr className={styles.regrow}>
                       <td className={styles.inputtd}><input type="radio" name="vacourse" value="CorpSkills" className={styles.btnradiocourse} /></td>
                       <td className={styles.inputlabelcourses}>
@@ -512,7 +548,7 @@ export default function Home() {
 
                     {/*-------------- VISION DROPDOWN BEGINS ------------*/}
                     <td className={styles.inputtd}>
-                      <Dropdown>
+                      <Dropdown name="visual_acuity">
                         <Dropdown.Button
                           className={styles.btnregdropdown}
                           disableripple
@@ -551,6 +587,7 @@ export default function Home() {
                     <td className={styles.inputtd}>
                       <input
                         className={styles.reginput}
+                        name="percent_loss"
                         placeholder="1-99"
                         type="textbox"
                         required
@@ -561,7 +598,7 @@ export default function Home() {
                     <td className={styles.inputlabel}>
                       Vision impairment history (brief; feel free to leave it empty)
                     </td>
-                    <td className={styles.inputtd}><input type="textbox" placeholder='300-char max' className={styles.reginput} /></td>
+                    <td className={styles.inputtd}><input type="textbox" name="impairment_history" placeholder='300-char max' className={styles.reginput} /></td>
                   </tr>
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
@@ -570,6 +607,7 @@ export default function Home() {
                     <td className={styles.inputtd}>
                       <input
                         className={styles.reginput}
+                        name="source"
                         placeholder="Internet, friend, etc."
                         type="textbox"
                       />
