@@ -79,7 +79,8 @@ export default function Home() {
           Student Registration
         </div>
         <div>
-          <form suppressHydrationWarning >
+          {/* <form suppressHydrationWarning > */}
+          <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
             <div className={styles.grid}>
 
               {/*------- CARD: TRAINEE/TRAINER BEGINS -------*/}

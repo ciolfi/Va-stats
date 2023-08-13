@@ -1,16 +1,3 @@
-/* 
-FOR LOCAL TESTING:
-
-- Comment out the relevant blocks designated, 'RESTORE CODE BELOW FOR PRODUCTION...').
-Then uncomment them for production.
-- NOTE: Some formatting is lost during local testing, e.g., 
-CSV button appears as large font text.
-- Per the comments, ensure that correct API endpoints are used for local and production.
-
-Approximate lines involved in local testing modification: 
-116, 143, 242, 313, 355.
-*/
-
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
@@ -23,15 +10,13 @@ import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 
 export default function Page() {
-
     useForm();
+
     const { data: session, status } = useSession();
     const [dataResponse, setDataResponse] = useState([]);
     const [userResponse, setUserResponse] = useState([]);
-    const [loading, setLoading] = useState(true);
-        
+    const [loading, setLoading] = useState(true);       
     const [editingId, setEditingId] = useState(null);
-
     const [filteredStudents, setFilteredStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [nameSortOrder, setNameSortOrder] = useState('asc');
@@ -65,7 +50,6 @@ export default function Page() {
                 return students.sort((a, b) => b.name.localeCompare(a.name));
             }
         };
-
         const sortedStudents = sortStudentsByName(dataResponse, nameSortOrder);
         const filteredStudents = sortedStudents.filter((student) =>
             student.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -82,7 +66,6 @@ export default function Page() {
             },
             body: JSON.stringify(editedStudent),
         });
-
         if (response.ok) {
             // I had to move getpagedata out of useeffect so i could call it here (Spr 2023 Team).
             await getPageData();
@@ -102,7 +85,6 @@ export default function Page() {
             },
             body: JSON.stringify({id: studentID}),
         });
-
         if (response.ok) {
             // I had to move getpagedata out of useeffect so I could call it here (Spr 2023 Team).
             await getPageData();
@@ -112,16 +94,12 @@ export default function Page() {
         setContentLoading(false);
     };
 
-    /* ---------------------------------- API SECTION -----------------------------------*/
+    // API DATA ACCESS
     const getPageData = async () => {
         setContentLoading(true);
-
-        // RESTORE CODE BELOW FOR PRODUCTION: REVERSE API ENDPOINTS.
-        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentsdata`;
         const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getstudentsdata`;
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
-
         setDataResponse(res.students);
         setContentLoading(false);
     };
@@ -134,7 +112,6 @@ export default function Page() {
         const sortStudentsByName = (students) => {
             return students.sort((a, b) => a.name.localeCompare(b.name));
         };
-
         const sortedStudents = sortStudentsByName(dataResponse);
         const filteredStudents = sortedStudents.filter((student) =>
             student.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -142,11 +119,10 @@ export default function Page() {
         setFilteredStudents(filteredStudents);
     }, [dataResponse, searchTerm]);
 
-    /*-------------- BEGIN LOCAL TESTING BLOCK ---------------*/
-    // REVERSE API ENDPOINTS.
     var result;
+
+    // API DATA ACCESS
     const getUserData = async () => {
-        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
         const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getuserdata`;
         const postData = {
             method: "Post",
@@ -165,7 +141,6 @@ export default function Page() {
         getUserData();
     }, [session]);
     result = userResponse;
-    /*-------------- END LOCAL TESTING BLOCK ---------------*/
     
     const studentsColumns = [
         {
@@ -190,10 +165,19 @@ export default function Page() {
 			accessor: 'alt_ph_num',
 		}, 
         {
+			name: 'City',
+			accessor: 'city',
+		},
+        {
+			name: 'State',
+			accessor: 'state',
+		},
+        {
 			name: 'Gender',
 			accessor: 'gender',
             type: 'enum',
-			availableValues: ['M', 'F', 'Other'],
+			// availableValues: ['M', 'F', 'Other'],
+            availableValues: ['Female', 'Male', 'Other'],
 		}, 
         {
 			name: 'Birthdate',
@@ -204,37 +188,44 @@ export default function Page() {
             accessor: 'edu_qualifications',
         }, 
         {
-            name: 'Courses Desired',
-            accessor: 'courses',
+            name: 'Employment Status',
+            accessor: 'employment_status',
         }, 
         {
-			name: 'Location',
-			accessor: 'location',
-		}, 
+            name: 'Learning Goals',
+            accessor: 'objectives',
+        }, 
         {
-			name: 'Learning Objective',
-			accessor: 'objectives',
-		},  
-        {
-            name: 'Impairment History',
-			accessor: 'vision_impairment',
-		},  
-        {
-			name: 'Usable Vision',
-			accessor: 'usable_vision',
+            name: 'Trainer Name',
+            accessor: 'trainer_name',
         },
         {
-            name: 'Is Qualified',
-            accessor: 'is_qualified',
-            type: 'boolean',
+            name: 'First Choice',
+            accessor: 'first_choice',
+        }, 
+        {
+            name: 'Second Choice',
+            accessor: 'second_choice',
+        },
+        {
+            name: 'Third Choice',
+            accessor: 'third_choice',
+        },
+        {
+            name: 'Visual Acuity',
+            accessor: 'visual_acuity',
+        },
+        {
+            name: 'Percent Loss',
+            accessor: 'percent_loss',
+        },
+        {
+            name: 'Impairment History',
+            accessor: 'impairment_history',
         },
         {
             name: 'Reference',
             accessor: 'source',
-        },
-        {
-            name: 'Usable Vision',
-            accessor: 'usable_vision',
         },
         {
             name: 'Registration Date',
@@ -243,7 +234,7 @@ export default function Page() {
         },
 	];
     
-    /*-------------- BEGIN LOCAL TESTING BLOCK ------------*/
+    /*-------------- BEGIN AUTHENTICATION FAILURE ------------*/
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -261,14 +252,11 @@ export default function Page() {
         );
     } else {
         if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM' || result[0].role === 'ADMINISTRATOR')) {
-    /*-------------- END LOCAL TESTING BLOCK ------------*/
+    /*-------------- END AUTHENTICATION FAILURE ------------*/
 
             return (
                 <>
                     <div className={styles.mynavbar}>
-
-                        {/* RESTORE CODE SECTION BELOW; FOR PRODUCTION:
-                        UNCOMMENT user_role... */}
                         <Navbar user_role={result[0].role} className={styles.navstudents} />
                     </div>
                     <div className={styles.container}>
@@ -312,8 +300,6 @@ export default function Page() {
                                 All Students
 
                                 {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
-                                {/* RESTORE CODE SECTION BELOW FOR PRODUCTION: 
-                                REMOVE legacyBehavior ATTRIBUTE OF LINK TAG. */}
                                 <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                                     <a  target="_blank">Students CSV</a> 
                                 </Link> 
@@ -355,7 +341,7 @@ export default function Page() {
                 </>
             );
 
-        /*-------------- BEGIN LOCAL TESTING BLOCK -------------*/
+        /*-------------- BEGIN AUTHORIZATION FAILURE -------------*/
         } else {
             if ((result.length === 0)) {
                 return (
@@ -372,5 +358,5 @@ export default function Page() {
             }
         }
     }
-    /*-------------- END LOCAL TESTING BLOCK -------------*/    
+    /*-------------- END AUTHORIZATION FAILURE  -------------*/    
 }

@@ -75,8 +75,9 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getPageData = async () => {
         setContentLoading(true);
-        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
+        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
         // const apiUrlEndpoint = `http://localhost:3000/api/getusersdata`;
+        const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getusersdata`;
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
 
@@ -92,8 +93,10 @@ export default function Page() {
 
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
-        const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
+        // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
         //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+        // NOTE DIFFERENCE FROM ABOVE ENDPOINT: here, it's '...user...' without the 's'
+        const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getuserdata`;
         const postData = {
             method: "Post",
             headers: { "Content-Type": "application/json" },
@@ -210,7 +213,7 @@ export default function Page() {
                                 All VisionAid Staff
 
                                 {/* ---------- CSV Download button ---------------- */}
-                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"}>
+                                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
                                     <a  target="_blank">Staff CSV</a>
                                 </Link>
                             </p>

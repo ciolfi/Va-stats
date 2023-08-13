@@ -40,12 +40,10 @@ export default function Page() {
 
     // Phone number constraints BEGIN
     const [value, setValue] = useState('');
-
     const handleChange = event => {
         const result = event.target.value.replace(/\D/g, '');
         setValue(result);
     };
-
     const checkConstraints = event => {
         const result = event.target.value;
         if (result.length !== 10){
