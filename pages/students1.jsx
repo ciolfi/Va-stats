@@ -1,6 +1,3 @@
-/* When host is changed: Change values in
-'API SECTIONS' below */
-
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
@@ -13,15 +10,13 @@ import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 
 export default function Page() {
-
   useForm();
+
   const { data: session, status } = useSession();
   const [dataResponse, setDataResponse] = useState([]);
   const [userResponse, setUserResponse] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [editingId, setEditingId] = useState(null);
-
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [nameSortOrder, setNameSortOrder] = useState('asc');
@@ -55,7 +50,6 @@ export default function Page() {
         return students.sort((a, b) => b.name.localeCompare(a.name));
       }
     };
-
     const sortedStudents = sortStudentsByName(dataResponse, nameSortOrder);
     const filteredStudents = sortedStudents.filter((student) =>
       student.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -72,9 +66,8 @@ export default function Page() {
       },
       body: JSON.stringify(editedStudent),
     });
-
     if (response.ok) {
-      // i had to move getpagedata out of useeffect so i could call it here
+      // I had to move getpagedata out of useeffect so i could call it here (Spr 2023 Team).
       await getPageData();
       setEditingId(null);
     } else {
@@ -92,9 +85,8 @@ export default function Page() {
       },
       body: JSON.stringify({ id: studentID }),
     });
-
     if (response.ok) {
-      // I had to move getpagedata out of useeffect so I could call it here
+      // I had to move getpagedata out of useeffect so I could call it here (Spr 2023 Team).
       await getPageData();
     } else {
       console.error('Error deleting the batch');
@@ -102,14 +94,12 @@ export default function Page() {
     setContentLoading(false);
   };
 
-  /* ---------------------------------- API SECTION -----------------------------------*/
+  // API DATA ACCESS
   const getPageData = async () => {
     setContentLoading(true);
-    const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentsdata`;
-    // const apiUrlEndpoint = `http://localhost:3000/api/getstudentsdata`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getstudentsdata`;
     const response = await fetch(apiUrlEndpoint);
     const res = await response.json();
-
     setDataResponse(res.students);
     setContentLoading(false);
   };
@@ -122,7 +112,6 @@ export default function Page() {
     const sortStudentsByName = (students) => {
       return students.sort((a, b) => a.name.localeCompare(b.name));
     };
-
     const sortedStudents = sortStudentsByName(dataResponse);
     const filteredStudents = sortedStudents.filter((student) =>
       student.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -130,12 +119,11 @@ export default function Page() {
     setFilteredStudents(filteredStudents);
   }, [dataResponse, searchTerm]);
 
-
   var result;
-  /* ---------------------------------- API SECTION -----------------------------------*/
+
+  // API DATA ACCESS
   const getUserData = async () => {
-    const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-    // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",
       headers: { "Content-Type": "application/json" },
@@ -143,29 +131,21 @@ export default function Page() {
         email: session.user.email
       }),
     };
-    //.log(postData);
     const response = await fetch(apiUrlEndpoint, postData);
     const res = await response.json();
-    //console.log("RERESRS", res.users[0]);
-    setUserResponse(res.users[0]);
-
     setUserResponse(res.users[0]);
     setLoading(false);
-
     result = res.users[0];
   };
-
   useEffect(() => {
     getUserData();
   }, [session]);
-
-
   result = userResponse;
 
   const studentsColumns = [
     {
       name: 'Id',
-      width: '4%',            // PREV: 6%
+      width: '4%',
       accessor: 'id',
     },
     {
@@ -185,10 +165,19 @@ export default function Page() {
       accessor: 'alt_ph_num',
     },
     {
+      name: 'City',
+      accessor: 'city',
+    },
+    {
+      name: 'State',
+      accessor: 'state',
+    },
+    {
       name: 'Gender',
       accessor: 'gender',
       type: 'enum',
-      availableValues: ['M', 'F', 'Other'],
+      // availableValues: ['M', 'F', 'Other'],
+      availableValues: ['Female', 'Male', 'Other'],
     },
     {
       name: 'Birthdate',
@@ -199,38 +188,44 @@ export default function Page() {
       accessor: 'edu_qualifications',
     },
     {
-      name: 'Courses of Interest',
-      accessor: 'courses',
+      name: 'Employment Status',
+      accessor: 'employment_status',
     },
     {
-      name: 'Location',
-      accessor: 'location',
-    },
-    {
-      name: 'Learning Objective',
+      name: 'Learning Goals',
       accessor: 'objectives',
     },
     {
-      // name: 'Vision Impairment History',
+      name: 'Trainer Name',
+      accessor: 'trainer_name',
+    },
+    {
+      name: 'First Choice',
+      accessor: 'first_choice',
+    },
+    {
+      name: 'Second Choice',
+      accessor: 'second_choice',
+    },
+    {
+      name: 'Third Choice',
+      accessor: 'third_choice',
+    },
+    {
+      name: 'Visual Acuity',
+      accessor: 'visual_acuity',
+    },
+    {
+      name: 'Percent Loss',
+      accessor: 'percent_loss',
+    },
+    {
       name: 'Impairment History',
-      accessor: 'vision_impairment',
-    },
-    {
-      name: 'Usable Vision',
-      accessor: 'usable_vision',
-    },
-    {
-      name: 'Is Qualified',
-      accessor: 'is_qualified',
-      type: 'boolean',
+      accessor: 'impairment_history',
     },
     {
       name: 'Reference',
       accessor: 'source',
-    },
-    {
-      name: 'Usable Vision',
-      accessor: 'usable_vision',
     },
     {
       name: 'Registration Date',
@@ -239,10 +234,10 @@ export default function Page() {
     },
   ];
 
+  /*-------------- BEGIN AUTHENTICATION FAILURE ------------*/
   if (loading) {
     return <p>Loading...</p>;
   }
-
   if (status === 'unauthenticated' || result[0].isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -257,6 +252,8 @@ export default function Page() {
     );
   } else {
     if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM' || result[0].role === 'ADMINISTRATOR')) {
+      /*-------------- END AUTHENTICATION FAILURE ------------*/
+
       return (
         <>
           <div className={styles.mynavbar}>
@@ -302,8 +299,8 @@ export default function Page() {
               <p className={styles.subtitle}>
                 All Students
 
-                {/* ---------- CSV Download button ---------------- */}
-                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
+                {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
+                <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                   <a target="_blank">Students CSV</a>
                 </Link>
               </p>
@@ -343,6 +340,8 @@ export default function Page() {
           </div>
         </>
       );
+
+      /*-------------- BEGIN AUTHORIZATION FAILURE -------------*/
     } else {
       if ((result.length === 0)) {
         return (
@@ -359,4 +358,5 @@ export default function Page() {
       }
     }
   }
+  /*-------------- END AUTHORIZATION FAILURE  -------------*/
 }
