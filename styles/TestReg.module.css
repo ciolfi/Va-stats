@@ -84,6 +84,11 @@
   height: 1.8em;
 }
 
+.regtextarea {
+  border-color: 1px solid black;
+  height: 10em;
+}
+
 .tblchoosecourses {
   border: 0px solid red;
   border-collapse: separate;
@@ -361,7 +366,8 @@
   .grid {
       grid-template-columns: 1fr;
       margin-bottom: 1em;
-      max-width: 320px;
+      /* max-width: 320px; */
+      max-width: 431px;
   }
 
   .card {
@@ -369,7 +375,11 @@
     margin-bottom: 2em;
     margin-left: 0em;
     margin-right: 2em;
-    width: 90vw;
+    width: 98vw;
+  }
+
+  .reginput {
+    padding-left: 1em;
   }
 
   /* Dropdown button */
@@ -384,27 +394,33 @@
 }
 
 /*----------- MOBILE-Landscape? ---------*/
-@media (max-width: 700px) {
+/* @media (max-width: 700px) { */
+@media (max-width: 844px) {
   .content {
-    /* padding: 4rem; */
     padding: 0rem;
   }
   .grid {
+    border: 0px solid red;
+    font-size: 0.8em;
     grid-template-columns: 1fr;
-    margin-bottom: 120px;
+    margin-top: 3.5em;
     /* max-width: 320px; */
     /* max-width: 98%; */
-    padding: 0 0.5em;
     text-align: center;
   }
 
   .card {
-    /* height: 100vh; */
     padding: 1rem 0.5rem;
+    padding-right: 1em;
+    width: 90vw; 
   }
 
   .card h2 {
     margin-bottom: 0.5rem;
+  }
+
+  .reginput {
+    width: 97%;
   }
 
   .center {
@@ -464,11 +480,16 @@
 }
 
 /* MOBILE-Tablet and Smaller Desktop */
-/* @media (min-width: 701px) and (max-width: 1120px) {
+@media (min-width: 701px) and (max-width: 1120px) {
   .grid {
+    display: flex;
     grid-template-columns: repeat(2, 50%);
+    justify-content: center;
   }
-} */
+  .card{
+    width: 30vw;
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   .vercelLogo {
