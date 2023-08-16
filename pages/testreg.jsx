@@ -79,14 +79,14 @@ export default function Page() {
     // Router.push("https://va-stats.vercel.app/students", { shallow: true });
     // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
 
-    Router.push(process.env.NEXT_PUBLIC_BASE_URL+'testreg', { shallow: true });
-};
+    Router.push(process.env.NEXT_PUBLIC_BASE_URL + 'testreg', { shallow: true });
+  };
 
   return (
     <>
       {contentLoading ?
         <div className={styles.overlay}>
-            <span className={styles.customLoader}></span>
+          <span className={styles.customLoader}></span>
         </div>
         : <></>
       }
@@ -109,7 +109,7 @@ export default function Page() {
         </div>
         <div>
           {/* <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
-          <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
+          <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autocomplete="off">
             <div className={styles.grid}>
 
               {/*------- CARD: TRAINEE/TRAINER BEGINS -------*/}
@@ -129,7 +129,7 @@ export default function Page() {
                         Email
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type='textbox' id='email' name='email'required className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type='textbox' id='email' name='email' required className={styles.reginput} /></td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
@@ -168,21 +168,21 @@ export default function Page() {
                       <td className={styles.inputlabel}>
                         Alt. Phone
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" id='alt_ph_num' name='alt_ph_num'className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='alt_ph_num' name='alt_ph_num' className={styles.reginput} /></td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         City
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" id='city' name='city'className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='city' name='city' className={styles.reginput} /></td>
                     </tr>
                     <tr className={styles.regrow}>
                       <td className={styles.inputlabel}>
                         State
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
-                      <td className={styles.inputtd}><input type="textbox" id='state' name='state'className={styles.reginput} /></td>
+                      <td className={styles.inputtd}><input type="textbox" id='state' name='state' className={styles.reginput} /></td>
                     </tr>
 
                     {/*---------- GENDER DROPDOWN BEGINS -----*/}
@@ -192,11 +192,11 @@ export default function Page() {
                         <span className={styles.requiredelement}>&#42;</span>
                       </td>
                       <td className={styles.inputtd}>
-                        <Dropdown 
-                        name='gender'>
+                        <Dropdown
+                          name='gender'>
                           <Dropdown.Button
-                            classname='btngenderdropdown'
-                            disableripple
+                            className='btngenderdropdown'
+                            disableripple="true"
                             size="sm"
                             style={{
                               // backgroundColor below: must be RGB
@@ -256,7 +256,7 @@ export default function Page() {
                       <td className={styles.inputtd}>
                         <Dropdown id='employment_status' name='employment_status'>
                           <Dropdown.Button
-                            disableripple
+                            disableripple="true"
                             size="sm"
                             style={{
                               // backgroundColor below: must be RGB
@@ -281,7 +281,7 @@ export default function Page() {
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
-                    {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
+                      {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
                     </tr>
 
                     <tr className={styles.regrow}>
@@ -551,7 +551,7 @@ export default function Page() {
                       <Dropdown name="visual_acuity">
                         <Dropdown.Button
                           className={styles.btnregdropdown}
-                          disableripple
+                          disableripple="true"
                           size="sm"
                           style={{
                             // backgroundColor below: must be RGB
@@ -598,7 +598,10 @@ export default function Page() {
                     <td className={styles.inputlabel}>
                       Vision impairment history (brief; feel free to leave it empty)
                     </td>
-                    <td className={styles.inputtd}><input type="textbox" name="impairment_history" placeholder='300-char max' className={styles.reginput} /></td>
+                    <td className={styles.inputtd}>
+                      <textarea name="impairment_history" placeholder='300-char max' className={styles.regtextarea} rows="10" cols="20">
+                      </textarea>
+                    </td>
                   </tr>
                   <tr className={styles.regrow}>
                     <td className={styles.inputlabel}>
