@@ -1,25 +1,20 @@
 /* This page registers a new student;
 usually done by a project manager */
 
-// SUN 8/13 AM CODE
-
-// import Navbar from '../components/Navbar';
-import Navbar from '../components/Navbar.jsx';
+import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import React from 'react';
-// import { useSession } from 'next-auth/react';                  /* COMMENT REMOVES SECURITY FOR THIS PAGE */
+import { useSession } from 'next-auth/react';         /* COMMENT REMOVES SECURITY FOR THIS PAGE */
 import { useForm } from 'react-hook-form'; // Form reset
 import Head from 'next/head';
 import { useState } from 'react';
-
-// import { Button } from './components/Button.jsx';
 
 // POPUP CODE
 import Router from "next/router";
 
 export default function Page() {
   useForm(); // Form reset
-  // const { data: session, status } = useSession();           /* COMMENT REMOVES SECURITY FOR THIS PAGE */
+  const { data: session, status } = useSession();           /* COMMENT REMOVES SECURITY FOR THIS PAGE */
   // Note: useState() is the required empty array
   const [dataResponse, setDataResponse] = useState([]);
   const [userResponse, setUserResponse] = useState([]);
@@ -35,8 +30,8 @@ export default function Page() {
     setContentLoading(true);
 
     // POPUP CODE 
-    Router.push("https://va-stats.vercel.app/students", { shallow: true });
-    // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
+    // Router.push("https://va-stats.vercel.app/students", { shallow: true });
+    Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
   };
 
   // if (status === 'loading') {
@@ -80,11 +75,11 @@ export default function Page() {
         <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
         <link rel='manifest' href='/manifest.json' />
 
-        {/* <link rel='preconnect'
-          href='https://fonts.gstatic.com'
-          crossOrigin="true" /> */}
+        <link rel='preconnect'
+								href='https://fonts.gstatic.com'
+								crossOrigin="true" />
 
-        {/* <link rel='preload'
+        <link rel='preload'
           as='style'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
 
@@ -96,12 +91,11 @@ export default function Page() {
         <noscript>
           <link rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-        </noscript> */}
+        </noscript>
       </Head>
 
       <div className={styles.studentapplicationform}>
         <h2>Student Application Form &rarr;</h2><br />
-        {/* Form inputs: (14) */}
         <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()}>
           <label htmlFor='email'>Email:<span className={styles.requiredelement}>&#42;</span></label>
           <input type='text' id='email' name='email' required /><br /><br />
@@ -129,7 +123,7 @@ export default function Page() {
           />&nbsp;(10 numerical characters; no dashes or special characters)<br /><br />
 
           <label htmlFor='alt_ph_num'>Alternate Phone Number:<span className={styles.requiredelement}></span></label>
-          <input type='int' id='alt_ph_num' name='alt_ph_num' /><br /><br />
+          <input type='text' id='alt_ph_num' name='alt_ph_num' /><br /><br />
 
           <label htmlFor='gender'>Gender:<span className={styles.requiredelement}>&#42;</span></label>
           <input list='genders' id='gender' name='gender' required /><br /><br />
@@ -167,17 +161,14 @@ export default function Page() {
           <label htmlFor='source'>How did you hear about the program?<span className={styles.requiredelement}>&#42;</span></label>
           <input type='text' id='source' name='source' required /><br /><br />
 
-          {/* <button
+          <button
             type="submit"
             id="submitbutton"
             className={styles.studentsformbutton}
-            // onClick="handleSubmit()"
-            onClick={handleSubmit()}
+            onclick="handleSubmit()"
           >
             Submit
-          </button> */}
-
-          <input type="submit" value="SUBMIT" />
+          </button>
 
           &nbsp;&nbsp;
           <input type='reset' value='RESET'></input>

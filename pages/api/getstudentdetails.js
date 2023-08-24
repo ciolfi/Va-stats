@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
   const { student_id } = req.body;
-  
+
   const dbconnection = await mysql.createConnection({
     host: process.env.MYSQL_HOST,
     database: process.env.MYSQL_DATABASE,
@@ -24,11 +24,8 @@ export default async function handler(req, res) {
       WHERE id = ?
     `;
 
-
     const [studentsData] = await dbconnection.execute(studentsQuery, [student_id]);
     const [studentNameData] = await dbconnection.execute(studentNameQuery, [student_id]);
- 
-
 
     res.status(200).json({
       batches: studentsData,
@@ -37,6 +34,6 @@ export default async function handler(req, res) {
 
     dbconnection.end();
   } catch (error) {
-     res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 }

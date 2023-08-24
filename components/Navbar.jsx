@@ -10,8 +10,13 @@ import Head from 'next/head';
 
 // NOTE: target=_blank does not currently work (7/7/2023)
 const MENU_LIST = [
-  { text: 'Home', href: '/' },
+  // { text: 'Home', href: '/' },
   // { text: 'About Us', href: '/about' }, Spring 2022 student team
+
+  {
+    text: "TestReg",
+    href: "/testreg"
+  },
   {
     text: "Students",
     href: "/students",
@@ -19,8 +24,9 @@ const MENU_LIST = [
       { text: "Student Registration", href: "/studentregistration" },
     ],
   },
-  { text: "Batches", 
-    href: "/batches" 
+  {
+    text: "Batches",
+    href: "/batches"
   },
   {
     text: "Courses",
@@ -36,53 +42,52 @@ const Navbar = (user_role) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
   const { data: session, status } = useSession();
-  const userrole  = user_role;
-  return (   
-    <header>
+  const userrole = user_role;
+  return (
+    <header style={{ backgroundColor: 'white' }}>
       <Head>
-							<title>VisionAid</title>
-							<meta
-								name='description'
-								content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
-							<meta name='theme-color' content='#ffffff' />
-							<link rel='icon' href='/favicon.ico' />
-							<link rel='apple-touch-icon' href='/apple-touch-icon.png' />
-							<link rel='manifest' href='/manifest.json' />
+        <title>VisionAid</title>
+        <meta
+          name='description'
+          content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
+        <meta name='theme-color' content='#ffffff' />
+        <link rel='icon' href='/favicon.ico' />
+        <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
+        <link rel='manifest' href='/manifest.json' />
 
-							<link rel='preconnect'
-								href='https://fonts.gstatic.com'
-								crossOrigin />
+        <link rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin />
 
-							<link rel='preload'
-								as='style'
-								href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+        <link rel='preload'
+          as='style'
+          href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
 
-							<link rel='stylesheet'
-								href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-								media='print'
-								onLoad="this.media='all'" />
+        <link rel='stylesheet'
+          href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
+          media='print'
+          onLoad="this.media='all'" />
 
-							<noscript>
-								<link rel='stylesheet'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-							</noscript>
-						</Head>
+        <noscript>
+          <link rel='stylesheet'
+            href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+        </noscript>
+      </Head>
       <nav className={'nav'}>
         <Link href="/" className={'textlogo'}>
           VISION-AID ACADEMY
         </Link>
         {/*<Link href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">
-          <Image src={pwaicon} width="48" height="18" alt="PWA logo" />
-  </Link>*/}
+          <Image src={pwaicon} width="48" height="18" alt="PWA logo" /></Link>*/}
 
         {/* Right side menu items */}
         <div
           onClick={() => setNavActive(!navActive)}
           className={'nav__menu-bar'}>
-            {/* Below DIVs are for the 3 lines of the mobile menu */}
-            <div></div>
-            <div></div>
-            <div></div>
+          {/* Below DIVs are for the 3 lines of the mobile menu */}
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
         <div className={`${navActive ? 'active' : ''} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => (
@@ -115,7 +120,7 @@ const Navbar = (user_role) => {
           ) : (
             <>
               <p className={styles.topRightText}>Signed in as {user_role.user_role} : {session.user.email}</p>
-              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} />
+              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} />
             </>
           )}
 

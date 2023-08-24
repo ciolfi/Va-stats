@@ -30,7 +30,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const batchespgurldyn = "/batch/"+id;
 	const isMatch = ((pathname == studentspgurl)||(pathname == batchespgurl)||(pathname == batchespgurldyn));
 
-	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show only completed batches';
+	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show completed batches';
 
 	async function saveHandler() {
 		await onEditSave(editedBatch);

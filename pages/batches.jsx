@@ -282,13 +282,13 @@ export default function Page() {
 									</div>
 									: <></>
 								}
-								<p className={styles.subtitle}>
+								<p className={styles.subtitlenonhm}>
 									Batch Management
 
 									{/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
 									{/* ---------- CSV Download button ---------------- */}
 									<Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/batches.php"}>
-										<a target="_blank">Batches CSV</a>
+										<a target="_blank" className={styles.csvbutton}>Batches CSV</a>
 									</Link>
 								</p>
 
@@ -366,7 +366,7 @@ export default function Page() {
 												<input type='reset' value='RESET'></input>
 											</form>
 										</div>
-										: <Button onClick={() => setShowForm(true)} text={'+ New Batch Form'}></Button>
+										: <Button onClick={() => setShowForm(true)} text={'+ New Batch Form'} className={styles.btnnewbatchform} ></Button>
 									}
 									<Table columns={batchesColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteBatch} isEditable={true} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
 								</div>
@@ -443,12 +443,12 @@ export default function Page() {
 							</Head>
 
 							<main className={styles.mainstudents}>
-								<p className={styles.subtitle}>
+								<p className={styles.subtitlenonhm}>
 									Batch Management
 								</p>
 
 								<div className={styles.gridcourses}>
-									<Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} />
+									{/* <Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} /> */}
 								</div>
 								<footer className={styles.footer}>
 									<Link

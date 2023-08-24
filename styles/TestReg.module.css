@@ -13,7 +13,6 @@
 }
 
 .main {
-  border: 0px solid red;
   align-items: left;
   display: flex;
   flex-direction: column;
@@ -48,8 +47,10 @@
   border: 0.05rem solid black;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
+  /* background: rgba(var(--card-rgb), 0); */
+  background: white;
   /* border: 1px solid rgba(var(--card-border-rgb), 0); */
+  font-weight: 500;
   margin: 0rem 0.5rem;
   text-align: left;
   transition: background 200ms, border 200ms;
@@ -76,21 +77,37 @@
 }
 
 .requiredelement {
+  /* color: black; */
   color: red;
+  font-size: 1.5em;
+  font-weight: 700;
 }
 
+/* 
+Text inputs in student reg form.
+Does not include: 
+- gender, employment, and vision dropdowns 
+- choices: 1st, 2nd, 3rd
+- Vision impairment text area
+*/
 .reginput {
-  border-color: 1px solid black;
+  border: 2px solid black;
   height: 1.8em;
+  width: 100%;
 }
 
 .regtextarea {
-  border-color: 1px solid black;
+  border: 2px solid black;
   height: 10em;
 }
 
+.txtboxdropdown {
+  border: 2px solid black;
+  height: 1.8em;
+  width: 100%;
+}
+
 .tblchoosecourses {
-  border: 0px solid red;
   border-collapse: separate;
   border-spacing: 0.5em 1.2em;
   margin-bottom: 1em;
@@ -100,51 +117,64 @@
 
 /* Course choice rows */
 .tdlblcrschoice {
-  border: 0px solid orange;
   vertical-align: top;
   width: 27%;
 }
 
-/* .tdtextboxcrschoice {
-  border: 0px solid cyan;
-} */
-
 .tdsubmitcrschoice {
-  border: 0px solid blue;
   width: 27%;
 }
 
+/* Course choice input box with '1stchoice', etc. */
 .inputcrschoice {
-  border-color: 1px solid black;
+  background-color: white;
+  /* border-color: 1px solid black; */
+  border: 2px solid black;
   height: 1.8em;
   width: 100%;
 }
 
 .btnsubmitcrschoice {
   border-radius: 0.4rem;
-  background-color: var(--vagreenlight-background);
-  border-color: transparent;
+  /* background-color: var(--vagreenlight-background); */
+  /* background-color: white; */
+  background-color: #c5e8cf;
+  border-color: black;
   color: black;
-  height: 1.8em;
+  font-size: 0.8em;
+  font-weight: 700;
   padding: 0 0.2rem;
   width:100%;
 }
 
 .btncrsesresetdark {
   border-radius: var(--buttonva-borderradius);
-  background-color: var(--vagreenmedium-background);
+  /* background-color: var(--vagreenmedium-background); */
+  background-color: var(--vagreendark-background);
   border-color: transparent;
   color: white;
   float: right;
   font-size: 1.1rem;
+  font-weight: 700;
   margin-bottom: 2em;
   margin-right: 0.5em;
   text-align: center;
   width: 30%;
 }
 
+/* .btnradiocourse [type='radio']{
+  width: 2px solid black;
+} */
+
+/* input[type='radio']{ */
+.btnradiocourse {
+  outline: 2px solid #000;
+  /* accent-color: 2px solid #000; */
+  /* box-shadow: 2px solid #000; */
+
+}
+
 .capcoursewksht {
-  border: 0px solid yellow;
   border-bottom: 1px solid black;
   margin-bottom: 1em;
 }
@@ -160,7 +190,6 @@
 }
 
 .tblcoursewksht {
-  border: 0px solid cyan;
   margin-top: 1em;
   width: 100%;
 }
@@ -169,10 +198,6 @@
   vertical-align: top;
 }
 
-/* Course radio buttons; not currently styled
-.btnradiocourse {
-} */
-
 .inputlabelcourses {
   padding-left: 0.3em;
   padding-right: 0.7em;
@@ -180,12 +205,7 @@
   vertical-align: top;
 }
 
-/* .checkboxcourse {
-  margin-right: 0.5em;
-} */
-
 .bottomrow {
-  border: 0px solid cyan;
   display: flex;
   flex-direction: row-reverse;
   align-content: flex-end;
@@ -204,7 +224,6 @@
 
 /* div containing form submit and form reset btns */
 .frmbtnblocksubres {
-  border: 0px solid blue;
   float: right;
   height: 8em;
   position: relative;
@@ -214,12 +233,15 @@
 /* Register student form buttons */
 .btnsubmit {
   border-radius: var(--buttonva-borderradius);
-  background-color: var(--vagreenlight-background);
+  /* background-color: var(--vagreenlight-background); */
+  background-color: var(--vagreendark-background);
   border-color: transparent;
-  color: black;
+  /* color: black; */
+  color: white;
   display: block;
   float: right;
   font-size: var(--buttonva-fontsize);
+  font-weight: 700;
   height: var(--buttonva-height);
   overflow: auto;
   padding: var(--buttonva-padding);
@@ -228,11 +250,13 @@
 
 .btnreset {
   border-radius: var(--buttonva-borderradius);
-  background-color: var(--vagreenmedium-background);
+  /* background-color: var(--vagreenmedium-background); */
+  background-color: var(--vagreendark-background);
   border-color: transparent;
   bottom: 0;
   color: white;
   font-size: var(--buttonva-fontsize);
+  font-weight: 700;
   height: var(--buttonva-height);
   padding: var(--buttonva-padding);
   position: absolute;
@@ -246,21 +270,20 @@
 }
 
 .tdregformbtns {
-  border: 0px solid green;
   padding-top: 1em;
   padding-right: -2em;
   text-align: right;
 }
 
 .description {
-  display: inherit;
-  justify-content: inherit;
   align-items: inherit;
+  display: inherit;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
+  justify-content: inherit;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
-  font-family: var(--font-mono);
 }
 
 .description a {
@@ -274,7 +297,8 @@
   position: relative;
   margin: 0;
   padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
+  /* background-color: rgba(var(--callout-rgb), 0.5); */
+  background-color: white;
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
@@ -296,7 +320,7 @@
 
 .card p {
   margin: 0;
-  opacity: 0.6;
+  /* opacity: 0.6; */
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
@@ -311,7 +335,7 @@
 }
 
 .center::before {
-  background: var(--secondary-glow);
+  /* background: var(--secondary-glow); */
   border-radius: 50%;
   width: 480px;
   height: 360px;
@@ -319,7 +343,7 @@
 }
 
 .center::after {
-  background: var(--primary-glow);
+  /* background: var(--primary-glow); */
   width: 240px;
   height: 180px;
   z-index: -1;
@@ -339,10 +363,10 @@
 }
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  .card:hover {
+  /* .card:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
+  } */
 
   .card:hover span {
     transform: translateX(4px);
@@ -359,7 +383,6 @@
 @media (max-width: 431px) {
 
   .main {
-    border: 0px solid blue;
     padding-bottom: 1em;
   }
 
@@ -379,6 +402,7 @@
   }
 
   .reginput {
+    /* border: 3px solid black; */
     padding-left: 1em;
   }
 
@@ -400,7 +424,6 @@
     padding: 0rem;
   }
   .grid {
-    border: 0px solid red;
     font-size: 0.8em;
     grid-template-columns: 1fr;
     margin-top: 3.5em;
@@ -420,6 +443,7 @@
   }
 
   .reginput {
+    /* border: 3px solid black; */
     width: 97%;
   }
 
@@ -491,14 +515,14 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .vercelLogo {
     filter: invert(1);
   }
   .logo {
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
-}
+} */
 
 @keyframes rotate {
   from {

@@ -209,12 +209,12 @@ export default function Page() {
 								</div>
 								: <></>
 							}
-                            <p className={styles.subtitle}>
+                            <p className={styles.subtitlenonhm}>
                                 All VisionAid Staff
 
                                 {/* ---------- CSV Download button ---------------- */}
                                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
-                                    <a  target="_blank">Staff CSV</a>
+                                    <a  target="_blank" className={styles.csvbutton}>Staff CSV</a>
                                 </Link>
                             </p>
                             <div className={styles.gridcourses}>

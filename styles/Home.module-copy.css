@@ -16,6 +16,10 @@ To view this, see /pages/students.jsx */
   font-weight: 700;
 }
 
+nav {
+  border: 3px solid blue;
+}
+
 .csvbutton {
   background-color: #087f48;
   border: none;
