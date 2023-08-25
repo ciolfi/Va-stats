@@ -443,6 +443,7 @@ export default function Page() {
               )}
 
             </div>
+            
             {attendanceColumn.length > 0 ?
               <Table columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendance} />
               : <></>

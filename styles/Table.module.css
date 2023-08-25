@@ -1,21 +1,15 @@
 .tableWrapper {
   height: 100%;
-  /* overflow-x: auto;
-  overflow-y: auto; */
   width: 100%;
   scroll-behavior: smooth;
 }
 
 .genericTable {
   border: 3px solid rgba(0, 0, 0, 0.3);
-  /* ADDED NEXT TWO LINES */
-  /* margin-left: -1em;
-  margin-right: -1em; */
-  /* overflow-x: auto;
-  overflow-y: auto; */
+  overflow-x: scroll;
   position: sticky;
   table-layout: fixed;
-  width: 100vw;
+  width: 100%;
 }
 
 /* ---------- TABLE HEADER BEGINS --------- */
@@ -24,6 +18,7 @@
   margin-bottom: 1em;
 }
 
+/* 'Attendance', 'Grades' */
 .genericTableHeader h2 {
   margin-right: 0.5;
 }
@@ -36,7 +31,6 @@
 
 /* SPECIFIC BATCH PG: HEADING AREA WITH COL HDGS */
 .genericTable thead {
-  border: 0px solid cyan;
   background-color: rgba(178, 178, 178, 255);
   /* height: auto; */
   height: 3em;
@@ -70,7 +64,6 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right (not sure if that's right).  */
 .rotatedth {
-  border: 0px solid orange;
   height: 20vh;
   margin-top: 1em;
   position: relative;
@@ -93,7 +86,6 @@ look right (not sure if that's right).  */
 } */
 
 .rotatedthlabel {
-  border: 0px solid blue;
   bottom: 0px;
   left: 1em;
   margin-bottom: -0.3em;
@@ -104,19 +96,6 @@ look right (not sure if that's right).  */
   vertical-align: bottom;
   white-space: nowrap;
 }
-
-/* .rotatedthlabel tr:first-child {
-  border: 3px solid red;
-  bottom: 0px;
-  left: 0.5em;
-  margin-bottom: -0.3em;
-  position: absolute;
-  text-align: left;
-  transform: rotate(-70deg);
-  transform-origin: center left;
-  vertical-align: bottom;
-  white-space: nowrap;
-} */
 
 /* The far right 'Actions' column heading */
 .actionscolheading {
@@ -201,7 +180,9 @@ look right (not sure if that's right).  */
   width: 100%;
 }
 
+
 /*----------------- MEDIA QUERIES -----------------*/
+
 /* MOBILE LANDSCAPE */
 /* iPhone 14 Max Pro:  932x430; px ratio=3 */
 @media (min-width: 480px) and (max-width: 846px) {

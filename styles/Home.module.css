@@ -3,7 +3,7 @@ and page loading issues, it contains all pages' styles. For styles
 that apply universally to most pages (CSS variables, etc.), please 
 see globals.css */
 
-/* RED ASTERISK for required form field (please include semi-colon): &#42;
+/* RED ASTERISK for required form fields (please include semi-colon): &#42;
 To view this, see /pages/students.jsx */
 
 /* ------------------ General styles begin ---------------- */
@@ -85,9 +85,10 @@ div .menubutton {
   border: 3px solid transparent;
 }
 
+/* EVERYTHING BELOW NAVBAR */
 .container {
   height: auto;
-  padding: 0 2rem;
+  margin: 0 0.5em;
 }
 
 .main {
@@ -120,13 +121,6 @@ div .menubutton {
 .title Table {
   margin-right: 1em;
 }
-
-/* .subtitlestudent {
-  margin: 16px 0;
-  line-height: 1.15;
-  font-size: 2rem;
-  transform: rotate(-70deg);
-} */
 
 .title,
 .subtitle,
@@ -320,7 +314,6 @@ div .menubutton {
 }
 
 .tablestudentscell {
-  border: 0px solid red;
   padding-right: 1em;
 }
 
@@ -365,7 +358,6 @@ div .menubutton {
 
 /* Rotated students column heading */
 .studentsColumns {
-  /* border: 0px solid blue; */
   bottom: 5px;
   left: 50%;
   position: absolute;
@@ -381,14 +373,13 @@ div .menubutton {
 
 .gridcourses {
   /* Entire table */
-  border: 0px solid blue;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
   height: 80vh;
   justify-content: center;
-  margin-right: 0.5em;
+  margin-right: 0em;
   /* ADDED */
   width: 100%;
 }
@@ -586,14 +577,13 @@ div .menubutton {
 @media (min-width: 480px) and (max-width: 846px) {
 
   /* All items below Navbar incl Title, Subtitle */
-  .container {
-    position: relative;
-    top: -6em;
-  }
+  /* .container {
+  } */
 
   .title {
     font-size: 2.5rem;
-    margin-top: 5em;
+    /* margin-top: 5em; */
+    margin-top: 1em;
   }
 
   .subtitlehm {
@@ -605,9 +595,19 @@ div .menubutton {
 
   .subtitlenonhm {
     font-size: 1.5rem;
+    left: 1em;
     margin-bottom: 1em;
-    margin-top: 9em;
+    margin-top: 5em;
+    position: relative;
     text-align: center;
+  }
+
+  .gridcourses {
+    border: 0px solid green;
+    left: 1.5em;  
+    margin-right: 0.5em;
+    position: relative;
+    width: auto;
   }
 
 
@@ -659,14 +659,14 @@ div .menubutton {
   }
 
   /* Banner containing: 'All Students' and CSV button. 
-  NOTE: Applies to all pages except Home. */
+  NOTE: Applies to all pages except Home. May not be needed.*/
   .mainstudents {
     left: -1.5em;
     width: 100vw;
   }
 
   /* Dynamically-generated table incl. heading (e.g, 'Students List') 
-  NOTE: Applies to all pages except Home. */
+  NOTE: Applies to all pages except Home. May not be needed. */
   .gridcourses {
     height: auto;
     margin-top: -1em;
@@ -738,6 +738,7 @@ div .menubutton {
   background-color: #eaeaea;
 }
 
+/* Specific batch: blue buttons container at top */
 .batchContainer {
   margin: 0 auto;
   width: 90%;
@@ -967,7 +968,6 @@ div.rotatedth {
 
 .rotatedth {
   /* Nested div */
-  border: 3px solid red;
   height: 25vh;
   margin-top: 1em;
   position: relative;

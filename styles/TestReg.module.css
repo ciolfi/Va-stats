@@ -30,7 +30,6 @@
 }
 
 .grid {
-  border: 0px solid blue;
   display: grid;
   /* grid-template-columns: repeat(3, minmax(25%, auto)); */
   grid-template-columns: repeat(3, minmax(33%, 100%));
@@ -443,8 +442,16 @@ Does not include:
   }
 
   .reginput {
-    /* border: 3px solid black; */
-    width: 97%;
+    margin-right: 0.5em;
+    width: 11em;
+  }
+
+  .txtboxdropdown {
+    width: 11em;
+  }
+
+  .regtextarea {
+    width: 11em;
   }
 
   .center {
