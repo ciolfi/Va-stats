@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 
@@ -175,7 +175,7 @@ export default function Page() {
     {
       name: 'Gender',
       accessor: 'gender',
-      type: 'enum',
+      // type: 'enum',
       // availableValues: ['M', 'F', 'Other'],
       availableValues: ['Female', 'Male', 'Other'],
     },
@@ -307,36 +307,36 @@ export default function Page() {
               <div className={styles.gridcourses}>
                 <Table columns={studentsColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteStudent} isEditable={true} isStudent={true} onEditSave={handleUpdateStudent} Title={'Students List'} className={styles.tblstudentsdata} />
               </div>
-              <footer className={styles.footer}>
-                <Link
-                  href='privacypolicy.html'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Privacy
-                </Link>&nbsp;|&nbsp;
-                <Link
-                  href='termsofservice.html'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  Terms
-                </Link>&nbsp;|&nbsp;
-                <a
-                  href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <span className={styles.logo}>
-                    Powered by{"' '"}
-                    <Image src='/vercel.svg'
-                      alt='Vercel Logo'
-                      width={72}
-                      height={16} />
-                  </span>
-                </a>
-              </footer>
             </main>
+            {/* <footer className={styles.footer}>
+              <Link
+                href='privacypolicy.html'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Privacy
+              </Link>&nbsp;|&nbsp;
+              <Link
+                href='termsofservice.html'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Terms
+              </Link>&nbsp;|&nbsp;
+              <a
+                href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <span className={styles.logo}>
+                  Powered by{"' '"}
+                  <Image src='/vercel.svg'
+                    alt='Vercel Logo'
+                    width={72}
+                    height={16} />
+                </span>
+              </a>
+            </footer> */}
           </div>
         </>
       );

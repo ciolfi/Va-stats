@@ -1,6 +1,5 @@
 /* THIS PAGE: Handles the code for all tables in the app. */
-
-import styles from '../styles/Table.module.css';
+'use client';import styles from '../styles/Table.module.css';
 import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -25,6 +24,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	students, batches, specific batch */
 	const pathname = usePathname().toString();
 	const studentspgurl = "/students";
+  // const studentspgurl = "../pages/students";
 	const batchespgurl = "/batches";
   	const { id } = router.query;
 	const batchespgurldyn = "/batch/"+id;

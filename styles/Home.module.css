@@ -87,6 +87,10 @@ div .menubutton {
 
 /* EVERYTHING BELOW NAVBAR */
 .container {
+  /* For footer to stick to bottom */
+  display: flex;
+  flex-direction: column;
+
   height: auto;
   margin: 0 0.5em;
 }
@@ -249,15 +253,21 @@ div .menubutton {
   height: 2.4em;
   margin-left: 1em;
 }
+
 /*---------- SPECIFIC BATCHES PAGE ENDS ----------*/
 
 .footer {
+  border: 3px solid blue;
   align-items: center;
+  bottom: 0;  
   border-top: 1px solid #000;
   display: flex;
   flex: 1;
   font-size: 1em;
   justify-content: center;
+  left: 0;
+  /* margin-top: 1em; */
+  margin-top: auto;         /* To stick footer to bottom */
 }
 
 .logo {
@@ -604,7 +614,7 @@ div .menubutton {
 
   .gridcourses {
     border: 0px solid green;
-    left: 1.5em;  
+    left: 1.5em;
     margin-right: 0.5em;
     position: relative;
     width: auto;
@@ -651,6 +661,7 @@ div .menubutton {
     height: 2.4em;
     margin-left: 1em;
   }
+
   /*-------- PORTRAIT: SPECIFIC BATCH PG ENDS -------*/
 
   .gridstudents {

@@ -450,7 +450,7 @@ export default function Page() {
 								<div className={styles.gridcourses}>
 									{/* <Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} /> */}
 								</div>
-								<footer className={styles.footer}>
+								{/* <footer className={styles.footer}>
 									<Link
 										href='privacypolicy.html'
 										target='_blank'
@@ -478,7 +478,7 @@ export default function Page() {
 												height={16} />
 										</span>
 									</a>
-								</footer>
+								</footer> */}
 							</main>
 						</div>
 					</>
