@@ -1,5 +1,6 @@
 /* THIS PAGE: Handles the code for all tables in the app. */
-'use client';import styles from '../styles/Table.module.css';
+'use client';
+import styles from '../styles/Table.module.css';
 import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
