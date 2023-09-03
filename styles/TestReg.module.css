@@ -360,6 +360,23 @@ Does not include:
 .logo {
   position: relative;
 }
+
+/* Footer at bottom of new student registration form */
+.footernewreg {
+  align-items: center;
+  bottom: 0;
+  border-top: 1px solid #000;
+  display: flex;
+  flex: 1;
+  font-size: 1em;
+  justify-content: center;
+  left: 0;
+  margin: 2em 0;
+  /* margin-top: auto; */
+  /* To stick footer to bottom */
+}
+
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   /* .card:hover {

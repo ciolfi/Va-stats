@@ -170,12 +170,18 @@ export default function Page() {
       setContentLoading(false);
     };
 
+    // useEffect(() => {
+    //   if (session) {
+    //     getUserData();
+    //     getBatchData();
+    //   }
+    // }, [session]);
     useEffect(() => {
       if (session) {
         getUserData();
         getBatchData();
       }
-    }, [session]);
+    });
 
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getBatchData = async () => {
@@ -310,7 +316,8 @@ export default function Page() {
     if (status === 'unauthenticated' || userResponse.isactive === 0) {
       return (
         <div className='autherrorcontainer'>
-          <img src='logo-mainsite.png' alt='VisionAid logo' />
+          {/* <img src='logo-mainsite.png' alt='VisionAid logo' /> */}
+          <Image src='logo-mainsite.png' alt='VisionAid logo' />
           <span className='autherrortext'>
             Access denied.&nbsp;
             <Link href='/' className='autherrorlink'>
@@ -345,21 +352,19 @@ export default function Page() {
 
                 <link rel='preconnect'
                   href='https://fonts.gstatic.com'
-                  crossOrigin />
-
-                <link rel='preload'
+                  crossOrigin="true" />
+                  
+                {/* <link rel='preload'
                   as='style'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
                 <link rel='stylesheet'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
                   media='print'
                   onLoad="this.media='all'" />
-
                 <noscript>
                   <link rel='stylesheet'
                     href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-                </noscript>
+                </noscript> */}
               </Head>
               <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p>
               <p className={styles.subtitle}>Total students enrolled: {batchLength}</p>

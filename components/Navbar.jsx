@@ -57,21 +57,22 @@ const Navbar = (user_role) => {
 
         <link rel='preconnect'
           href='https://fonts.gstatic.com'
-          crossOrigin />
+          crossOrigin="true" />
 
+        {/* Fonts below are commented out because 
+        they're handled in ./pages/_document.js */}
+        
         {/* <link rel='preload'
           as='style'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' /> */}
-
-        <link rel='stylesheet'
+        {/* <link rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
           media='print'
           onLoad="this.media='all'" />
-
         <noscript>
           <link rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-        </noscript>
+        </noscript> */}
       </Head>
       <nav className={'nav'}>
         <Link href="/" className={'textlogo'}>

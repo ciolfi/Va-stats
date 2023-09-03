@@ -294,6 +294,17 @@ export default function Page() {
     }
   };
 
+  // useEffect(() => {
+  //   setAttendanceColumn(() => {
+  //     return generateColumnsFromDate();
+  //   });
+  //   setAttendanceData(() => {
+  //     return generateStudentTableData();
+  //   });
+  //   setGradesColumn(() => {
+  //     return generateColumnsFromAssignment();
+  //   });
+  // }, [batchData]);
   useEffect(() => {
     setAttendanceColumn(() => {
       return generateColumnsFromDate();
@@ -304,7 +315,7 @@ export default function Page() {
     setGradesColumn(() => {
       return generateColumnsFromAssignment();
     });
-  }, [batchData]);
+  });
 
   if (loading) {
     return <p>Loading...</p>;
@@ -313,7 +324,8 @@ export default function Page() {
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
     return (
       <div className='autherrorcontainer'>
-        <img src='logo-mainsite.png' alt='VisionAid logo' />
+        {/* <img src='logo-mainsite.png' alt='VisionAid logo' /> */}
+        <Image src='logo-mainsite.png' alt='VisionAid logo' />
         <span className='autherrortext'>
           Access denied.&nbsp;
           <Link href='/' className='autherrorlink'>
@@ -348,21 +360,19 @@ export default function Page() {
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
-                crossOrigin />
+                crossOrigin="true" />
 
-              <link rel='preload'
+              {/* <link rel='preload'
                 as='style'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
               <link rel='stylesheet'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
                 media='print'
                 onLoad="this.media='all'" />
-
               <noscript>
                 <link rel='stylesheet'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript>
+              </noscript> */}
             </Head>
             <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p>
             <p className={styles.subtitle}>Total students enrolled: {batchLength}</p>

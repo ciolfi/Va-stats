@@ -156,7 +156,7 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input type="email" autofocus id="email" name="email" className={styles.reginput} />
+                            <input type="email" autoFocus id="email" name="email" className={styles.reginput} />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
@@ -834,7 +834,7 @@ export default function Page() {
             </div>
           </main>
 
-          <footer className={styles.footer}>
+          <footer className={styles.footernewreg}>
             <Link
               href='privacypolicy.html'
               target='_blank'
@@ -855,7 +855,7 @@ export default function Page() {
               rel='noopener noreferrer'
             >
               <span className={styles.logo}>
-                Powered by{"' '"}
+                Powered by{" "}
                 <Image src='/vercel.svg'
                   alt='Vercel Logo'
                   width={72}
@@ -863,6 +863,7 @@ export default function Page() {
               </span>
             </a>
           </footer>
+          
         </div>    {/* Container closing tag */}
 
       </>

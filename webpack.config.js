@@ -10,4 +10,7 @@ module.exports = {
     rules: [{ test: /\.svg$/, use: 'raw-loader' }],
     rules: [{ test: /\.css$/, use: 'raw-loader' }],
   },
+  node: {
+   fs: "empty"
+  }
 }

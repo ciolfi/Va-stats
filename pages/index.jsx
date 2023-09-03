@@ -82,7 +82,7 @@ export default function Home() {
                 <p></p>
               </a>
 
-              <a href="https://visionaid.org/about-vision-aid/mission-and-vision/" target="_blank" rel="noreferrer" className={styles.card}>
+              <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
                 <h2>About &rarr;</h2>
                 <p>Learn about about our organization.</p>
               </a>
@@ -92,12 +92,14 @@ export default function Home() {
                 <p>Learn how to use the VisionAid STATS platform.</p>
               </a>
 
-              <a className={styles.card}>
+              {/* <a className={styles.card}> */}
+              <div className={styles.card}>
                 <h2>Overall Stats</h2>
                 <p>Total Number Students: {studentCountResponse}</p>
                 <p>Total Number Courses: {courseCountResponse}</p>
                 <p>Total Number Batches: {batchCountResponse}</p>
-              </a>
+              </div>
+              {/* </a> */}
             </div>
           </main>
         </div>

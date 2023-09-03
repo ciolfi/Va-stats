@@ -25,6 +25,7 @@
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "framer-motion": "^10.16.1",
+    "fs": "^0.0.1-security",
     "mysql2": "^3.1.2",
     "mysql2-promise": "^0.1.4",
     "net": "^1.0.2",

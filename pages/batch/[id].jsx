@@ -176,6 +176,12 @@ export default function Page() {
       getBatchData();
     }
   }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     getUserData();
+  //     getBatchData();
+  //   }
+  // });
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const getBatchData = async () => {
@@ -302,6 +308,17 @@ export default function Page() {
       return generateColumnsFromAssignment();
     });
   }, [batchData]);
+  // useEffect(() => {
+  //   setAttendanceColumn(() => {
+  //     return generateColumnsFromDate();
+  //   });
+  //   setAttendanceData(() => {
+  //     return generateStudentTableData();
+  //   });
+  //   setGradesColumn(() => {
+  //     return generateColumnsFromAssignment();
+  //   });
+  // });
 
   if (loading) {
     return <p>Loading...</p>;
@@ -310,7 +327,8 @@ export default function Page() {
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
     return (
       <div className='autherrorcontainer'>
-        <img src='logo-mainsite.png' alt='VisionAid logo' />
+        {/* <img src='logo-mainsite.png' alt='VisionAid logo' /> */}
+        <Image src='logo-mainsite.png' alt='VisionAid logo' />
         <span className='autherrortext'>
           Access denied.&nbsp;
           <Link href='/' className='autherrorlink'>
@@ -345,21 +363,19 @@ export default function Page() {
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
-                crossOrigin />
+                crossOrigin="true" />
 
-              <link rel='preload'
+              {/* <link rel='preload'
                 as='style'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
               <link rel='stylesheet'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
                 media='print'
                 onLoad="this.media='all'" />
-
               <noscript>
                 <link rel='stylesheet'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript>
+              </noscript> */}
             </Head>
             {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
             <p className={styles.titlebatchspecific}>Course: {courseName}, Batch: {batchName}</p>
@@ -454,7 +470,8 @@ export default function Page() {
               : <></>
             }
           </div>
-          <footer className={styles.footer}>
+
+          {/* <footer className={styles.footer}>
             <Link
               href='privacypolicy.html'
               target='_blank'
@@ -482,7 +499,8 @@ export default function Page() {
                   height={16} />
               </span>
             </a>
-          </footer>
+          </footer> */}
+          
         </>
       );
     }

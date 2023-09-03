@@ -79,19 +79,17 @@ export default function Page() {
 								href='https://fonts.gstatic.com'
 								crossOrigin="true" />
 
-        <link rel='preload'
+        {/* <link rel='preload'
           as='style'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
         <link rel='stylesheet'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
           media='print'
           onLoad="this.media='all'" />
-
         <noscript>
           <link rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-        </noscript>
+        </noscript> */}
       </Head>
 
       <div className={styles.studentapplicationform}>

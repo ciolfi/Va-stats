@@ -155,9 +155,12 @@ export default function Page() {
     result = res.users[0];
   };
 
+  // useEffect(() => {
+  //   getUserData();
+  // }, [session]);
   useEffect(() => {
     getUserData();
-  }, [session]);
+  });
 
   result = userResponse;
 
@@ -283,21 +286,19 @@ export default function Page() {
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
-                crossOrigin />
+                crossOrigin="true" />
 
-              <link rel='preload'
+              {/* <link rel='preload'
                 as='style'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
               <link rel='stylesheet'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
                 media='print'
                 onLoad="this.media='all'" />
-
               <noscript>
                 <link rel='stylesheet'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript>
+              </noscript> */}
             </Head>
             <main className={styles.mainstudents}>
               {contentLoading ?
@@ -310,7 +311,8 @@ export default function Page() {
                 All Students
 
                 {/* ---------- CSV Download button ---------------- */}
-                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"} legacyBehavior>
+                {/* <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"} legacyBehavior> */}
+                <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"} legacyBehavior>
                   <a target="_blank">Students CSV</a>
                 </Link>
               </p>

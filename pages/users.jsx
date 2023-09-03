@@ -121,6 +121,10 @@ export default function Page() {
     getUserData();
   }, [session]);
 
+  // useEffect(() => {
+  //   getUserData();
+  // });
+
   result = userResponse;
 
 
@@ -186,21 +190,19 @@ export default function Page() {
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
-                crossOrigin />
+                crossOrigin="true" />
 
-              <link rel='preload'
+              {/* <link rel='preload'
                 as='style'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-
               <link rel='stylesheet'
                 href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
                 media='print'
                 onLoad="this.media='all'" />
-
               <noscript>
                 <link rel='stylesheet'
                   href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript>
+              </noscript> */}
             </Head>
             <main className={styles.mainstudents}>
               {contentLoading ?
@@ -214,14 +216,18 @@ export default function Page() {
 
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
+                {/* <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"} legacyBehavior> */}
                   <a target="_blank" className={styles.csvbutton}>Staff CSV</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>
+
+                {/* Add staff member form */}
                 {showForm ?
-                  <div className={styles.cardcoursesform}>
+                  // <div className={styles.cardcoursesform}>
+                  <div className={styles.addstaffform}>
                     <h2>Add New Staff Member &rarr;</h2><br />
-                    <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButton} title="Close User Creation Form" />
+                    <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
                     <form action='/api/usercreate' method='post' onSubmit={() => handleSubmit()}>
                       <label htmlFor='id'>VisionAid User ID:<span className={styles.requiredelement}>&#42;</span></label>
                       <input type='text' id='id' name='id' required /><br /><br />
@@ -273,7 +279,7 @@ export default function Page() {
 										rel='noopener noreferrer'
 									>
 										<span className={styles.logo}>
-											Powered by{"' '"}
+											Powered by{" "}
 											<Image src='/vercel.svg'
 												alt='Vercel Logo'
 												width={72}
