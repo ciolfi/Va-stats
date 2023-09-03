@@ -422,24 +422,23 @@ div .menubutton {
   width: 26%;
 }
 
-/* 'Add staff' form */
-.addstaffform {
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-top: 10em;
-  padding: 1.5rem;
-  /* width: 26%; */
-}
-
 /* Desktop: Add a batch */
 .cardbatchform {
   border: 1px solid black;
   border-radius: 10px;
   left: -1em;
-  margin-top: 32em;
+  margin-top: 36em; /* 32 */
   max-width: 100vw;
   padding: 1.5rem; 
   width: 98vw;
+}
+
+/* Desktop: 'Add staff' form */
+.addstaffform {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 12em; /*10em;*/
+  padding: 1.5rem;
 }
 
 .studentapplicationform {
