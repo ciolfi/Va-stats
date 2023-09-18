@@ -224,10 +224,11 @@ export default function Page() {
           type: 'enum',
           availableValues: [1, 0],
           isAttendance: true,
+          isRotatedTh: true,
         });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true });
     return res;
   };
 
@@ -269,10 +270,10 @@ export default function Page() {
         assignmentNames.add(grade.assignment_name);
       });
       assignmentNames.forEach((assignmentName) => {
-        res.push({ name: assignmentName, accessor: assignmentName });
+        res.push({ name: assignmentName, accessor: assignmentName, isRotatedTh: false });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh: false });
     return res;
   };
 
