@@ -127,15 +127,15 @@ export default function Page() {
     const postData = {
       method: "Post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      body: JSON.stringify({              /* LOCAL TESTING */
         email: session.user.email
       }),
     };
     const response = await fetch(apiUrlEndpoint, postData);
     const res = await response.json();
-    setUserResponse(res.users[0]);
+    setUserResponse(res.users[0]);        /* LOCAL TESTING */
     setLoading(false);
-    result = res.users[0];
+    result = res.users[0];                /* LOCAL TESTING */
   };
   
   useEffect(() => {
@@ -262,7 +262,9 @@ export default function Page() {
       return (
         <>
           <div className={styles.mynavbar}>
+            {/* LOCAL TESTING */}
             <Navbar user_role={result[0].role} className={styles.navstudents} />
+            {/* <Navbar className={styles.navstudents} /> */}
           </div>
           <div className={styles.container}>
             <Head>

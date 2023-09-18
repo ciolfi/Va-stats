@@ -10,7 +10,8 @@ export default async function handler(req, res) {
   try {
     const body = req.body;
     const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const isQualified = true;
+    // const isQualified = true;
+    // const birthDate = new Date(body.age);
     const data = await executeQuery({
 
       // /* - DATABASE MOD SECTION (18 cols) - */
@@ -22,13 +23,15 @@ export default async function handler(req, res) {
       //   values: ['', body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.gender, body.age, body.edu_qualifications],
       // });
 
-      /*- SMALL TEST SECTION (limited number of cols) -*/
+      /*- COLS: 19 (not including: id, registration_date) -*/
       // query: "INSERT INTO vastudents (id, email, name) VALUES (?, ?, ?)",
-      // values: ['', body.email, body.name],
+      // values: [, body.email, body.name],
+      query: "INSERT INTO vastudents (email, name, phone_number, alt_ph_num, city, state, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      values: [body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.gender, body.age, body.edu_qualifications, body.employment_status, body.objectives, body.trainer_name, body.first_choice, body.second_choice, body.third_choice, body.visual_acuity, body.percent_loss, body.impairment_history, body.source, currentDate],
 
       /*- ALL COLS (21) -*/
-      query: "INSERT INTO vastudents (id, email, name, phone_number, alt_ph_num, city, state, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      values: ['', body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.gender, body.age, body.edu_qualifications, body.employment_status, body.objectives, body.trainer_name, body.first_choice, body.second_choice, body.third_choice, body.visual_acuity, body.percent_loss, body.impairment_history, body.source, currentDate],
+      // query: "INSERT INTO vastudents (id, email, name, phone_number, alt_ph_num, city, state, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      // values: ['', body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.gender, body.age, body.edu_qualifications, body.employment_status, body.objectives, body.trainer_name, body.first_choice, body.second_choice, body.third_choice, body.visual_acuity, body.percent_loss, body.impairment_history, body.source, currentDate],
 
     });
 

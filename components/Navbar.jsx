@@ -121,7 +121,8 @@ const Navbar = (user_role) => {
           ) : (
             <>
               <p className={styles.topRightText}>Signed in as {user_role.user_role} : {session.user.email}</p>
-              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} />
+              {/* <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} /> */}
+              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '{NEXT_PUBLIC_BASE_URL}' })} isLight={true} className={styles.btnlogout} />
             </>
           )}
 

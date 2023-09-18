@@ -159,18 +159,21 @@ export default function Page() {
                       <tbody>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
+                            {/* <label htmlFor="email" style={{ fontWeight: "500" }}> */}
                             <label htmlFor="email">
+                              {/* FRM EL #2 of 21 (ID is #1, timestamp is 21) */}
                               Email
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input type="email" autoFocus id="email" name="email" className={styles.reginput} required />
+                            <input type="email" autoFocus id="email" name="email" className={styles.reginput} />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="name">
+                              {/* FRM EL #3/21 */}
                               Name
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -182,13 +185,13 @@ export default function Page() {
                               id="name"
                               name="name"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="phone_number">
+                              {/* FRM EL #4/21 */}
                               Phone
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -201,7 +204,6 @@ export default function Page() {
                               name="phone_number"
                               placeholder="10 num only; no dashes"
                               type="tel"
-                              required
                             // value={value}
                             // onChange={handleChange}
                             // onBlur={checkConstraints}
@@ -211,6 +213,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="alt_ph_num">
+                              {/* FRM EL #5/21 */}
                               Alt. Phone
                             </label>
                           </td>
@@ -226,6 +229,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="city">
+                              {/* FRM EL #6/21 */}
                               City
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -236,13 +240,13 @@ export default function Page() {
                               id="city"
                               name="city"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="state">
+                              {/* FRM EL #7/21 */}
                               State
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -253,7 +257,6 @@ export default function Page() {
                               id="state"
                               name="state"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
@@ -262,6 +265,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="gender">
+                              {/* FRM EL #8/21 */}
                               Gender
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -297,6 +301,7 @@ export default function Page() {
                               </Dropdown.Menu>
                             </Dropdown> */}
 
+                            {/* <label htmlFor="gender">Select gender</label> */}
                             <select
                               name="gender"
                               id="gender"
@@ -313,20 +318,22 @@ export default function Page() {
                         </tr>
                         {/*---------- GENDER DROPDOWN ENDS -----*/}
 
+                        {/* Birthdate picker */}
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="age">
+                              {/* FRM EL #9/21 */}
                               Birthdate
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <input
+                              // type="datetime-local"
                               type="date"
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
@@ -334,6 +341,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_qualifications">
+                              {/* FRM EL #10/21 */}
                               Education
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -345,7 +353,6 @@ export default function Page() {
                               name="edu_qualifications"
                               className={styles.reginput}
                               placeholder="Degrees, etc, 300-char max"
-                              required
                             />
                           </td>
                         </tr>
@@ -354,6 +361,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="employment_status">
+                              {/* FRM EL #11/21 */}
                               Employment status
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -404,6 +412,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="objectives">
+                              {/* FRM EL #12/21 */}
                               Learning goal(s)
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -415,7 +424,6 @@ export default function Page() {
                               name="objectives"
                               className={styles.reginput}
                               placeholder="300-char max"
-                              required
                             />
                           </td>
                         </tr>
@@ -441,101 +449,52 @@ export default function Page() {
                   </div>
                   {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
 
-                  {/*------------- CARD: COURSES BEGINS -----------*/}
+                  {/*------------- CARD: COURSES BEGINS ------------*/}
                   <div
                     className={styles.card}
                   >
                     <h2>
                       Choose courses
                     </h2>
-                    <fieldset>
-                      <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
-                      <table className={styles.tblchoosecourses} role="presentation">
 
-                        {/*----------- 1st choice ----------*/}
+                    <fieldset>
+                      <legend style={{ fontWeight: 700 }}>Chosen Courses</legend>
+                      <table className={styles.tblchoosecourses} role="presentation">
                         <tr>
                           <td className={styles.tdlblcrschoice}>
                             <label htmlFor="textboxfirstchoice">
-                              1st choice
+                              {/* FRM EL #14/21 */}
+                              First choice
                             </label>
                           </td>
-                          <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
-                          </td>
+                          {/* <select>
+                          </select> */}
                         </tr>
-
-                        {/*----------- 2nd choice ----------*/}
-                        <tr>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="textboxsecondchoice">
-                              2nd choice
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
-                          </td>
-                        </tr>
-
-                        {/*----------- 3rd choice ----------*/}
-                        <tr>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="textboxthirdchoice">
-                              3rd choice
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="third_choice" id="third_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
-                          </td>
-                        </tr>
-
                       </table>
                     </fieldset>
                   </div>
-                  {/*------------- CARD: COURSES ENDS ------------*/}
+                </div>
+                {/*------------- CARD: COURSES ENDS ------------*/}
 
-                  {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
-                  <div className={styles.card}>
-                    <h2>
-                      Miscellaneous
-                    </h2>
+                {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
+                <div className={styles.card}>
+                  <h2>
+                    Miscellaneous
+                  </h2>
 
-                    <table className={styles.tblmisc} role="presentation">
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          {/* FRM EL #17/21 */}
-                          <label htmlFor="visual_acuity">
-                            Visual acuity
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
+                  <table className={styles.tblmisc} role="presentation">
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        {/* FRM EL #17/21 */}
+                        <label htmlFor="visual_acuity">
+                          Visual acuity
+                        </label>
+                        <span className={styles.requiredelement}>&#42;</span>
+                      </td>
 
-                        {/*-------------- VISION DROPDOWN BEGINS ------------*/}
-                        <td className={styles.inputtd}>
-                          {/* <Dropdown name="visual_acuity">
+                      {/*-------------- VISION DROPDOWN BEGINS ------------*/}
+                      <td className={styles.inputtd}>
+                        {/* <Dropdown name="visual_acuity">
                             <Dropdown.Button
                               className={styles.btnregdropdown}
                               disableripple="true"
@@ -563,124 +522,130 @@ export default function Page() {
                             </Dropdown.Menu>
                           </Dropdown> */}
 
-                          <select
-                            name="visual_acuity"
-                            id="visual_acuity"
-                            className={styles.txtboxdropdown}
-                            onSelectionChange={setSelectedVision}
-                            required
-                          >
-                            <optgroup label="Visual Acuity">
-                              <option value="LowVision">Low Vision</option>
-                              <option value="Blind">Blind</option>
-                            </optgroup>
-                          </select>
-                        </td>
-                        {/*--------------- VISION DROPDOWN ENDS ---------------*/}
-                      </tr>
+                        <select
+                          name="visual_acuity"
+                          id="visual_acuity"
+                          className={styles.txtboxdropdown}
+                          onSelectionChange={setSelectedVision}
+                        >
+                          <optgroup label="Visual Acuity">
+                            <option value="LowVision">Low Vision</option>
+                            <option value="Blind">Blind</option>
+                          </optgroup>
+                        </select>
+                      </td>
+                      {/*--------------- VISION DROPDOWN ENDS ---------------*/}
+                    </tr>
 
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="percent_loss">
-                            Percent of vision loss
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="percent_loss"
-                            name="percent_loss"
-                            placeholder="1-99"
-                            type="text"
-                            required
-                          />
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          {/* FRM EL #19/21 */}
-                          <label htmlFor="impairment_history">
-                            Vision impairment history (brief; feel free to leave it empty)
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <textarea
-                            name="impairment_history"
-                            id="impairment_history"
-                            placeholder='300-char max'
-                            className={styles.regtextarea}
-                            rows="10"
-                            cols="20">
-                          </textarea>
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          {/* FRM EL #20/21 (#21 is timestamp) */}
-                          <label htmlFor="source">
-                            How you found us
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="source"
-                            name="source"
-                            placeholder="Internet, friend, etc."
-                            type="textbox"
-                          />
-                        </td>
-                      </tr>
-                    </table>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        <label htmlFor="percent_loss">
+                          {/* FRM EL #18/21 */}
+                          Percent of vision loss
+                        </label>
+                        <span className={styles.requiredelement}>&#42;</span>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <input
+                          className={styles.reginput}
+                          id="percent_loss"
+                          name="percent_loss"
+                          placeholder="1-99"
+                          type="text"
+                        />
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        {/* FRM EL #19/21 */}
+                        <label htmlFor="impairment_history">
+                          Vision impairment history (brief; feel free to leave it empty)
+                        </label>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <textarea
+                          name="impairment_history"
+                          id="impairment_history"
+                          placeholder='300-char max'
+                          className={styles.regtextarea}
+                          rows="10"
+                          cols="20">
+                        </textarea>
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        {/* FRM EL #20/21 (#21 is timestamp) */}
+                        <label htmlFor="source">
+                          How you found us
+                        </label>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <input
+                          className={styles.reginput}
+                          id="source"
+                          name="source"
+                          placeholder="Internet, friend, etc."
+                          type="textbox"
+                        />
+                      </td>
+                    </tr>
+                  </table>
 
-                    {/* RESET AND SUBMIT BUTTONS 
+                  {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
-                    <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
-                      <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
-                    </div>
+                  <div className={styles.frmbtnblocksubres}>
+                    <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT FORM</button>
+                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET FORM</button>
                   </div>
-                  {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
+                </div>
+                {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
 
-                </div>  {/* GRID LAYOUT ENDS */}
               </form>
+
             </div>
+            {/* UNDER PG TITLE - GRID LAYOUT ENDS */}
+
           </main>
 
-          <footer className={styles.footernewreg}>
-            <Link
-              href='privacypolicy.html'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Privacy
-            </Link>&nbsp;|&nbsp;
-            <Link
-              href='termsofservice.html'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Terms
-            </Link>&nbsp;|&nbsp;
-            <a
-              href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <span className={styles.logo}>
-                Powered by{" "}
-                <Image src='/vercel.svg'
-                  alt='Vercel Logo'
-                  width={72}
-                  height={16} />
-              </span>
-            </a>
-          </footer>
+        </div>
+        {/*--------- CONTAINER ENDS --------*/}
 
-        </div>    {/* Container closing tag */}
+        <footer className={styles.footernewreg}>
+          <Link
+            href='privacypolicy.html'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Privacy
+          </Link>&nbsp;|&nbsp;
+          <Link
+            href='termsofservice.html'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Terms
+          </Link>&nbsp;|&nbsp;
+          <a
+            href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className={styles.logo}>
+              Powered by{" "}
+              <Image src='/vercel.svg'
+                alt='Vercel Logo'
+                width={72}
+                height={16} />
+            </span>
+          </a>
+        </footer>
+        {/*------------- CONTAINER ENDS ------------*/}
+
       </>
     </NextUIProvider>
-    //)
   );
+  {/*------------- RETURN ENDS ------------*/}
+
 }
+{/*------------- EXPORT DEFAULT ENDS ------------*/}

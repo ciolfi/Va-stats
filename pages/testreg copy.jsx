@@ -171,6 +171,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="name">
+                              {/* FRM EL #3/21 */}
                               Name
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -182,13 +183,13 @@ export default function Page() {
                               id="name"
                               name="name"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="phone_number">
+                              {/* FRM EL #4/21 */}
                               Phone
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -201,7 +202,6 @@ export default function Page() {
                               name="phone_number"
                               placeholder="10 num only; no dashes"
                               type="tel"
-                              required
                             // value={value}
                             // onChange={handleChange}
                             // onBlur={checkConstraints}
@@ -211,6 +211,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="alt_ph_num">
+                              {/* FRM EL #5/21 */}
                               Alt. Phone
                             </label>
                           </td>
@@ -226,6 +227,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="city">
+                              {/* FRM EL #6/21 */}
                               City
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -236,13 +238,13 @@ export default function Page() {
                               id="city"
                               name="city"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="state">
+                              {/* FRM EL #7/21 */}
                               State
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -253,7 +255,6 @@ export default function Page() {
                               id="state"
                               name="state"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
@@ -262,6 +263,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="gender">
+                              {/* FRM EL #8/21 */}
                               Gender
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -297,6 +299,7 @@ export default function Page() {
                               </Dropdown.Menu>
                             </Dropdown> */}
 
+                            {/* <label htmlFor="gender">Select gender</label> */}
                             <select
                               name="gender"
                               id="gender"
@@ -313,20 +316,22 @@ export default function Page() {
                         </tr>
                         {/*---------- GENDER DROPDOWN ENDS -----*/}
 
+                        {/* Birthdate picker */}
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="age">
+                              {/* FRM EL #9/21 */}
                               Birthdate
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <input
+                              // type="datetime-local"
                               type="date"
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              required
                             />
                           </td>
                         </tr>
@@ -334,6 +339,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_qualifications">
+                              {/* FRM EL #10/21 */}
                               Education
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -345,7 +351,6 @@ export default function Page() {
                               name="edu_qualifications"
                               className={styles.reginput}
                               placeholder="Degrees, etc, 300-char max"
-                              required
                             />
                           </td>
                         </tr>
@@ -354,6 +359,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="employment_status">
+                              {/* FRM EL #11/21 */}
                               Employment status
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -404,6 +410,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="objectives">
+                              {/* FRM EL #12/21 */}
                               Learning goal(s)
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
@@ -415,7 +422,6 @@ export default function Page() {
                               name="objectives"
                               className={styles.reginput}
                               placeholder="300-char max"
-                              required
                             />
                           </td>
                         </tr>
@@ -431,7 +437,7 @@ export default function Page() {
                               className={styles.reginput}
                               placeholder="Firstname Lastname"
                               type="text"
-                              id="trainer_name"
+                              id="trainer_name" 
                               name="trainer_name"
                             />
                           </td>
@@ -441,81 +447,274 @@ export default function Page() {
                   </div>
                   {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
 
-                  {/*------------- CARD: COURSES BEGINS -----------*/}
+                  {/*-------------CARD: COURSES BEGINS ------------*/}
                   <div
                     className={styles.card}
                   >
                     <h2>
                       Choose courses
                     </h2>
-                    <fieldset>
-                      <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
-                      <table className={styles.tblchoosecourses} role="presentation">
+                    <div className={styles.coursestip}>
+                      <ol>
+                        <li>Choose course from list.</li>
+                        <li>Use <em>Add 1st choice</em> button.</li>
+                        <li>Course abbreviation is added to box.</li>
+                        <li>Repeat for 2nd and 3rd choices.</li>
+                      </ol>
+                    </div>
 
-                        {/*----------- 1st choice ----------*/}
+                    {/* COURSE CHOICES SUBFORM BEGINS.
+                 UNLIKE OTHER FORM ELEMENTS, ID AND
+                 NAME ARE DIFFERENT DUE TO JS FUNCTIONS
+                 TO HANDLE SELECTION AND FORM RESET. */}
+                    <fieldset>
+                      <legend style={{ fontWeight: 700 }}>Chosen Courses</legend>
+                      <table className={styles.tblchoosecourses} role="presentation">
                         <tr>
                           <td className={styles.tdlblcrschoice}>
                             <label htmlFor="textboxfirstchoice">
-                              1st choice
+                              {/* FRM EL #14/21 */}
+                              First choice
                             </label>
                           </td>
-                          <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
+                          <td className={styles.tdtextboxcrschoice}>
+                            <input
+                              className={styles.inputcrschoice}
+                              id="textboxfirstchoice"
+                              name="first_choice"
+                              placeholder="1st choice"
+                              type="text"
+                              // disabled={true}
+                              // disabled="true"
+                              // readonly="true"
+                            />
+                          </td>
+                          <td className={styles.tdsubmitcrschoice}>
+                            <button type='button' id='submitcrschoicefirst' onClick={() => addCourseChoice('firstchoice')} className={styles.btnsubmitcrschoice}>
+                              Add 1st choice
+                            </button>
                           </td>
                         </tr>
-
-                        {/*----------- 2nd choice ----------*/}
                         <tr>
                           <td className={styles.tdlblcrschoice}>
                             <label htmlFor="textboxsecondchoice">
-                              2nd choice
+                              {/* FRM EL #15/21 */}
+                              Second choice
                             </label>
                           </td>
-                          <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
+                          <td className={styles.tdtextboxcrschoice}>
+                            <input
+                              className={styles.inputcrschoice}
+                              id="textboxsecondchoice"
+                              name="second_choice"
+                              placeholder="2nd choice"
+                              type="text"
+                              disabled={true}
+                            />
+                          </td>
+                          <td className={styles.tdsubmitcrschoice}>
+                            <button type="button" id="submitcrschoicesecond" onClick={() => addCourseChoice("secondchoice")} className={styles.btnsubmitcrschoice}>
+                              Add 2nd choice
+                            </button>
                           </td>
                         </tr>
-
-                        {/*----------- 3rd choice ----------*/}
                         <tr>
                           <td className={styles.tdlblcrschoice}>
                             <label htmlFor="textboxthirdchoice">
-                              3rd choice
+                              {/* FRM EL #16/21 */}
+                              Third choice
                             </label>
                           </td>
-                          <td className={styles.inputtd}>
-                            <select name="third_choice" id="third_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
-                            </select>
+                          <td className={styles.tdtextboxcrschoice}>
+                            <input
+                              className={styles.inputcrschoice}
+                              id="textboxthirdchoice"
+                              name="third_choice"
+                              placeholder="3rd choice"
+                              type="text"
+                              disabled={true}
+                            />
+                          </td>
+                          <td className={styles.tdsubmitcrschoice}>
+                            <button type='button' id='submitcrschoicethird' onClick={() => addCourseChoice('thirdchoice')} className={styles.btnsubmitcrschoice}>
+                              Add 3rd choice
+                            </button>
                           </td>
                         </tr>
+                      </table>
+                      {/* Must use backtick for multiple classes, not vertical single quote */}
+                      <button
+                        aria-label='Reset form'
+                        className={`${styles.btncrsesresetdark} ${styles.btngetsfocus}`}
+                        // type="reset"
+                        onClick={() => handleCoursesReset()}
+                      >
+                        Reset Courses
+                      </button>
+                    </fieldset>
 
+                    {/*------------- CARD: COURSES LIST BEGINS -------------*/}
+                    <fieldset>
+                      <legend style={{ fontWeight: 700 }}>Courses Available</legend>
+                      <table className={styles.tblcoursewksht} role="presentation">
+                        {/* <thead>
+                      <tr>
+                        <th></th><th>Name</th><th>Abbrev</th>
+                      </tr>
+                    </thead> */}
+                        <tbody>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}>
+                              <input type="radio" id="EngBegin" name="vacourse" value="EngBegin" className={styles.btnradiocourse} />
+                            </td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="EngBegin">
+                                Spoken English – Beginners
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>EngBegin</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="MobileTech" value="MobileTech" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="MobileTech">
+                                Mobile Technologies
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>MobileTech</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="CertCca" value="CertCca" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="CertCca">
+                                Certificate Course in Computer Applications(CCA)
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>CertCca</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="BasicBraille" value="BasicBraille" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="BasicBraille">
+                                Basic Braille
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>BasicBraille</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="JobCoaching" value="JobCoaching" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="JobCoaching">
+                                Job Coaching for Banking and other exams
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>JobCoach</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="Excel" value="Excel" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="Excel">
+                                Excel
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>Excel</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="EngInter" value="EngInter" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="EngInter">
+                                Spoken English - Intermediate Level
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>EngInter</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="DigAccTesting" value="DigAccTesting" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="DigAccTesting">
+                                Digital Accessibility Testing
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>DigAccTest</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="CorpSkills" value="CorpSkills" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="CorpSkills">
+                                Corporate Skills Development
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>CorpSkills</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="Python" value="Python" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="Python">
+                                Python
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>Python</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="WebARIA" value="WebARIA" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="WebARIA">
+                                HTML, CSS, JavaScript, and ARIA Fundamentals for Accessible Web Development
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>WebARIA</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="DiplomaDCA" value="DiplomaDCA" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="DiplomaDCA">
+                                Diploma Course in Computer Applications (DCA)
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>DiplDCA</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="LifeSkills" value="LifeSkills" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="LifeSkills">
+                                Life Skills
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>LifeSkills</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="RightsPWD" value="RightsPWD" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="RightsPWD">
+                                Rights of Persons with Disabilities
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>RightsPWD</td>
+                          </tr>
+                          <tr className={styles.regrow}>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="AndroidLowVis" value="AndroidLowVis" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="AndroidLowVis">
+                                Android: Low-Vision Series
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>AndroidLV</td>
+                          </tr>
+                          <tr>
+                            <td className={styles.inputtd}><input type="radio" name="vacourse" id="TalkbackSeries" value="TalkbackSeries" className={styles.btnradiocourse} /></td>
+                            <td className={styles.inputlabelcourses}>
+                              <label htmlFor="TalkbackSeries">
+                                Listen with Talkback series
+                              </label>
+                            </td>
+                            <td className={styles.tblcrsabbrev}>Talkback</td>
+                          </tr>
+                        </tbody>
                       </table>
                     </fieldset>
                   </div>
-                  {/*------------- CARD: COURSES ENDS ------------*/}
+                  {/*------------- CARD: COURSES LIST ENDS -------------*/}
+
 
                   {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
                   <div className={styles.card}>
@@ -568,7 +767,6 @@ export default function Page() {
                             id="visual_acuity"
                             className={styles.txtboxdropdown}
                             onSelectionChange={setSelectedVision}
-                            required
                           >
                             <optgroup label="Visual Acuity">
                               <option value="LowVision">Low Vision</option>
@@ -582,6 +780,7 @@ export default function Page() {
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="percent_loss">
+                            {/* FRM EL #18/21 */}
                             Percent of vision loss
                           </label>
                           <span className={styles.requiredelement}>&#42;</span>
@@ -593,7 +792,6 @@ export default function Page() {
                             name="percent_loss"
                             placeholder="1-99"
                             type="text"
-                            required
                           />
                         </td>
                       </tr>
@@ -677,8 +875,9 @@ export default function Page() {
               </span>
             </a>
           </footer>
-
+          
         </div>    {/* Container closing tag */}
+
       </>
     </NextUIProvider>
     //)
