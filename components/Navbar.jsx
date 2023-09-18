@@ -13,10 +13,10 @@ const MENU_LIST = [
   // { text: 'Home', href: '/' },
   // { text: 'About Us', href: '/about' }, Spring 2022 student team
 
-  {
-    text: "TestReg",
-    href: "/testreg"
-  },
+  // {
+  //   text: "TestReg",
+  //   href: "/testreg"
+  // },
   {
     text: "Students",
     href: "/students",
