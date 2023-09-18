@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 /* Textbox tabbing focus border */
+.txtboxdropdown:focus,
 .reginput:focus,
+.regtextarea:focus,
 .inputcrschoice:focus,
 .btnsubmitcrschoice:focus,
 .btngetsfocus:focus,
