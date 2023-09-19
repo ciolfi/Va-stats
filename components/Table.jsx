@@ -37,6 +37,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		await onEditSave(editedBatch);
 		setEditId(null);
 		setEditedBatch(null);
+		orig.current = JSON.parse(JSON.stringify(data));
 	}
 
 	function onEditClick(rowData) {
@@ -55,12 +56,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		setEditedBatch((prev) => {
 			return {
 				...prev,
-				[name]: value,
+				[name]: Number(value),
 			};
 		});
 		setData((prev) => {
 			const found = prev.find((rowData) => rowData.id === editedBatch.id);
-			found[name] = value;
+			found[name] = Number(value);
 			return prev;
 		});
 	};

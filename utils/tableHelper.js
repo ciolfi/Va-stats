@@ -12,17 +12,17 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 				if (column.isAttendance) {
 					cellContent = (
 						// <select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '0'}  onChange={(e) => changeHandler(e, column.accessor)}>
-						<select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '1'}  onChange={(e) => changeHandler(e, column.accessor)}>
+						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, column.accessor)}>
 							{column.availableValues.map((value) => {
 								if (Number(value) == 1) {
 									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Present" }</option>;
-									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "P" }</option>;
+									return <option key={value} value={Number(value)}>{ "P" }</option>;
 								} else if (Number(value) == 0) {
 									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Absent" }</option>;
-									return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "A" }</option>;
+									return <option key={value} value={Number(value)}>{ "A" }</option>;
 								} else if (!value) {
 									// return <option key={"0"} value={"0"} selected={true}>{ "Absent" }</option>;
-									return <option key={"1"} value={"1"} selected={true}>{ "P" }</option>;
+									return <option key={"1"} value={1}>{ "P" }</option>;
 								}
 						})}
 						</select>
