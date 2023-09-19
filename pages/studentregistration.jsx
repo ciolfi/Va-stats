@@ -401,7 +401,7 @@ export default function Page() {
                           {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
                         </tr>
 
-                        <tr className={styles.regrow}>
+                        {/* <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="objectives">
                               Learning goal(s)
@@ -422,7 +422,58 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="trainer_name">
-                              {/* FRM EL #13/21 */}
+                              {/* FRM EL #13/21 
+                              Trainer name
+                            </label>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <input
+                              className={styles.reginput}
+                              placeholder="Firstname Lastname"
+                              type="text"
+                              id="trainer_name"
+                              name="trainer_name"
+                            />
+                          </td>
+                        </tr> */}
+                      </tbody>
+                    </table>
+                  </div>
+                  {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
+
+                  {/*------------- CARD: COURSES BEGINS -----------*/}
+                  <div
+                    className={styles.card}
+                  >
+                    <h2>
+                      Learning
+                    </h2>
+
+                    {/*-------------- Learning Context -----------*/}
+                    <fieldset className={styles.fdsetlearning}>
+                      <legend style={{ fontWeight: 700 }}>Learning Context</legend>
+                      <table className={styles.tblchoosecourses} role="presentation">
+                        <tr className={styles.regrow}>
+                          <td className={styles.tdlblcrschoice}>
+                            <label htmlFor="objectives">
+                              Goal(s)
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <input
+                              type="text"
+                              id="objectives"
+                              name="objectives"
+                              className={styles.reginput}
+                              placeholder="300-char max"
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr className={styles.regrow}>
+                          <td className={styles.tdlblcrschoice}>
+                            <label htmlFor="trainer_name">
                               Trainer name
                             </label>
                           </td>
@@ -436,19 +487,11 @@ export default function Page() {
                             />
                           </td>
                         </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
+                      </table>
+                    </fieldset>
 
-                  {/*------------- CARD: COURSES BEGINS -----------*/}
-                  <div
-                    className={styles.card}
-                  >
-                    <h2>
-                      Choose courses
-                    </h2>
-                    <fieldset>
+                    {/*-------------- Course choices -------------*/}
+                    <fieldset className={styles.fdsetlearning}>
                       <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
 
