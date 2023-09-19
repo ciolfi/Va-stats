@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
 import Router from "next/router";                   // popup confirmation
-import styles from "../styles/TestReg.module.css";
+import styles from "../styles/StudentReg.module.css";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
 

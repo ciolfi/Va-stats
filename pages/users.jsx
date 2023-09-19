@@ -1,6 +1,8 @@
 /* When host is changed: Change values in
 'API SECTIONS' below */
 
+"use client";
+
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';

@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started!
 
 Follow instructions in Developer Guide for setting up the local development environment.
 
@@ -61,3 +61,8 @@ PAGES FOLDER: files requiring mods to API routes:
 
 NOTE REGARDING BATCH ATTENDANCE DROPDOWN:
   - This can be edited in /utils/tableHelper.js
+
+## Errors
+  - Can't log out? If you get an error preventing you from logging out: 
+please modify the /components/Navbar.jsx file per comments 
+at the top of the file.

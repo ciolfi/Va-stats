@@ -1,3 +1,10 @@
+/* 
+To avoid inability to logout (CSRF logout errors involving a Promise object), include:
+'use client', and 'code that switches buttons' section in ln 122 region below.
+*/
+
+"use client";
+
 import Link from 'next/link';
 import pwaicon from '@/public/pwa-icon.png';
 import Image from 'next/image';
@@ -8,7 +15,6 @@ import Button from './Button';
 import styles from '../styles/Navbar.module.css';
 import Head from 'next/head';
 
-// NOTE: target=_blank does not currently work (7/7/2023)
 const MENU_LIST = [
   // { text: 'Home', href: '/' },
   // { text: 'About Us', href: '/about' }, Spring 2022 student team
@@ -116,13 +122,15 @@ const Navbar = (user_role) => {
             </div>
           ))}
 
+          {/* Code that switches buttons, depending on whether 
+          you're logged in */}
           {!session ? (
             <Button text={'Sign in with Google'} iconSrc={'/icons/google-logo.svg'} onClick={() => signIn('google')} isLight={true} />
           ) : (
             <>
               <p className={styles.topRightText}>Signed in as {user_role.user_role} : {session.user.email}</p>
-              {/* <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} /> */}
-              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '{NEXT_PUBLIC_BASE_URL}' })} isLight={true} className={styles.btnlogout} />
+              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} />
+              {/* <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '{NEXT_PUBLIC_BASE_URL}' })} isLight={true} className={styles.btnlogout} /> */}
             </>
           )}
 
