@@ -498,7 +498,7 @@ export default function Page() {
                         {/*----------- 1st choice ----------*/}
                         <tr>
                           <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="textboxfirstchoice">
+                            <label htmlFor="first_choice">
                               1st choice
                             </label>
                           </td>
@@ -518,7 +518,7 @@ export default function Page() {
                         {/*----------- 2nd choice ----------*/}
                         <tr>
                           <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="textboxsecondchoice">
+                            <label htmlFor="second_choice">
                               2nd choice
                             </label>
                           </td>
@@ -538,7 +538,7 @@ export default function Page() {
                         {/*----------- 3rd choice ----------*/}
                         <tr>
                           <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="textboxthirdchoice">
+                            <label htmlFor="third_choice">
                               3rd choice
                             </label>
                           </td>
