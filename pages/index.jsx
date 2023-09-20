@@ -84,7 +84,7 @@ export default function Home() {
 
               <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
                 <h2>About &rarr;</h2>
-                <p>Learn about about our organization.</p>
+                <p>Learn about our organization.</p>
               </a>
 
               <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
