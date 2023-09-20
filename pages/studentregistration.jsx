@@ -139,6 +139,9 @@ export default function Page() {
             <div className={styles.title}>
               <h1>Student Registration</h1>
             </div>
+            <div className={styles.studregcrsesinfo}>
+              <a href="https://visionaid.org/educate" target="_blank">Courses - Details</a>
+            </div>
             <div>
               {/* Avoid hydration errors with code below; may not work.
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
@@ -635,7 +638,6 @@ export default function Page() {
                             className={styles.reginput}
                             id="percent_loss"
                             name="percent_loss"
-                            placeholder="1-99"
                             type="text"
                             required
                           />
