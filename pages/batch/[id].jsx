@@ -9,6 +9,7 @@ import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 import Head from 'next/head';
 import Table from "@/components/Table";
+import TableCol from "@/components/TableCol";
 import Image from 'next/image';
 
 function formatDate(isoDateString) {
@@ -99,6 +100,11 @@ export default function Page() {
     }
     setContentLoading(false);
   };
+
+  const updateGradeBatch = async (batch) => {
+    batch.forEach((student) => {updateGrade(student)});
+  }
+
   useEffect(() => {
     fetchUnassignedStudents(id);
   }, [id]);
@@ -225,10 +231,11 @@ export default function Page() {
           availableValues: [1, 0],
           isAttendance: true,
           isRotatedTh: true,
+          isSortable: false,
         });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
   };
 
@@ -297,6 +304,10 @@ export default function Page() {
       console.error(error.message);
     }
   };
+
+  const updateAttendanceBatch = async (batch) => {
+    batch.forEach((student) => {updateAttendance(student)});
+  }
 
   useEffect(() => {
     setAttendanceColumn(() => {
@@ -462,12 +473,12 @@ export default function Page() {
             </div>
             
             {attendanceColumn.length > 0 ?
-              <Table columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendance} />
+              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} />
               : <></>
             }
 
             {gradesColumn.length > 0 ?
-              <Table columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGrade} />
+              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} />
               : <></>
             }
           </div>

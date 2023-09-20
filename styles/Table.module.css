@@ -160,7 +160,7 @@ look right (not sure if that's right).  */
   cursor: pointer;
   margin-right: 0.3rem;
   margin-bottom: 5px;
-  float: right;
+  float: left;
 }
 
 .genericTableHeader {

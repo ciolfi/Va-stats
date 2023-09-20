@@ -57,6 +57,53 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 	return cell;
 }
 
+export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName) {
+	const cell = [];
+	console.log(inputClassName);
+	for (const column of columns) {
+		let cellContent = null;
+		if (column === editId && column.accessor !== 'id') {
+			if (column.type === 'enum') {
+				if (column.isAttendance) {
+					cellContent = (
+						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, rowData.id)}>
+							{column.availableValues.map((value) => {
+								if (Number(value) == 1) {
+									return <option key={value} value={Number(value)}>{ "P" }</option>;
+								} else if (Number(value) == 0) {
+									return <option key={value} value={Number(value)}>{ "A" }</option>;
+								} else if (!value) {
+									return <option key={"1"} value={1}>{ "P" }</option>;
+								}
+							})}
+						</select>
+					);
+				} else {
+					cellContent = (
+						<select className={inputClassName} name={column.accessor} onChange={(e) => changeHandler(e, rowData.id)}>
+							{column.availableValues.map((value) => <option key={value} value={value} selected={rowData[column.accessor] === value}>{value}</option>)}
+						</select>
+					);
+				}
+			} else {
+				cellContent = <input className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]} onInput={(e) => changeHandler(e, rowData.id)}/>;
+			}
+		} else {
+			if (column.isAttendance) {
+				if (Number(rowData[column.accessor]) == 1) {
+					cellContent = <p>{"P"}</p>;
+				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
+					cellContent = <p>{"A"}</p>;
+				}
+			} else {
+				cellContent = <p>{rowData[column.accessor]}</p>;
+			}
+		}
+		cell.push(<td key={column.accessor}>{cellContent}</td>);
+	}
+	return cell;
+}
+
 export function sortTable(columnName, data, sortAsc) {
 	if (!columnName) {
 		return data;
