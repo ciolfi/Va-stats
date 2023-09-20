@@ -150,7 +150,7 @@ export default function Page() {
                     className={styles.card}
                   >
                     <h2>
-                      Trainee/Trainer
+                      Trainee
                     </h2>
                     <table className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                       {/* <thead>
@@ -354,7 +354,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="employment_status">
-                              Employment status
+                              Employment/student
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
@@ -395,6 +395,7 @@ export default function Page() {
                               <optgroup label="EmpStatus">
                                 <option value="Employed">Employed</option>
                                 <option value="Unemployed">Unemployed</option>
+                                <option value="Student">Student</option>
                               </optgroup>
                             </select>
                           </td>
