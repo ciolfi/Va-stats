@@ -32,6 +32,8 @@
 
 .studregcrsesinfo {
   color: blue;
+  font-size: 1.2em;
+  font-weight: 500;
   left: 0.5em;
   position: relative;
 }
