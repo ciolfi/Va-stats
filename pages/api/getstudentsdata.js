@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   });
 
   try {
-    const query = "SELECT id, email, name, phone_number, alt_ph_num, city, state, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice,third_choice,visual_acuity, percent_loss,impairment_history,source, registration_date FROM vastudents";
+    const query = "SELECT id, email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, employment_status, objectives, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date FROM vastudents";
 
     const values = [];
     const [data] = await dbconnection.execute(query, values);

@@ -269,10 +269,10 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              type="text"
+                              className={styles.reginput}
                               id="country"
                               name="country"
-                              className={styles.reginput}
+                              type="text"
                               required
                             />
                           </td>
