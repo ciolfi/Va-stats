@@ -9,7 +9,7 @@ import React from "react";
 import Router from "next/router";                   // popup confirmation
 import styles from "../styles/StudentReg.module.css";
 import { useForm } from "react-hook-form";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 /*------- Imports for possible future use: --------*/
@@ -32,6 +32,33 @@ export default function Page() {
 
   const [contentLoading, setContentLoading] = useState(false);
   // const [contentLoading, setContentLoading] = useState(true);
+  const [courseResponse, setCourseResponse] = useState(() => []);
+  const [courseOptions, setCourseOptions] = useState(() => []);
+
+  const getCourseData = async () => {
+    setContentLoading(true);
+    const apiUrlEndpoint = `api/getcoursesdata`;
+    const response = await fetch(apiUrlEndpoint);
+    const res = await response.json();
+    setCourseResponse(res.courses);
+    setContentLoading(false);
+  };
+
+  const getCourseOptions = () => {
+    const options = [];
+    courseResponse.map(course => {
+      options.push(<option value={course.course}>{course.course}</option>);
+    });
+    setCourseOptions(options);
+  };
+
+  useEffect(() => {
+    getCourseOptions();
+  }, [courseResponse]);
+
+  useEffect(() => {
+    getCourseData();
+  }, []);
 
   /*-------------- DROPDOWNS BEGIN -----------*/
   // GENDER
@@ -526,13 +553,7 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <select name="first_choice" id="first_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
+                            {courseOptions}
                             </select>
                           </td>
                         </tr>
@@ -546,13 +567,7 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <select name="second_choice" id="second_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
+                            {courseOptions}
                             </select>
                           </td>
                         </tr>
@@ -566,13 +581,7 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <select name="third_choice" id="third_choice" className={styles.reginput}>
-                              <option value="Python">Python</option>
-                              <option value="C">C</option>
-                              <option value="C++">C++</option>
-                              <option value="PHP">PHP</option>
-                              <option value="HTML">HTML</option>
-                              <option value="Mobile Tech">Mobile Tech</option>
-                              <option value="CSS">CSS</option>
+                            {courseOptions}
                             </select>
                           </td>
                         </tr>
