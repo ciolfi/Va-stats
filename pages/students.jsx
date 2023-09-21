@@ -178,6 +178,10 @@ export default function Page() {
       accessor: 'state',
     },
     {
+      name: 'Country',
+      accessor: 'country',
+    },
+    {
       name: 'Gender',
       accessor: 'gender',
       // type: 'enum',

@@ -148,7 +148,7 @@ export default function Page() {
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autoComplete="off">
                 <div className={styles.grid}>
 
-                  {/*------- CARD: TRAINEE/TRAINER BEGINS -------*/}
+                  {/*------- CARD: TRAINEE -------*/}
                   <div
                     className={styles.card}
                   >
@@ -260,6 +260,23 @@ export default function Page() {
                             />
                           </td>
                         </tr>
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="country">
+                              Country
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <input
+                              type="text"
+                              id="country"
+                              name="country"
+                              className={styles.reginput}
+                              required
+                            />
+                          </td>
+                        </tr>
 
                         {/*---------- GENDER DROPDOWN BEGINS -----*/}
                         <tr className={styles.regrow}>
@@ -357,8 +374,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="employment_status">
-                              Employment/student
-                            </label>
+                              Job status                            </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
@@ -465,17 +481,19 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input
-                              type="text"
+                            <textarea
+                              className={styles.regtextareagoals}
+                              // cols="10"
                               id="objectives"
                               name="objectives"
-                              className={styles.reginput}
-                              placeholder="300-char max"
+                              placeholder="200-char max"
+                              // rows="8"
+                              width="100%"
                               required
                             />
                           </td>
                         </tr>
-                        <tr className={styles.regrow}>
+                        {/* <tr className={styles.regrow}>
                           <td className={styles.tdlblcrschoice}>
                             <label htmlFor="trainer_name">
                               Trainer name
@@ -490,7 +508,7 @@ export default function Page() {
                               name="trainer_name"
                             />
                           </td>
-                        </tr>
+                        </tr> */}
                       </table>
                     </fieldset>
 
@@ -655,7 +673,7 @@ export default function Page() {
                             name="impairment_history"
                             id="impairment_history"
                             placeholder='300-char max'
-                            className={styles.regtextarea}
+                            className={styles.regtextareaimpair}
                             rows="10"
                             cols="20">
                           </textarea>

@@ -13,10 +13,10 @@ export default async function handler(req, res) {
     const currentDate = new Date();
     const data = await executeQuery({
       /*- COLS: 19 (not including: id, registration_date) -*/
-      query: "INSERT INTO vastudents (email, name, phone_number, alt_ph_num, city, state, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-      values: [body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.gender, body.age, body.edu_qualifications, body.employment_status, body.objectives, body.trainer_name, body.first_choice, body.second_choice, body.third_choice, body.visual_acuity, body.percent_loss, body.impairment_history, body.source, currentDate],
+      query: "INSERT INTO vastudents (email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, employment_status, objectives, trainer_name, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      values: [body.email, body.name, body.phone_number, body.alt_ph_num, body.city, body.state, body.country, body.gender, body.age, body.edu_qualifications, body.employment_status, body.objectives, body.trainer_name, body.first_choice, body.second_choice, body.third_choice, body.visual_acuity, body.percent_loss, body.impairment_history, body.source, currentDate],
     });
-
+    console.log("Query values submitted: " + values);
   } catch (error) {
     console.log(error);
   }

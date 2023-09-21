@@ -5,7 +5,8 @@
 /* Textbox tabbing focus border */
 .txtboxdropdown:focus,
 .reginput:focus,
-.regtextarea:focus,
+.regtextareagoals:focus,
+.regtextareaimpair:focus,
 .inputcrschoice:focus,
 .btnsubmitcrschoice:focus,
 .btngetsfocus:focus,
@@ -104,9 +105,16 @@ Does not include:
   width: 100%;
 }
 
-.regtextarea {
+.regtextareagoals {
+  border: 2px solid black;
+  height: 6em;
+  width: 100%;
+}
+
+.regtextareaimpair {
   border: 2px solid black;
   height: 10em;
+  width: 100%;
 }
 
 .txtboxdropdown {
@@ -431,8 +439,12 @@ Does not include:
   }
 
   .reginput {
-    /* border: 3px solid black; */
     padding-left: 1em;
+    width: 100%;
+  }
+
+  .txtboxdropdown {
+    width: 100%;
   }
 
   /* Dropdown button */
@@ -467,6 +479,12 @@ Does not include:
     width: 90vw; 
   }
 
+  /* .cardtrainee {
+    padding: 1rem 0.5rem;
+    padding-right: 0em;
+    width: 90vw; 
+  } */
+
   .card h2 {
     margin-bottom: 0.5rem;
   }
@@ -480,7 +498,7 @@ Does not include:
     width: 11em;
   }
 
-  .regtextarea {
+  .regtextareagoals, .regtextareaimpair {
     width: 11em;
   }
 
