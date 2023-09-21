@@ -102,8 +102,8 @@ export default function Page() {
   };
 
   const updateGradeBatch = async (batch) => {
-    batch.forEach((student) => {updateGrade(student)});
-  }
+    batch.forEach((student) => {updateGrade(student);});
+  };
 
   useEffect(() => {
     fetchUnassignedStudents(id);
@@ -306,8 +306,8 @@ export default function Page() {
   };
 
   const updateAttendanceBatch = async (batch) => {
-    batch.forEach((student) => {updateAttendance(student)});
-  }
+    batch.forEach((student) => {updateAttendance(student);});
+  };
 
   useEffect(() => {
     setAttendanceColumn(() => {
