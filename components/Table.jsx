@@ -37,6 +37,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		await onEditSave(editedBatch);
 		setEditId(null);
 		setEditedBatch(null);
+		orig.current = JSON.parse(JSON.stringify(data));
 	}
 
 	function onEditClick(rowData) {
@@ -55,12 +56,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		setEditedBatch((prev) => {
 			return {
 				...prev,
-				[name]: value,
+				[name]: Number(value),
 			};
 		});
 		setData((prev) => {
 			const found = prev.find((rowData) => rowData.id === editedBatch.id);
-			found[name] = value;
+			found[name] = Number(value);
 			return prev;
 		});
 	};
@@ -106,7 +107,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									width={width}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
-									{isMatch ?
+									{column.isRotatedTh && !column.isFirstColumn ?
 										<div className={styles.rotatedth}>	
 											<span className={styles.rotatedthlabel}>
 												{column.name}
@@ -124,7 +125,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						})}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
 						{isDelete || isEditable? 
-						<th className={styles.actionscolheading} width={'8%'}>
+						<th className={styles.actionscolheading} width={'100px'}>
 							Actions
 						</th> : <></>}
 					</tr>

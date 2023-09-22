@@ -9,6 +9,7 @@ import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 import Head from 'next/head';
 import Table from "@/components/Table";
+import TableCol from "@/components/TableCol";
 import Image from 'next/image';
 
 function formatDate(isoDateString) {
@@ -99,6 +100,11 @@ export default function Page() {
     }
     setContentLoading(false);
   };
+
+  const updateGradeBatch = async (batch) => {
+    batch.forEach((student) => {updateGrade(student);});
+  };
+
   useEffect(() => {
     fetchUnassignedStudents(id);
   }, [id]);
@@ -224,10 +230,12 @@ export default function Page() {
           type: 'enum',
           availableValues: [1, 0],
           isAttendance: true,
+          isRotatedTh: true,
+          isSortable: false,
         });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
   };
 
@@ -269,10 +277,10 @@ export default function Page() {
         assignmentNames.add(grade.assignment_name);
       });
       assignmentNames.forEach((assignmentName) => {
-        res.push({ name: assignmentName, accessor: assignmentName });
+        res.push({ name: assignmentName, accessor: assignmentName, isRotatedTh: false });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh: false });
     return res;
   };
 
@@ -295,6 +303,10 @@ export default function Page() {
     } catch (error) {
       console.error(error.message);
     }
+  };
+
+  const updateAttendanceBatch = async (batch) => {
+    batch.forEach((student) => {updateAttendance(student);});
   };
 
   useEffect(() => {
@@ -461,12 +473,12 @@ export default function Page() {
             </div>
             
             {attendanceColumn.length > 0 ?
-              <Table columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendance} />
+              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} />
               : <></>
             }
 
             {gradesColumn.length > 0 ?
-              <Table columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGrade} />
+              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} />
               : <></>
             }
           </div>

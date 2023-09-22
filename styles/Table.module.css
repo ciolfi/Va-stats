@@ -64,8 +64,9 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right (not sure if that's right).  */
 .rotatedth {
-  height: 20vh;
-  margin-top: 1em;
+  height: 70px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   position: relative;
   vertical-align: bottom;
   width: auto;
@@ -102,7 +103,9 @@ look right (not sure if that's right).  */
   border: 3px solid brown;
   border-bottom: 0.7em solid transparent;
   position: relative;
-  vertical-align: bottom;
+  vertical-align: middle;
+  padding-right: 5px !important;
+  text-align:right !important;
 }
 
 /* ---------- TABLE HEADER ENDS --------- */
@@ -156,7 +159,8 @@ look right (not sure if that's right).  */
 .actionItem {
   cursor: pointer;
   margin-right: 0.3rem;
-  text-align: left;
+  margin-bottom: 5px;
+  float: left;
 }
 
 .genericTableHeader {
