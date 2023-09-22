@@ -1,6 +1,3 @@
-/* When host is changed: Change values in
-'API SECTIONS' below */
-
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -87,8 +84,8 @@ export default function Page() {
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getStudentData = async () => {
       // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getstudentdetails`;
-      const apiUrlEndpoint = `http://localhost:3000/api/getstudentdetails`;
-      // const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL+`getstudentdetails`;
+      // const apiUrlEndpoint = `http://localhost:3000/api/getstudentdetails`;
+      const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getstudentdetails`;
       const postData = {
         method: "Post",
         headers: { "Content-Type": "application/json" },

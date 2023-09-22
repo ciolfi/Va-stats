@@ -184,8 +184,6 @@ export default function Page() {
     {
       name: 'Gender',
       accessor: 'gender',
-      // type: 'enum',
-      // availableValues: ['M', 'F', 'Other'],
       availableValues: ['Female', 'Male', 'Other'],
     },
     {
@@ -203,10 +201,6 @@ export default function Page() {
     {
       name: 'Learning Goals',
       accessor: 'objectives',
-    },
-    {
-      name: 'Trainer Name',
-      accessor: 'trainer_name',
     },
     {
       name: 'First Choice',
