@@ -147,92 +147,135 @@ export default function Page() {
   
   result = userResponse;
 
+  const tableHeight = '145px';
   const studentsColumns = [
     {
       name: 'Id',
       width: '4%',
       accessor: 'id',
+      isFirstColumn: true,
+      height: tableHeight,
     },
     {
       name: 'Email',
       accessor: 'email',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Name',
       accessor: 'name',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Phone Number',
       accessor: 'phone_number',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Alt Phone Number',
       accessor: 'alt_ph_num',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'City',
       accessor: 'city',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'State',
       accessor: 'state',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Country',
       accessor: 'country',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Gender',
       accessor: 'gender',
+      isRotatedTh: true,
+      height: tableHeight,
       availableValues: ['Female', 'Male', 'Other'],
     },
     {
       name: 'Birthdate',
       accessor: 'age',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Education History',
       accessor: 'edu_qualifications',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Employment Status',
       accessor: 'employment_status',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Learning Goals',
       accessor: 'objectives',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'First Choice',
       accessor: 'first_choice',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Second Choice',
       accessor: 'second_choice',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Third Choice',
       accessor: 'third_choice',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Visual Acuity',
       accessor: 'visual_acuity',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Percent Loss',
       accessor: 'percent_loss',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Impairment History',
       accessor: 'impairment_history',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Reference',
       accessor: 'source',
+      isRotatedTh: true,
+      height: tableHeight,
     },
     {
       name: 'Registration Date',
       accessor: 'registration_date',
+      isRotatedTh: true,
+      height: tableHeight,
       type: 'date',
     },
   ];

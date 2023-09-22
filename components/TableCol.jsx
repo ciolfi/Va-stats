@@ -93,7 +93,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 							{!column.isFirstColumn ?
 								<span>
 								{column.isRotatedTh ?
-									<div className={styles.rotatedth}>
+									<div className={styles.rotatedth} style={{ '--table-height-th':column.height }}>
 									<span className={styles.rotatedthlabel}>
 										{column.name}
 									</span>

@@ -64,7 +64,7 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right (not sure if that's right).  */
 .rotatedth {
-  height: 70px;
+  height: var(--table-height-th);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   position: relative;

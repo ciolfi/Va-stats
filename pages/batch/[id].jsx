@@ -232,6 +232,7 @@ export default function Page() {
           isAttendance: true,
           isRotatedTh: true,
           isSortable: false,
+          height: '70px',
         });
       });
     }

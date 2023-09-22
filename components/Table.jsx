@@ -108,7 +108,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{column.isRotatedTh && !column.isFirstColumn ?
-										<div className={styles.rotatedth}>	
+										<div className={styles.rotatedth} style={{ '--table-height-th':column.height }}>
 											<span className={styles.rotatedthlabel}>
 												{column.name}
 											</span>
