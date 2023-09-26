@@ -24,11 +24,12 @@ const MENU_LIST = [
   //   href: "/testreg"
   // },
   {
+    text: "Student Registration",
+    href: "/studentregistration",
+  },
+  {
     text: "Students",
     href: "/students",
-    submenu: [
-      { text: "Student Registration", href: "/studentregistration" },
-    ],
   },
   {
     text: "Batches",
