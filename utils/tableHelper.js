@@ -2,6 +2,14 @@
 THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
+const dateFields = ['registration_date', 'age'];
+function dateConverter(input){
+	if (input === null) {
+		return null;
+	}
+	var a = new Date(Date.parse(input));
+	return a.toLocaleDateString("en-US");
+}
 
 export function generateTableRow(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
@@ -49,7 +57,11 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 				cellContent = <p>{"A"}</p>;
 				}
 			} else {
-				cellContent = <p>{rowData[column.accessor]}</p>;
+				if (dateFields.includes(column.accessor)) {
+					cellContent = <p>{dateConverter(rowData[column.accessor])}</p>;
+				} else {
+					cellContent = <p>{rowData[column.accessor]}</p>;
+				}
 			}
 		}
 		cell.push(<td key={column.accessor}>{cellContent}</td>);
