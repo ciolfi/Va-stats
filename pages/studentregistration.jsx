@@ -33,7 +33,41 @@ export default function Page() {
   const [contentLoading, setContentLoading] = useState(false);
   // const [contentLoading, setContentLoading] = useState(true);
   const [courseResponse, setCourseResponse] = useState(() => []);
-  const [courseOptions, setCourseOptions] = useState(() => []);
+  const [courseOptions1, setCourseOptions1] = useState(() => []);
+  const [courseOptions2, setCourseOptions2] = useState(() => []);
+  const [courseOptions3, setCourseOptions3] = useState(() => []);
+
+  const [Option1, setOption1] = useState(() => []);
+  const [Option2, setOption2] = useState(() => []);
+  const [choiceChanged, setChoiceChanged] = useState(false);
+
+  const updateChoices = (e) => {
+    const { name, value } = e.target;
+    if (name === 'first_choice') {
+      setOption1(value);
+    } else if (name === 'second_choice') {
+      setOption2(value);
+    }
+    setChoiceChanged(!choiceChanged);
+  };
+
+  const updateOptions = () => {
+    const options2 = [];
+    courseResponse.map(course => {
+      if (course.course != Option1) {
+        options2.push(<option value={course.course}>{course.course}</option>);
+      }
+    });
+    setCourseOptions2(options2);
+
+    const options3 = [];
+    courseResponse.map(course => {
+      if (course.course != Option1 && course.course != Option2) {
+        options3.push(<option value={course.course}>{course.course}</option>);
+      }
+    });
+    setCourseOptions3(options3);
+  };
 
   const getCourseData = async () => {
     setContentLoading(true);
@@ -49,12 +83,13 @@ export default function Page() {
     courseResponse.map(course => {
       options.push(<option value={course.course}>{course.course}</option>);
     });
-    setCourseOptions(options);
+    setCourseOptions1(options);
+    updateOptions();
   };
 
   useEffect(() => {
     getCourseOptions();
-  }, [courseResponse]);
+  }, [courseResponse, choiceChanged]);
 
   useEffect(() => {
     getCourseData();
@@ -552,8 +587,9 @@ export default function Page() {
                             </label>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput}>
-                            {courseOptions}
+                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)}>
+                            <option></option>
+                            {courseOptions1}
                             </select>
                           </td>
                         </tr>
@@ -566,8 +602,9 @@ export default function Page() {
                             </label>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput}>
-                            {courseOptions}
+                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)}>
+                            <option></option>
+                            {courseOptions2}
                             </select>
                           </td>
                         </tr>
@@ -581,7 +618,8 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <select name="third_choice" id="third_choice" className={styles.reginput}>
-                            {courseOptions}
+                            <option></option>
+                            {courseOptions3}
                             </select>
                           </td>
                         </tr>
