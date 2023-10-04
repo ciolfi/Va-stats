@@ -10,6 +10,7 @@ import Router from "next/router";                   // popup confirmation
 import styles from "../styles/StudentReg.module.css";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 
 
 /*------- Imports for possible future use: --------*/
@@ -40,6 +41,21 @@ export default function Page() {
   const [Option1, setOption1] = useState(() => []);
   const [Option2, setOption2] = useState(() => []);
   const [choiceChanged, setChoiceChanged] = useState(false);
+
+  const refFirstChoice = useRef(null);
+  const refSource = useRef(null);
+
+  const textAreaHandleEnter = (e) => {
+    const { name, value } = e.target;
+    if (e.keyCode == 13 && !e.shiftKey) {
+      console.log(name);
+      if (name == 'objectives') {
+        refFirstChoice.current.focus();
+      } else if (name == 'impairment_history') {
+        refSource.current.focus();
+      }
+    }
+  };
 
   const updateChoices = (e) => {
     const { name, value } = e.target;
@@ -552,6 +568,7 @@ export default function Page() {
                               // rows="8"
                               width="100%"
                               required
+                              onKeyDown={(e) => textAreaHandleEnter(e)}
                             />
                           </td>
                         </tr>
@@ -587,7 +604,7 @@ export default function Page() {
                             </label>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)}>
+                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice}>
                             <option></option>
                             {courseOptions1}
                             </select>
@@ -722,7 +739,8 @@ export default function Page() {
                             placeholder='300-char max'
                             className={styles.regtextareaimpair}
                             rows="10"
-                            cols="20">
+                            cols="20"
+                            onKeyDown={(e) => textAreaHandleEnter(e)}>
                           </textarea>
                         </td>
                       </tr>
@@ -740,6 +758,7 @@ export default function Page() {
                             name="source"
                             placeholder="Internet, friend, etc."
                             type="textbox"
+                            ref={refSource}
                           />
                         </td>
                       </tr>
