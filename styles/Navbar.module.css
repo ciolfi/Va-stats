@@ -8,7 +8,7 @@
   font-size: 1rem;
   /* 1rem required for accessibility */
   /* Prevent overlapping by email address */
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
   position: absolute;
   right: 0.5rem;
   top: 0.1rem;
@@ -63,7 +63,7 @@
     /* font-size: 1rem; */
     /* 1rem required for accessibility */
     /* Prevent overlapping by email address */
-    padding-bottom: 2em;
+    padding-bottom: 5px;
     /* position: absolute;
     right: 0.5rem;
     top: 0.1rem; */

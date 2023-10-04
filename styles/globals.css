@@ -168,7 +168,7 @@ nav {
   flex-direction: column;
   font-weight: 500;
   min-height: calc(50vh - 60px);
-  padding: 24px 16px;
+  padding: 75px 16px 25px 16px;
   position: fixed;
   right: -288px;
   row-gap: 24px;
@@ -265,18 +265,18 @@ footer a {
     border: 0px solid red;
     /* padding-top: 1em; */
     /* position: relative; */
-    max-height: 70px;
+    /* max-height: 70px; */
     top: 7em;
     width: 60vw;
   }
 
   .nav__menu-list a {
     border: 0px solid cyan;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 5px;
+    padding-bottom: 5px;
     position: relative;
     max-height: 70px;
-    top: 1.5em;
+    /* top: 1.5em; */
     width: 60vw;
   }
 
