@@ -56,7 +56,7 @@ async function createAttendanceRecords(batch_id, student_id, coursestart, course
     try {
       await executeQuery({
         query: attendanceInsertQuery,
-        values: [batch_id, student_id, date, false],
+        values: [batch_id, student_id, date, true],
       });
     } catch (error) {
       console.log('Error inserting attendance record:', error);
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
 
     const coursestart = courseDatesResult[0][0].coursestart;
     const courseend = courseDatesResult[0][0].courseend;
-    const coursedays = courseDatesResult[0][0].coursedays.match(/(Su|M|T|W|Th|F|Sa)/g);
+    const coursedays = courseDatesResult[0][0].coursedays.split(/(?=[A-Z])/);
 
     await createAttendanceRecords(batchId, studentId, coursestart, courseend, coursedays);
 
