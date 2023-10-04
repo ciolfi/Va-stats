@@ -71,7 +71,6 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 
 export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
-	console.log(inputClassName);
 	for (const column of columns) {
 		let cellContent = null;
 		if (column === editId && column.accessor !== 'id') {
