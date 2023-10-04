@@ -79,7 +79,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
 			</div>
-			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
+			<table className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">
 				<thead>
 					<tr>
 					{columns.map((column) => {

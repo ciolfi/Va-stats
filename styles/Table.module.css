@@ -14,6 +14,7 @@
   position: sticky;
   table-layout: fixed;
   width: 100%;
+  max-height: 80%;
 }
 
 /* ---------- TABLE HEADER BEGINS --------- */
