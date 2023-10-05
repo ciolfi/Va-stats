@@ -48,6 +48,7 @@ export default function Page() {
   const textAreaHandleEnter = (e) => {
     const { name, value } = e.target;
     if (e.keyCode == 13 && !e.shiftKey) {
+      e.preventDefault();
       console.log(name);
       if (name == 'objectives') {
         refFirstChoice.current.focus();
