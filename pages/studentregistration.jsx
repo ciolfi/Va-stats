@@ -11,7 +11,7 @@ import styles from "../styles/StudentReg.module.css";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
-
+let worldData = require("../utils/countries+states.json");
 
 /*------- Imports for possible future use: --------*/
 // import { Dropdown } from "@nextui-org/react";
@@ -38,6 +38,9 @@ export default function Page() {
   const [courseOptions2, setCourseOptions2] = useState(() => []);
   const [courseOptions3, setCourseOptions3] = useState(() => []);
 
+  const [countriesOptions, setCountriesOptions] = useState(() => []);
+  const [stateOptions, setStateOptions] = useState(() => []);
+
   const [Option1, setOption1] = useState(() => []);
   const [Option2, setOption2] = useState(() => []);
   const [choiceChanged, setChoiceChanged] = useState(false);
@@ -49,7 +52,6 @@ export default function Page() {
     const { name, value } = e.target;
     if (e.keyCode == 13 && !e.shiftKey) {
       e.preventDefault();
-      console.log(name);
       if (name == 'objectives') {
         refFirstChoice.current.focus();
       } else if (name == 'impairment_history') {
@@ -110,6 +112,28 @@ export default function Page() {
 
   useEffect(() => {
     getCourseData();
+  }, []);
+
+  const updateCountriesOptions = () => {
+    const countries = [];
+    worldData.map(country => {
+      countries.push(<option value={country.name}>{country.name}</option>);
+    });
+    setCountriesOptions(countries);
+  };
+
+  const updateStateOptions = (e) => {
+    const { name, value } = e.target;
+    const statesList = [];
+    const statesRaw = worldData.find(country => country.name === value).states;
+    statesRaw.map(state => {
+      statesList.push(<option value={state.name}>{state.name}</option>);
+    });
+    setStateOptions(statesList);
+  };
+
+  useEffect(() => {
+    updateCountriesOptions();
   }, []);
 
   /*-------------- DROPDOWNS BEGIN -----------*/
@@ -307,6 +331,34 @@ export default function Page() {
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
+                            <label htmlFor="country">
+                              Country
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} required>
+                              <option></option>
+                              {countriesOptions}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="state">
+                              State
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <select name="state" id="state" className={styles.reginput} required>
+                              <option></option>
+                              {stateOptions}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
                             <label htmlFor="city">
                               City
                             </label>
@@ -318,40 +370,6 @@ export default function Page() {
                               id="city"
                               name="city"
                               className={styles.reginput}
-                              required
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="state">
-                              State
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              type="text"
-                              id="state"
-                              name="state"
-                              className={styles.reginput}
-                              required
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="country">
-                              Country
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              id="country"
-                              name="country"
-                              type="text"
                               required
                             />
                           </td>
