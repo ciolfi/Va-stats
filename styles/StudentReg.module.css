@@ -245,7 +245,7 @@ Does not include:
 /* div containing form submit and form reset btns */
 .frmbtnblocksubres {
   float: right;
-  height: 8em;
+  height: 4.5em;
   position: relative;
   width: 11em;
 }
@@ -263,7 +263,7 @@ Does not include:
   font-size: var(--buttonva-fontsize);
   font-weight: 700;
   height: var(--buttonva-height);
-  overflow: auto;
+  /* overflow: auto; */
   padding: var(--buttonva-padding);
   width: 9.4em;
 }
@@ -281,7 +281,7 @@ Does not include:
   padding: var(--buttonva-padding);
   position: absolute;
   right: 0;
-  width: var(--buttonva-width);
+  width: 9.4em;
 }
 
 .btnregdropdown {
