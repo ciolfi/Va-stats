@@ -23,12 +23,54 @@ To view this, see /pages/students.jsx */
   text-align: center;
 }
 
+/* Staff pg: title text: 'All Vision Aid Staff */
 .subtitlenonhm {
   font-size: 1.8rem;
-  margin-bottom: 1em;
-  margin-top: 1em;
+  /* Increase below value as needed 
+  for increased column height */
+  margin-top: 0.5em;
   text-align: center;
 }
+
+
+/*--------------- 'Staff' page BEGINS ---------------*/
+
+/* On Staff page, after clicking 
+'New VA Staff' button, this is the form
+under 'Add New Staff Member */
+.addstaffforminputs {
+  margin-top: -4em;
+  padding-top: 0em;
+  position: relative;
+  top: 2em;
+}
+
+/* FORM: ADD STAFF: Input labels */
+.addstafflabel {
+  display: inline-block;
+  margin-right: 0em;
+  text-align: right;
+  width: 50%;
+}
+
+/* FORM: ADD STAFF: Input boxes */
+.addstaffforminputsbox {
+  width: 50%;
+}
+
+.staffformbutton {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  float: right;
+  margin: 0 1em;
+  margin-bottom: 1em;
+  padding: 0.2em;
+  position: relative;
+  top: -2em;
+}
+
+/*--------------- 'Staff' page ENDS ---------------*/
+
 
 .batchWarning {
   color: red;
@@ -297,6 +339,9 @@ div .menubutton {
   padding: 1em 0em;
 }
 
+/* Used in 
+- 'Create New Batch' form 
+- 'Original Student Reg.' form (no longer used) */
 .studentsformbutton {
   border: 1px solid black;
   border-radius: 0.5em;
@@ -437,8 +482,12 @@ div .menubutton {
 .addstaffform {
   border: 1px solid black;
   border-radius: 10px;
-  margin-top: 14em; /* 10 > 12 */
-  padding: 1.5rem;
+  height: auto;
+  margin-bottom: 0.5em;
+  /* TO AVOID OVERLAP:display: 
+  Increase below value if more inputs added */
+  margin-top: 56em;
+  padding: 0.5em 1.5em; 
 }
 
 .studentapplicationform {
