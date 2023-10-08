@@ -14,11 +14,11 @@ export default async function handler(req, res) {
     try {
       const query = `
         UPDATE vausers
-        SET email = ?, firstname = ?, lastname = ?, role = ?, isactive = ?
+        SET email = ?, firstname = ?, lastname = ?, designation = ?, joindate = ?, mobilenumber = ?, workbase = ?, supervisor = ?, natureofjob = ?, visualacuity = ?, trainingprogram1 = ?, trainingprogram2= ?, trainingprogram3 = ?, role = ?, isactive = ?, action = ?
         WHERE id = ?;
       `;
 
-      const values = [email, firstname, lastname, role, isactive, id];
+      const values = [email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action, id];
       await dbconnection.execute(query, values);
       res.status(200).json({ message: 'User updated successfully' });
       dbconnection.end();

@@ -188,7 +188,7 @@ export default function Page() {
       name: 'Role',
       accessor: 'role',
       type: 'enum',
-      availableValues: ['Staff', 'Management', 'Administrator'],
+      availableValues: ['STAFF', 'MANAGEMENT', 'ADMINISTRATOR'],
     }, {
       name: 'Active',
       accessor: 'isactive',
@@ -211,8 +211,7 @@ export default function Page() {
       </div>
     );
   } else {
-    // if ((result[0].role === 'MANAGEMENT' && result[0].isactive === 1)) {
-    if ((result[0].role === 'Management' && result[0].isactive === 1)) {
+    if ((result[0].role === 'MANAGEMENT' && result[0].isactive === 1)) {
       return (
         <>
           <div className={styles.mynavbar}>
@@ -354,9 +353,9 @@ export default function Page() {
 
                       <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
                       <select type='text' className={styles.addstaffforminputsbox} id='role' name='role' required>
-                        <option value='Staff'>Staff</option>
-                        <option value='Management'>Management</option>
-                        <option value='Administrator'>Administrator</option>
+                        <option value='STAFF'>Staff</option>
+                        <option value='MANAGEMENT'>Management</option>
+                        <option value='ADMINISTRATOR'>Administrator</option>
                       </select><br /><br />
 
                       <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>

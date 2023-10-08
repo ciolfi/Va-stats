@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     password: process.env.MYSQL_PASSWORD,
   });
   try {
-    const query = "SELECT id, email, firstname, lastname, role, isactive FROM vausers";
+    const query = "SELECT id, email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action FROM vausers";
 
     const values = [];
     const [data] = await dbconnection.execute(query, values);
