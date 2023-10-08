@@ -337,11 +337,11 @@ export default function Page() {
 
                       {/* NEW */}
                       <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' required /><br /><br />
+                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' required />&nbsp;<br />
 
                       {/* NEW */}
                       <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' required /><br /><br />
+                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' required />&nbsp;<br />
 
                       {/* Changed options wording; switched to dropdown */}
                       {/* <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
