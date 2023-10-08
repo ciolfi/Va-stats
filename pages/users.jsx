@@ -149,13 +149,52 @@ export default function Page() {
       name: 'Last Name',
       accessor: 'lastname',
     }, {
+      name: 'Designation',
+      accessor: 'designation',
+      type: 'enum',
+      availableValues: ['Trainer', 'Teaching Assistant', 'Program Coordinator', 'Telecaller', 'Training Coordinator', 'Program Manager', 'Sr. Trainer', 'L & D Executive', 'Head of Training'],
+    }, {
+      name: 'Date of Joining',
+      accessor: 'joindate',
+    }, {
+      name: 'Mobile Number',
+      accessor: 'mobilenumber',
+    }, {
+      name: 'Work Base',
+      accessor: 'workbase',
+    }, {     
+      name: 'Supervisor',
+      accessor: 'supervisor',
+    }, {
+      name: 'Nature of Job',
+      accessor: 'natureofjob',
+      type: 'enum',
+      availableValues: ['Part time', 'Full time'],
+    }, {
+      name: 'Visual Acuity',
+      accessor: 'visualacuity',
+      type: 'enum',
+      availableValues: ['Blind', 'Low Vision', 'Sighted'],
+    }, {
+      name: 'Training Program 1',
+      accessor: 'trainingprogram1',
+    }, {
+      name: 'Training Program 2',
+      accessor: 'trainingprogram2',
+    }, {
+      name: 'Training Program 3',
+      accessor: 'trainingprogram3',
+    }, {
       name: 'Role',
       accessor: 'role',
       type: 'enum',
-      availableValues: ['MANAGEMENT', 'PM', 'ADMINISTRATOR'],
+      availableValues: ['Staff', 'Management', 'Administrator'],
     }, {
       name: 'Active',
       accessor: 'isactive',
+    }, {
+      name: 'Action',
+      accessor: 'action',
     },
   ];
 
@@ -241,20 +280,20 @@ export default function Page() {
                       <input type='text' className={styles.addstaffforminputsbox} id='firstname' name='firstname' required /><br /><br />
 
                       <label htmlFor='lastname' className={styles.addstafflabel}>Last Name<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox}id='lastname' name='lastname' required /><br /><br />
+                      <input type='text' className={styles.addstaffforminputsbox} id='lastname' name='lastname' required /><br /><br />
 
                       {/* NEW */}
                       <label htmlFor='designation' className={styles.addstafflabel}>Designation<span className={styles.requiredelement}>&#42;</span></label>
-                      <select type='text' className={styles.addstaffforminputsbox}id='designation' name='designation' required >
-                        <option value='trainer'>Trainer</option>
-                        <option value='teachingassistant'>Teaching Assistant</option>
-                        <option value='programcoordinator'>Program Coordinator</option>
-                        <option value='telecaller'>Telecaller</option>
-                        <option value='trainingcoordinator'>Training Coordinator</option>
-                        <option value='programmanager'>Program Manager</option>
-                        <option value='srtrainer'>Sr. Trainer</option>
-                        <option value='ldexecutive'>L & D Executive</option>
-                        <option value='headoftraining'>Head of Training</option>
+                      <select type='text' className={styles.addstaffforminputsbox} id='designation' name='designation' required >
+                        <option value='Trainer'>Trainer</option>
+                        <option value='Teaching Assistant'>Teaching Assistant</option>
+                        <option value='Program Coordinator'>Program Coordinator</option>
+                        <option value='Telecaller'>Telecaller</option>
+                        <option value='Training Coordinator'>Training Coordinator</option>
+                        <option value='Program Manager'>Program Manager</option>
+                        <option value='Sr. Trainer'>Sr. Trainer</option>
+                        <option value='L & D Executive'>L & D Executive</option>
+                        <option value='Head of Training'>Head of Training</option>
                       </select>
                       <br /><br />
 
@@ -277,17 +316,17 @@ export default function Page() {
                       {/* NEW */}
                       <label htmlFor='natureofjob' className={styles.addstafflabel}>Nature of Job<span className={styles.requiredelement}>&#42;</span></label>
                       <select type='text' className={styles.addstaffforminputsbox} id='natureofjob' name='natureofjob' required >
-                        <option value='parttime'>Part time</option>
-                        <option value='fulltime'>Full time</option>
+                        <option value='Part time'>Part time</option>
+                        <option value='Full time'>Full time</option>
                       </select>
                       <br /><br />
 
                       {/* NEW */}
                       <label htmlFor='visualacuity' className={styles.addstafflabel}>Visual Acuity<span className={styles.requiredelement}>&#42;</span></label>
                       <select type='text' className={styles.addstaffforminputsbox} id='visualacuity' name='visualacuity' required >
-                        <option value='blind'>Blind</option>
-                        <option value='lowvision'>Low Vision</option>
-                        <option value='sighted'>Sighted</option>
+                        <option value='Blind'>Blind</option>
+                        <option value='Low Vision'>Low Vision</option>
+                        <option value='Sighted'>Sighted</option>
                       </select>
                       <br /><br />
 
@@ -314,14 +353,13 @@ export default function Page() {
 
                       <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
                       <select type='text' className={styles.addstaffforminputsbox} id='role' name='role' required>
-                        <option value='staff'>Staff</option>
-                        <option value='management'>Management</option>
-                        <option value='administrator'>Administrator</option>
+                        <option value='Staff'>Staff</option>
+                        <option value='Management'>Management</option>
+                        <option value='Administrator'>Administrator</option>
                       </select><br /><br />
 
-                      {/* NEW */}
                       <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='active' name='active' required />&nbsp;<br />
+                      <input type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' required />&nbsp;<br />
 
                       {/* NEW */}
                       <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
