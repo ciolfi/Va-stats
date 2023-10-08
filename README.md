@@ -66,3 +66,6 @@ NOTE REGARDING BATCH ATTENDANCE DROPDOWN:
   - Can't log out? If you get an error preventing you from logging out: 
 please modify the /components/Navbar.jsx file per comments 
 at the top of the file.
+
+## Dreamhost-mtl folder
+- This contains a folder and an HTM file to be uploaded to the HTML hosting service, Dreamhost (as opposed to Vercel for JS). The HTM file has been converted to HTM from an Excel file due to partner concerns, which explains the evident errors. The file still works. We will continue to work with the partner on a better solution when they have more time to provide necessary materials.

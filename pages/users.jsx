@@ -94,10 +94,11 @@ export default function Page() {
   var result;
 
   /* ---------------------------------- API SECTION -----------------------------------*/
+  // The /api/getuserdata below is different than the call to 'getusers';
+  // this data used to edit an INDIVIDUAL USER (note: getUserData, without an 's')
   const getUserData = async () => {
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-    //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
-    // NOTE DIFFERENCE FROM ABOVE ENDPOINT: here, it's '...user...' without the 's'
+    // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",
@@ -271,7 +272,7 @@ export default function Page() {
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
                     <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()}>
                       <label htmlFor='id' className={styles.addstafflabel}>VisionAid User ID<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' id='id' name='id' required className={styles.addstaffforminputsbox} /><br /><br />
+                      <input type='number' id='id' name='id' required className={styles.addstaffforminputsbox} /><br /><br />
 
                       <label htmlFor='email' className={styles.addstafflabel}>Email<span className={styles.requiredelement}>&#42;</span></label>
                       <input type='text' id='email' name='email' required className={styles.addstaffforminputsbox} /><br /><br />

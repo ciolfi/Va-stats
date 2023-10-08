@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     try {
       const query = `
         UPDATE vausers
-        SET email = ?, firstname = ?, lastname = ?, designation = ?, joindate = ?, mobilenumber = ?, workbase = ?, supervisor = ?, natureofjob = ?, visualacuity = ?, trainingprogram1 = ?, trainingprogram2= ?, trainingprogram3 = ?, role = ?, isactive = ?, action = ?
+        SET id = ?, email = ?, firstname = ?, lastname = ?, designation = ?, joindate = ?, mobilenumber = ?, workbase = ?, supervisor = ?, natureofjob = ?, visualacuity = ?, trainingprogram1 = ?, trainingprogram2= ?, trainingprogram3 = ?, role = ?, isactive = ?, action = ?
         WHERE id = ?;
       `;
 
