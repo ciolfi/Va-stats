@@ -211,7 +211,8 @@ export default function Page() {
       </div>
     );
   } else {
-    if ((result[0].role === 'MANAGEMENT' && result[0].isactive === 1)) {
+    // if ((result[0].role === 'MANAGEMENT' && result[0].isactive === 1)) {
+    if ((result[0].role === 'Management' && result[0].isactive === 1)) {
       return (
         <>
           <div className={styles.mynavbar}>
