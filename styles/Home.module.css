@@ -28,6 +28,7 @@ To view this, see /pages/students.jsx */
   font-size: 1.8rem;
   /* Increase below value as needed 
   for increased column height */
+  margin-bottom: 0.5em;
   margin-top: 0.5em;
   text-align: center;
 }
@@ -651,6 +652,7 @@ div .menubutton {
     border-radius: 10px;
     margin-top: 0em;
     padding: 1.5rem;
+    width: auto;
   }
 
   .studentapplicationform {
@@ -728,7 +730,7 @@ div .menubutton {
     width: 96vw;
   }
 
-  /* 'Add staff' form */
+  /* Landscape: 'Add staff' form */
   .addstaffform {
     border: 1px solid black;
     border-radius: 10px;
