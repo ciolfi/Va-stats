@@ -168,7 +168,7 @@ nav {
   flex-direction: column;
   font-weight: 500;
   min-height: calc(50vh - 60px);
-  padding: 75px 16px 25px 16px;
+  padding: 65px 16px 25px 16px;
   position: fixed;
   right: -288px;
   row-gap: 24px;
