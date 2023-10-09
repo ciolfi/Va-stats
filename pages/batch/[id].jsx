@@ -402,7 +402,7 @@ export default function Page() {
 
               {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
               {/* ---------- CSV Download button ---------------- */}
-              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/batches.php?ID="+id}>
+              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/grades.php?ID="+id}>
                 <a target="_blank" className={styles.csvbutton}>Grades CSV</a>
               </Link>
             </p>
