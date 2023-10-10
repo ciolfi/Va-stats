@@ -15,6 +15,9 @@ export default function Document() {
             rel="stylesheet"
           /> */}
 
+        <title>VisionAid</title>
+        <meta name="description" content="This page contains staff information and a form to add such information" />
+
         <link rel='preconnect'
           href='https://fonts.gstatic.com'
           crossOrigin="true" />

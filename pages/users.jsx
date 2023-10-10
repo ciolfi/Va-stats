@@ -226,6 +226,7 @@ export default function Page() {
                 content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
               <meta name='theme-color' content='#ffffff' />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <meta name="description" content="This page contains staff information and a form to add such information" />
               <link rel='icon' href='/favicon.ico' />
               <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
               <link rel='manifest' href='/manifest.json' />
