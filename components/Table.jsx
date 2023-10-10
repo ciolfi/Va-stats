@@ -56,12 +56,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		setEditedBatch((prev) => {
 			return {
 				...prev,
-				[name]: Number(value),
+				[name]: value,
 			};
 		});
 		setData((prev) => {
 			const found = prev.find((rowData) => rowData.id === editedBatch.id);
-			found[name] = Number(value);
+			found[name] = value;
 			return prev;
 		});
 	};
