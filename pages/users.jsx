@@ -270,7 +270,7 @@ export default function Page() {
                   <div className={styles.addstaffform}>
                     <h2 class={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
-                    <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()}>
+                    <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()} autoComplete='off'>
 
                       <section className={styles.addstaffformsec1}>
                         <label htmlFor='email' className={styles.addstafflabel}>Email<span className={styles.requiredelement}>&#42;</span></label>

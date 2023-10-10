@@ -251,7 +251,7 @@ export default function Page() {
             <div>
               {/* Avoid hydration errors with code below; may not work.
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
-              <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autoComplete="off">
+              <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autoComplete='off'>
                 <div className={styles.grid}>
 
                   {/*------- CARD: TRAINEE -------*/}
