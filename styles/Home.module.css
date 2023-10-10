@@ -471,22 +471,27 @@ div .menubutton {
   border: 1px solid black;
   border-radius: 10px;
   left: -1em;
-  margin-top: 40em; /* 32 > 36 */
+  margin-top: 40em;
+  /* 32 > 36 */
   max-width: 100vw;
-  padding: 1.5rem; 
+  padding: 1.5rem;
   width: 98vw;
 }
 
 /*--- Desktop: 'Add staff' form ----*/
 
 .addnewstaffmember {
-  margin-top: 0.5em;
+  margin-top: 1em;
+}
+
+.addstafflabel {
+  font-weight: 600;
 }
 
 /* Removes OS-level styling */
 .addstaffforminputsbox {
-  /* appearance: none; */
-  border: 0.1em solid black;
+  border: 0.2em solid black;
+  font-weight: 700;
 }
 
 .addstaffform {
@@ -499,7 +504,7 @@ div .menubutton {
   /* TO AVOID OVERLAP:display: 
   Increase below value if more inputs added */
   margin-top: 24em;
-  padding: 0em 1.5em; 
+  padding: 0em 1.5em;
   padding-bottom: 3em;
   width: 98vw;
 }
@@ -515,6 +520,16 @@ div .menubutton {
   padding-top: 1em;
   margin-right: 1em;
   width: 28vw;
+}
+
+.staffformbutton {
+  font-weight: 700;
+  outline: 2px solid black;
+}
+
+.addstaffforminputsbox:focus, 
+.staffformbutton:focus {
+  outline: 2px solid blue;
 }
 
 .studentapplicationform {
@@ -671,9 +686,24 @@ div .menubutton {
   .addstaffform {
     border: 1px solid black;
     border-radius: 10px;
-    margin-top: 0em;
-    padding: 1.2rem;  /* 1.5 */
-    width: auto;
+    flex: display;
+    margin: 0 0em;
+    padding-right:1em;
+    width: 94vw;
+  }
+
+  .addstaffformsec1,
+  .addstaffformsec2,
+  .addstaffformsec3 {
+    border: 1px solid black;
+    border-radius: 1em;
+    margin-left: -1em;
+    margin-top: 1em;
+    width: 90vw;
+  }
+
+  .staffformoption {
+    font-weight: 700;
   }
 
   .studentapplicationform {
@@ -767,26 +797,30 @@ div .menubutton {
     margin-top: -0.5em;
   }
 
-.addstaffformsec1,
-.addstaffformsec2,
-.addstaffformsec3 {
-  border: 1px solid black;
-  border-radius: 1em;
-  float: left;
-  height: 20em;
-  padding-right: 1em;
-  padding-top: 1em;
-  margin-right: 1em; 
-  width: 20vw;
-}
+  .addstaffformsec1,
+  .addstaffformsec2,
+  .addstaffformsec3 {
+    border: 1px solid black;
+    border-radius: 1em;
+    float: left;
+    height: 20em;
+    padding-right: 1em;
+    padding-top: 1em;
+    margin-right: 1em;
+    width: 20vw;
+  }
 
-.addstaffformsec1 {
-  width: 33vw;
-}
+  .addstaffformsec1 {
+    width: 30vw;
+  }
 
-.addstaffformsec2 {
-  width: 33vw;
-}
+  .addstaffformsec2 {
+    width: 35vw;
+  }
+
+  .addstaffformsec3 {
+    width: 20vw;
+  }
 
 
   /*-------- PORTRAIT: SPECIFIC BATCH PG BEGINS -------*/

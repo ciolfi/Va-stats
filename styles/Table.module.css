@@ -28,10 +28,15 @@
   margin-right: 0.5;
 }
 
+/* Search box with placeholder text */
 .tableSearch {
-  border: 1px solid gray;
+  border: 2px solid black;
   margin-left: 1em;
   font-size: 1rem;
+  font-weight: 700;
+}
+.tableSearch:focus {
+  border: 3px solid blue;
 }
 
 /* SPECIFIC BATCH PG: HEADING AREA WITH COL HDGS */
