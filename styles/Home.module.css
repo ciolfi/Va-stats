@@ -63,8 +63,6 @@ under 'Add New Staff Member */
   border: 1px solid black;
   border-radius: 0.5em;
   float: right;
-  margin: 0 1em;
-  margin-bottom: 1em;
   padding: 0.2em;
   position: relative;
   top: -2em;
@@ -479,16 +477,44 @@ div .menubutton {
   width: 98vw;
 }
 
-/* Desktop: 'Add staff' form */
+/*--- Desktop: 'Add staff' form ----*/
+
+.addnewstaffmember {
+  margin-top: 0.5em;
+}
+
+/* Removes OS-level styling */
+.addstaffforminputsbox {
+  /* appearance: none; */
+  border: 0.1em solid black;
+}
+
 .addstaffform {
   border: 1px solid black;
-  border-radius: 10px;
-  height: auto;
-  margin-bottom: 0.5em;
+  border-radius: 1em;
+  align-items: left;
+  display: flex;
+  flex-flow: column wrap;
+  margin-bottom: 1em;
   /* TO AVOID OVERLAP:display: 
   Increase below value if more inputs added */
-  margin-top: 56em;
-  padding: 0.5em 1.5em; 
+  margin-top: 24em;
+  padding: 0em 1.5em; 
+  padding-bottom: 3em;
+  width: 98vw;
+}
+
+.addstaffformsec1,
+.addstaffformsec2,
+.addstaffformsec3 {
+  border: 1px solid black;
+  border-radius: 1em;
+  float: left;
+  height: 20em;
+  padding-right: 1em;
+  padding-top: 1em;
+  margin-right: 1em;
+  width: 28vw;
 }
 
 .studentapplicationform {
@@ -514,11 +540,6 @@ div .menubutton {
     margin: 0 auto;
     position: relative;
   }
-
-  /* .container {
-    left: -0em;
-    position: relative;
-  } */
 
   p.subtitle {
     margin-left: 0.5em;
@@ -731,12 +752,41 @@ div .menubutton {
   }
 
   /* Landscape: 'Add staff' form */
+
   .addstaffform {
     border: 1px solid black;
     border-radius: 10px;
+    font-size: smaller;
+    height: 25em;
     margin-top: 0em;
     padding: 1.5rem;
+    padding-top: -1em;
   }
+
+  .addnewstaffmember {
+    margin-top: -0.5em;
+  }
+
+.addstaffformsec1,
+.addstaffformsec2,
+.addstaffformsec3 {
+  border: 1px solid black;
+  border-radius: 1em;
+  float: left;
+  height: 20em;
+  padding-right: 1em;
+  padding-top: 1em;
+  margin-right: 1em; 
+  width: 20vw;
+}
+
+.addstaffformsec1 {
+  width: 33vw;
+}
+
+.addstaffformsec2 {
+  width: 33vw;
+}
 
 
   /*-------- PORTRAIT: SPECIFIC BATCH PG BEGINS -------*/

@@ -163,7 +163,7 @@ export default function Page() {
     }, {
       name: 'Work Base',
       accessor: 'workbase',
-    }, {     
+    }, {
       name: 'Supervisor',
       accessor: 'supervisor',
     }, {
@@ -271,103 +271,104 @@ export default function Page() {
                     <h2 class={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
                     <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()}>
-                      <label htmlFor='id' className={styles.addstafflabel}>VisionAid User ID<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='number' id='id' name='id' required className={styles.addstaffforminputsbox} /><br /><br />
 
-                      <label htmlFor='email' className={styles.addstafflabel}>Email<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' id='email' name='email' required className={styles.addstaffforminputsbox} /><br /><br />
+                      <section className={styles.addstaffformsec1}>
+                        <label htmlFor='email' className={styles.addstafflabel}>Email<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' id='email' name='email' className={styles.addstaffforminputsbox} autofocus /><br /><br />
 
-                      <label htmlFor='firstname' className={styles.addstafflabel}>First Name<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='firstname' name='firstname' required /><br /><br />
+                        <label htmlFor='firstname' className={styles.addstafflabel}>First Name<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='firstname' name='firstname' /><br /><br />
 
-                      <label htmlFor='lastname' className={styles.addstafflabel}>Last Name<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='lastname' name='lastname' required /><br /><br />
+                        <label htmlFor='lastname' className={styles.addstafflabel}>Last Name<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='lastname' name='lastname' /><br /><br />
 
-                      {/* NEW */}
-                      <label htmlFor='designation' className={styles.addstafflabel}>Designation<span className={styles.requiredelement}>&#42;</span></label>
-                      <select type='text' className={styles.addstaffforminputsbox} id='designation' name='designation' required >
-                        <option value='Trainer'>Trainer</option>
-                        <option value='Teaching Assistant'>Teaching Assistant</option>
-                        <option value='Program Coordinator'>Program Coordinator</option>
-                        <option value='Telecaller'>Telecaller</option>
-                        <option value='Training Coordinator'>Training Coordinator</option>
-                        <option value='Program Manager'>Program Manager</option>
-                        <option value='Sr. Trainer'>Sr. Trainer</option>
-                        <option value='L & D Executive'>L & D Executive</option>
-                        <option value='Head of Training'>Head of Training</option>
-                      </select>
-                      <br /><br />
+                        {/* NEW */}
+                        <label htmlFor='designation' className={styles.addstafflabel}>Designation<span className={styles.requiredelement}>&#42;</span></label>
+                        <select type='text' className={styles.addstaffforminputsbox} id='designation' name='designation'>
+                          <option value='Trainer'>Trainer</option>
+                          <option value='Teaching Assistant'>Teaching Assistant</option>
+                          <option value='Program Coordinator'>Program Coordinator</option>
+                          <option value='Telecaller'>Telecaller</option>
+                          <option value='Training Coordinator'>Training Coordinator</option>
+                          <option value='Program Manager'>Program Manager</option>
+                          <option value='Sr. Trainer'>Sr. Trainer</option>
+                          <option value='L & D Executive'>L & D Executive</option>
+                          <option value='Head of Training'>Head of Training</option>
+                        </select>
+                        <br /><br />
 
-                      {/* NEW */}
-                      <label htmlFor='joindate' className={styles.addstafflabel}>Date of Joining<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='date' className={styles.addstaffforminputsbox} id='joindate' name='joindate' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='joindate' className={styles.addstafflabel}>Date of Joining<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='date' className={styles.addstaffforminputsbox} id='joindate' name='joindate' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='mobilenumber' className={styles.addstafflabel}>Mobile Number<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='tel' className={styles.addstaffforminputsbox} id='mobilenumber' name='mobilenumber' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='mobilenumber' className={styles.addstafflabel}>Mobile Number<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='tel' className={styles.addstaffforminputsbox} id='mobilenumber' name='mobilenumber' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='workbase' className={styles.addstafflabel}>Work Base<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='workbase' name='workbase' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='workbase' className={styles.addstafflabel}>Work Base<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='workbase' name='workbase' />&nbsp;<br />
+                      </section>
 
-                      {/* NEW */}
-                      <label htmlFor='supervisor' className={styles.addstafflabel}>Supervisor<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='supervisor' name='supervisor' required />&nbsp;<br />
+                      <section className={styles.addstaffformsec2}>
+                        {/* NEW */}
+                        <label htmlFor='supervisor' className={styles.addstafflabel}>Supervisor<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='supervisor' name='supervisor' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='natureofjob' className={styles.addstafflabel}>Nature of Job<span className={styles.requiredelement}>&#42;</span></label>
-                      <select type='text' className={styles.addstaffforminputsbox} id='natureofjob' name='natureofjob' required >
-                        <option value='Part time'>Part time</option>
-                        <option value='Full time'>Full time</option>
-                      </select>
-                      <br /><br />
+                        {/* NEW */}
+                        <label htmlFor='natureofjob' className={styles.addstafflabel}>Nature of Job<span className={styles.requiredelement}>&#42;</span></label>
+                        <select type='text' className={styles.addstaffforminputsbox} id='natureofjob' name='natureofjob'>
+                          <option value='Part time'>Part time</option>
+                          <option value='Full time'>Full time</option>
+                        </select>
+                        <br /><br />
 
-                      {/* NEW */}
-                      <label htmlFor='visualacuity' className={styles.addstafflabel}>Visual Acuity<span className={styles.requiredelement}>&#42;</span></label>
-                      <select type='text' className={styles.addstaffforminputsbox} id='visualacuity' name='visualacuity' required >
-                        <option value='Blind'>Blind</option>
-                        <option value='Low Vision'>Low Vision</option>
-                        <option value='Sighted'>Sighted</option>
-                      </select>
-                      <br /><br />
+                        {/* NEW */}
+                        <label htmlFor='visualacuity' className={styles.addstafflabel}>Visual Acuity<span className={styles.requiredelement}>&#42;</span></label>
+                        <select type='text' className={styles.addstaffforminputsbox} id='visualacuity' name='visualacuity' required>
+                          <option value='Blind'>Blind</option>
+                          <option value='Low Vision'>Low Vision</option>
+                          <option value='Sighted'>Sighted</option>
+                        </select>
+                        <br /><br />
 
-                      {/* NEW */}
-                      <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram1' name='trainingprogram1' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram1' name='trainingprogram1' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' required />&nbsp;<br />
+                        {/* NEW */}
+                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' />&nbsp;<br />
+                      </section>
 
-                      {/* Changed options wording; switched to dropdown */}
-                      {/* <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
-                      <input list='roles' className={styles.addstaffforminputsbox} id='role' name='role' required /><br /><br />
-                      <datalist id='roles'>
-                        <option value='Staff' />
-                        <option value='Management' />
-                        <option value='Administrator' />
-                      </datalist> */}
+                      <section className={styles.addstaffformsec3}>
 
-                      <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
-                      <select type='text' className={styles.addstaffforminputsbox} id='role' name='role' required>
-                        <option value='STAFF'>Staff</option>
-                        <option value='MANAGEMENT'>Management</option>
-                        <option value='ADMINISTRATOR'>Administrator</option>
-                      </select><br /><br />
+                        <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
+                        <select type='text' className={styles.addstaffforminputsbox} id='role' name='role'>
+                          <option value='STAFF'>Staff</option>
+                          <option value='MANAGEMENT'>Management</option>
+                          <option value='ADMINISTRATOR'>Administrator</option>
+                        </select><br /><br />
 
-                      <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' required />&nbsp;<br />
+                        <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' />&nbsp;<br />
 
-                      {/* NEW */}
-                      <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
-                      <input type='text' className={styles.addstaffforminputsbox} id='action' name='action' required />&nbsp;<br /><br /><br />
+                        {/* NEW */}
+                        <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='action' name='action' />&nbsp;<br /><br /><br />
 
-                      <button type='submit' className={styles.staffformbutton}>Submit</button>&nbsp;&nbsp;
-                      <input type='reset' value='RESET' className={styles.staffformbutton} />
+                        {/* <button type='submit' className={styles.staffformbutton}>Submit</button>&nbsp;&nbsp;
+                        <input type='reset' value='RESET' className={styles.staffformbutton} /> */}
+
+                        <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br /><br />
+                        <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
+                        
+                      </section>
+
                     </form>
                   </div>
                   : <Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
