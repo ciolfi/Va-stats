@@ -245,7 +245,8 @@ export default function Page() {
             <div className={styles.studregcrsesinfo}>
               {/* <a href="https://visionaid.org/educate" target="_blank">Courses - Details</a> */}  
               {/* <a href="https://visionaid.dreamhosters.com/coursedetails.xlsx" target="_blank">Courses - Details</a> */}
-              <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a>
+              {/* <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a> */}
+              <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a>
             </div>
             <div>
               {/* Avoid hydration errors with code below; may not work.
