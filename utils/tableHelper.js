@@ -2,7 +2,7 @@
 THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
-const dateFields = ['registration_date', 'age'];
+const dateFields = ['registration_date', 'age', 'joindate'];
 function dateConverter(input){
 	if (input === null) {
 		return null;
