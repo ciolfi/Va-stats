@@ -1,7 +1,7 @@
 import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === 'POST') {   
     const { id, email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action } = req.body;
 
     const dbconnection = await mysql.createConnection({
@@ -14,12 +14,13 @@ export default async function handler(req, res) {
     try {
       const query = `
         UPDATE vausers
-        SET id = ?, email = ?, firstname = ?, lastname = ?, designation = ?, joindate = ?, mobilenumber = ?, workbase = ?, supervisor = ?, natureofjob = ?, visualacuity = ?, trainingprogram1 = ?, trainingprogram2= ?, trainingprogram3 = ?, role = ?, isactive = ?, action = ?
+        SET email = ?, firstname = ?, lastname = ?, designation = ?, joindate = ?, mobilenumber = ?, workbase = ?, supervisor = ?, natureofjob = ?, visualacuity = ?, trainingprogram1 = ?, trainingprogram2= ?, trainingprogram3 = ?, role = ?, isactive = ?, action = ?
         WHERE id = ?;
       `;
 
-      // const values = [email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action, id];
-      const values = [id, email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action];
+      // 'id' must be at end of the const, not beginning
+      const values = [email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action, id];
+
       await dbconnection.execute(query, values);
       res.status(200).json({ message: 'User updated successfully' });
       dbconnection.end();

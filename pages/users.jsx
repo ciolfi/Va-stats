@@ -1,5 +1,4 @@
-/* When host is changed: Change values in
-'API SECTIONS' below */
+/* API SECTIONS and ENV VARS below may require adjustment. */
 
 "use client";
 
@@ -129,7 +128,6 @@ export default function Page() {
   // });
 
   result = userResponse;
-
 
   if (loading) {
     return <p>Loading...</p>;
