@@ -108,7 +108,6 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 				isAttendance = true;
 				if (Number(rowData[column.accessor]) == 1) {
 					cellContent = <p  style={{color:"green"}}>{"P"}</p>;
-					daysPresent += 1;
 				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
 					cellContent = <p style={{color:"red"}}>{"A"}</p>;
 				}
@@ -119,6 +118,11 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		cell.push(<td key={column.accessor}>{cellContent}</td>);
 	}
 	if (isAttendance) {
+		for (const column of columns) {
+			if(column.isAttendance) {
+				daysPresent += Number(rowData[column.accessor]);
+			}
+		}
 		const attendance = (daysPresent/totalSize * 100).toFixed(1);
 		const mark = (attendance < minAttendance) ? "red" : "";
 		cell.splice(1, 1, <td key={"percent"}><p style={{color:mark}}>{attendance}%</p></td>);
