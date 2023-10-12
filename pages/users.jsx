@@ -1,5 +1,3 @@
-/* API SECTIONS and ENV VARS below may require adjustment. */
-
 "use client";
 
 import Head from 'next/head';
@@ -15,7 +13,6 @@ import Table from '@/components/Table';
 import Button from '@/components/Button';
 
 export default function Page() {
-
   useForm();
   const { data: session, status } = useSession();
   const [dataResponse, setDataResponse] = useState([]);
@@ -76,12 +73,9 @@ export default function Page() {
   /* ---------------------------------- API SECTION -----------------------------------*/
   const getPageData = async () => {
     setContentLoading(true);
-    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getusersdata`;
-    // const apiUrlEndpoint = `http://localhost:3000/api/getusersdata`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getusersdata`;
     const response = await fetch(apiUrlEndpoint);
     const res = await response.json();
-
     setDataResponse(res.users);
     setContentLoading(false);
   };
@@ -94,10 +88,8 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   // The /api/getuserdata below is different than the call to 'getusers';
-  // this data used to edit an INDIVIDUAL USER (note: getUserData, without an 's')
+  // this data is used to edit an INDIVIDUAL USER (note: getUserData, without an 's')
   const getUserData = async () => {
-    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
-    // const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",
@@ -122,10 +114,6 @@ export default function Page() {
   useEffect(() => {
     getUserData();
   }, [session]);
-
-  // useEffect(() => {
-  //   getUserData();
-  // });
 
   result = userResponse;
 
@@ -232,18 +220,6 @@ export default function Page() {
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
                 crossOrigin="true" />
-
-              {/* <link rel='preload'
-                as='style'
-                href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              <link rel='stylesheet'
-                href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-                media='print'
-                onLoad="this.media='all'" />
-              <noscript>
-                <link rel='stylesheet'
-                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript> */}
             </Head>
             <main className={styles.mainstudents}>
               {contentLoading ?
@@ -257,7 +233,6 @@ export default function Page() {
 
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
-                  {/* <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"} legacyBehavior> */}
                   <a target="_blank" className={styles.csvbutton}>Staff CSV</a>
                 </Link>
               </p>
@@ -265,7 +240,6 @@ export default function Page() {
 
                 {/* Add staff member form */}
                 {showForm ?
-                  // <div className={styles.cardcoursesform}>
                   <div className={styles.addstaffform}>
                     <h2 class={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
@@ -281,7 +255,6 @@ export default function Page() {
                         <label htmlFor='lastname' className={styles.addstafflabel}>Last Name<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='lastname' name='lastname' /><br /><br />
 
-                        {/* NEW */}
                         <label htmlFor='designation' className={styles.addstafflabel}>Designation<span className={styles.requiredelement}>&#42;</span></label>
                         <select required type='text' className={styles.addstaffforminputsbox} id='designation' name='designation'>
                           <option value='Trainer' className={styles.staffformoption}>Trainer</option>
@@ -296,25 +269,20 @@ export default function Page() {
                         </select>
                         <br /><br />
 
-                        {/* NEW */}
                         <label htmlFor='joindate' className={styles.addstafflabel}>Date of Joining<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='date' className={styles.addstaffforminputsbox} id='joindate' name='joindate' />&nbsp;<br />
 
-                        {/* NEW */}
                         <label htmlFor='mobilenumber' className={styles.addstafflabel}>Mobile Number<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='tel' className={styles.addstaffforminputsbox} id='mobilenumber' name='mobilenumber' />&nbsp;<br />
 
-                        {/* NEW */}
                         <label htmlFor='workbase' className={styles.addstafflabel}>Work Base<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='workbase' name='workbase' />&nbsp;<br />
                       </section>
 
                       <section className={styles.addstaffformsec2}>
-                        {/* NEW */}
                         <label htmlFor='supervisor' className={styles.addstafflabel}>Supervisor<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='supervisor' name='supervisor' />&nbsp;<br />
 
-                        {/* NEW */}
                         <label htmlFor='natureofjob' className={styles.addstafflabel}>Nature of Job<span className={styles.requiredelement}>&#42;</span></label>
                         <select required type='text' className={styles.addstaffforminputsbox} id='natureofjob' name='natureofjob'>
                           <option value='Part time'>Part time</option>
@@ -322,7 +290,6 @@ export default function Page() {
                         </select>
                         <br /><br />
 
-                        {/* NEW */}
                         <label htmlFor='visualacuity' className={styles.addstafflabel}>Visual Acuity<span className={styles.requiredelement}>&#42;</span></label>
                         <select required type='text' className={styles.addstaffforminputsbox} id='visualacuity' name='visualacuity'>
                           <option value='Blind'>Blind</option>
@@ -331,21 +298,17 @@ export default function Page() {
                         </select>
                         <br /><br />
 
-                        {/* NEW */}
-                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' className={styles.addstaffforminputsbox} id='trainingprogram1' name='trainingprogram1' />&nbsp;<br />
+                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}></span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram1' name='trainingprogram1' />&nbsp;<br />
 
-                        {/* NEW */}
-                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' />&nbsp;<br />
+                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}></span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' />&nbsp;<br />
 
-                        {/* NEW */}
-                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' />&nbsp;<br />
+                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}></span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' />&nbsp;<br />
                       </section>
 
                       <section className={styles.addstaffformsec3}>
-
                         <label htmlFor='role' className={styles.addstafflabel}>Role<span className={styles.requiredelement}>&#42;</span></label>
                         <select required type='text' className={styles.addstaffforminputsbox} id='role' name='role'>
                           <option value='STAFF'>Staff</option>
@@ -356,13 +319,12 @@ export default function Page() {
                         <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' />&nbsp;<br />
 
-                        {/* NEW */}
                         <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='action' name='action' />&nbsp;<br /><br /><br />
 
                         <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br /><br />
                         <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
-                        
+
                       </section>
 
                     </form>
