@@ -6,29 +6,17 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
-import Router from "next/router";                   // popup confirmation
+import Router from "next/router";                   // Popup confirmation
 import styles from "../styles/StudentReg.module.css";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 let worldData = require("../utils/countries+states.json");
 
-/*------- Imports for possible future use: --------*/
-// import { Dropdown } from "@nextui-org/react";
-
-// ssrProvider errors:
-// import { useSSR } from '@nextui-org/react';
-
-// 'Courses' sub-form reset
-// import * as React from "react";
-
-
-// export default function Home() {
 export default function Page() {
   useForm(); // Form reset
 
-
-  // FOR SSRPROVIDER ERRORS:
+  // Line below may work FOR SSRPROVIDER ERRORS:
   // const { isBrowser } = useSSR();
 
   const [contentLoading, setContentLoading] = useState(false);
@@ -162,16 +150,11 @@ export default function Page() {
   /* ADD COURSE CHOICE */
   function addCourseChoice(coursepriority) {
     var chosencourse = document.getElementsByName('vacourse');
-    //TRY
-    // var firstchoicebox = document.getElementById("textboxfirstchoice");
     for (let i = 0; i < chosencourse.length; i++) {
       if (chosencourse[i].checked) {
         if (coursepriority == "firstchoice") {
           var selecttextbox = document.getElementById("textboxfirstchoice");
           selecttextbox.value = chosencourse[i].value;
-          // TRY
-          // firstchoicebox.value = selecttextbox.value;
-          // return firstchoicebox.value;
         }
         else if (coursepriority == "secondchoice") {
           var selecttextbox = document.getElementById("textboxsecondchoice");
@@ -195,23 +178,18 @@ export default function Page() {
 
   // SUBMIT FORM
   const handleSubmit = () => {
-    // ENABLE INPUTS FOR COURSE CHOICE VALUES
-    // var first_choice = document.getElementById("textboxfirstchoice").value;
-    // document.getElementById("textboxsecondchoice").disabled = false;
-    // document.getElementById("textboxthirdchoice").disabled = false;
-
     // POPUP CODE
     alert("Registration successful.");
     setContentLoading(true);
+
+    // One of the code options below may solve hydration errors:
     // Router.push("https://va-stats.vercel.app/students", { shallow: true });
     // Router.push("https://va-stats.vercel.app/studentregistration", { shallow: true });
-
     Router.push(process.env.NEXT_PUBLIC_BASE_URL + 'testreg', { shallow: true });
   };
 
   return (
-    // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS
-    // isBrowser && (
+    // NextUIProvider BELOW: FOR SSRPROVIDER ERRORS
     <NextUIProvider>
       <>
         {contentLoading ?
@@ -243,9 +221,6 @@ export default function Page() {
               <h1>Student Registration</h1>
             </div>
             <div className={styles.studregcrsesinfo}>
-              {/* <a href="https://visionaid.org/educate" target="_blank">Courses - Details</a> */}  
-              {/* <a href="https://visionaid.dreamhosters.com/coursedetails.xlsx" target="_blank">Courses - Details</a> */}
-              {/* <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a> */}
               <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a>
             </div>
             <div>
@@ -262,9 +237,6 @@ export default function Page() {
                       Trainee
                     </h2>
                     <table className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
-                      {/* <thead>
-                      <tr><td>Label</td><td>Input</td></tr>
-                    </thead> */}
                       <tbody>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
@@ -311,16 +283,13 @@ export default function Page() {
                               placeholder="10 num only; no dashes"
                               type="tel"
                               required
-                            // value={value}
-                            // onChange={handleChange}
-                            // onBlur={checkConstraints}
                             />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="alt_ph_num">
-                              Alt. Phone
+                              Phone2
                             </label>
                           </td>
                           <td className={styles.inputtd}>
@@ -387,36 +356,6 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            {/* <Dropdown
-                              name='gender'>
-                              <Dropdown.Button
-                                className='btngenderdropdown'
-                                disableripple="true"
-                                size="sm"
-                                style={{
-                                  // backgroundColor below: must be RGB
-                                  backgroundColor: 'var(--vagreenmedium-background)',
-                                  height: '2em',
-                                  marginTop: '0.5em',
-                                  width: '100%',
-                                }}
-                                variant="shadow"
-                              >
-                                {selectedValueGender}
-                              </Dropdown.Button>
-                              <Dropdown.Menu
-                                aria-label="Single selection actions"
-                                disallowEmptySelection
-                                selectionMode="single"
-                                selectedKeys={selectedGender}
-                                onSelectionChange={setSelectedGender}
-                              >
-                                <Dropdown.Item key="Female">Female</Dropdown.Item>
-                                <Dropdown.Item key="Male">Male</Dropdown.Item>
-                                <Dropdown.Item key="Other">Other</Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown> */}
-
                             <select
                               name="gender"
                               id="gender"
@@ -478,33 +417,6 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            {/* <Dropdown id='employment_status' name='employment_status'>
-                              <Dropdown.Button
-                                disableripple="true"
-                                size="sm"
-                                style={{
-                                  // backgroundColor below: must be RGB
-                                  backgroundColor: 'var(--vagreenmedium-background)',
-                                  height: '2em',
-                                  marginTop: '0.5em',
-                                  width: '100%'
-                                }}
-                                variant='shadow'
-                              >
-                                {selectedValueEmpStatus}
-                              </Dropdown.Button>
-                              <Dropdown.Menu
-                                aria-label='Single selection actions'
-                                disallowEmptySelection
-                                selectionMode='single'
-                                selectedKeys={selectedEmpStatus}
-                                onSelectionChange={setSelectedEmpStatus}
-                              >
-                                <Dropdown.Item key='Employed'>Employed</Dropdown.Item>
-                                <Dropdown.Item key='Unemployed'>Unemployed</Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown> */}
-
                             <select
                               name="employment_status"
                               id="employment_status"
@@ -520,42 +432,6 @@ export default function Page() {
                           </td>
                           {/*----- EMPLOYMENT STATUS DROPDOWN ENDS -----*/}
                         </tr>
-
-                        {/* <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="objectives">
-                              Learning goal(s)
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              type="text"
-                              id="objectives"
-                              name="objectives"
-                              className={styles.reginput}
-                              placeholder="300-char max"
-                              required
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="trainer_name">
-                              {/* FRM EL #13/21 
-                              Trainer name
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              placeholder="Firstname Lastname"
-                              type="text"
-                              id="trainer_name"
-                              name="trainer_name"
-                            />
-                          </td>
-                        </tr> */}
                       </tbody>
                     </table>
                   </div>
@@ -568,7 +444,6 @@ export default function Page() {
                     <h2>
                       Learning
                     </h2>
-
                     {/*-------------- Learning Context -----------*/}
                     <fieldset className={styles.fdsetlearning}>
                       <legend style={{ fontWeight: 700 }}>Learning Context</legend>
@@ -583,33 +458,15 @@ export default function Page() {
                           <td className={styles.inputtd}>
                             <textarea
                               className={styles.regtextareagoals}
-                              // cols="10"
                               id="objectives"
                               name="objectives"
                               placeholder="200-char max"
-                              // rows="8"
                               width="100%"
                               required
                               onKeyDown={(e) => textAreaHandleEnter(e)}
                             />
                           </td>
                         </tr>
-                        {/* <tr className={styles.regrow}>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="trainer_name">
-                              Trainer name
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              placeholder="Firstname Lastname"
-                              type="text"
-                              id="trainer_name"
-                              name="trainer_name"
-                            />
-                          </td>
-                        </tr> */}
                       </table>
                     </fieldset>
 
@@ -673,11 +530,9 @@ export default function Page() {
                     <h2>
                       Miscellaneous
                     </h2>
-
                     <table className={styles.tblmisc} role="presentation">
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
-                          {/* FRM EL #17/21 */}
                           <label htmlFor="visual_acuity">
                             Visual acuity
                           </label>
@@ -686,34 +541,6 @@ export default function Page() {
 
                         {/*-------------- VISION DROPDOWN BEGINS ------------*/}
                         <td className={styles.inputtd}>
-                          {/* <Dropdown name="visual_acuity">
-                            <Dropdown.Button
-                              className={styles.btnregdropdown}
-                              disableripple="true"
-                              size="sm"
-                              style={{
-                                // backgroundColor below: must be RGB
-                                backgroundColor: 'var(--vagreenmedium-background)',
-                                height: '2em',
-                                marginTop: '0.5em',
-                                width: '100%'
-                              }}
-                              variant="shadow"  // or variant="flat"
-                            >
-                              {selectedValueVision}
-                            </Dropdown.Button>
-                            <Dropdown.Menu
-                              aria-label="Single selection actions"
-                              disallowEmptySelection
-                              selectedKeys={selectedVision}
-                              selectionMode="single"
-                              onSelectionChange={setSelectedVision}
-                            >
-                              <Dropdown.Item key="LowVision">Low Vision</Dropdown.Item>
-                              <Dropdown.Item key="Blind">Blind</Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown> */}
-
                           <select
                             name="visual_acuity"
                             id="visual_acuity"
@@ -749,7 +576,6 @@ export default function Page() {
                       </tr>
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
-                          {/* FRM EL #19/21 */}
                           <label htmlFor="impairment_history">
                             Vision impairment history (brief; feel free to leave it empty)
                           </label>
@@ -768,7 +594,6 @@ export default function Page() {
                       </tr>
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
-                          {/* FRM EL #20/21 (#21 is timestamp) */}
                           <label htmlFor="source">
                             How you found us
                           </label>
