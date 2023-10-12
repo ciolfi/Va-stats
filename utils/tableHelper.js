@@ -102,9 +102,9 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		} else {
 			if (column.isAttendance) {
 				if (Number(rowData[column.accessor]) == 1) {
-					cellContent = <p>{"P"}</p>;
+					cellContent = <p  style={{color:"green"}}>{"P"}</p>;
 				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
-					cellContent = <p>{"A"}</p>;
+					cellContent = <p style={{color:"red"}}>{"A"}</p>;
 				}
 			} else {
 				cellContent = <p>{rowData[column.accessor]}</p>;
