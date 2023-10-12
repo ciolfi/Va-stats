@@ -69,8 +69,12 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 	return cell;
 }
 
+const minAttendance = 50.0;
 export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
+	var daysPresent = 0;
+	const totalSize = columns.length - 2;
+	var isAttendance;
 	for (const column of columns) {
 		let cellContent = null;
 		if (column === editId && column.accessor !== 'id') {
@@ -101,8 +105,10 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 			}
 		} else {
 			if (column.isAttendance) {
+				isAttendance = true;
 				if (Number(rowData[column.accessor]) == 1) {
 					cellContent = <p  style={{color:"green"}}>{"P"}</p>;
+					daysPresent += 1;
 				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
 					cellContent = <p style={{color:"red"}}>{"A"}</p>;
 				}
@@ -111,6 +117,11 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 			}
 		}
 		cell.push(<td key={column.accessor}>{cellContent}</td>);
+	}
+	if (isAttendance) {
+		const attendance = (daysPresent/totalSize * 100).toFixed(1);
+		const mark = (attendance < minAttendance) ? "red" : "";
+		cell.splice(1, 1, <td key={"percent"}><p style={{color:mark}}>{attendance}%</p></td>);
 	}
 	return cell;
 }

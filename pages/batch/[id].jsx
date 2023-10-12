@@ -236,6 +236,7 @@ export default function Page() {
         });
       });
     }
+    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, width: '20px', isRotatedTh:true, isSortable:false });
     res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
   };
