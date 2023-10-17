@@ -99,6 +99,11 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						{/* <th className={styles.actionscolheading} width={'8%'}>
 							Students
 						</th> */}
+						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
+						{isDelete || isEditable?
+						<th className={styles.actionscolheading} width={'100px'}>
+							Actions
+						</th> : <></>}
 						{columns.map((column) => {
 							const width = column.width ?? 'auto';
 							return (
@@ -123,18 +128,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 								</th>
 							);
 						})}
-						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
-						{isDelete || isEditable? 
-						<th className={styles.actionscolheading} width={'100px'}>
-							Actions
-						</th> : <></>}
 					</tr>
 				</thead>
 				<tbody>
 					{sortedData().map((rowData, index) => {
 						return (
 							<tr key={index}>
-								{generateTableRow(columns, rowData, editId, changeHandler, inputClassName)}
 								{isDelete || isEditable ?
 									<td> 
 										{editId === rowData.id ? 
@@ -149,6 +148,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 										{isStudent ? <Button text="Enrollment History" onClick={() => {router.push("/student/"+rowData.id);}}></Button>: <></>}
 									</td>
 								: <></>}
+								{generateTableRow(columns, rowData, editId, changeHandler, inputClassName)}
 							</tr>
 						);
 					})}
