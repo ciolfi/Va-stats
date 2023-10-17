@@ -532,7 +532,8 @@ export default function Page() {
                     </h2>
                     <table className={styles.tblmisc} role="presentation">
                       <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
+                        {/* <td className={styles.inputlabel}> */} 
+                        <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>    
                           <label htmlFor="visual_acuity">
                             Visual acuity
                           </label>

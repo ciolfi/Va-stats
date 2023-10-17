@@ -80,10 +80,19 @@
   text-align: right;
   vertical-align: top;
 }
-
-.inputtd {      /* Keep input & text top-aligned */
+/* Keep input & text top-aligned */
+.inputtd {      
   vertical-align: top; 
 }
+
+/* Right card items */
+.inputlabelmisc {
+  width: 50%;
+}
+.inputtdmisc {
+  width: 50%;
+}
+
 
 .requiredelement {
   /* color: black; */
