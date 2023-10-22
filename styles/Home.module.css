@@ -66,6 +66,7 @@ under 'Add New Staff Member */
   position: relative;
   top: -2em;
 }
+
 /*--------------- 'Staff' page ENDS ---------------*/
 
 
@@ -467,8 +468,9 @@ div .menubutton {
 .cardbatchform {
   border: 1px solid black;
   border-radius: 10px;
+  height: 21em;
   left: -1em;
-  margin-top: 40em;
+  margin-top: 20em;
   max-width: 100vw;
   padding: 1.5rem;
   width: 98vw;
@@ -523,10 +525,29 @@ div .menubutton {
   outline: 2px solid black;
 }
 
-.addstaffforminputsbox:focus, 
+.addstaffforminputsbox:focus,
 .staffformbutton:focus {
   outline: 2px solid blue;
 }
+
+/*--- Desktop: 'Add staff' form ENDS ----*/
+
+
+/*--- Desktop: 'Add batch' form begins ----*/
+.addbatchformsec1,
+.addbatchformsec2,
+.addbatchformsec3 {
+  border: 1px solid black;
+  border-radius: 1em;
+  float: left;
+  height: 15em;
+  padding-right: 1em;
+  padding-top: 1em;
+  margin-right: 1em;
+  width: 28vw;
+}
+
+/*--- Desktop: 'Add batch' form ends ----*/
 
 .studentapplicationform {
   border: 1px solid black;
@@ -690,7 +711,7 @@ div .menubutton {
     border-radius: 10px;
     flex: display;
     margin: 0 0em;
-    padding-right:1em;
+    padding-right: 1em;
     width: 94vw;
   }
 
@@ -706,6 +727,17 @@ div .menubutton {
 
   .staffformoption {
     font-weight: 700;
+  }
+
+  .addbatchformsec1,
+  .addbatchformsec2,
+  .addbatchformsec3 {
+    border: 1px solid black;
+    border-radius: 1em;
+    margin-left: -1em;
+    /* margin-bottom: 1em; */
+    margin-top: 1em;
+    width: 90vw;
   }
 
   .studentapplicationform {
@@ -737,7 +769,7 @@ div .menubutton {
     /* margin-top: 6em; */
     position: absolute;
     /* position: relative; */
-    top: 8em; 
+    top: 8em;
     width: 99.5%;
   }
 
@@ -820,15 +852,19 @@ div .menubutton {
     margin-right: 1em;
     width: 20vw;
   }
+
   .addstaffformsec1 {
     width: 30vw;
   }
+
   .addstaffformsec2 {
     width: 35vw;
   }
+
   .addstaffformsec3 {
     width: 24vw;
   }
+
   /*------------------ MOBILE LANDSCAPE ENDS -------------------*/
 
 
