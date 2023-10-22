@@ -28,7 +28,8 @@ To view this, see /pages/students.jsx */
   font-size: 1.8rem;
   /* Increase below value as needed 
   for increased column height */
-  margin-bottom: 0.5em;
+  /* margin-bottom: 0.5em; */
+  margin-bottom: 1em;
   margin-top: 0.5em;
   text-align: center;
 }
@@ -128,7 +129,6 @@ div .menubutton {
   /* For footer to stick to bottom */
   display: flex;
   flex-direction: column;
-
   height: auto;
   margin: 0 0.5em;
 }
@@ -552,6 +552,12 @@ div .menubutton {
     position: relative;
   }
 
+  .container {
+    margin-left: -0.05em;
+    padding: 0 0.5em;
+    width: 98vw;
+  }
+
   p.subtitle {
     margin-left: 0.5em;
     position: relative;
@@ -570,9 +576,9 @@ div .menubutton {
     height: auto;
     margin-left: -2em;
     margin-top: -1em;
-    padding-right: 0em;
+    padding-right: 1em;
     position: relative;
-    width: 100vw;
+    width: 99%;
   }
 
   .main {
@@ -720,42 +726,50 @@ div .menubutton {
   }
 }
 
-/* MOBILE LANDSCAPE */
+/*------------------ MOBILE LANDSCAPE BEGINS -------------------*/
 /* iPhone 14 Max Pro:  932x430; px ratio=3 */
-@media (min-width: 480px) and (max-width: 846px) {
-
+/* @media (min-width: 480px) and (max-width: 846px) { */
+@media (min-width: 480px) and (max-width: 853px) {
   /* All items below Navbar incl Title, Subtitle */
-  /* .container {
-  } */
+
+  .container {
+    left: -0.5em;
+    /* margin-top: 6em; */
+    position: absolute;
+    /* position: relative; */
+    top: 8em; 
+    width: 99.5%;
+  }
 
   .title {
     font-size: 2.5rem;
-    /* margin-top: 5em; */
     margin-top: 1em;
   }
 
   .subtitlehm {
     font-size: 1.5rem;
     margin-bottom: 0.5em;
+    margin-left: 1em;
     margin-top: 1.5em;
     text-align: center;
   }
 
+  /* Landscape: subtitle */
   .subtitlenonhm {
     font-size: 1.5rem;
-    left: 1em;
-    margin-bottom: 1em;
+    left: 1.5em;
+    margin-bottom: 0em;
     margin-top: 5em;
     position: relative;
     text-align: center;
   }
 
+  /* Landscape: cards container */
   .gridcourses {
-    border: 0px solid green;
-    left: 1.5em;
-    margin-right: 0.5em;
+    left: 2em;
+    height: 100vw;
     position: relative;
-    width: auto;
+    top: 2em;
   }
 
   /* Landscape: Add a batch */
@@ -778,21 +792,22 @@ div .menubutton {
   }
 
   /* Landscape: 'Add staff' form */
-
   .addstaffform {
     border: 1px solid black;
     border-radius: 10px;
     font-size: smaller;
     height: 25em;
     margin-top: 0em;
-    padding: 1.5rem;
-    padding-top: -1em;
+    padding-left: 0.5em;
+    padding-top: -0em;
   }
 
   .addnewstaffmember {
-    margin-top: -0.5em;
+    margin-left: -0em;
+    margin-top: -0em;
   }
 
+  /* Individual 'add staff form' cards */
   .addstaffformsec1,
   .addstaffformsec2,
   .addstaffformsec3 {
@@ -805,22 +820,19 @@ div .menubutton {
     margin-right: 1em;
     width: 20vw;
   }
-
   .addstaffformsec1 {
     width: 30vw;
   }
-
   .addstaffformsec2 {
     width: 35vw;
   }
-
   .addstaffformsec3 {
-    width: 20vw;
+    width: 24vw;
   }
+  /*------------------ MOBILE LANDSCAPE ENDS -------------------*/
 
 
-  /*-------- PORTRAIT: SPECIFIC BATCH PG BEGINS -------*/
-
+  /*-------------- PORTRAIT: SPECIFIC BATCH PG BEGINS ---------*/
   /* Title just below navbar */
   .titlebatchspecific {
     font-size: 1.8em;

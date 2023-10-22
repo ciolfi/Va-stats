@@ -237,10 +237,11 @@ export default function Page() {
                 </Link>
               </p>
               <div className={styles.gridcourses}>
+              {/* <div style={{color: 'red', position: 'relative', top: '1em' }}> */}
 
                 {/* Add staff member form */}
                 {showForm ?
-                  <div className={styles.addstaffform}>
+                  <div className={styles.addstaffform}>                 
                     <h2 class={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
                     <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()} autoComplete='off'>

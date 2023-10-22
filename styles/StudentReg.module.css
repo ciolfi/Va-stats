@@ -16,10 +16,12 @@
 }
 
 .main {
+  border: 0px solid blue;
   align-items: left;
   display: flex;
   flex-direction: column;
   height: auto;
+  margin-top: 0em;
   justify-content: space-between;
   padding: 1rem; 
 }
@@ -425,17 +427,17 @@ Does not include:
   }
 }
 
-/*---------- MOBILE-Portrait -------------*/
+/*-------------- MOBILE-PORTRAIT BEGINS -------------*/
 @media (max-width: 431px) {
 
   .main {
+    margin-left: -1em;
     padding-bottom: 1em;
   }
 
   .grid {
       grid-template-columns: 1fr;
       margin-bottom: 1em;
-      /* max-width: 320px; */
       max-width: 431px;
   }
 
@@ -466,20 +468,23 @@ Does not include:
     z-index: 5;
   }
 }
+/*-------------- MOBILE-PORTRAIT ENDS -------------*/
 
-/*----------- MOBILE-Landscape? ---------*/
-/* @media (max-width: 700px) { */
-@media (max-width: 844px) {
-  .content {
+
+/*-------------- MOBILE-LANDSCAPE BEGINS? ---------*/
+@media (min-width: 480px) and (max-width: 853px) {
+  /* .content { */
+  .main {
+    margin-top: 7em;
     padding: 0rem;
   }
   .grid {
     font-size: 0.8em;
     grid-template-columns: 1fr;
-    margin-top: 3.5em;
-    /* max-width: 320px; */
-    /* max-width: 98%; */
+    margin-left: -1em;
+    margin-top: 0em;
     text-align: center;
+    width: 100%;
   }
 
   .card {
@@ -487,12 +492,6 @@ Does not include:
     padding-right: 1em;
     width: 90vw; 
   }
-
-  /* .cardtrainee {
-    padding: 1rem 0.5rem;
-    padding-right: 0em;
-    width: 90vw; 
-  } */
 
   .card h2 {
     margin-bottom: 0.5rem;
@@ -566,6 +565,7 @@ Does not include:
     z-index: 1;
   }
 }
+/*-------------- MOBILE-LANDSCAPE ENDS? ---------*/
 
 /* MOBILE-Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
@@ -578,15 +578,6 @@ Does not include:
     width: 30vw;
   }
 }
-
-/* @media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-  .logo {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
-} */
 
 @keyframes rotate {
   from {
