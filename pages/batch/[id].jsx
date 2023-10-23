@@ -455,18 +455,16 @@ export default function Page() {
             <p className={styles.batchTextTotalStudents}>Total students enrolled: {batchLength}</p>
 
             <div className={styles.batchContainer}>
-              <div className={styles.subtitlebatchspecificstudbtns}>
-                <div className={styles.buttons}>
-                  <button name="attendance" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Attendance
-                  </button>
-                  <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Grades
-                  </button>
-                  <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Management
-                  </button>
-                </div>
+              <div className={styles.buttons}>
+                <button name="attendance" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Attendance
+                </button>
+                <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Grades
+                </button>
+                <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Management
+                </button>
               </div>
             </div>
 
