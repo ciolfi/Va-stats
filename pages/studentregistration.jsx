@@ -481,6 +481,7 @@ export default function Page() {
                             <label htmlFor="first_choice">
                               1st choice
                             </label>
+                            <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice}>
@@ -496,6 +497,7 @@ export default function Page() {
                             <label htmlFor="second_choice">
                               2nd choice
                             </label>
+                            <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)}>
@@ -511,6 +513,7 @@ export default function Page() {
                             <label htmlFor="third_choice">
                               3rd choice
                             </label>
+                            <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <select name="third_choice" id="third_choice" className={styles.reginput}>
