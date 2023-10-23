@@ -21,6 +21,15 @@ export default function Page() {
   const [showForm, setShowForm] = useState(false);
   const [contentLoading, setContentLoading] = useState(false);
 
+  const [courseResponse, setCourseResponse] = useState(() => []);
+  const [courseOptions1, setCourseOptions1] = useState(() => []);
+  const [courseOptions2, setCourseOptions2] = useState(() => []);
+  const [courseOptions3, setCourseOptions3] = useState(() => []);
+
+  const [Option1, setOption1] = useState(() => []);
+  const [Option2, setOption2] = useState(() => []);
+  const [choiceChanged, setChoiceChanged] = useState(false);
+
   const [editingId, setEditingId] = useState(null);
 
   const handleEditUser = (userID) => {
@@ -30,6 +39,60 @@ export default function Page() {
   const cancelEdit = () => {
     setEditingId(null);
   };
+
+  const getCourseData = async () => {
+    setContentLoading(true);
+    const apiUrlEndpoint = `api/getcoursesdata`;
+    const response = await fetch(apiUrlEndpoint);
+    const res = await response.json();
+    setCourseResponse(res.courses);
+    setContentLoading(false);
+  };
+
+  useEffect(() => {
+    getCourseData();
+  }, []);
+
+  const updateChoices = (e) => {
+    const { name, value } = e.target;
+    if (name === 'trainingprogram1') {
+      setOption1(value);
+    } else if (name === 'trainingprogram2') {
+      setOption2(value);
+    }
+    setChoiceChanged(!choiceChanged);
+  };
+
+  const updateOptions = () => {
+    const options2 = [];
+    courseResponse.map(course => {
+      if (course.course != Option1) {
+        options2.push(<option value={course.course}>{course.course}</option>);
+      }
+    });
+    setCourseOptions2(options2);
+
+    const options3 = [];
+    courseResponse.map(course => {
+      if (course.course != Option1 && course.course != Option2) {
+        options3.push(<option value={course.course}>{course.course}</option>);
+      }
+    });
+    setCourseOptions3(options3);
+  };
+
+  const getCourseOptions = () => {
+    const options = [];
+    courseResponse.map(course => {
+      options.push(<option value={course.course}>{course.course}</option>);
+    });
+    setCourseOptions1(options);
+    updateOptions();
+  };
+
+  useEffect(() => {
+    getCourseOptions();
+  }, [courseResponse, choiceChanged]);
 
   const handleUpdateUser = async (editedUser) => {
     setContentLoading(true);
@@ -165,12 +228,18 @@ export default function Page() {
     }, {
       name: 'Training Program 1',
       accessor: 'trainingprogram1',
+      type: 'enum',
+      availableValues: courseOptions1,
     }, {
       name: 'Training Program 2',
       accessor: 'trainingprogram2',
+      type: 'enum',
+      availableValues: courseOptions1,
     }, {
       name: 'Training Program 3',
       accessor: 'trainingprogram3',
+      type: 'enum',
+      availableValues: courseOptions1,
     }, {
       name: 'Role',
       accessor: 'role',
@@ -216,6 +285,7 @@ export default function Page() {
               <link rel='icon' href='/favicon.ico' />
               <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
               <link rel='manifest' href='/manifest.json' />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
@@ -233,7 +303,7 @@ export default function Page() {
 
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
-                  <a target="_blank" className={styles.csvbutton}>Staff CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Staff CSV</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>
@@ -299,14 +369,23 @@ export default function Page() {
                         </select>
                         <br /><br />
 
-                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}></span></label>
-                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram1' name='trainingprogram1' />&nbsp;<br />
+                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}>&#42;</span></label>
+                        <select required id='trainingprogram1' name='trainingprogram1' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
+                        <option></option>
+                        {courseOptions1}
+                        </select>&nbsp;<br />
 
-                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}></span></label>
-                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram2' name='trainingprogram2' />&nbsp;<br />
+                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
+                        <select required id='trainingprogram2' name='trainingprogram2' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
+                        <option></option>
+                        {courseOptions2}
+                        </select>&nbsp;<br />
 
-                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}></span></label>
-                        <input type='text' className={styles.addstaffforminputsbox} id='trainingprogram3' name='trainingprogram3' />&nbsp;<br />
+                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
+                        <select required id='trainingprogram3' name='trainingprogram3' className={styles.addstaffforminputsbox}>
+                        <option></option>
+                        {courseOptions3}
+                        </select>&nbsp;<br />
                       </section>
 
                       <section className={styles.addstaffformsec3}>

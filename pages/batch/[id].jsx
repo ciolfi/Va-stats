@@ -25,14 +25,14 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [userResponse, setUserResponse] = useState([]);
   const [batchData, setBatchData] = useState({});
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
   const [assignmentName, setAssignmentName] = useState("");
 
-  const [addingStudent, setAddingStudent] = useState(false);
-  const [addingAssignment, setAddingAssignment] = useState(false);
-  // ----------------------------- UNDER CONSTRUCTION -------------------------- //
-  const [deletingAssignment, setDeletingAssignment] = useState(false);
+  const [showAttendance, setShowAttendance] = useState(true);
+  const [showGrades, setShowGrades] = useState(false);
+  const [showManagement, setShowManagement] = useState(false);
 
   const [courseName, setCourseName] = useState("");
   const [batchName, setBatchName] = useState("");
@@ -61,9 +61,55 @@ export default function Page() {
     }
   };
 
+  const batchPageLayoutHandler = (e) => {
+    const { name, value } = e.target;
+    setShowAttendance(false);
+    setShowGrades(false);
+    setShowManagement(false);
+    switch(name) {
+      case "attendance":
+        setShowAttendance(true);
+        break;
+      case "grades":
+        setShowGrades(true);
+        break;
+      case "management":
+        setShowManagement(true);
+        break;
+      default:
+        setShowAttendance(true);
+        break;
+    }
+  };
+
+  const optionChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setSelectedStudent(value);
+  };
+
   /* ---------------------------------- API SECTION -----------------------------------*/
+  function getStudentRecordByName(data, name) {
+    for(var i in data){
+      if(data[i].name == name) {
+        return data[i];
+      }
+    }
+  }
+
+  function getCourseNameById(data, id) {
+    for(var i in data){
+      if(data[i].id == id) {
+        return data[i].coursename;
+      }
+    }
+  }
+
   const fetchUnassignedStudents = async (batchId) => {
     setContentLoading(true);
+    const studentApiResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + `getstudentsdata`);
+    const studentRes = await studentApiResponse.json();
+    const batchesApiResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + `getbatchesdata`);
+    const batchesRes = await batchesApiResponse.json();
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getunassignedstudents`;
     const postData = {
@@ -75,7 +121,15 @@ export default function Page() {
     };
     const response = await fetch(apiUrlEndpoint, postData);
     const data = await response.json();
-    setUnassignedStudents(data.students);
+    var studentList = [];
+    data.students.forEach((student) => {
+      const record = getStudentRecordByName(studentRes.students, student.name);
+      const course = getCourseNameById(batchesRes.batches, batchId);
+      if ([record.first_choice, record.second_choice, record.third_choice].includes(course)) {
+        studentList.push(student);
+      }
+    });
+    setUnassignedStudents(studentList);
     setContentLoading(false);
   };
 
@@ -115,6 +169,7 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const addStudent = async (studentId) => {
+    if(!studentId) return;
     setContentLoading(true);
     // const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `addstudenttobatch`;
@@ -374,6 +429,7 @@ export default function Page() {
               <link rel='icon' href='/favicon.ico' />
               <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
               <link rel='manifest' href='/manifest.json' />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
@@ -394,109 +450,80 @@ export default function Page() {
             {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
             <p className={styles.titlebatchspecific}>
               Course: {courseName}, Batch: {batchName}
-
-              {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
-              {/* ---------- CSV Download button ---------------- */}
-              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/attendance.php?ID="+id}>
-                <a target="_blank" className={styles.csvbutton}>Attendance CSV</a>
-              </Link>
-
-              {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
-              {/* ---------- CSV Download button ---------------- */}
-              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/grades.php?ID="+id}>
-                <a target="_blank" className={styles.csvbutton}>Grades CSV</a>
-              </Link>
             </p>
             {/* <p className={styles.subtitle}>Total students enrolled: {batchLength}</p> */}
             <p className={styles.batchTextTotalStudents}>Total students enrolled: {batchLength}</p>
 
             <div className={styles.batchContainer}>
-
-              {/* 'Students' and blue buttons container */}
               <div className={styles.subtitlebatchspecificstudbtns}>
-                <h2>Students</h2>
-                <ul className={styles.studentList}>
-                </ul>
                 <div className={styles.buttons}>
-                  <button
-                    className={styles.addButton}
-                    onClick={() => setAddingStudent(!addingStudent)}
-                  >
-                    Add Student
+                  <button name="attendance" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                    Batch Attendance
                   </button>
-                  <button
-                    className={styles.addButton}
-                    onClick={() => setAddingAssignment(!addingAssignment)}
-                  >
-                    Add Assignment
+                  <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                    Batch Grades
+                  </button>
+                  <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                    Batch Management
                   </button>
                 </div>
-                <button
-                  // className={styles.addButton}
-                  className={`${styles.addButton} ${styles.addButtonDelAssign}`}
-                  onClick={() => setDeletingAssignment(!deletingAssignment)}
-                >
-                  Delete Assignment
-                </button>
               </div>
-
-              {addingStudent && (
-                <div className={styles.unassignedContainer}>
-                  <h2>Unassigned Students</h2>
-                  <ul className={styles.unassignedList}>
-                    {unassignedStudents.map((student) => {
-                      return (
-                        <li key={student.id} className={styles.unassignedItem}>
-                          <button
-                            className={styles.addUnassignedButton}
-                            onClick={() => addStudent(student.id)}
-                          >
-                            Add {student.name} to Batch
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
-              {addingAssignment && (
-                <div>
-                  <label htmlFor="assignmentName">New Assignment Name:</label>
-                  <input
-                    type="text"
-                    id="assignmentName"
-                    name="assignmentName"
-                    onChange={(e) => setAssignmentName(e.target.value)}
-                  />
-                  <button onClick={() => addAssignment(assignmentName, id)}>Add Assignment</button>
-                </div>
-              )}
-
-              {/* ---------------------- UNDER CONSTRUCTION --------------------- */}
-              {deletingAssignment && (
-                <div>
-                  <label htmlFor="assignmentName">Assignment to delete:</label>
-                  <input
-                    type="text"
-                    id="assignmentName"
-                    name="assignmentName"
-                    onChange={(e) => setAssignmentName(e.target.value)}
-                  />
-                  <button onClick={() => deleteAssignment(assignmentName, id)}>Delete Assignment</button>
-                </div>
-              )}
-
             </div>
-            
-            {attendanceColumn.length > 0 ?
-              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} />
-              : <></>
-            }
 
-            {gradesColumn.length > 0 ?
-              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} />
+            {showManagement && (
+              <div>
+                <div className={styles.batchManagementContainer}>
+                  <h2>Assign Students to batch</h2>
+                  <select className={styles.batchManagementList} onChange={(e) => optionChangeHandler(e)}>
+                      <option></option>
+                  {unassignedStudents.map((student) => {
+                    return (
+                      <option key={student.id} value={student.id} className={styles.unassignedItem}>
+                        {student.name}
+                      </option>
+                    );
+                  })}
+                  </select>
+                  <button className={styles.batchManagementButton} onClick={() => addStudent(selectedStudent)} >
+                    Add to Batch
+                  </button>
+                </div>
+
+                <div className={styles.batchManagementContainer}>
+                  <h2>Add New Assignment</h2>
+                  <input
+                    type="text"
+                    id="assignmentName"
+                    name="assignmentName"
+                    className={styles.batchManagementList}
+                    onChange={(e) => setAssignmentName(e.target.value)}
+                  />
+                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentName, id)}>Add Assignment</button>
+                </div>
+
+                <div className={styles.batchManagementContainer}>
+                  <h2>Delete Assignment</h2>
+                  <input
+                    type="text"
+                    id="assignmentName"
+                    name="assignmentName"
+                    className={styles.batchManagementList}
+                    onChange={(e) => setAssignmentName(e.target.value)}
+                  />
+                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentName, id)}>Delete Assignment</button>
+                </div>
+              </div>
+            )}
+            
+            {showAttendance && (attendanceColumn.length > 0 ?
+              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
               : <></>
-            }
+            )}
+
+            {showGrades && (gradesColumn.length > 0 ?
+              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
+              : <></>
+            )}
           </div>
 
           {/* <footer className={styles.footer}>
