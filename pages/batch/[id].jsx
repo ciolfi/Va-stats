@@ -25,6 +25,7 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [userResponse, setUserResponse] = useState([]);
   const [batchData, setBatchData] = useState({});
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
   const [assignmentName, setAssignmentName] = useState("");
@@ -61,9 +62,34 @@ export default function Page() {
     }
   };
 
+  const optionChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setSelectedStudent(value);
+  };
+
   /* ---------------------------------- API SECTION -----------------------------------*/
+  function getStudentRecordByName(data, name) {
+    for(var i in data){
+      if(data[i].name == name) {
+        return data[i];
+      }
+    }
+  }
+
+  function getCourseNameById(data, id) {
+    for(var i in data){
+      if(data[i].id == id) {
+        return data[i].coursename;
+      }
+    }
+  }
+
   const fetchUnassignedStudents = async (batchId) => {
     setContentLoading(true);
+    const studentApiResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + `getstudentsdata`);
+    const studentRes = await studentApiResponse.json();
+    const batchesApiResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + `getbatchesdata`);
+    const batchesRes = await batchesApiResponse.json();
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getunassignedstudents`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getunassignedstudents`;
     const postData = {
@@ -75,7 +101,15 @@ export default function Page() {
     };
     const response = await fetch(apiUrlEndpoint, postData);
     const data = await response.json();
-    setUnassignedStudents(data.students);
+    var studentList = [];
+    data.students.forEach((student) => {
+      const record = getStudentRecordByName(studentRes.students, student.name);
+      const course = getCourseNameById(batchesRes.batches, batchId);
+      if ([record.first_choice, record.second_choice, record.third_choice].includes(course)) {
+        studentList.push(student);
+      }
+    });
+    setUnassignedStudents(studentList);
     setContentLoading(false);
   };
 
@@ -115,6 +149,7 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const addStudent = async (studentId) => {
+    if(!studentId) return;
     setContentLoading(true);
     // const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `addstudenttobatch`;
@@ -443,20 +478,22 @@ export default function Page() {
               {addingStudent && (
                 <div className={styles.unassignedContainer}>
                   <h2>Unassigned Students</h2>
-                  <ul className={styles.unassignedList}>
-                    {unassignedStudents.map((student) => {
-                      return (
-                        <li key={student.id} className={styles.unassignedItem}>
-                          <button
-                            className={styles.addUnassignedButton}
-                            onClick={() => addStudent(student.id)}
-                          >
-                            Add {student.name} to Batch
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <select className={styles.unassignedList} onChange={(e) => optionChangeHandler(e)}>
+                      <option></option>
+                  {unassignedStudents.map((student) => {
+                    return (
+                      <option key={student.id} value={student.id} className={styles.unassignedItem}>
+                        {student.name}
+                      </option>
+                    );
+                  })}
+                  </select>
+                  <button
+                    className={styles.addUnassignedButton}
+                    onClick={() => addStudent(selectedStudent)}
+                  >
+                    Add to Batch
+                  </button>
                 </div>
               )}
               {addingAssignment && (

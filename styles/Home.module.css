@@ -1081,11 +1081,8 @@ div .menubutton {
 }
 
 .unassignedList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  list-style-type: none;
-  padding: 0;
+  min-width: 200px;
+  margin-right: 10px;
 }
 
 .unassignedItem {
