@@ -301,7 +301,8 @@ export default function Page() {
 
                 <div className={styles.gridcourses}>
                   {showForm ?
-                    <div className={styles.cardbatchform}>
+                    // <div className={styles.cardbatchform}>
+                    <div className={styles.addbatchform}>
                       <h2>Create batch. &rarr;</h2>
                       <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonBatches} title="Close Batches Form" />
                       <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
