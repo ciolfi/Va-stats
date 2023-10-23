@@ -318,6 +318,7 @@ export default function Page() {
               <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link rel='manifest' href='/manifest.json' />
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
@@ -348,7 +349,7 @@ export default function Page() {
                 {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
                 <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                 {/* <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}> */}
-                  <a target="_blank" className={styles.csvbutton}>Students CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Students CSV</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>

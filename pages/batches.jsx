@@ -262,6 +262,7 @@ export default function Page() {
                 <link rel='icon' href='/favicon.ico' />
                 <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
                 <link rel='manifest' href='/manifest.json' />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
                 <link rel='preconnect'
                   href='https://fonts.gstatic.com'
@@ -295,7 +296,7 @@ export default function Page() {
                   {/* ---------- CSV Download button ---------------- */}
                   <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/batches.php"}>
                     {/* <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}> */}
-                    <a target="_blank" className={styles.csvbutton}>Batches CSV</a>
+                    <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Batches CSV</a>
                   </Link>
                 </p>
 
