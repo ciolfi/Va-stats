@@ -1072,7 +1072,7 @@ div .menubutton {
   background-color: #0056b3;
 }
 
-.unassignedContainer {
+.batchManagementContainer {
   background-color: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 5px;
@@ -1080,7 +1080,7 @@ div .menubutton {
   margin-bottom: 2rem;
 }
 
-.unassignedList {
+.batchManagementList {
   min-width: 200px;
   margin-right: 10px;
 }
@@ -1091,7 +1091,7 @@ div .menubutton {
   align-items: center;
 }
 
-.addUnassignedButton {
+.batchManagementButton {
   background-color: #28a745;
   color: white;
   border: none;
@@ -1100,7 +1100,7 @@ div .menubutton {
   cursor: pointer;
 }
 
-.addUnassignedButton:hover {
+.batchManagementButton:hover {
   background-color: #218838;
 }
 
