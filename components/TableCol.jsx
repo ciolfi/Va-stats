@@ -5,8 +5,9 @@ import { searchTableData, generateTableCol, sortTable, filterCompletedBatches } 
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from './Button';
+import Link from "next/link";
 
-export default function TableCol({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent }) {
+export default function TableCol({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent, batchId }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
 	const [sortAsc, setSortAsc] = useState(true);
 	const [editId, setEditId] = useState(null);
@@ -78,6 +79,9 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				<h2>{Title}</h2>
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
+				<Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/"+Title.toLowerCase()+".php?ID="+batchId}>
+					<a target="_blank" className={styles.csvbutton}>{Title} CSV</a>
+				</Link>
 			</div>
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">
 				<thead>

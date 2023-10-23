@@ -449,18 +449,6 @@ export default function Page() {
             {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
             <p className={styles.titlebatchspecific}>
               Course: {courseName}, Batch: {batchName}
-
-              {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
-              {/* ---------- CSV Download button ---------------- */}
-              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/attendance.php?ID="+id}>
-                <a target="_blank" className={styles.csvbutton}>Attendance CSV</a>
-              </Link>
-
-              {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
-              {/* ---------- CSV Download button ---------------- */}
-              <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/grades.php?ID="+id}>
-                <a target="_blank" className={styles.csvbutton}>Grades CSV</a>
-              </Link>
             </p>
             {/* <p className={styles.subtitle}>Total students enrolled: {batchLength}</p> */}
             <p className={styles.batchTextTotalStudents}>Total students enrolled: {batchLength}</p>
@@ -527,12 +515,12 @@ export default function Page() {
             )}
             
             {showAttendance && (attendanceColumn.length > 0 ?
-              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} />
+              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
               : <></>
             )}
 
             {showGrades && (gradesColumn.length > 0 ?
-              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} />
+              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
               : <></>
             )}
           </div>

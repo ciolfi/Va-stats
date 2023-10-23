@@ -118,6 +118,20 @@ look right (not sure if that's right).  */
   text-align:right !important;
 }
 
+.csvbutton {
+  background-color: #087f48;
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-left: 0.7em;
+  opacity: 0.8;
+  padding: 0.3em 0.2em;
+  position: relative;
+}
+
 /* ---------- TABLE HEADER ENDS --------- */
 
 .genericTable th .genericTable tbody tr {
