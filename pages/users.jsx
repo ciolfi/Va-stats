@@ -310,7 +310,7 @@ export default function Page() {
 
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
-                  <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Staff CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> Staff CSV</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>
@@ -319,13 +319,13 @@ export default function Page() {
                 {/* Add staff member form */}
                 {showForm ?
                   <div className={styles.addstaffform}>                 
-                    <h2 class={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
+                    <h2 className={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
                     <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonUsers} title="Close User Creation Form" />
                     <form action='/api/usercreate' className={styles.addstaffforminputs} method='post' onSubmit={() => handleSubmit()} autoComplete='off'>
 
                       <section className={styles.addstaffformsec1}>
                         <label htmlFor='email' className={styles.addstafflabel}>Email<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' id='email' name='email' className={styles.addstaffforminputsbox} autofocus /><br /><br />
+                        <input required type='text' id='email' name='email' className={styles.addstaffforminputsbox} autoFocus /><br /><br />
 
                         <label htmlFor='firstname' className={styles.addstafflabel}>First Name<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='firstname' name='firstname' /><br /><br />
