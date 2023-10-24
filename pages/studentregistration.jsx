@@ -144,6 +144,12 @@ export default function Page() {
     else if (document.getElementById('third_choice').value == 'Select Third Choice') {
       document.getElementById('third_choice').focus();
     }
+    else if (document.getElementById('visual_acuity').value == 'Select Visual Acuity') {
+      document.getElementById('visual_acuity').focus();
+    }
+    // else if ((document.getElementById('percent_loss').value == '') || (document.getElementById('percent_loss').value == null)) {
+    //   document.getElementById('percent_loss').focus();
+    // }
   };
 
   const updateOptions = () => {
@@ -657,7 +663,6 @@ export default function Page() {
                         {/*-------------- VISION DROPDOWN BEGINS ------------*/}
                         <td className={styles.inputtd}>
                           <select
-                            // onFocus={() => setFocused(true)}
                             onFocus={() => checkDropdown()}
                             name="visual_acuity"
                             id="visual_acuity"
@@ -666,10 +671,8 @@ export default function Page() {
                             role="presentation" autocomplete="off"
                             required
                           >
-                            <optgroup label="Visual Acuity">
-                              <option value="LowVision">Low Vision</option>
-                              <option value="Blind">Blind</option>
-                            </optgroup>
+                            <option value="LowVision">Low Vision</option>
+                            <option value="Blind">Blind</option>
                           </select>
                         </td>
                         {/*--------------- VISION DROPDOWN ENDS ---------------*/}
@@ -684,6 +687,7 @@ export default function Page() {
                         </td>
                         <td className={styles.inputtd}>
                           <input
+                            onFocus={() => checkDropdown()}
                             className={styles.reginput}
                             id="percent_loss"
                             name="percent_loss"
@@ -735,7 +739,7 @@ export default function Page() {
                     {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
                     <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`}>SUBMIT</button>
+                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => checkDropdown()}>SUBMIT</button>
                       <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                     </div>
                   </div>
