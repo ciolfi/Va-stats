@@ -40,6 +40,14 @@ export default function Page() {
     setEditingId(null);
   };
 
+  const convertReactObjToArray = (object) => {
+    var dataArray = [];
+    object.forEach((obj) => {
+      dataArray.push(obj.props['value']);
+    });
+    return dataArray;
+  };
+
   const getCourseData = async () => {
     setContentLoading(true);
     const apiUrlEndpoint = `api/getcoursesdata`;
@@ -229,17 +237,17 @@ export default function Page() {
       name: 'Training Program 1',
       accessor: 'trainingprogram1',
       type: 'enum',
-      availableValues: courseOptions1,
+      availableValues: convertReactObjToArray(courseOptions1),
     }, {
       name: 'Training Program 2',
       accessor: 'trainingprogram2',
       type: 'enum',
-      availableValues: courseOptions1,
+      availableValues: convertReactObjToArray(courseOptions1),
     }, {
       name: 'Training Program 3',
       accessor: 'trainingprogram3',
       type: 'enum',
-      availableValues: courseOptions1,
+      availableValues: convertReactObjToArray(courseOptions1),
     }, {
       name: 'Role',
       accessor: 'role',
