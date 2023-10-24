@@ -429,7 +429,6 @@ export default function Page() {
               <link rel='icon' href='/favicon.ico' />
               <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
               <link rel='manifest' href='/manifest.json' />
-              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
@@ -455,18 +454,16 @@ export default function Page() {
             <p className={styles.batchTextTotalStudents}>Total students enrolled: {batchLength}</p>
 
             <div className={styles.batchContainer}>
-              <div className={styles.subtitlebatchspecificstudbtns}>
-                <div className={styles.buttons}>
-                  <button name="attendance" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Attendance
-                  </button>
-                  <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Grades
-                  </button>
-                  <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
-                    Batch Management
-                  </button>
-                </div>
+              <div className={styles.buttons}>
+                <button name="attendance" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Attendance
+                </button>
+                <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Grades
+                </button>
+                <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Batch Management
+                </button>
               </div>
             </div>
 

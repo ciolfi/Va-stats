@@ -251,7 +251,6 @@ div .menubutton {
 /* Specific batch name just below navbar */
 .titlebatchspecific {
   font-size: 1.8em;
-  margin-top: 0.5em;
 }
 
 /* 'Total students enrolled' */
@@ -259,22 +258,12 @@ div .menubutton {
   margin-bottom: 1em;
 }
 
-/* Subtitle, 'Students', and 3 buttons */
-.subtitlebatchspecificstudbtns {
-  display: flex;
-  height: auto;
-  left: -3.8em;
-  position: relative;
-  width: 95vw;
-}
-
 /* Blue btns at the top */
 .buttons {
   display: flex;
-  gap: 1rem;
+  gap: 10px;
   height: auto;
-  margin-bottom: 2rem;
-  margin-left: 0.5em;
+  margin: 10px;
 }
 
 .addButton {
@@ -283,7 +272,8 @@ div .menubutton {
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 10px 15px;
+  font-size: medium;
 }
 
 /* Special styling required for
@@ -769,6 +759,16 @@ div .menubutton {
     width: 1000vw;
   }
 
+  .addButton {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 7.5px 5px;
+    font-size: smaller;
+  }
+
   .footer {
     bottom: 0;
     display: flex;
@@ -916,24 +916,14 @@ div .menubutton {
   /* Title just below navbar */
   .titlebatchspecific {
     font-size: 1.8em;
-    margin-top: 3.5em;
-  }
-
-  /* Subtitle, 'Students' 
-  and blue buttons subgrp */
-  .subtitlebatchspecificstudbtns {
-    display: flex;
-    left: -2.5em;
-    position: relative;
   }
 
   /* Blue btns at top */
   .buttons {
     display: flex;
-    gap: 1rem;
+    gap: 10px;
     height: auto;
-    margin-bottom: 2rem;
-    margin-left: 0.5em;
+    margin: 10px;
   }
 
   .addButton {
@@ -942,7 +932,8 @@ div .menubutton {
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 7.5px 10px;
+    font-size: smaller;
   }
 
   /* Special styling required for
@@ -1042,7 +1033,6 @@ div .menubutton {
 /* Specific batch: blue buttons container at top */
 .batchContainer {
   margin: 0 auto;
-  width: 90%;
   max-width: 1200px;
 }
 
