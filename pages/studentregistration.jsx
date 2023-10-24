@@ -127,9 +127,24 @@ export default function Page() {
 
     setChoiceChanged(!choiceChanged);
   };
-
   /*------------ COURSE CHOICE SUMMARIES CODE ENDS ----------*/
 
+  /* INPUT CONSTRAINT: Course choices dropdowns; selection is enforced by
+  the onfocus event in the next form element (Visual Acuity dropdown) */
+  const checkDropdown = (e) => {
+    if ((document.getElementById('first_choice').value !== 'Select First Choice') && (document.getElementById('second_choice').value !== 'Select Second Choice') && (document.getElementById('third_choice').value !== 'Select Third Choice')) {
+      return;
+    }
+    else if (document.getElementById('first_choice').value == 'Select First Choice') {
+      document.getElementById('first_choice').focus();
+    }
+    else if (document.getElementById('second_choice').value == 'Select Second Choice') {
+      document.getElementById('second_choice').focus();
+    }
+    else if (document.getElementById('third_choice').value == 'Select Third Choice') {
+      document.getElementById('third_choice').focus();
+    }
+  };
 
   const updateOptions = () => {
     const options2 = [];
@@ -577,6 +592,7 @@ export default function Page() {
                             <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autocomplete="off" required>
                               <option></option>
                               {courseOptions1}
+                              <option selected="selected">Select First Choice</option>
                             </select>
                           </td>
                         </tr>
@@ -593,6 +609,7 @@ export default function Page() {
                             <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off" required>
                               <option></option>
                               {courseOptions2}
+                              <option selected="selected">Select Second Choice</option>
                             </select>
                           </td>
                         </tr>
@@ -612,6 +629,7 @@ export default function Page() {
                             <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off" required>
                               <option></option>
                               {courseOptions3}
+                              <option selected="selected">Select Third Choice</option>
                             </select>
                           </td>
                         </tr>
@@ -639,6 +657,8 @@ export default function Page() {
                         {/*-------------- VISION DROPDOWN BEGINS ------------*/}
                         <td className={styles.inputtd}>
                           <select
+                            // onFocus={() => setFocused(true)}
+                            onFocus={() => checkDropdown()}
                             name="visual_acuity"
                             id="visual_acuity"
                             className={styles.txtboxdropdown}
