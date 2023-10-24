@@ -38,6 +38,7 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 				} else {
 					cellContent = (
 						<select className={inputClassName} name={column.accessor} onChange={(e) => changeHandler(e, column.accessor)}>
+							<option></option>
 							{column.availableValues.map((value) => <option key={value} value={value} selected={rowData[column.accessor] === value}>{value}</option>)}
 						</select>
 					);
