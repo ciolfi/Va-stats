@@ -7,7 +7,7 @@ function dateConverter(input){
 	if (input === null) {
 		return null;
 	}
-	var a = new Date(Date.parse(input));
+	var a = new Date(Date.parse(input)+14400000); /* Adding 14400000 to handle the GMT and EST conversion issues */
 	return a.toLocaleDateString("en-US");
 }
 
