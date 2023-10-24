@@ -30,9 +30,10 @@ export default function Page() {
   const [unassignedStudents, setUnassignedStudents] = useState([]);
   const [assignmentName, setAssignmentName] = useState("");
 
-  const [showAttendance, setShowAttendance] = useState(true);
+  const [showAttendance, setShowAttendance] = useState(true); /* Default active tab is Attendance */
   const [showGrades, setShowGrades] = useState(false);
   const [showManagement, setShowManagement] = useState(false);
+  const [showDocuments, setShowDocuments] = useState(false);
 
   const [courseName, setCourseName] = useState("");
   const [batchName, setBatchName] = useState("");
@@ -40,6 +41,7 @@ export default function Page() {
 
   const [attendanceColumn, setAttendanceColumn] = useState([]);
   const [attendanceData, setAttendanceData] = useState([]);
+  const [documentsData, setDocumentsData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
 
   const [contentLoading, setContentLoading] = useState(false);
@@ -66,6 +68,7 @@ export default function Page() {
     setShowAttendance(false);
     setShowGrades(false);
     setShowManagement(false);
+    setShowDocuments(false);
     switch(name) {
       case "attendance":
         setShowAttendance(true);
@@ -75,6 +78,9 @@ export default function Page() {
         break;
       case "management":
         setShowManagement(true);
+        break;
+      case "documents":
+        setShowDocuments(true);
         break;
       default:
         setShowAttendance(true);
@@ -393,6 +399,48 @@ export default function Page() {
     return <p>Loading...</p>;
   }
 
+  const docsColumns = [
+    {
+      name: 'Name',
+      accessor: 'name',
+    }, {
+      name: 'ID Proof',
+      accessor: 'id_proof',
+      type: 'checkbox',
+    }, {
+      name: 'Disability Certificate',
+      accessor: 'disability_cert',
+      type: 'checkbox',
+    }, {
+      name: 'Photo',
+      accessor: 'photo',
+      type: 'checkbox',
+    }, {
+      name: 'Bank Details',
+      accessor: 'bank_details',
+      type: 'checkbox',
+    }, {
+      name: 'Fee Paid',
+      accessor: 'fee_paid',
+      type: 'enum',
+      availableValues: ['Paid', 'Not Paid', 'Waiver', 'Partial Waiver'],
+    }, {
+      name: 'Amount 1',
+      accessor: 'amount_1',
+    }, {
+      name: 'Amount 2',
+      accessor: 'amount_2',
+    }, {
+      name: 'Amount 3',
+      accessor: 'amount_3',
+    }, {
+      name: 'Nature of Fee',
+      accessor: 'nature_of_fee',
+      type: 'enym',
+      availableValues: ['Refundable', 'Non-Refundable'],
+    },
+  ];
+
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -461,6 +509,9 @@ export default function Page() {
                 <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Grades
                 </button>
+                <button name="documents" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
+                  Documents & Fees
+                </button>
                 <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Management
                 </button>
@@ -520,6 +571,10 @@ export default function Page() {
             {showGrades && (gradesColumn.length > 0 ?
               <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
               : <></>
+            )}
+
+            {showDocuments && (
+              <Table columns={docsColumns} tableData={documentsData} isEditable={true} Title={'Student Documents and Fees'} />
             )}
           </div>
 

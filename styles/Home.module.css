@@ -1088,6 +1088,7 @@ div .menubutton {
   border-radius: 5px;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .batchManagementButton:hover {
