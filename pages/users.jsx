@@ -218,7 +218,8 @@ export default function Page() {
       name: 'Mobile Number',
       accessor: 'mobilenumber',
     }, {
-      name: 'Work Base',
+      // name: 'Work Base',
+      name: 'Work Location',
       accessor: 'workbase',
     }, {
       name: 'Supervisor',
@@ -254,7 +255,7 @@ export default function Page() {
       type: 'enum',
       availableValues: ['STAFF', 'MANAGEMENT', 'ADMINISTRATOR'],
     }, {
-      name: 'Active',
+      name: 'Staff Working Status',
       accessor: 'isactive',
     }, {
       name: 'Action',
@@ -353,7 +354,7 @@ export default function Page() {
                         <label htmlFor='mobilenumber' className={styles.addstafflabel}>Mobile Number<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='tel' className={styles.addstaffforminputsbox} id='mobilenumber' name='mobilenumber' />&nbsp;<br />
 
-                        <label htmlFor='workbase' className={styles.addstafflabel}>Work Base<span className={styles.requiredelement}>&#42;</span></label>
+                        <label htmlFor='workbase' className={styles.addstafflabel}>Work Location<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='workbase' name='workbase' />&nbsp;<br />
                       </section>
 
@@ -403,8 +404,12 @@ export default function Page() {
                           <option value='ADMINISTRATOR'>Administrator</option>
                         </select><br /><br />
 
-                        <label htmlFor='active' className={styles.addstafflabel}>Active<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' />&nbsp;<br />
+                        <label htmlFor='active' className={styles.addstafflabel}>Staff Working Status<span className={styles.requiredelement}>&#42;</span></label>
+                        {/* <input required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' />&nbsp;<br /> */}
+                        <select required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive'>&nbsp;<br /> *
+                          <option value='0'>0</option>
+                          <option value='1'>1</option>
+                        </select><br /><br />
 
                         <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
                         <input required type='text' className={styles.addstaffforminputsbox} id='action' name='action' />&nbsp;<br /><br /><br />
