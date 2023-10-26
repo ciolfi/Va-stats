@@ -37,14 +37,14 @@ export default function Page() {
   /*-------- NOTE: This is interim code until
   data-driven components are implemented ------*/
 
-  const pythonSummary = "The Python class goal is to develop skills to write simple applications using Python programming language.";
-  const cSummary = "The C language is a powerful language with a wide variety of uses. It has been used to create databases, applications, and even operating systems.";
-  const cplusplusSummary = "The C++ language is very popular. It has played a key role in the development of a wide variety of software, including video games.";
-  const ccaSummary = "This is our Certificate Course in Computer Applications (CCA). The student will acquire a basic understanding of computers and practical knowledge of using computer applications and voice assisted software.";
-  const phpSummary = "The PHP language is widely used in Information Technology. It is especially helpful in connecting databases to websites.";
-  const htmlSummary = "HTML is our broad course on critical website languages. The student will acquire skills in HTML, CSS, JavaScript, and ARIA Fundamentals for accessible Web development.";
-  const mobtechSummary = "The Mobile Technology course will enable a person with visual impairment to effectively use the modern-day smartphone for day-to-day work, mobility and comfort.";
-  const cssSummary = "The CSS course is for people who want to devlelop the skills to style websites. The student will learn to manipulate color, fonts, and a variety of other web page characteristics.";
+  const pythonSummary = "The Python class goal is to develop skills to write simple applications using Python programming language. We recommend familiarity with other programming languages. The course will be 4-6 months long.";
+  const cSummary = "The C language is a fundamental language in the field of computer science. It's powerful and has a wide variety of uses. It has been used to create databases, applications, and even operating systems. The C language is considered both fast and versatile.";
+  const cplusplusSummary = "The C++ language is very popular. It gives programmers a great deal of control over system memory and other resources. It facilitates the creation of high-performance applications. C++ has played a key role in the development of a wide variety of software, including video games.";
+  const ccaSummary = "This is our Certificate Course in Computer Applications (CCA). It is a preparatory course to introduce students to computers and computer applications. The student will acquire a basic understanding of computers and practical knowledge of using computer applications and voice assisted software. The student should be 15+ years of age with access to a computer.";
+  const phpSummary = "The PHP language is widely used in Information Technology. It is a server side scripting language. PHP can be used to create interactive and dynamic websites. It is especially helpful in connecting databases to websites. Although it's considered beginner-friendly, it is extremely powerful.";
+  const htmlSummary = "HTML is our broad course on critical website languages. The student will acquire skills in HTML, CSS, JavaScript, and ARIA Fundamentals for accessible Web development. The ideal student has a Bachelor degree, skill with computers and touch screen phones, and proficiency using MS Office and screen readers like NVDA and JAWS. The course is 2 months long with 90 minutes per class.";
+  const mobtechSummary = "The Mobile Technology course will enable a person with visual impairment to effectively use the modern-day smartphone for day-to-day work, mobility and comfort. Additionally, the student will learn essential nomenclature related to hardware and software. The ideal student is 12+ years of age and has an Android mobile device.";
+  const cssSummary = "The CSS course is for people who want to develop the skills to style websites. Since CSS works with HTML in creating websites, this is a great follow up course for those who took our HTML course. Website creation focuses on separating content (HTML) and design (CSS). The student will acquire a deep understanding of the manipulation of color, fonts, and a variety of other web page characteristics.";
 
   /*-------- COURSE CHOICE SUMMARIES ITEM ----------*/
   const [Option3, setOption3] = useState(() => []);
