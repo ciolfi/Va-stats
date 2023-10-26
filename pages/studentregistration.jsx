@@ -66,10 +66,6 @@ export default function Page() {
     }
   };
 
-  // const showDialog = (e) => {
-  //   document.write("<dialog id='favDialog'><form method='dialog'><p>Hello</p><button>Close dialog</button></form></dialog>");
-  // };
-
   const getSummaries = (e) => {
     // See constants section above for returned values
     if (e == "python") {
@@ -132,25 +128,33 @@ export default function Page() {
   /* INPUT CONSTRAINT: Course choices dropdowns; selection is enforced by
   the onfocus event in the next form element (Visual Acuity dropdown) */
   const checkDropdown = (e) => {
-    if ((document.getElementById('first_choice').value !== 'Select First Choice') && (document.getElementById('second_choice').value !== 'Select Second Choice') && (document.getElementById('third_choice').value !== 'Select Third Choice')) {
+    if ((document.getElementById('first_choice').value !== 'Select First Choice')) {
       return;
     }
     else if (document.getElementById('first_choice').value == 'Select First Choice') {
       document.getElementById('first_choice').focus();
     }
+  };
+
+  const checkSecondCourseChoice = (e) => {
+    if ((document.getElementById('second_choice').value !== 'Select Second Choice')) {
+      return;
+    }
     else if (document.getElementById('second_choice').value == 'Select Second Choice') {
-      document.getElementById('second_choice').focus();
+      document.getElementById('second_choice').value = '';
+      return;
+    }
+  }
+
+  const checkThirdCourseChoice = (e) => {
+    if ((document.getElementById('third_choice').value !== 'Select Third Choice')) {
+      return;
     }
     else if (document.getElementById('third_choice').value == 'Select Third Choice') {
-      document.getElementById('third_choice').focus();
+      document.getElementById('third_choice').value = '';
+      return;
     }
-    else if (document.getElementById('visual_acuity').value == 'Select Visual Acuity') {
-      document.getElementById('visual_acuity').focus();
-    }
-    // else if ((document.getElementById('percent_loss').value == '') || (document.getElementById('percent_loss').value == null)) {
-    //   document.getElementById('percent_loss').focus();
-    // }
-  };
+  }
 
   const updateOptions = () => {
     const options2 = [];
@@ -609,10 +613,10 @@ export default function Page() {
                             <label htmlFor="second_choice">
                               2nd choice
                             </label>
-                            <span className={styles.requiredelement}>&#42;</span>
+                            {/* <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off" required>
+                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off">
                               <option></option>
                               {courseOptions2}
                               <option selected="selected">Select Second Choice</option>
@@ -626,13 +630,13 @@ export default function Page() {
                             <label htmlFor="third_choice">
                               3rd choice
                             </label>
-                            <span className={styles.requiredelement}>&#42;</span>
+                            {/* <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd}>
                             {/* Before alert box course summaries */}
                             {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autocomplete="off" required> */}
 
-                            <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off" required>
+                            <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off">
                               <option></option>
                               {courseOptions3}
                               <option selected="selected">Select Third Choice</option>
@@ -739,7 +743,7 @@ export default function Page() {
                     {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
                     <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => checkDropdown()}>SUBMIT</button>
+                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => {checkDropdown(); checkSecondCourseChoice();  checkThirdCourseChoice()}}>SUBMIT</button>
                       <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                     </div>
                   </div>
