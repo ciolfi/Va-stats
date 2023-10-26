@@ -135,7 +135,6 @@ export default function Page() {
       document.getElementById('first_choice').focus();
     }
   };
-
   const checkSecondCourseChoice = (e) => {
     if ((document.getElementById('second_choice').value !== 'Select Second Choice')) {
       return;
@@ -144,8 +143,7 @@ export default function Page() {
       document.getElementById('second_choice').value = '';
       return;
     }
-  }
-
+  };
   const checkThirdCourseChoice = (e) => {
     if ((document.getElementById('third_choice').value !== 'Select Third Choice')) {
       return;
@@ -154,7 +152,7 @@ export default function Page() {
       document.getElementById('third_choice').value = '';
       return;
     }
-  }
+  };
 
   const updateOptions = () => {
     const options2 = [];
@@ -743,7 +741,7 @@ export default function Page() {
                     {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
                     <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => {checkDropdown(); checkSecondCourseChoice();  checkThirdCourseChoice()}}>SUBMIT</button>
+                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => {checkDropdown(); checkSecondCourseChoice();  checkThirdCourseChoice();}}>SUBMIT</button>
                       <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                     </div>
                   </div>
