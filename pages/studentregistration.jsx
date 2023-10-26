@@ -508,15 +508,24 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input
-                              type="text"
+                            <select
                               id="edu_qualifications"
                               name="edu_qualifications"
-                              className={styles.reginput}
-                              placeholder="Degrees, etc, 300-char max"
+                              className={styles.txtboxdropdown}
+                              placeholder="Highest level attained, 300-char max"
                               role="presentation" autocomplete="off"
                               required
-                            />
+                            >
+                              <option>Below 10th standard</option>
+                              <option>10 standard</option>
+                              <option>12 standard</option>
+                              <option>Diploma</option>
+                              <option>ITI</option>
+                              <option>Undergraduate</option>
+                              <option>Graduate</option>
+                              <option>Post-graduate</option>
+                              <option>Professional degree</option>
+                            </select>
                           </td>
                         </tr>
 
@@ -741,7 +750,7 @@ export default function Page() {
                     {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
                     <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => {checkDropdown(); checkSecondCourseChoice();  checkThirdCourseChoice();}}>SUBMIT</button>
+                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
                       <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                     </div>
                   </div>
