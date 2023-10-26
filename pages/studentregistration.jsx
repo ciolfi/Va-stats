@@ -350,7 +350,16 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input type="email" autoFocus id="email" name="email" className={styles.reginput} role="presentation" autocomplete="off" required />
+                            <input
+                              autoFocus 
+                              className={styles.reginput}                           
+                              id="email"
+                              name="email"                           
+                              maxlength="50"
+                              type="email"
+                              role="presentation"
+                              autocomplete="off"
+                              required />
                           </td>
                         </tr>
                         <tr className={styles.regrow}>
@@ -361,13 +370,16 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input
-                              placeholder="First & last name"
-                              type="text"
+                            <input                            
                               id="name"
                               name="name"
                               className={styles.reginput}
-                              role="presentation" autocomplete="off"
+                              maxlength="50"
+                              pattern="^[a-zA-Z]+(\s[a-zA-Z]+)?$"
+                              placeholder="First & last name"
+                              type="text"
+                              autocomplete="off"
+                              role="presentation"                         
                               required
                             />
                           </td>
@@ -383,10 +395,11 @@ export default function Page() {
                             <input
                               className={styles.reginput}
                               id="phone_number"
-                              maxLength="10"
                               name="phone_number"
                               placeholder="10 num only; no dashes"
                               type="tel"
+                              pattern="\d{10}"
+                              minlength={10} maxlength={10}
                               role="presentation" autocomplete="off"
                               required
                             />
@@ -400,10 +413,13 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              type="tel"
-                              id="alt_ph_num"
-                              name="alt_ph_num"
                               className={styles.reginput}
+                              id="alt_ph_num"
+                              name="alt_ph_num"                            
+                              placeholder="10 num only; no dashes"
+                              type="tel"
+                              pattern="\d{10}"
+                              minlength={10} maxlength={10}
                               role="presentation" autocomplete="off"
                             />
                           </td>
@@ -445,10 +461,11 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              type="text"
+                              className={styles.reginput}                            
                               id="city"
+                              maxlength="35"
                               name="city"
-                              className={styles.reginput}
+                              type="text"
                               role="presentation" autocomplete="off"
                               required
                             />
@@ -580,10 +597,11 @@ export default function Page() {
                             <textarea
                               className={styles.regtextareagoals}
                               id="objectives"
-                              name="objectives"
-                              placeholder="200-char max"
-                              width="100%"
+                              maxlength="50"
+                              name="objectives"                           
                               onKeyDown={(e) => textAreaHandleEnter(e)}
+                              placeholder="50-char max"
+                              width="100%"
                               role="presentation" autocomplete="off"
                               required
                             />
@@ -701,8 +719,10 @@ export default function Page() {
                             onFocus={() => checkDropdown()}
                             className={styles.reginput}
                             id="percent_loss"
-                            name="percent_loss"
-                            type="text"
+                            max={100}
+                            name="percent_loss"                          
+                            placeholder="0-100"
+                            type="number"
                             role="presentation" autocomplete="off"
                             required
                           />
@@ -718,10 +738,12 @@ export default function Page() {
                           <textarea
                             name="impairment_history"
                             id="impairment_history"
-                            placeholder='300-char max'
+                            maxlength={200}
+                            placeholder='200-char max'
                             className={styles.regtextareaimpair}
                             rows="10"
                             cols="20"
+                            type="text"
                             onKeyDown={(e) => textAreaHandleEnter(e)}
                             role="presentation" autocomplete="off">
                           </textarea>
@@ -737,10 +759,11 @@ export default function Page() {
                           <input
                             className={styles.reginput}
                             id="source"
+                            maxlength={50}
                             name="source"
-                            placeholder="Internet, friend, etc."
-                            type="textbox"
+                            placeholder="E.g., internet, 50-char. max."               
                             ref={refSource}
+                            type="textbox"
                             role="presentation" autocomplete="off"
                           />
                         </td>
