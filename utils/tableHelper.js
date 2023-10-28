@@ -3,11 +3,12 @@ THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
 const dateFields = ['registration_date', 'age', 'joindate'];
+/** TODO: Need to write a better dateConverter */
 function dateConverter(input){
 	if (input === null) {
 		return null;
 	}
-	var a = new Date(Date.parse(input)+14400000); /* Adding 14400000 to handle the GMT and EST conversion issues */
+	var a = new Date(Date.parse(input)+28800000); /* Adding 28800000 to handle the GMT and EST conversion issues */
 	return a.toLocaleDateString("en-US");
 }
 
