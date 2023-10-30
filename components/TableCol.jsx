@@ -96,7 +96,6 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 							stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px'};
 							leftWidthSticky += parseInt(column.width,10);
 							widthOverride = {'width':(column.width)};
-							console.log(widthOverride);
 						}
 						return (
 							<th
