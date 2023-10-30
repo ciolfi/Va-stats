@@ -15,6 +15,7 @@ function dateConverter(input){
 
 export function generateTableRow(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
+	var leftWidthSticky = 0;
 	for (const column of columns) {
 		let cellContent = null;
 		if (rowData.id === editId && column.accessor !== 'id') {
@@ -67,7 +68,14 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 				}
 			}
 		}
-		cell.push(<td key={column.accessor}>{cellContent}</td>);
+		var stickyClass = null;
+		var stickyLeftOverride = null;
+		if (column.isSticky) {
+			leftWidthSticky += column.stickyWidth;
+			stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px' };
+			stickyClass = styles.stickyColTd;
+		}
+		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}
 	return cell;
 }
