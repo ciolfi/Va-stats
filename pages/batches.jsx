@@ -164,6 +164,9 @@ export default function Page() {
       </div>
     );
   }
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   /*------------- END LOCAL TESTING BLOCK -----------*/
 
   const batchesColumns = [
@@ -506,10 +509,6 @@ export default function Page() {
         );
       }
     }
-  }
-
-  if (loading) {
-    return <p>Loading...</p>;
   }
 }
 /*------------- END LOCAL TESTING BLOCK ------------*/
