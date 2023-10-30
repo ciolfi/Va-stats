@@ -152,7 +152,7 @@ export default function Page() {
     {
       name: 'Id',
       isSticky: true,
-      stickyWidth: 117,
+      stickyWidth: 130,
       accessor: 'id',
       isFirstColumn: true,
       height: tableHeight,
