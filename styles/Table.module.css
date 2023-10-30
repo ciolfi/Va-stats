@@ -85,6 +85,15 @@ look right (not sure if that's right).  */
   min-width: 60px;
 }
 
+.rotatedthCol {
+  height: var(--table-height-th);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  position: relative;
+  vertical-align: bottom;
+  width: auto;
+}
+
 /* FIRST COLUMN OF SPECIFIC BATCH ('Students' col) */
 /* .genericTable thead tr th:first-of-type {  
   color: red;
@@ -241,5 +250,14 @@ look right (not sure if that's right).  */
     vertical-align: bottom;
     width: auto;
     min-width: 60px;
+  }
+
+  .rotatedthCol {
+    height: var(--table-height-th);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+    vertical-align: bottom;
+    width: auto;
   }
 }
