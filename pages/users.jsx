@@ -195,7 +195,8 @@ export default function Page() {
   const usersColumns = [
     {
       name: 'Id',
-      width: '6%',
+      isSticky: true,
+      stickyWidth: 69,
       accessor: 'id',
     }, {
       name: 'Email',

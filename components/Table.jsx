@@ -104,7 +104,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						</th> */}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
 						{isDelete || isEditable?
-						<th className={`${styles.actionscolheading} ${actionClass}`} style={actionLeftOverride} width={'100px'}>
+						<th className={`${styles.actionscolheading} ${actionClass}`} style={actionLeftOverride}>
 							Actions
 						</th> : <></>}
 						{columns.map((column) => {

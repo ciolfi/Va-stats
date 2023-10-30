@@ -151,7 +151,8 @@ export default function Page() {
   const studentsColumns = [
     {
       name: 'Id',
-      width: '4%',
+      isSticky: true,
+      stickyWidth: 117,
       accessor: 'id',
       isFirstColumn: true,
       height: tableHeight,

@@ -173,7 +173,8 @@ export default function Page() {
   const batchesColumns = [
     {
       name: 'Id',
-      width: '6%',
+      isSticky: true,
+      stickyWidth: 69,
       accessor: 'id',
     }, {
       name: 'Name',
