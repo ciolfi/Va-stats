@@ -536,7 +536,16 @@ export default function Page() {
                     Add to Batch
                   </button>
                 </div>
+              </div>
+            )}
 
+            {showAttendance && (attendanceColumn.length > 0 ?
+              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
+              : <></>
+            )}
+
+            {showGrades && (
+              <div>
                 <div className={styles.batchManagementContainer}>
                   <h2>Add New Assignment</h2>
                   <input
@@ -547,9 +556,6 @@ export default function Page() {
                     onChange={(e) => setAssignmentName(e.target.value)}
                   />
                   <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentName, id)}>Add Assignment</button>
-                </div>
-
-                <div className={styles.batchManagementContainer}>
                   <h2>Delete Assignment</h2>
                   <input
                     type="text"
@@ -560,17 +566,10 @@ export default function Page() {
                   />
                   <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentName, id)}>Delete Assignment</button>
                 </div>
-              </div>
-            )}
-            
-            {showAttendance && (attendanceColumn.length > 0 ?
-              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
-              : <></>
-            )}
-
-            {showGrades && (gradesColumn.length > 0 ?
+              {gradesColumn.length > 0 ?
               <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
-              : <></>
+              : <></>}
+              </div>
             )}
 
             {showDocuments && (
