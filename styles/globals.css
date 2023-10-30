@@ -55,6 +55,7 @@
   --button-background-hover-dark: rgb(8, 127, 72, 0.3);
   --table-text: var(--jet-black);
   --table-height-th: ----;
+  --left-override-th: ----;
 }
 
 html.main {

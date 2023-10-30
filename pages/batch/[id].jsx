@@ -297,8 +297,8 @@ export default function Page() {
         });
       });
     }
-    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, width: '20px', isRotatedTh:true, isSortable:false });
-    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh:true, isSortable:true });
+    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, width: '50px', isRotatedTh:true, isSortable:false });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
   };
 
@@ -343,7 +343,7 @@ export default function Page() {
         res.push({ name: assignmentName, accessor: assignmentName, isRotatedTh: false });
       });
     }
-    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, width: '150px', isRotatedTh: false });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
   };
 

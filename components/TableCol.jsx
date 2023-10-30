@@ -18,6 +18,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 	const [showOriginal, setShowOriginal] = useState(false);
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
+	var leftWidthSticky = 0;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show completed batches';
 
@@ -87,11 +88,21 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				<thead>
 					<tr>
 					{columns.map((column) => {
-						const width = column.width ?? 'auto';
+						var stickyClass = null;
+						var stickyLeftOverride = null;
+						var widthOverride = null;
+						if (column.isSticky) {
+							stickyClass = styles.stickyColTh;
+							stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px'};
+							leftWidthSticky += parseInt(column.width,10);
+							widthOverride = {'width':(column.width)};
+							console.log(widthOverride);
+						}
 						return (
 							<th
 								key={column.accessor}
-								width={width}
+								className={stickyClass}
+								style={{...stickyLeftOverride, ...widthOverride}}
 								onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc, column.isSortable)}
 							>
 							{!column.isFirstColumn ?
@@ -103,7 +114,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 									</span>
 									{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
-								:
+									:
 									<div className={tableHeaderClassName}>
 										{column.name}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}

@@ -2,6 +2,7 @@
 THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
+import styles from '../styles/Table.module.css';
 const dateFields = ['registration_date', 'age', 'joindate'];
 /** TODO: Need to write a better dateConverter */
 function dateConverter(input){
@@ -77,6 +78,8 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	var daysPresent = 0;
 	const totalSize = columns.length - 2;
 	var isAttendance;
+	var leftWidthSticky = 0;
+	var percentClass, percentOverride = null;
 	for (const column of columns) {
 		let cellContent = null;
 		if (column === editId && column.accessor !== 'id') {
@@ -117,7 +120,18 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 				cellContent = <p>{rowData[column.accessor]}</p>;
 			}
 		}
-		cell.push(<td key={column.accessor}>{cellContent}</td>);
+		var stickyClass = null;
+		var stickyLeftOverride = null;
+		if (column.isSticky) {
+			stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px' };
+			stickyClass = styles.stickyColTd;
+			if (column.accessor == 'percent') {
+				percentClass = stickyClass;
+				percentOverride = stickyLeftOverride;
+			}
+			leftWidthSticky += parseInt(column.width,10);
+		}
+		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}
 	if (isAttendance) {
 		for (const column of columns) {
@@ -127,7 +141,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		}
 		const attendance = (daysPresent/totalSize * 100).toFixed(1);
 		const mark = (attendance < minAttendance) ? "red" : "";
-		cell.splice(1, 1, <td key={"percent"}><p style={{color:mark}}>{attendance}%</p></td>);
+		cell.splice(1, 1, <td className={percentClass} key={"percent"} style={percentOverride}><p style={{color:mark}}>{attendance}%</p></td>);
 	}
 	return cell;
 }

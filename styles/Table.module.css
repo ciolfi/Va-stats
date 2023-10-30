@@ -48,8 +48,6 @@
   margin-left: 0em; */
   overflow-x: scroll;
   /* padding-right: -10em; */
-  position: sticky;
-  top: 0;
   width: auto;
 }
 
@@ -65,6 +63,10 @@
   text-align: left;
   text-transform: uppercase;
   word-wrap: break-word;
+  z-index: 0;
+  position: sticky;
+  top: 0;
+  background-color: rgba(178, 178, 178, 255);
 }
 
 /* Rotation column heading styling */
@@ -118,6 +120,20 @@ look right (not sure if that's right).  */
   text-align:right !important;
 }
 
+.stickyColTd {
+  position: sticky;
+  left: var(--left-override-th);
+  z-index: 1;
+  background-color: white;
+}
+
+.stickyColTh {
+  position: sticky;
+  left: var(--left-override-th);
+  z-index: 3 !important;
+  background-color: rgba(178, 178, 178, 255);
+}
+
 .csvbutton {
   background-color: #087f48;
   border: none;
@@ -148,6 +164,7 @@ look right (not sure if that's right).  */
   width: auto;
   word-wrap: break-word;
   min-width: 50px;
+  max-width: 250px;
 }
 
 .genericTable tbody tr:hover {
