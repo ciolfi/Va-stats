@@ -188,10 +188,6 @@ export default function Page() {
 
   result = userResponse;
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   const usersColumns = [
     {
       name: 'Id',
@@ -489,5 +485,9 @@ export default function Page() {
       }
 
     }
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 }

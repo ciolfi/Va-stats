@@ -151,10 +151,6 @@ export default function Page() {
 
   result = userResponse;
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   if (status === 'unauthenticated') {
     return (
       <div className='autherrorcontainer'>
@@ -510,6 +506,10 @@ export default function Page() {
         );
       }
     }
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 }
 /*------------- END LOCAL TESTING BLOCK ------------*/

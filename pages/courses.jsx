@@ -125,13 +125,6 @@ export default function Page() {
 
   result = userResponse;
 
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-
-
   if (status === 'unauthenticated') {
     return (
       <div className='autherrorcontainer'>
@@ -144,6 +137,10 @@ export default function Page() {
         </span>
       </div>
     );
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
   }
 
   const coursesColumn = [

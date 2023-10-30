@@ -282,9 +282,6 @@ export default function Page() {
   ];
 
   /*-------------- BEGIN AUTHENTICATION FAILURE ------------*/
-  if (loading) {
-    return <p>Loading...</p>;
-  }
   if (status === 'unauthenticated' || result[0].isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -405,6 +402,9 @@ export default function Page() {
         );
       }
     }
+  }
+  if (loading) {
+    return <p>Loading...</p>;
   }
   /*-------------- END AUTHORIZATION FAILURE  -------------*/
 }
