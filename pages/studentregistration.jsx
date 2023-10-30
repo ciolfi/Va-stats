@@ -542,6 +542,7 @@ export default function Page() {
                               <option>Graduate</option>
                               <option>Post-graduate</option>
                               <option>Professional degree</option>
+                              <option>Other</option>
                             </select>
                           </td>
                         </tr>
