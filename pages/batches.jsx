@@ -173,7 +173,7 @@ export default function Page() {
     {
       name: 'Id',
       isSticky: true,
-      stickyWidth: 67,
+      stickyWidth: 68,
       accessor: 'id',
     }, {
       name: 'Name',
