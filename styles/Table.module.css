@@ -144,6 +144,10 @@ look right (not sure if that's right).  */
   background-color: rgba(178, 178, 178, 255);
 }
 
+.studentNames {
+  min-width: 200px;
+}
+
 .csvbutton {
   background-color: #087f48;
   border: none;

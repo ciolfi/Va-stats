@@ -137,7 +137,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 				percentClass = stickyClass;
 				percentOverride = stickyLeftOverride;
 			}
-			leftWidthSticky += parseInt(column.width,10);
+			leftWidthSticky += column.stickyWidth;
 		}
 		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}

@@ -90,18 +90,16 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 					{columns.map((column) => {
 						var stickyClass = null;
 						var stickyLeftOverride = null;
-						var widthOverride = null;
 						if (column.isSticky) {
 							stickyClass = styles.stickyColTh;
 							stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px'};
-							leftWidthSticky += parseInt(column.width,10);
-							widthOverride = {'width':(column.width)};
+							leftWidthSticky += column.stickyWidth;
 						}
 						return (
 							<th
 								key={column.accessor}
-								className={stickyClass}
-								style={{...stickyLeftOverride, ...widthOverride}}
+								className={`${stickyClass} ${(column.accessor == 'name') ? styles.studentNames : null}`}
+								style={stickyLeftOverride}
 								onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc, column.isSortable)}
 							>
 							{!column.isFirstColumn ?

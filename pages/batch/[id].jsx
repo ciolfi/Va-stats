@@ -297,8 +297,8 @@ export default function Page() {
         });
       });
     }
-    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, width: '50px', isRotatedTh:true, isSortable:false });
-    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, width: '150px', isRotatedTh:true, isSortable:true });
+    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 50, isRotatedTh:true, isSortable:false });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 200, isRotatedTh:true, isSortable:true });
     return res;
   };
 
