@@ -282,6 +282,24 @@ export default function Page() {
   ];
 
   /*-------------- BEGIN AUTHENTICATION FAILURE ------------*/
+  if (status === 'unauthenticated') {
+    return (
+      <div className='autherrorcontainer'>
+        <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+        <span className='autherrortext'>
+          Access denied.&nbsp;
+          <Link href='/' className='autherrorlink'>
+            Please sign in.
+          </Link>
+        </span>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   if (status === 'unauthenticated' || result[0].isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -402,9 +420,6 @@ export default function Page() {
         );
       }
     }
-  }
-  if (loading) {
-    return <p>Loading...</p>;
   }
   /*-------------- END AUTHORIZATION FAILURE  -------------*/
 }
