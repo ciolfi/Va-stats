@@ -48,8 +48,6 @@
   margin-left: 0em; */
   overflow-x: scroll;
   /* padding-right: -10em; */
-  position: sticky;
-  top: 0;
   width: auto;
 }
 
@@ -65,6 +63,10 @@
   text-align: left;
   text-transform: uppercase;
   word-wrap: break-word;
+  z-index: 0;
+  position: sticky;
+  top: 0;
+  background-color: rgba(178, 178, 178, 255);
 }
 
 /* Rotation column heading styling */
@@ -74,6 +76,16 @@ position: absolute takes the element out of the
 DOM flow, which is needed for the transform to
 look right (not sure if that's right).  */
 .rotatedth {
+  height: var(--table-height-th);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  position: relative;
+  vertical-align: bottom;
+  width: auto;
+  min-width: 60px;
+}
+
+.rotatedthCol {
   height: var(--table-height-th);
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -115,7 +127,25 @@ look right (not sure if that's right).  */
   position: relative;
   vertical-align: middle;
   padding-right: 5px !important;
-  text-align:right !important;
+  /* text-align:right !important; */
+}
+
+.stickyColTd {
+  position: sticky;
+  left: var(--left-override-th);
+  z-index: 1;
+  background-color: white;
+}
+
+.stickyColTh {
+  position: sticky;
+  left: var(--left-override-th);
+  z-index: 3 !important;
+  background-color: rgba(178, 178, 178, 255);
+}
+
+.studentNames {
+  min-width: 200px;
 }
 
 .csvbutton {
@@ -217,6 +247,16 @@ look right (not sure if that's right).  */
 /* iPhone 14 Max Pro:  932x430; px ratio=3 */
 @media (min-width: 480px) and (max-width: 846px) {
   .rotatedth {
+    height: var(--table-height-th);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    position: relative;
+    vertical-align: bottom;
+    width: auto;
+    min-width: 60px;
+  }
+
+  .rotatedthCol {
     height: var(--table-height-th);
     margin-top: 0.5em;
     margin-bottom: 0.5em;

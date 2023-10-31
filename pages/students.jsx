@@ -151,7 +151,8 @@ export default function Page() {
   const studentsColumns = [
     {
       name: 'Id',
-      width: '4%',
+      isSticky: true,
+      stickyWidth: 130,
       accessor: 'id',
       isFirstColumn: true,
       height: tableHeight,
@@ -281,9 +282,24 @@ export default function Page() {
   ];
 
   /*-------------- BEGIN AUTHENTICATION FAILURE ------------*/
+  if (status === 'unauthenticated') {
+    return (
+      <div className='autherrorcontainer'>
+        <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+        <span className='autherrortext'>
+          Access denied.&nbsp;
+          <Link href='/' className='autherrorlink'>
+            Please sign in.
+          </Link>
+        </span>
+      </div>
+    );
+  }
+
   if (loading) {
     return <p>Loading...</p>;
   }
+
   if (status === 'unauthenticated' || result[0].isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -348,7 +364,7 @@ export default function Page() {
                 {/* ---------- CSV DOWNLOAD BUTTON ---------------- */}
                 <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/students.php"}>
                 {/* <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}> */}
-                  <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Students CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> Students CSV</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>

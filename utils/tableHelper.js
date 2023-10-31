@@ -2,17 +2,20 @@
 THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
+import styles from '../styles/Table.module.css';
 const dateFields = ['registration_date', 'age', 'joindate'];
+/** TODO: Need to write a better dateConverter */
 function dateConverter(input){
 	if (input === null) {
 		return null;
 	}
-	var a = new Date(Date.parse(input)+14400000); /* Adding 14400000 to handle the GMT and EST conversion issues */
+	var a = new Date(Date.parse(input)+28800000); /* Adding 28800000 to handle the GMT and EST conversion issues */
 	return a.toLocaleDateString("en-US");
 }
 
 export function generateTableRow(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
+	var leftWidthSticky = 0;
 	for (const column of columns) {
 		let cellContent = null;
 		if (rowData.id === editId && column.accessor !== 'id') {
@@ -65,7 +68,14 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 				}
 			}
 		}
-		cell.push(<td key={column.accessor}>{cellContent}</td>);
+		var stickyClass = null;
+		var stickyLeftOverride = null;
+		if (column.isSticky) {
+			leftWidthSticky += column.stickyWidth;
+			stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px' };
+			stickyClass = styles.stickyColTd;
+		}
+		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}
 	return cell;
 }
@@ -76,6 +86,8 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	var daysPresent = 0;
 	const totalSize = columns.length - 2;
 	var isAttendance;
+	var leftWidthSticky = 0;
+	var percentClass, percentOverride = null;
 	for (const column of columns) {
 		let cellContent = null;
 		if (column === editId && column.accessor !== 'id') {
@@ -116,7 +128,18 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 				cellContent = <p>{rowData[column.accessor]}</p>;
 			}
 		}
-		cell.push(<td key={column.accessor}>{cellContent}</td>);
+		var stickyClass = null;
+		var stickyLeftOverride = null;
+		if (column.isSticky) {
+			stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px' };
+			stickyClass = styles.stickyColTd;
+			if (column.accessor == 'percent') {
+				percentClass = stickyClass;
+				percentOverride = stickyLeftOverride;
+			}
+			leftWidthSticky += column.stickyWidth;
+		}
+		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}
 	if (isAttendance) {
 		for (const column of columns) {
@@ -126,7 +149,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		}
 		const attendance = (daysPresent/totalSize * 100).toFixed(1);
 		const mark = (attendance < minAttendance) ? "red" : "";
-		cell.splice(1, 1, <td key={"percent"}><p style={{color:mark}}>{attendance}%</p></td>);
+		cell.splice(1, 1, <td className={percentClass} key={"percent"} style={percentOverride}><p style={{color:mark}}>{attendance}%</p></td>);
 	}
 	return cell;
 }

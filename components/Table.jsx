@@ -20,6 +20,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 	const router = useRouter();
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
+	var leftWidthSticky = 0;
+	var actionClass = styles.stickyColTh;
+	var actionLeftOverride = { '--left-override-th': (0)+'px'};
 
 	/* STYLE THE COLUMN HEADER TEXT, E.G., -70 DEG, FOR:
 	students, batches, specific batch */
@@ -101,15 +104,22 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						</th> */}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
 						{isDelete || isEditable?
-						<th className={styles.actionscolheading} width={'100px'}>
+						<th className={`${styles.actionscolheading} ${actionClass}`} style={actionLeftOverride}>
 							Actions
 						</th> : <></>}
 						{columns.map((column) => {
-							const width = column.width ?? 'auto';
+							var stickyClass = null;
+							var stickyLeftOverride = null;
+							if (column.isSticky) {
+								stickyClass = styles.stickyColTh;
+								leftWidthSticky += column.stickyWidth;
+								stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px'};
+							}
 							return (
 								<th
 									key={column.accessor}
-									width={width}
+									className={stickyClass}
+									style={stickyLeftOverride}
 									onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc)}
 								>
 									{column.isRotatedTh && !column.isFirstColumn ?
@@ -135,7 +145,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						return (
 							<tr key={index}>
 								{isDelete || isEditable ?
-									<td> 
+									<td className={styles.stickyColTd} key={rowData.accessor} style={actionLeftOverride}>
 										{editId === rowData.id ? 
 											<>
 												<Image className={styles.actionItem} alt={'save edit'} src={'/icons/save-icon.svg'} height={20} width={20} onClick={() => saveHandler() } />

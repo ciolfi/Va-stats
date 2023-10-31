@@ -18,6 +18,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 	const [showOriginal, setShowOriginal] = useState(false);
 	const tableHeaderClassName = sortAsc ? styles.genericTableColumnHeaderAsc : styles.genericTableColumnHeaderDesc;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
+	var leftWidthSticky = 0;
 
 	const showCompletedBatchesText = showOriginal? 'Show all batches' : 'Show completed batches';
 
@@ -80,30 +81,37 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
 				<Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/"+Title.toLowerCase()+".php?ID="+batchId}>
-					<a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> {Title} CSV</a>
+					<a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> {Title} CSV</a>
 				</Link>
 			</div>
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">
 				<thead>
 					<tr>
 					{columns.map((column) => {
-						const width = column.width ?? 'auto';
+						var stickyClass = null;
+						var stickyLeftOverride = null;
+						if (column.isSticky) {
+							stickyClass = styles.stickyColTh;
+							stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px'};
+							leftWidthSticky += column.stickyWidth;
+						}
 						return (
 							<th
 								key={column.accessor}
-								width={width}
+								className={`${stickyClass} ${(column.accessor == 'name') ? styles.studentNames : null}`}
+								style={stickyLeftOverride}
 								onClick={() => onClickHeader(sortColumn, setSortColumn, column.accessor, sortAsc, setSortAsc, column.isSortable)}
 							>
 							{!column.isFirstColumn ?
 								<span>
 								{column.isRotatedTh ?
-									<div className={styles.rotatedth} style={{ '--table-height-th':column.height }}>
+									<div className={styles.rotatedthCol} style={{ '--table-height-th':column.height }}>
 									<span className={styles.rotatedthlabel}>
 										{column.name}
 									</span>
 									{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 									</div>
-								:
+									:
 									<div className={tableHeaderClassName}>
 										{column.name}
 										{displaySortIcon(sortColumn, column.accessor, sortAsc)}

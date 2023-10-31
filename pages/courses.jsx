@@ -125,13 +125,6 @@ export default function Page() {
 
   result = userResponse;
 
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-
-
   if (status === 'unauthenticated') {
     return (
       <div className='autherrorcontainer'>
@@ -146,10 +139,15 @@ export default function Page() {
     );
   }
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   const coursesColumn = [
     {
       name: 'Id',
-      width: '6%',
+      isSticky: true,
+      stickyWidth: 68,
       accessor: 'id',
     }, {
       name: 'Name',
@@ -237,7 +235,7 @@ export default function Page() {
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/courses.php"} legacyBehavior>
                 {/* <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"} legacyBehavior> */}
-                  <a target="_blank" className={styles.csvbutton}><i class="fa fa-download"></i> Courses CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> Courses CSV</a>
                 </Link>
               </p>
 

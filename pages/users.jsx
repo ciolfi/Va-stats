@@ -188,14 +188,11 @@ export default function Page() {
 
   result = userResponse;
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   const usersColumns = [
     {
       name: 'Id',
-      width: '6%',
+      isSticky: true,
+      stickyWidth: 68,
       accessor: 'id',
     }, {
       name: 'Email',
@@ -262,6 +259,24 @@ export default function Page() {
       accessor: 'action',
     },
   ];
+
+  if (status === 'unauthenticated') {
+    return (
+      <div className='autherrorcontainer'>
+        <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+        <span className='autherrortext'>
+          Access denied.&nbsp;
+          <Link href='/' className='autherrorlink'>
+            Please sign in.
+          </Link>
+        </span>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   if (status === 'unauthenticated') {
     return (
