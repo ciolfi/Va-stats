@@ -228,6 +228,19 @@ export default function Page() {
     [selectedGender]
   );
 
+  // EDUCATION-OTHER
+  const [handleEducationOther, setEducationOther] = React.useState(new Set(["Below 10th standard"]));
+  // const selectedValueEducation = React.useMemo(
+  //   () => Array.from(handleEducationOther).join(", ").replaceAll("_", " "),
+  //   [handleEducationOther]
+  // );
+  if (handleEducationOther == 'Other'){
+    console.log("Education was changed to OTHER");
+  }
+  else {
+    console.log("Education was changed to SOMETHING ELSE");
+  };
+
   // EMPLOYMENT STATUS
   const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employed"]));
   const selectedValueEmpStatus = React.useMemo(
@@ -330,8 +343,8 @@ export default function Page() {
             <div>
               {/* Avoid hydration errors with code below; may not work.
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
-              {/* NOTE Re: disabling form autocompletion: use role="presentation" autocomplete="off" for EACH form input. In the code below, they are placed on the same line to underscore they work together. */}
-              <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autocomplete='off'>
+              {/* NOTE Re: disabling form autocompletion: use role="presentation" autoComplete="off" for EACH form input. In the code below, they are placed on the same line to underscore they work together. */}
+              <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autoComplete='off'>
                 <div className={styles.grid}>
                   {/*------- CARD: TRAINEE -------*/}
                   <div
@@ -351,14 +364,14 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              autoFocus 
-                              className={styles.reginput}                           
+                              autoFocus
+                              className={styles.reginput}
                               id="email"
-                              name="email"                           
-                              maxlength="50"
+                              name="email"
+                              maxLength="50"
                               type="email"
                               role="presentation"
-                              autocomplete="off"
+                              autoComplete="off"
                               required />
                           </td>
                         </tr>
@@ -370,16 +383,18 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <input                            
+                            <input
                               id="name"
                               name="name"
                               className={styles.reginput}
-                              maxlength="50"
-                              pattern="^[a-zA-Z]+(\s[a-zA-Z]+)?$"
+                              maxLength="150"
+                              // First entered name must start with an alphabet character and 
+                              // can be followed by any character (dot and spaces included)
+                              pattern="^[a-zA-Z].*[\s\.]*$"
                               placeholder="First & last name"
                               type="text"
-                              autocomplete="off"
-                              role="presentation"                         
+                              autoComplete="off"
+                              role="presentation"
                               required
                             />
                           </td>
@@ -399,8 +414,8 @@ export default function Page() {
                               placeholder="10 num only; no dashes"
                               type="tel"
                               pattern="\d{10}"
-                              minlength={10} maxlength={10}
-                              role="presentation" autocomplete="off"
+                              minLength={10} maxLength={10}
+                              role="presentation" autoComplete="off"
                               required
                             />
                           </td>
@@ -415,12 +430,12 @@ export default function Page() {
                             <input
                               className={styles.reginput}
                               id="alt_ph_num"
-                              name="alt_ph_num"                            
+                              name="alt_ph_num"
                               placeholder="10 num only; no dashes"
                               type="tel"
                               pattern="\d{10}"
-                              minlength={10} maxlength={10}
-                              role="presentation" autocomplete="off"
+                              minLength={10} maxLength={10}
+                              role="presentation" autoComplete="off"
                             />
                           </td>
                         </tr>
@@ -432,7 +447,7 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autocomplete="off" required>
+                            <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
                               <option></option>
                               {countriesOptions}
                             </select>
@@ -446,7 +461,7 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="state" id="state" className={styles.reginput} role="presentation" autocomplete="off" required>
+                            <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
                               <option></option>
                               {stateOptions}
                             </select>
@@ -461,12 +476,12 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              className={styles.reginput}                            
+                              className={styles.reginput}
                               id="city"
-                              maxlength="35"
+                              maxLength="35"
                               name="city"
                               type="text"
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                               required
                             />
                           </td>
@@ -486,7 +501,7 @@ export default function Page() {
                               id="gender"
                               className={styles.txtboxdropdown}
                               onSelectionChange={setSelectedGender}
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                             >
                               <optgroup label="Gender">
                                 <option value="Female">Female</option>
@@ -511,7 +526,7 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                               required
                             />
                           </td>
@@ -529,8 +544,10 @@ export default function Page() {
                               id="edu_qualifications"
                               name="edu_qualifications"
                               className={styles.txtboxdropdown}
+                              // onSelectionChange={setEducationOther}
+                              onChange={setEducationOther}
                               placeholder="Highest level attained, 300-char max"
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                               required
                             >
                               <option>Below 10th standard</option>
@@ -542,6 +559,7 @@ export default function Page() {
                               <option>Graduate</option>
                               <option>Post-graduate</option>
                               <option>Professional degree</option>
+                              <option>Other</option>
                             </select>
                           </td>
                         </tr>
@@ -559,7 +577,7 @@ export default function Page() {
                               id="employment_status"
                               className={styles.txtboxdropdown}
                               onSelectionChange={setSelectedEmpStatus}
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                             >
                               <optgroup label="EmpStatus">
                                 <option value="Employed">Employed</option>
@@ -597,12 +615,12 @@ export default function Page() {
                             <textarea
                               className={styles.regtextareagoals}
                               id="objectives"
-                              maxlength="50"
-                              name="objectives"                           
+                              maxLength="50"
+                              name="objectives"
                               onKeyDown={(e) => textAreaHandleEnter(e)}
                               placeholder="50-char max"
                               width="100%"
-                              role="presentation" autocomplete="off"
+                              role="presentation" autoComplete="off"
                               required
                             />
                           </td>
@@ -624,7 +642,7 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autocomplete="off" required>
+                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autoComplete="off" required>
                               <option></option>
                               {courseOptions1}
                               <option selected="selected">Select First Choice</option>
@@ -641,7 +659,7 @@ export default function Page() {
                             {/* <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off">
+                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
                               <option></option>
                               {courseOptions2}
                               <option selected="selected">Select Second Choice</option>
@@ -659,9 +677,9 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             {/* Before alert box course summaries */}
-                            {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autocomplete="off" required> */}
+                            {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autoComplete="off" required> */}
 
-                            <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autocomplete="off">
+                            <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
                               <option></option>
                               {courseOptions3}
                               <option selected="selected">Select Third Choice</option>
@@ -697,7 +715,7 @@ export default function Page() {
                             id="visual_acuity"
                             className={styles.txtboxdropdown}
                             onSelectionChange={setSelectedVision}
-                            role="presentation" autocomplete="off"
+                            role="presentation" autoComplete="off"
                             required
                           >
                             <option value="LowVision">Low Vision</option>
@@ -720,10 +738,10 @@ export default function Page() {
                             className={styles.reginput}
                             id="percent_loss"
                             max={100}
-                            name="percent_loss"                          
+                            name="percent_loss"
                             placeholder="0-100"
                             type="number"
-                            role="presentation" autocomplete="off"
+                            role="presentation" autoComplete="off"
                             required
                           />
                         </td>
@@ -738,14 +756,14 @@ export default function Page() {
                           <textarea
                             name="impairment_history"
                             id="impairment_history"
-                            maxlength={200}
+                            maxLength={200}
                             placeholder='200-char max'
                             className={styles.regtextareaimpair}
                             rows="10"
                             cols="20"
                             type="text"
                             onKeyDown={(e) => textAreaHandleEnter(e)}
-                            role="presentation" autocomplete="off">
+                            role="presentation" autoComplete="off">
                           </textarea>
                         </td>
                       </tr>
@@ -759,12 +777,12 @@ export default function Page() {
                           <input
                             className={styles.reginput}
                             id="source"
-                            maxlength={50}
+                            maxLength={50}
                             name="source"
-                            placeholder="E.g., internet, 50-char. max."               
+                            placeholder="E.g., internet, 50-char. max."
                             ref={refSource}
                             type="textbox"
-                            role="presentation" autocomplete="off"
+                            role="presentation" autoComplete="off"
                           />
                         </td>
                       </tr>
