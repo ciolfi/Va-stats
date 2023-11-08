@@ -26,6 +26,7 @@ export default function Page() {
   const [userResponse, setUserResponse] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [contentLoading, setContentLoading] = useState(false);
+  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT'];
 
   const [loading, setLoading] = useState(true);
   let isDelete = false, isEditable = false;
@@ -167,27 +168,9 @@ export default function Page() {
     },
   ];
   if (status === 'authenticated') {
-    if ((result.length === 0)) {
-      return (
-        <div className='autherrorcontainer'>
-          <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
-          <span className='autherrortext'>
-            Not authorized.&nbsp;
-            <Link href='/' className='autherrorlink'>
-              Please try another account.
-            </Link>
-          </span>
-        </div>
-      );
-    }
-    else {
-      if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM')) {
-        isDelete = true;
-        isEditable = true;
-      } else {
-        isDelete = false;
-        isEditable = false;
-      }
+    if (allowedRoles.includes(result[0].role)) {
+      isDelete = true;
+      isEditable = true;
       return (
         <>
           <div className={styles.mynavbar}>
@@ -310,6 +293,18 @@ export default function Page() {
         </>
       );
 
+    } else {
+      return (
+        <div className='autherrorcontainer'>
+          <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+          <span className='autherrortext'>
+            Not authorized.&nbsp;
+            <Link href='/' className='autherrorlink'>
+              Please try another account.
+            </Link>
+          </span>
+        </div>
+      );
     }
   }
 }

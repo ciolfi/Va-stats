@@ -29,6 +29,7 @@ export default function Page() {
   const [Option1, setOption1] = useState(() => []);
   const [Option2, setOption2] = useState(() => []);
   const [choiceChanged, setChoiceChanged] = useState(false);
+  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT'];
 
   const [editingId, setEditingId] = useState(null);
 
@@ -291,7 +292,7 @@ export default function Page() {
       </div>
     );
   } else {
-    if ((result[0].role === 'MANAGEMENT' && result[0].isactive === 1)) {
+    if ((allowedRoles.includes(result[0].role) && result[0].isactive === 1)) {
       return (
         <>
           <div className={styles.mynavbar}>
@@ -475,33 +476,17 @@ export default function Page() {
       );
 
     } else {
-      if ((result.length === 0)) {
-        return (
-          <div className='autherrorcontainer'>
-            <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
-            <span className='autherrortext'>
-              Not authorized.&nbsp;
-              <Link href='/' className='autherrorlink'>
-                Please try another account.
-              </Link>
-            </span>
-          </div>
-        );
-
-      } else {
-        return (
-          <div className='autherrorcontainer'>
-            <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
-            <span className='autherrortext'>
-              Not authorized.&nbsp;
-              <Link href='/' className='autherrorlink'>
-                Please try another account.
-              </Link>
-            </span>
-          </div>
-        );
-      }
-
+      return (
+        <div className='autherrorcontainer'>
+          <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
+          <span className='autherrortext'>
+            Not authorized.&nbsp;
+            <Link href='/' className='autherrorlink'>
+              Please try another account.
+            </Link>
+          </span>
+        </div>
+      );
     }
   }
 }

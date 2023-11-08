@@ -38,6 +38,7 @@ export default function Page() {
   const [contentLoading, setContentLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
+  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
 
   const handleUpdateBatch = async (editedBatch) => {
     setContentLoading(true);
@@ -241,7 +242,7 @@ export default function Page() {
       );
     }
     else {
-      if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM')) {
+      if (allowedRoles.includes(result[0].role)) {
         /*------------- END LOCAL TESTING BLOCK -----------*/
 
         return (

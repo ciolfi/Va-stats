@@ -43,6 +43,7 @@ export default function Page() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [documentsData, setDocumentsData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
+  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
 
   const [contentLoading, setContentLoading] = useState(false);
 
@@ -455,7 +456,7 @@ export default function Page() {
       </div>
     );
   } else {
-    if (userResponse.role === "MANAGEMENT" || userResponse.role === "PM") {
+    if (allowedRoles.includes(userResponse.role)) {
       return (
         <>
           <div className={styles.mynavbar}>

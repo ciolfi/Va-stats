@@ -21,6 +21,7 @@ export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
   const [nameSortOrder, setNameSortOrder] = useState('asc');
   const [contentLoading, setContentLoading] = useState(false);
+  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT'];
 
   const handleEditStudent = (studentId) => {
     setEditingId(studentId);
@@ -313,7 +314,7 @@ export default function Page() {
       </div>
     );
   } else {
-    if ((result[0].role === 'MANAGEMENT' || result[0].role === 'PM' || result[0].role === 'ADMINISTRATOR')) {
+    if (allowedRoles.includes(result[0].role)) {
       /*-------------- END AUTHENTICATION FAILURE ------------*/
 
       return (
@@ -406,7 +407,6 @@ export default function Page() {
 
       /*-------------- BEGIN AUTHORIZATION FAILURE -------------*/
     } else {
-      if ((result.length === 0)) {
         return (
           <div className='autherrorcontainer'>
             <Image alt={'VisionAid logo'} src={'/images/logo-mainsite.png'} height={100} width={150} />
@@ -418,7 +418,6 @@ export default function Page() {
             </span>
           </div>
         );
-      }
     }
   }
   /*-------------- END AUTHORIZATION FAILURE  -------------*/
