@@ -8,12 +8,40 @@ import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
 import Router from "next/router";                   // Popup confirmation
 import styles from "../styles/StudentReg.module.css";
+import { useSession } from 'next-auth/react';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 let worldData = require("../utils/countries+states.json");
+var userRole = "STAFF";
 
 export default function Page() {
+  const { data: session, status } = useSession();
+  var result;
+
+  // API DATA ACCESS
+  const getUserData = async () => {
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
+    const postData = {
+      method: "Post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({              /* LOCAL TESTING */
+        email: session.user.email
+      }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    const res = await response.json();
+    result = res.users[0];                /* LOCAL TESTING */
+
+    if (status == "authenticated"){
+      userRole = result[0].role;
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [session]);
+
   useForm(); // Form reset
 
   // Line below may work FOR SSRPROVIDER ERRORS:
@@ -317,7 +345,7 @@ export default function Page() {
       </dialog> */}
 
         <div className={styles.mynavbar}>
-          <Navbar className={styles.navstudents} />
+          <Navbar user_role={userRole} className={styles.navstudents} />
         </div>
 
         <div className={styles.container}>

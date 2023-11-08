@@ -5,17 +5,45 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import aboutConfig from '@/configs/aboutPage.json';
+import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import Title from '@/components/Title';
 
 // IMPORTS BELOW REMOVE SSRPROVIDER ERRORS
 import { NextUIProvider } from '@nextui-org/react';
 // import { useSSR } from '@nextui-org/react';
+var userRole = "STAFF";
 
 export default function Home() {
   const [batchCountResponse, setBatchCountResponse] = useState([]);
   const [courseCountResponse, setCourseCountResponse] = useState([]);
   const [studentCountResponse, setStudentCountResponse] = useState([]);
+
+  const { data: session, status } = useSession();
+  var result;
+
+  // API DATA ACCESS
+  const getUserData = async () => {
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
+    const postData = {
+      method: "Post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({              /* LOCAL TESTING */
+        email: session.user.email
+      }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    const res = await response.json();
+    result = res.users[0];                /* LOCAL TESTING */
+
+    if (status == "authenticated"){
+      userRole = result[0].role;
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [session]);
 
   const getBatchCount = async () => {
     const apiUrlEndpoint = `api/countbatch`;
@@ -52,7 +80,7 @@ export default function Home() {
 
       <>
         <div>
-          <Navbar className={styles.topnav} />
+          <Navbar user_role={userRole} className={styles.topnav} />
         </div>
         <div className={styles.container}>
           <Head>

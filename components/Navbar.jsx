@@ -26,22 +26,31 @@ const MENU_LIST = [
   {
     text: "Student Registration",
     href: "/studentregistration",
+    sessionRequired: false,
   },
   {
     text: "Students",
     href: "/students",
+    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    sessionRequired: true,
   },
   {
     text: "Batches",
-    href: "/batches"
+    href: "/batches",
+    allowedRoles: ['ADMINISTRATOR','MANAGEMENT','STAFF'],
+    sessionRequired: true,
   },
   {
     text: "Courses",
-    href: "/courses"
+    href: "/courses",
+    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    sessionRequired: true,
   },
   {
     text: "Staff",
-    href: "/users"
+    href: "/users",
+    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    sessionRequired: true,
   },
 ];
 
@@ -98,8 +107,14 @@ const Navbar = (user_role) => {
           <div></div>
         </div>
         <div className={`${navActive ? 'active' : ''} nav__menu-list`}>
-          {MENU_LIST.map((menu, idx) => (
-            <div key={menu.text}>
+          {MENU_LIST.map((menu, idx) => {
+            if (menu.sessionRequired && !session) {
+              return;
+            } else if (menu.sessionRequired && !menu.allowedRoles.includes(user_role.user_role)) {
+              return;
+            }
+            return(
+              <div key={menu.text}>
               {menu.submenu ? (
                 <DropdownMenu
                   menu={menu}
@@ -121,7 +136,8 @@ const Navbar = (user_role) => {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
 
           {/* Code that switches buttons, depending on whether 
           you're logged in */}
