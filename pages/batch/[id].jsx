@@ -290,7 +290,7 @@ export default function Page() {
           name: attendanceDate.includes('T') ? attendanceDate.split('T')[0] : attendanceDate,
           accessor: attendanceDate,
           type: 'enum',
-          availableValues: [1, 0],
+          availableValues: [1, 0, 2],
           isAttendance: true,
           isRotatedTh: true,
           isSortable: false,

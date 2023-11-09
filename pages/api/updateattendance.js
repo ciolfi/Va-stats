@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     try {
       for (const date of attendanceDates) {
-        const isPresent = studentObject[date] == "1";
+        const isPresent = studentObject[date];
 
         const [rows] = await dbconnection.execute(
           "SELECT is_present FROM va_attendance WHERE batch_id = ? AND student_id = ? AND date = ?",

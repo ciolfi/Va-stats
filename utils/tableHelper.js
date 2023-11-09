@@ -4,6 +4,8 @@ attendance dropdown in batches.
 */
 import styles from '../styles/Table.module.css';
 const dateFields = ['registration_date', 'age', 'joindate'];
+const attendanceValues = ["A", "P", "X"];
+const attendanceStyle = ["red", "green", "black"];
 /** TODO: Need to write a better dateConverter */
 function dateConverter(input){
 	if (input === null) {
@@ -25,16 +27,7 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 						// <select className={inputClassName} name={column.accessor} value={rowData[column.accessor] || '0'}  onChange={(e) => changeHandler(e, column.accessor)}>
 						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, column.accessor)}>
 							{column.availableValues.map((value) => {
-								if (Number(value) == 1) {
-									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Present" }</option>;
-									return <option key={value} value={Number(value)}>{ "P" }</option>;
-								} else if (Number(value) == 0) {
-									// return <option key={value} value={value} selected={rowData[column.accessor] === value}>{ "Absent" }</option>;
-									return <option key={value} value={Number(value)}>{ "A" }</option>;
-								} else if (!value) {
-									// return <option key={"0"} value={"0"} selected={true}>{ "Absent" }</option>;
-									return <option key={"1"} value={1}>{ "P" }</option>;
-								}
+								return <option key={value} value={Number(value)}>{ attendanceValues[Number(value)] }</option>;
 						})}
 						</select>
 					);
@@ -51,15 +44,7 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 			}
 		} else {
 			if (column.isAttendance) {
-				// if (Number(rowData[column.accessor]) == 1) {
-				// 	cellContent = <p>{"Present"}</p>;
-				if (Number(rowData[column.accessor]) == 1) {
-					cellContent = <p>{"P"}</p>;
-				// } else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
-				// 	cellContent = <p>{"Absent"}</p>;
-			} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
-				cellContent = <p>{"A"}</p>;
-				}
+				cellContent = <p>{attendanceValues[Number(rowData[column.accessor])]}</p>;
 			} else {
 				if (dateFields.includes(column.accessor)) {
 					cellContent = <p>{dateConverter(rowData[column.accessor])}</p>;
@@ -85,7 +70,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	const cell = [];
 	var daysPresent = 0;
 	const totalSize = columns.length - 2;
-	var isAttendance;
+	var isAttendance, rowIdx;
 	var leftWidthSticky = 0;
 	var percentClass, percentOverride = null;
 	for (const column of columns) {
@@ -96,13 +81,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 					cellContent = (
 						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, rowData.id)}>
 							{column.availableValues.map((value) => {
-								if (Number(value) == 1) {
-									return <option key={value} value={Number(value)}>{ "P" }</option>;
-								} else if (Number(value) == 0) {
-									return <option key={value} value={Number(value)}>{ "A" }</option>;
-								} else if (!value) {
-									return <option key={"1"} value={1}>{ "P" }</option>;
-								}
+								return <option key={value} value={Number(value)}>{ attendanceValues[Number(value)] }</option>;
 							})}
 						</select>
 					);
@@ -119,11 +98,8 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		} else {
 			if (column.isAttendance) {
 				isAttendance = true;
-				if (Number(rowData[column.accessor]) == 1) {
-					cellContent = <p  style={{color:"green"}}>{"P"}</p>;
-				} else if (Number(rowData[column.accessor]) == 0 || !rowData[column.accessor]) {
-					cellContent = <p style={{color:"red"}}>{"A"}</p>;
-				}
+				rowIdx = Number(rowData[column.accessor]);
+				cellContent = <p style={{color:attendanceStyle[rowIdx]}}>{attendanceValues[rowIdx]}</p>;
 			} else {
 				cellContent = <p>{rowData[column.accessor]}</p>;
 			}
@@ -143,7 +119,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	}
 	if (isAttendance) {
 		for (const column of columns) {
-			if(column.isAttendance) {
+			if(column.isAttendance && Number(rowData[column.accessor]) == 1) {
 				daysPresent += Number(rowData[column.accessor]);
 			}
 		}
