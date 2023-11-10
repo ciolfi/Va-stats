@@ -1,0 +1,22 @@
+{
+  "name": "va-stats",
+  "version": "1.0.0",
+  "description": "an app",
+  "main": "next.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Va-stats"
+  },
+  "keywords": [
+    "React",
+    "repo"
+  ],
+  "author": "GT",
+  "license": "ISC"
+}
