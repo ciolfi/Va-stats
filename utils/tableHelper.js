@@ -4,6 +4,8 @@ attendance dropdown in batches.
 */
 import styles from '../styles/Table.module.css';
 const dateFields = ['registration_date', 'age', 'joindate'];
+const booleanValues = ["N", "Y"];
+const booleanStyles = ["red", "green"];
 const attendanceValues = ["A", "P", "X"];
 const attendanceStyle = ["red", "green", "black"];
 /** TODO: Need to write a better dateConverter */
@@ -18,6 +20,7 @@ function dateConverter(input){
 export function generateTableRow(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
 	var leftWidthSticky = 0;
+	var rowIdx;
 	for (const column of columns) {
 		let cellContent = null;
 		if (rowData.id === editId && column.accessor !== 'id') {
@@ -28,6 +31,14 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, column.accessor)}>
 							{column.availableValues.map((value) => {
 								return <option key={value} value={Number(value)}>{ attendanceValues[Number(value)] }</option>;
+						})}
+						</select>
+					);
+				} else if (column.isBoolean) {
+					cellContent = (
+						<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, column.accessor)}>
+							{column.availableValues.map((value) => {
+								return <option key={value} value={Number(value)}>{ booleanValues[Number(value)] }</option>;
 						})}
 						</select>
 					);
@@ -45,6 +56,9 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 		} else {
 			if (column.isAttendance) {
 				cellContent = <p>{attendanceValues[Number(rowData[column.accessor])]}</p>;
+			} else if (column.isBoolean) {
+				rowIdx = Number(rowData[column.accessor]);
+				cellContent = <p style={{color:booleanStyles[rowIdx]}}>{booleanValues[rowIdx]}</p>;
 			} else {
 				if (dateFields.includes(column.accessor)) {
 					cellContent = <p>{dateConverter(rowData[column.accessor])}</p>;

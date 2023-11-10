@@ -25,6 +25,7 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [userResponse, setUserResponse] = useState([]);
   const [batchData, setBatchData] = useState({});
+  const [batchDocumentData, setBatchDocumentData] = useState({});
   const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
@@ -166,6 +167,25 @@ export default function Page() {
     batch.forEach((student) => {updateGrade(student);});
   };
 
+  const updateDocumentsFee = async (studentId) => {
+    setContentLoading(true);
+    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/updatedocumentsfee`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `updatedocumentsfee`;
+    const postData = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ batchId: id, studentId }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    if (response.ok) {
+      console.log("Document and fees updated successfully");
+      getBatchDocumentData();
+    } else {
+      console.error("Error updating documents and fees");
+    }
+    setContentLoading(false);
+  };
+
   useEffect(() => {
     fetchUnassignedStudents(id);
   }, [id]);
@@ -242,6 +262,7 @@ export default function Page() {
     if (session) {
       getUserData();
       getBatchData();
+      getBatchDocumentData();
     }
   }, [session]);
   // useEffect(() => {
@@ -272,6 +293,25 @@ export default function Page() {
     setBatchName(data.batch);
     setBatchLength(data.students.length);
     //console.log("Batch data: ", data);
+
+    setLoading(false);
+    setContentLoading(false);
+  };
+
+  const getBatchDocumentData = async () => {
+    setContentLoading(true);
+    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getdocumentsfee`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getdocumentsfee`;
+    const postData = {
+      method: "Post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        batch_id: id,
+      }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    const data = await response.json();
+    setBatchDocumentData(data);
 
     setLoading(false);
     setContentLoading(false);
@@ -348,6 +388,36 @@ export default function Page() {
     return res;
   };
 
+  const generateStudentDocumentData = () => {
+    let res = [];
+    if (batchDocumentData?.documents) {
+      res = batchDocumentData.documents.map((student) => {
+        let studentDocuments = batchDocumentData.documents.filter((document) => document.id === student.id);
+        let studentFees = batchDocumentData.fees.filter((fees) => fees.id === student.id);
+        const studentData = {
+          id: student.id,
+          name: student.name,
+        };
+
+        studentData["id_proof"] = studentDocuments[0].id_proof;
+        studentData["disability_cert"] = studentDocuments[0].disability_cert;
+        studentData["photo"] = studentDocuments[0].photo;
+        studentData["bank_details"] = studentDocuments[0].bank_details;
+
+        studentFees.forEach((fee) => {
+          studentData["fee_paid"] = fee.fee_paid;
+          studentData["amount_1"] = fee.amount_1;
+          studentData["amount_2"] = fee.amount_2;
+          studentData["amount_3"] = fee.amount_3;
+          studentData["nature_of_fee"] = fee.nature_of_fee;
+        });
+        return studentData;
+      });
+    }
+
+    return res;
+  };
+
   const updateAttendance = async (studentId) => {
     var batchId = id;
     //console.log(studentId);
@@ -383,6 +453,9 @@ export default function Page() {
     setGradesColumn(() => {
       return generateColumnsFromAssignment();
     });
+    setDocumentsData(() => {
+      return generateStudentDocumentData();
+    });
   }, [batchData]);
   // useEffect(() => {
   //   setAttendanceColumn(() => {
@@ -407,19 +480,27 @@ export default function Page() {
     }, {
       name: 'ID Proof',
       accessor: 'id_proof',
-      type: 'checkbox',
+      type: 'enum',
+      availableValues: [0, 1],
+      isBoolean: true,
     }, {
       name: 'Disability Certificate',
       accessor: 'disability_cert',
-      type: 'checkbox',
+      type: 'enum',
+      availableValues: [0, 1],
+      isBoolean: true,
     }, {
       name: 'Photo',
       accessor: 'photo',
-      type: 'checkbox',
+      type: 'enum',
+      availableValues: [0, 1],
+      isBoolean: true,
     }, {
       name: 'Bank Details',
       accessor: 'bank_details',
-      type: 'checkbox',
+      type: 'enum',
+      availableValues: [0, 1],
+      isBoolean: true,
     }, {
       name: 'Fee Paid',
       accessor: 'fee_paid',
@@ -437,7 +518,7 @@ export default function Page() {
     }, {
       name: 'Nature of Fee',
       accessor: 'nature_of_fee',
-      type: 'enym',
+      type: 'enum',
       availableValues: ['Refundable', 'Non-Refundable'],
     },
   ];
@@ -574,7 +655,7 @@ export default function Page() {
             )}
 
             {showDocuments && (
-              <Table columns={docsColumns} tableData={documentsData} isEditable={true} Title={'Student Documents and Fees'} />
+              <Table columns={docsColumns} tableData={documentsData} isEditable={true} Title={'Student Documents and Fees'} onEditSave={updateDocumentsFee} />
             )}
           </div>
 
