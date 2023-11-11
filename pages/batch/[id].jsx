@@ -393,7 +393,7 @@ export default function Page() {
     if (batchDocumentData?.documents) {
       res = batchDocumentData.documents.map((student) => {
         let studentDocuments = batchDocumentData.documents.filter((document) => document.id === student.id);
-        let studentFees = batchDocumentData.fees.filter((fees) => fees.id === student.id);
+        let studentFees = batchDocumentData.fees.filter((fees) => fees.student_id === student.id);
         const studentData = {
           id: student.id,
           name: student.name,

@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, name, id_proof, disability_cert, photo, bank_details } = req.body.studentId;
+    const { id, name, id_proof, disability_cert, photo, bank_details, fee_paid, amount_1, amount_2, amount_3, nature_of_fee } = req.body.studentId;
 
     const dbconnection = await mysql.createConnection({
       host: process.env.MYSQL_HOST,
@@ -20,6 +20,12 @@ export default async function handler(req, res) {
 
       const values = [id_proof, disability_cert, photo, bank_details, id];
       await dbconnection.execute(query, values);
+
+      await dbconnection.execute(
+        "UPDATE va_fees SET fee_paid = ?, amount_1 = ?, amount_2 = ?, amount_3 = ?, nature_of_fee = ? WHERE batch_id = ? AND student_id = ?",
+        [fee_paid, amount_1, amount_2, amount_3, nature_of_fee, req.body.batchId, id]
+      );
+
       res.status(200).json({ message: 'Student updated successfully' });
       dbconnection.end();
     } catch (error) {

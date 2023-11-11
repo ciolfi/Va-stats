@@ -109,6 +109,15 @@ export default async function handler(req, res) {
       }
     }
 
+    try {
+      await executeQuery({
+        query: `INSERT INTO va_fees (batch_id, student_id) VALUES (?, ?)`,
+        values: [batchId, studentId],
+      });
+    } catch (error) {
+      console.log('Error inserting fees record:', error);
+    }
+
     res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
