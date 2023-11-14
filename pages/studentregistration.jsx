@@ -230,62 +230,73 @@ export default function Page() {
 
   /*-------------- EDUCATION DROPDOWN BEGINS --------------*/
   const [edvalue, setEducationValue] = React.useState(new Set(["Below 10th standard"]));
-  var newedrow;
-  if (edvalue != 'Other') {
-    if (newedrow) {
-      var elem = document.getElementById('newtr');
-      elem.parentNode.removeChild(elem);
+
+  useEffect(() => {
+    var thetable = document.getElementById("formtable");
+    var totalRowCount = thetable.rows.length;
+    console.log("ROWNUMBER: " + totalRowCount);
+
+    if (edvalue != 'Other') {
+      if (newedrow != null) {
+        var elem = document.getElementById('newtr');
+        elem.parentNode.removeChild(elem);
+      }
     }
-  }
-  if (edvalue == 'Other') {
-    var newedrow = document.createElement("tr");
-    newedrow.setAttribute("id", "newtr");
-    newedrow.className = "{styles.regrow}";
+    // Prevent multiple textboxes 
+    if ((edvalue == 'Other') && (totalRowCount < 12)) {
+      if (newedrow != null) {
+        return;
+      }
+      else {
+        var newedrow = document.createElement("tr");
+        newedrow.setAttribute("id", "newtr");
+        newedrow.className = "{styles.regrow}";
 
-    var newedlabeltd = document.createElement("td");
-    newedlabeltd.className = "{styles.inputlabel}";
+        var newedlabeltd = document.createElement("td");
+        newedlabeltd.className = "{styles.inputlabel}";
 
-    var newedlabel = document.createElement("label");
-    newedlabel.htmlFor = "edu_qualifications";
-    newedlabel.innerHTML = "Other Ed";
+        var newedlabel = document.createElement("label");
+        newedlabel.htmlFor = "edu_qualifications";
+        newedlabel.innerHTML = "Other Ed";
 
-    var newedinputtd = document.createElement("td");
-    newedinputtd.setAttribute("id", "newinputtd");
-    newedinputtd.className = "{styles.inputtd}";
+        var newedinputtd = document.createElement("td");
+        newedinputtd.setAttribute("id", "newinputtd");
+        newedinputtd.className = "{styles.inputtd}";
 
-    var newedinput = document.createElement("input");
-    newedinput.setAttribute("id", "newtextbox");
+        var newedinput = document.createElement("input");
+        newedinput.setAttribute("id", "newtextbox");
 
-    var newedbutton = document.createElement("input");
-    newedbutton.setAttribute("id", "newedbutton");
-    newedbutton.setAttribute("type", "button");
-    newedbutton.setAttribute("onClick", "return this.parentNode.remove();");
-    newedbutton.setAttribute("value", "Submit");
+        var newedbutton = document.createElement("input");
+        newedbutton.setAttribute("id", "newedbutton");
+        newedbutton.setAttribute("type", "button");
+        newedbutton.setAttribute("onClick", "return this.parentNode.remove();");
+        newedbutton.setAttribute("value", "Submit");
 
-    newedlabeltd.appendChild(newedlabel);
-    newedrow.appendChild(newedlabeltd);
+        newedlabeltd.appendChild(newedlabel);
+        newedrow.appendChild(newedlabeltd);
 
-    newedinputtd.appendChild(newedinput);
-    newedrow.appendChild(newedinputtd);
+        newedinputtd.appendChild(newedinput);
+        newedrow.appendChild(newedinputtd);
 
-    newedrow.appendChild(newedbutton);
+        newedrow.appendChild(newedbutton);
 
-    document.getElementById("formtable").appendChild(newedrow);
+        document.getElementById("formtable").appendChild(newedrow);
 
-    const boxbtn = document.getElementById("newedbutton");
-    var newedval = document.getElementById("edu_qualifications");
+        const boxbtn = document.getElementById("newedbutton");
+        var newedval = document.getElementById("edu_qualifications");
 
-    boxbtn.addEventListener("click", function (e) {
-      var newopt = document.createElement("option");
-      var newoptstr = newedinput.value;
-      newopt.innerHTML = newoptstr;
-      newedval.prepend(newopt);
-      newedval.selectedIndex = 0;
-
-      var elem = document.getElementById('newtr');
-      elem.parentNode.removeChild(elem);
-    });
-  }
+        boxbtn.addEventListener("click", function (e) {
+          var newopt = document.createElement("option");
+          var newoptstr = newedinput.value;
+          newopt.innerHTML = newoptstr;
+          newedval.prepend(newopt);
+          newedval.selectedIndex = 0;
+          var elem = document.getElementById('newtr');
+          elem.parentNode.removeChild(elem);
+        });
+      }
+    }
+  });
   /*-------------- EDUCATION DROPDOWN ENDS --------------*/
 
   // EMPLOYMENT STATUS
