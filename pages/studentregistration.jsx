@@ -1,47 +1,20 @@
 "use client";
-
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
+import ReactDOM from 'react-dom'; // Education dynamic textbox creation
 import Router from "next/router";                   // Popup confirmation
 import styles from "../styles/StudentReg.module.css";
-import { useSession } from 'next-auth/react';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 let worldData = require("../utils/countries+states.json");
-var userRole = "STAFF";
+
 
 export default function Page() {
-  const { data: session, status } = useSession();
-  var result;
-
-  // API DATA ACCESS
-  const getUserData = async () => {
-    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
-    const postData = {
-      method: "Post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({              /* LOCAL TESTING */
-        email: session.user.email
-      }),
-    };
-    const response = await fetch(apiUrlEndpoint, postData);
-    const res = await response.json();
-    result = res.users[0];                /* LOCAL TESTING */
-
-    if (status == "authenticated"){
-      userRole = result[0].role;
-    }
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, [session]);
-
   useForm(); // Form reset
 
   // Line below may work FOR SSRPROVIDER ERRORS:
@@ -59,7 +32,6 @@ export default function Page() {
 
   const [Option1, setOption1] = useState(() => []);
   const [Option2, setOption2] = useState(() => []);
-
 
   /*-------- COURSE CHOICE SUMMARIES CODE BEGINS ------*/
   /*-------- NOTE: This is interim code until
@@ -248,7 +220,7 @@ export default function Page() {
     updateCountriesOptions();
   }, []);
 
-  /*-------------- DROPDOWNS BEGIN -----------*/
+  /*-------------------- GENDER DROPDOWN -------------------*/
   // GENDER
   const [selectedGender, setSelectedGender] = React.useState(new Set(["Female"]));
   const selectedValueGender = React.useMemo(
@@ -256,18 +228,65 @@ export default function Page() {
     [selectedGender]
   );
 
-  // EDUCATION-OTHER
-  const [handleEducationOther, setEducationOther] = React.useState(new Set(["Below 10th standard"]));
-  // const selectedValueEducation = React.useMemo(
-  //   () => Array.from(handleEducationOther).join(", ").replaceAll("_", " "),
-  //   [handleEducationOther]
-  // );
-  if (handleEducationOther == 'Other'){
-    console.log("Education was changed to OTHER");
+  /*-------------- EDUCATION DROPDOWN BEGINS --------------*/
+  const [edvalue, setEducationValue] = React.useState(new Set(["Below 10th standard"]));
+  var newedrow;
+  if (edvalue != 'Other') {
+    if (newedrow) {
+      var elem = document.getElementById('newtr');
+      elem.parentNode.removeChild(elem);
+    }
   }
-  else {
-    console.log("Education was changed to SOMETHING ELSE");
-  };
+  if (edvalue == 'Other') {
+    var newedrow = document.createElement("tr");
+    newedrow.setAttribute("id", "newtr");
+    newedrow.className = "{styles.regrow}";
+
+    var newedlabeltd = document.createElement("td");
+    newedlabeltd.className = "{styles.inputlabel}";
+
+    var newedlabel = document.createElement("label");
+    newedlabel.htmlFor = "edu_qualifications";
+    newedlabel.innerHTML = "Other Ed";
+
+    var newedinputtd = document.createElement("td");
+    newedinputtd.setAttribute("id", "newinputtd");
+    newedinputtd.className = "{styles.inputtd}";
+
+    var newedinput = document.createElement("input");
+    newedinput.setAttribute("id", "newtextbox");
+
+    var newedbutton = document.createElement("input");
+    newedbutton.setAttribute("id", "newedbutton");
+    newedbutton.setAttribute("type", "button");
+    newedbutton.setAttribute("onClick", "return this.parentNode.remove();");
+    newedbutton.setAttribute("value", "Submit");
+
+    newedlabeltd.appendChild(newedlabel);
+    newedrow.appendChild(newedlabeltd);
+
+    newedinputtd.appendChild(newedinput);
+    newedrow.appendChild(newedinputtd);
+
+    newedrow.appendChild(newedbutton);
+
+    document.getElementById("formtable").appendChild(newedrow);
+
+    const boxbtn = document.getElementById("newedbutton");
+    var newedval = document.getElementById("edu_qualifications");
+
+    boxbtn.addEventListener("click", function (e) {
+      var newopt = document.createElement("option");
+      var newoptstr = newedinput.value;
+      newopt.innerHTML = newoptstr;
+      newedval.prepend(newopt);
+      newedval.selectedIndex = 0;
+
+      var elem = document.getElementById('newtr');
+      elem.parentNode.removeChild(elem);
+    });
+  }
+  /*-------------- EDUCATION DROPDOWN ENDS --------------*/
 
   // EMPLOYMENT STATUS
   const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employed"]));
@@ -282,9 +301,8 @@ export default function Page() {
     () => Array.from(selectedVision).join(", ").replaceAll("_", " "),
     [selectedVision]
   );
-  /*-------------- DROPDOWNS END -----------*/
 
-  /* ADD COURSE CHOICE */
+  // ADD COURSE CHOICE 
   function addCourseChoice(coursepriority) {
     var chosencourse = document.getElementsByName('vacourse');
     for (let i = 0; i < chosencourse.length; i++) {
@@ -345,7 +363,7 @@ export default function Page() {
       </dialog> */}
 
         <div className={styles.mynavbar}>
-          <Navbar user_role={userRole} className={styles.navstudents} />
+          <Navbar className={styles.navstudents} />
         </div>
 
         <div className={styles.container}>
@@ -354,8 +372,7 @@ export default function Page() {
               Student Registration
             </title>
 
-            {/* AVOID HYDRATION ERRORS w/ meta tag below
-            may not work. */}
+            {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
             <meta
               name="format-detection"
               content="telephone=no, date=no, email=no, address=no"
@@ -372,7 +389,7 @@ export default function Page() {
               {/* Avoid hydration errors with code below; may not work.
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
               {/* NOTE Re: disabling form autocompletion: use role="presentation" autoComplete="off" for EACH form input. In the code below, they are placed on the same line to underscore they work together. */}
-              <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} autoComplete='off'>
+              <form action='/api/studentapplication' method='post' id='studentRegForm' onSubmit={() => handleSubmit()} autoComplete='off'>
                 <div className={styles.grid}>
                   {/*------- CARD: TRAINEE -------*/}
                   <div
@@ -381,7 +398,7 @@ export default function Page() {
                     <h2>
                       Trainee
                     </h2>
-                    <table className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
+                    <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                       <tbody>
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
@@ -572,8 +589,8 @@ export default function Page() {
                               id="edu_qualifications"
                               name="edu_qualifications"
                               className={styles.txtboxdropdown}
-                              // onSelectionChange={setEducationOther}
-                              onChange={setEducationOther}
+                              value={edvalue}
+                              onChange={(e) => { setEducationValue(e.target.value); }}
                               placeholder="Highest level attained, 300-char max"
                               role="presentation" autoComplete="off"
                               required
@@ -701,7 +718,6 @@ export default function Page() {
                             <label htmlFor="third_choice">
                               3rd choice
                             </label>
-                            {/* <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd}>
                             {/* Before alert box course summaries */}
@@ -727,7 +743,6 @@ export default function Page() {
                     </h2>
                     <table className={styles.tblmisc} role="presentation">
                       <tr className={styles.regrow}>
-                        {/* <td className={styles.inputlabel}> */}
                         <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
                           <label htmlFor="visual_acuity">
                             Visual acuity
@@ -862,7 +877,7 @@ export default function Page() {
 
         </div>    {/* Container closing tag */}
       </>
-    </NextUIProvider>
+    </NextUIProvider >
     //)
   );
 }
