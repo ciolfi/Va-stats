@@ -394,7 +394,10 @@ export default function Page() {
               <h1>Student Registration</h1>
             </div>
             <div className={styles.studregcrsesinfo}>
-              <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a>
+              {/* Excel Sharepoint link */}
+              {/* <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a> */}
+              {/* MS HTML conversion from Excel */}
+              <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a>
             </div>
             <div>
               {/* Avoid hydration errors with code below; may not work.
