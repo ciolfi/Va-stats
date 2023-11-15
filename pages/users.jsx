@@ -423,8 +423,10 @@ export default function Page() {
                         <label htmlFor='active' className={styles.addstafflabel}>Staff Working Status<span className={styles.requiredelement}>&#42;</span></label>
                         {/* <input required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive' />&nbsp;<br /> */}
                         <select required type='text' className={styles.addstaffforminputsbox} id='active' name='isactive'>&nbsp;<br /> *
-                          <option value='0'>0</option>
-                          <option value='1'>1</option>
+                          {/* <option value='0'>0</option>
+                          <option value='1'>1</option> */}
+                          <option value='A'>A</option>
+                          <option value='IA'>IA</option>                 
                         </select><br /><br />
 
                         <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
