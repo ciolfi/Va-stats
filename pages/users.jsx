@@ -426,7 +426,7 @@ export default function Page() {
                           {/* <option value='0'>0</option>
                           <option value='1'>1</option> */}
                           <option value='A'>A</option>
-                          <option value='IA'>IA</option>                 
+                          <option value='IA'>IA</option>            
                         </select><br /><br />
 
                         <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
