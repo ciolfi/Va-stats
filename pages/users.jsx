@@ -292,7 +292,7 @@ export default function Page() {
       </div>
     );
   } else {
-    if ((allowedRoles.includes(result[0].role) && result[0].isactive === 1)) {
+    if ((allowedRoles.includes(result[0].role) && result[0].isactive === "A")) {
       return (
         <>
           <div className={styles.mynavbar}>
