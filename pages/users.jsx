@@ -255,6 +255,8 @@ export default function Page() {
     }, {
       name: 'Staff Working Status',
       accessor: 'isactive',
+      type: 'enum',
+      availableValues: ['A', 'IA'],
     }, {
       name: 'Action',
       accessor: 'action',
