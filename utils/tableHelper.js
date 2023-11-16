@@ -83,7 +83,7 @@ const minAttendance = 50.0;
 export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
 	var daysPresent = 0;
-	const totalSize = columns.length - 2;
+	var totalSize = 0; //columns.length - 2;
 	var isAttendance, rowIdx;
 	var leftWidthSticky = 0;
 	var percentClass, percentOverride = null;
@@ -133,8 +133,9 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	}
 	if (isAttendance) {
 		for (const column of columns) {
-			if(column.isAttendance && Number(rowData[column.accessor]) == 1) {
+			if(column.isAttendance && Number(rowData[column.accessor]) != 2) {
 				daysPresent += Number(rowData[column.accessor]);
+				totalSize += 1;
 			}
 		}
 		const attendance = (daysPresent/totalSize * 100).toFixed(1);
