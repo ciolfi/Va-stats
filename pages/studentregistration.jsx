@@ -34,7 +34,7 @@ export default function Page() {
     const res = await response.json();
     result = res.users[0];                /* LOCAL TESTING */
 
-    if (status == "authenticated"){
+    if (status == "authenticated") {
       userRole = result[0].role;
     }
   };
@@ -638,7 +638,7 @@ export default function Page() {
                                 <option value="Student">Student</option>
                               </optgroup>
                             </select>
-                          </td>                        
+                          </td>
                         </tr>
                         {/*----- EMPLOYMENT STATUS ROW ENDS -----*/}
 
@@ -773,7 +773,22 @@ export default function Page() {
                             </select>
                           </td>
                         </tr>
+                      </table>
+                    </fieldset>
 
+                    <fieldset className={styles.fdsetlearning}>
+                      <legend style={{fontWeight: '700', color: 'red'}}>WARNING:</legend>
+                      <table className={styles.tblchoosecourses} role="presentation">
+                        <tr className={styles.regrow}>
+                          <td className={styles.tdlblcrschoice}>
+                            {/* <label htmlFor="objectives">                             
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span> */}
+                          </td>
+                          <td className={styles.inputtd} style={{fontWeight: '700'}}>
+                            If you register more than one time, only your most recent registration will be retained.
+                          </td>
+                        </tr>
                       </table>
                     </fieldset>
                   </div>
