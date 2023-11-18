@@ -268,7 +268,8 @@ export default function Page() {
         elem.parentNode.removeChild(elem);
       }
     }
-    // Prevent multiple textboxes (11 static rows and 1 dynamic)
+    /* Prevent multiple textboxes by not allowing more than 
+    11 static rows and 1 dynamic */
     if ((edvalue == 'Other') && (totalRowCount < 12)) {
       if (newedrow != null) {
         return;
@@ -313,7 +314,7 @@ export default function Page() {
 
         boxbtn.addEventListener("click", function (e) {
           var newopt = document.createElement("option");
-          var newoptstr = newedinput.value;
+          var newoptstr = "Other: "+newedinput.value;
           newopt.innerHTML = newoptstr;
           newedval.prepend(newopt);
           newedval.selectedIndex = 0;
@@ -777,7 +778,7 @@ export default function Page() {
                     </fieldset>
 
                     <fieldset className={styles.fdsetlearning}>
-                      <legend style={{fontWeight: '700', color: 'red'}}>WARNING:</legend>
+                      <legend style={{fontWeight: '700', color: 'red'}}>ATTENTION</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
                         <tr className={styles.regrow}>
                           <td className={styles.tdlblcrschoice}>
