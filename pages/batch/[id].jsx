@@ -13,7 +13,12 @@ import TableCol from "@/components/TableCol";
 import Image from 'next/image';
 
 function staffHasAccess(batchInfo, userInfo) {
-  let userName = userInfo["firstname"]+" "+userInfo["lastname"];
+  var userName = "";
+  if (userInfo["lastname"]) {
+    userName = userInfo["firstname"] + " " + userInfo["lastname"];
+  } else {
+    userName = userInfo["firstname"];
+  }
   let batchInstructorName = batchInfo["instructor"];
   let userAccessRole = userInfo["role"];
   let permitGranted = false;
