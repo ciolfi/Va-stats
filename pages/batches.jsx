@@ -395,7 +395,7 @@ export default function Page() {
                     </div>
                     : <Button onClick={() => setShowForm(true)} text={'+ New Batch Form'} className={styles.btnnewbatchform} ></Button>
                   }
-                  <Table columns={batchesColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteBatch} isEditable={true} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
+                  <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
                 </div>
 
                 {/* <footer className={styles.footer}>

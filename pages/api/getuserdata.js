@@ -5,7 +5,7 @@ import { executeQuery } from "../../lib/db";
 export default async function handler(req, res) {
   try {
     /* ---------------- DATA MODIFICATION SECTION --------------- */
-    const querySQL = "SELECT email, role, isactive FROM vausers WHERE email = ?";
+    const querySQL = "SELECT email, firstname, lastname, role, isactive FROM vausers WHERE email = ?";
     // const querySQL = "SELECT id, email, firstname, lastname, designation, joindate, mobilenumber, workbase, supervisor, natureofjob, visualacuity, trainingprogram1, trainingprogram2, trainingprogram3, role, isactive, action where id = ?";
     const email = req.body.email;
     const valuesParams = [email];

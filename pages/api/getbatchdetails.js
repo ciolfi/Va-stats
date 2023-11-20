@@ -77,7 +77,7 @@ export default async function handler(req, res) {
     `;
 
     const courseAndBatchNameQuery = `
-      SELECT coursename, batch
+      SELECT coursename, batch, instructor
       FROM vabatches
       WHERE id = ?
     `;
@@ -120,6 +120,7 @@ export default async function handler(req, res) {
       attendance: attendance,
       coursename: courseAndBatchNameData[0].coursename,
       batch: courseAndBatchNameData[0].batch,
+      instructor: courseAndBatchNameData[0].instructor,
     });
 
     dbconnection.end();

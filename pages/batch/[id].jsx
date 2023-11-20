@@ -12,6 +12,21 @@ import Table from "@/components/Table";
 import TableCol from "@/components/TableCol";
 import Image from 'next/image';
 
+function staffHasAccess(batchInfo, userInfo) {
+  let userName = userInfo["firstname"]+" "+userInfo["lastname"];
+  let batchInstructorName = batchInfo["instructor"];
+  let userAccessRole = userInfo["role"];
+  let permitGranted = false;
+  if (userAccessRole != "STAFF") {
+    permitGranted = true;
+  } else {
+    if (userName === batchInstructorName) {
+      permitGranted = true;
+    }
+  }
+  return permitGranted;
+}
+
 function formatDate(isoDateString) {
   const date = new Date(isoDateString);
   return date.toLocaleDateString();
@@ -538,6 +553,7 @@ export default function Page() {
     );
   } else {
     if (allowedRoles.includes(userResponse.role)) {
+      if (staffHasAccess(batchData, userResponse)) {
       return (
         <>
           <div className={styles.mynavbar}>
@@ -691,6 +707,93 @@ export default function Page() {
           
         </>
       );
+      } else {
+        return (
+          <>
+            <div className={styles.mynavbar}>
+              <Navbar user_role={userResponse.role} className={styles.navstudents} />
+            </div>
+            <div className={`${styles.container}`}>
+              {contentLoading ?
+                <div className={styles.overlay}>
+                  <span className={styles.customLoader}></span>
+                </div>
+                : <></>
+              }
+              <Head>
+                <title>VisionAid</title>
+                <meta
+                  name='description'
+                  content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
+                <meta name='theme-color' content='#ffffff' />
+                <link rel='icon' href='/favicon.ico' />
+                <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
+                <link rel='manifest' href='/manifest.json' />
+
+                <link rel='preconnect'
+                  href='https://fonts.gstatic.com'
+                  crossOrigin="true" />
+
+                {/* <link rel='preload'
+                  as='style'
+                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+                <link rel='stylesheet'
+                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
+                  media='print'
+                  onLoad="this.media='all'" />
+                <noscript>
+                  <link rel='stylesheet'
+                    href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
+                </noscript> */}
+              </Head>
+              {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
+              <p className={styles.titlebatchspecific}>
+                Course: {courseName}, Batch: {batchName}
+              </p>
+              <div className='autherrorcontainer'>
+                {/* <img src='logo-mainsite.png' alt='VisionAid logo' /> */}
+                {/* <Image src='logo-mainsite.png' alt='VisionAid logo' /> */}
+                <span className='autherrortext'>
+                  Access denied.&nbsp;
+                  <Link href='/batches' className='autherrorlink'>
+                    User does not have access to this batch.
+                  </Link>
+                </span>
+              </div>
+            </div>
+
+            {/* <footer className={styles.footer}>
+              <Link
+                href='privacypolicy.html'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Privacy
+              </Link>&nbsp;|&nbsp;
+              <Link
+                href='termsofservice.html'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Terms
+              </Link>&nbsp;|&nbsp;
+              <a
+                href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <span className={styles.logo}>
+                  Powered by{"' '"}
+                  <Image src='/vercel.svg'
+                    alt='Vercel Logo'
+                    width={72}
+                    height={16} />
+                </span>
+              </a>
+            </footer> */}
+          </>
+        );
+      }
     }
   }
 }
