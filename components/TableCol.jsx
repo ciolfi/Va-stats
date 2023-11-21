@@ -134,7 +134,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 									:
 										<>
 											{isEditable ? <Image className={styles.actionItem} alt={'edit col'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(column, sortedData())} />: <></>}
-											<Image className={styles.actionItem} alt={'x col'} src={'/icons/fillx-icon.svg'} height={15} width={15} onClick={() => onFillX(column, sortedData())} />
+											{column.isAttendance ? <Image className={styles.actionItem} alt={'x col'} src={'/icons/fillx-icon.svg'} height={15} width={15} onClick={() => onFillX(column, sortedData())} />: <></>}
 										</>
 									}
 								</div>
