@@ -40,6 +40,14 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 		setData(() => JSON.parse(JSON.stringify(orig.current)));
 	}
 
+	async function onFillX(column, rowData) {
+		setEditId(column);
+		rowData.map((row) => {
+			row[column.accessor] = 2;
+		});
+		setEditedBatch(rowData);
+	}
+
 	const changeHandler = (e, rowId) => {
 		const { name, value } = e.target;
 		setEditedBatch((prev) => {
@@ -126,6 +134,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 									:
 										<>
 											{isEditable ? <Image className={styles.actionItem} alt={'edit col'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(column, sortedData())} />: <></>}
+											{column.isAttendance ? <Image className={styles.actionItem} alt={'x col'} src={'/icons/fillx-icon.svg'} height={15} width={15} onClick={() => onFillX(column, sortedData())} />: <></>}
 										</>
 									}
 								</div>
