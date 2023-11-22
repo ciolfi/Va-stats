@@ -721,21 +721,18 @@ export default function Page() {
                       </table>
                     </fieldset>
 
-                    <fieldset className={styles.fdsetlearning}>
+                    {/* <fieldset className={styles.fdsetlearning}>
                       <legend style={{ fontWeight: '700', color: 'red' }}>ATTENTION</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
                         <tr className={styles.regrow}>
                           <td className={styles.tdlblcrschoice}>
-                            {/* <label htmlFor="objectives">                             
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd} style={{ fontWeight: '700' }}>
                             If you register more than one time, only your most recent registration will be retained.
                           </td>
                         </tr>
                       </table>
-                    </fieldset>
+                    </fieldset> */}
                   </div>
                   {/*------------- CARD: COURSES ENDS ------------*/}
 
