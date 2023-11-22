@@ -612,12 +612,16 @@ export default function Page() {
                 <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Grades
                 </button>
+                {(userResponse.role != 'STAFF') ?
                 <button name="documents" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Documents & Fees
                 </button>
+                :<></>}
+                {(userResponse.role != 'STAFF') ?
                 <button name="management" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Management
                 </button>
+                :<></>}
               </div>
             </div>
 
