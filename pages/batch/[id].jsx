@@ -69,6 +69,9 @@ export default function Page() {
   const [contentLoading, setContentLoading] = useState(false);
 
   const deleteAssignment = async (assignmentName) => {
+    if (assignmentName === "") {
+      return;
+    }
 
     const response = await fetch('/api/deleteassignment', {
       method: 'POST',
@@ -238,6 +241,9 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const addAssignment = async (assignmentName, batchId) => {
+    if (assignmentName === "") {
+      return;
+    }
     setContentLoading(true);
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/addassignment`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `addassignment`;
