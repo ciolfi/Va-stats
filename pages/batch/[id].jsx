@@ -539,7 +539,7 @@ export default function Page() {
       name: 'Nature of Fee',
       accessor: 'nature_of_fee',
       type: 'enum',
-      availableValues: ['Refundable', 'Non-Refundable'],
+      availableValues: ['NA', 'Refundable', 'Non-Refundable'],
     },
   ];
 
