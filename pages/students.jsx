@@ -220,6 +220,12 @@ export default function Page() {
       height: tableHeight,
     },
     {
+      name: 'Education Details',
+      accessor: 'edu_details',
+      isRotatedTh: true,
+      height: tableHeight,
+    },
+    {
       name: 'Employment Status',
       accessor: 'employment_status',
       isRotatedTh: true,
