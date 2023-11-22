@@ -7,11 +7,18 @@ import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
 import ReactDOM from 'react-dom'; // Education dynamic textbox creation
 import Router from "next/router";                   // Popup confirmation
+
 import styles from "../styles/StudentReg.module.css";
+
+// Education input
+import Combobox from "react-widgets/Combobox";
+import "react-widgets/styles.css";
+
 import { useSession } from 'next-auth/react';
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
+
 let worldData = require("../utils/countries+states.json");
 var userRole = "STAFF";
 
@@ -255,75 +262,33 @@ export default function Page() {
   );
 
   /*-------------- EDUCATION DROPDOWN BEGINS --------------*/
-  const [edvalue, setEducationValue] = React.useState(new Set(["Below 10th standard"]));
-
-  useEffect(() => {
-    var thetable = document.getElementById("formtable");
-    var totalRowCount = thetable.rows.length;
-    console.log("ROWNUMBER: " + totalRowCount);
-
-    if (edvalue != 'Other') {
-      if (newedrow != null) {
-        var elem = document.getElementById('newtr');
-        elem.parentNode.removeChild(elem);
-      }
-    }
-    /* Prevent multiple textboxes by not allowing more than 
-    11 static rows and 1 dynamic */
-    if ((edvalue == 'Other') && (totalRowCount < 12)) {
-      if (newedrow != null) {
-        return;
-      }
-      else {
-        var newedrow = document.createElement("tr");
-        newedrow.setAttribute("id", "newtr");
-        newedrow.className = "{styles.regrow}";
-
-        var newedlabeltd = document.createElement("td");
-        newedlabeltd.className = "{styles.inputlabel}";
-
-        var newedlabel = document.createElement("label");
-        newedlabel.htmlFor = "edu_qualifications";
-        newedlabel.innerHTML = "Other Ed";
-
-        var newedinputtd = document.createElement("td");
-        newedinputtd.setAttribute("id", "newinputtd");
-        newedinputtd.className = "{styles.inputtd}";
-
-        var newedinput = document.createElement("input");
-        newedinput.setAttribute("id", "newtextbox");
-
-        var newedbutton = document.createElement("input");
-        newedbutton.setAttribute("id", "newedbutton");
-        newedbutton.setAttribute("type", "button");
-        newedbutton.setAttribute("onClick", "return this.parentNode.remove();");
-        newedbutton.setAttribute("value", "Submit");
-
-        newedlabeltd.appendChild(newedlabel);
-        newedrow.appendChild(newedlabeltd);
-
-        newedinputtd.appendChild(newedinput);
-        newedrow.appendChild(newedinputtd);
-
-        newedrow.appendChild(newedbutton);
-
-        document.getElementById("formtable").appendChild(newedrow);
-
-        const boxbtn = document.getElementById("newedbutton");
-        var newedval = document.getElementById("edu_qualifications");
-
-        boxbtn.addEventListener("click", function (e) {
-          var newopt = document.createElement("option");
-          var newoptstr = "Other: "+newedinput.value;
-          newopt.innerHTML = newoptstr;
-          newedval.prepend(newopt);
-          newedval.selectedIndex = 0;
-          var elem = document.getElementById('newtr');
-          elem.parentNode.removeChild(elem);
-        });
-      }
-    }
-  });
+  let widget = (
+    <Combobox
+      autoComplete="off"
+      // border="3px"
+      // color="black"
+      // defaultValue={"Below 10th standard"}
+      className={styles.txtboxdropdown}
+      dropUp
+      data={[
+        "Below 10th standard",
+        "10 standard",
+        "12 standard",
+        "Diploma",
+        "ITI",
+        "Undergraduate",
+        "Graduate",
+        "Post-graduate",
+        "Professional degree",
+      ]}
+      id="edu_qualifications"
+      maxLength="80"
+      name="edu_qualifications"
+      placeholder="Highest level: 80-char max"
+      role="presentation"
+      required
+    />
+  );
   /*-------------- EDUCATION DROPDOWN ENDS --------------*/
 
   // EMPLOYMENT STATUS
@@ -641,38 +606,17 @@ export default function Page() {
                             </select>
                           </td>
                         </tr>
-                        {/*----- EMPLOYMENT STATUS ROW ENDS -----*/}
 
                         {/*----- EDU QUALIFICATIONS ROW BEGINS -----*/}
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_qualifications">
-                              Education
+                              Education (choose or type)
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
-                            <select
-                              id="edu_qualifications"
-                              name="edu_qualifications"
-                              className={styles.txtboxdropdown}
-                              value={edvalue}
-                              onChange={(e) => { setEducationValue(e.target.value); }}
-                              placeholder="Highest level attained, 300-char max"
-                              role="presentation" autoComplete="off"
-                              required
-                            >
-                              <option>Below 10th standard</option>
-                              <option>10 standard</option>
-                              <option>12 standard</option>
-                              <option>Diploma</option>
-                              <option>ITI</option>
-                              <option>Undergraduate</option>
-                              <option>Graduate</option>
-                              <option>Post-graduate</option>
-                              <option>Professional degree</option>
-                              <option>Other</option>
-                            </select>
+                            {widget}
                           </td>
                         </tr>
                         {/*----- EDU QUALIFICATIONS ROW ENDS -----*/}
@@ -778,7 +722,7 @@ export default function Page() {
                     </fieldset>
 
                     <fieldset className={styles.fdsetlearning}>
-                      <legend style={{fontWeight: '700', color: 'red'}}>ATTENTION</legend>
+                      <legend style={{ fontWeight: '700', color: 'red' }}>ATTENTION</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
                         <tr className={styles.regrow}>
                           <td className={styles.tdlblcrschoice}>
@@ -786,7 +730,7 @@ export default function Page() {
                             </label>
                             <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
-                          <td className={styles.inputtd} style={{fontWeight: '700'}}>
+                          <td className={styles.inputtd} style={{ fontWeight: '700' }}>
                             If you register more than one time, only your most recent registration will be retained.
                           </td>
                         </tr>

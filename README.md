@@ -33,6 +33,7 @@ To learn more on how develop this project, refer to the Developer Guide in the /
 User facing documentation is also in the /public/documentation folder
 
 ## Learn about Next.js
+
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
@@ -49,23 +50,61 @@ Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment)
 ## Code modifications required when changing hosting provider
 
 PAGES FOLDER: files requiring mods to API routes:
-  - batch > [id].jsx
-  - student > [id].jsx
-  - batches.jsx
-  - courses.jsx
-  - students.jsx
-  - users.jsx
 
-.env file: 
-  - Adjust MySQL and NEXTAUTH_URL values
+- batch > [id].jsx
+- student > [id].jsx
+- batches.jsx
+- courses.jsx
+- students.jsx
+- users.jsx
+
+.env file:
+
+- Adjust MySQL and NEXTAUTH_URL values
 
 NOTE REGARDING BATCH ATTENDANCE DROPDOWN:
-  - This can be edited in /utils/tableHelper.js
+
+- This can be edited in /utils/tableHelper.js
+
+## CSV download - related modifications
+
+- Components to modify:
+  - Vercel
+    - /pages/users.jsx*: name, accessor, htmlFor, id (input attribute)
+    - /pages/api/getuserdata.js (if necessary)
+  - DreamHost
+    - <https://visionaid.dreamhosters.com/csv/staff.php>: th tag list
+    - /csv/csvfunctions.php: fputcsv(), while($row = mysqli_fetch_assoc($result)), get_all_user_records()
+
+*users.jsx file (staff) example: database and UI column names:
+
+id Id
+email Email
+firstname First Name
+lastname Last Name
+designation Designation
+
+joindate Date of Joining
+mobilenumber Mobile Number
+workbase Work Location
+supervisor Supervisor
+natureofjob Nature of Job
+
+visualacuity Visual Acuity
+trainingprogram1 Training Program 1
+trainingprogram2 Training Program 2
+trainingprogram3 Training Program 3
+role Role
+
+isactive Staff Working Status
+action Action
 
 ## Errors
-  - Can't log out? If you get an error preventing you from logging out: 
-please modify the /components/Navbar.jsx file per comments 
+
+- Can't log out? If you get an error preventing you from logging out:
+please modify the /components/Navbar.jsx file per comments
 at the top of the file.
 
 ## Dreamhost-mtl folder
+
 - This contains a folder and an HTM file to be uploaded to the HTML hosting service, Dreamhost (as opposed to Vercel for JS). The HTM file has been converted to HTM from an Excel file due to partner concerns, which explains the evident errors. The file still works. We will continue to work with the partner on a better solution when they have more time to provide necessary materials.
