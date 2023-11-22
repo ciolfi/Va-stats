@@ -280,6 +280,7 @@ export default function Page() {
         "Graduate",
         "Post-graduate",
         "Professional degree",
+        "Other (also 'Ed. Details')"
       ]}
       id="edu_qualifications"
       maxLength="80"
@@ -621,6 +622,27 @@ export default function Page() {
                         </tr>
                         {/*----- EDU QUALIFICATIONS ROW ENDS -----*/}
 
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="edu_details">
+                              Education Details
+                            </label>
+                            {/* <span className={styles.requiredelement}>&#42;</span> */}
+                          </td>
+                          <td className={styles.inputtd}>
+                            <input
+                              autoComplete="off"
+                              className={styles.reginput}
+                              id="edu_details"
+                              maxLength="35"
+                              name="edu_details"
+                              type="text"
+                              role="presentation"
+                              required
+                            />
+                          </td>
+                        </tr>
+
                       </tbody>
                     </table>
                   </div>
@@ -721,6 +743,7 @@ export default function Page() {
                       </table>
                     </fieldset>
 
+                    {/*--- Warning re: registering more than one time ---*/}
                     {/* <fieldset className={styles.fdsetlearning}>
                       <legend style={{ fontWeight: '700', color: 'red' }}>ATTENTION</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
