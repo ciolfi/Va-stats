@@ -223,7 +223,7 @@ export default function Page() {
               </p>
 
               <div className={styles.gridcourses}>
-                {(result[0].role === 'MANAGEMENT' || result[0].role === 'PM') ?
+                {(result[0].role === 'ADMINISTRATOR') ?
                   <>
                     {showForm ?
                       <div className={styles.cardcoursesform}>
@@ -255,7 +255,7 @@ export default function Page() {
 
                   : <></>
                 }
-                <Table columns={coursesColumn} tableData={dataResponse} isDelete={isDelete} onDeleteClick={handleDeleteCourse} isEditable={isEditable} onEditSave={handleUpdateCourse} Title={'Courses List'} />
+                <Table columns={coursesColumn} tableData={dataResponse} isDelete={(result[0].role == "ADMINISTRATOR")} onDeleteClick={handleDeleteCourse} isEditable={(result[0].role == "ADMINISTRATOR")} onEditSave={handleUpdateCourse} Title={'Courses List'} />
               </div>
 
               {/* <footer className={styles.footer}>

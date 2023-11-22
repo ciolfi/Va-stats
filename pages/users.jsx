@@ -336,6 +336,8 @@ export default function Page() {
               {/* <div style={{color: 'red', position: 'relative', top: '1em' }}> */}
 
                 {/* Add staff member form */}
+              {(result[0].role === 'ADMINISTRATOR') ?
+                <>
                 {showForm ?
                   <div className={styles.addstaffform}>                 
                     <h2 className={styles.addnewstaffmember}>Add New Staff Member &rarr;</h2><br />
@@ -443,7 +445,10 @@ export default function Page() {
                   </div>
                   : <Button onClick={() => setShowForm(true)} text={'+ New VA Staff'}></Button>
                 }
-                <Table columns={usersColumns} tableData={dataResponse} isDelete={true} onDeleteClick={handleDeleteUser} isEditable={true} onEditSave={handleUpdateUser} Title={'Staff List'} />
+                </>
+                : <></>
+              }
+              <Table columns={usersColumns} tableData={dataResponse} isDelete={(result[0].role == "ADMINISTRATOR")} onDeleteClick={handleDeleteUser} isEditable={(result[0].role == "ADMINISTRATOR")} onEditSave={handleUpdateUser} Title={'Staff List'} />
               </div>
             </main>
             {/* <footer className={styles.footer}>
