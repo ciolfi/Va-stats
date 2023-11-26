@@ -624,7 +624,8 @@ export default function Page() {
                           <td className={styles.dropdowndiv}>
                             <Select                        
                               aria-label="Education attained"
-                              class="bg-content-content1 bg-white text-left indent-0.4 focus:border-4 focus:border-blue-600 ps-1"      
+                              class="bg-content-content1 bg-white text-left indent-0.4 focus:border-4 focus:border-blue-600 ps-1"
+                              className={styles.edu_qualifications}
                               name="edu_qualifications"
                               radius="none"
                               isRequired
@@ -649,9 +650,9 @@ export default function Page() {
                           <td className={styles.inputtd}>
                             <input
                               autoComplete="off"
+                              class="bg-content-content1 bg-white focus:border-4 focus:border-blue-600 ps-1"
                               className={styles.reginput}
                               id="edu_details"
-                              maxLength="35"
                               name="edu_details"
                               type="text"
                               role="presentation"

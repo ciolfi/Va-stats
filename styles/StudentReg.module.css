@@ -1,3 +1,7 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 /*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN BEGINS (NEXTUI) ---*/
 /* Note: narrower visible area was attained
     with a hack involving pushing the default
@@ -19,12 +23,7 @@
   overflow: hidden;
   width: 60%;
 }
-.edu_qualifications {
-  background-color: white;
-  border-color: black;
-  border-width: 2px;
-  position: relative;
-  top: 0em;
+.edu_details {
   width: 100%;
 }
 /*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN ENDS (NEXTUI) ---*/
