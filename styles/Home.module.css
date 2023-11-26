@@ -7,9 +7,9 @@ see globals.css */
 To view this, see /pages/students.jsx */
 
 /* ------------------ General styles begin ---------------- */
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .title {
   position: relative;

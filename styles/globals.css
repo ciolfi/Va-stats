@@ -5,6 +5,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN BEGINS (NEXTUI) ---*/
+/* Note: narrower visible area was attained
+    with a hack involving pushing the default
+    select box to a higher relative location
+    within its parent container above. 
+    Top border of parent container is the new
+    'top border' of the select input. Also, 
+    border colors had to be adjusted as needed. 
+    Education dropdown container and input. */
+    
+/* .dropdowndiv {
+  border-color: orange;
+  border-width: 2px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: black;
+  overflow: hidden;
+}
+
+.edu_qualifications {
+  border-color: black;
+  border-width: 2px;
+  height: 2.5em;
+  overflow: hidden;
+  position: relative;
+  top: -1em;
+} */
+/*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN ENDS (NEXTUI) ---*/
+
 /* MODAL FOR STUDENT REGISTRATION CONFIRMATION */
 .modal-wrapper {
   width: 500px;

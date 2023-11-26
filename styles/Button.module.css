@@ -1,11 +1,11 @@
 /* Logout button top right of navbar */
 .genericButtonLight {
 	/* border: 2px solid var(--button-border-light); */
-  border: 2px solid black;
+	border: 2px solid black;
 	color: black;
 	border-radius: 5px;
-	background: rgba(0,0,0,0);
-  font-weight: 700;
+	background: rgba(0, 0, 0, 0);
+	font-weight: 700;
 	padding: 0.7rem 1.2rem;
 	font-size: 1rem;
 	cursor: pointer;
@@ -19,15 +19,18 @@
 
 .genericButtonDark {
 	border: 2px solid var(--button-border-dark);
-  align-items: center;
-  background: rgb(8, 127, 72, 0.7);
-  border-radius: 5px;
+	align-items: center;
+	background: rgb(8, 127, 72, 0.7);
+	border-radius: 5px;
 	color: var(--button-text-dark);
-  cursor: pointer;
-  display: flex;
-  font-size: 0.8rem;		/* PREV VAL: 1rem; */
-	margin-left: 0em;     /* PREV VAL: 2em; */
-	padding: 0.2rem 0rem;	/* PREV VAL: 0.7rem 1.2rem; */
+	cursor: pointer;
+	display: flex;
+	font-size: 0.8rem;
+	/* PREV VAL: 1rem; */
+	margin-left: 0em;
+	/* PREV VAL: 2em; */
+	padding: 0.2rem 0rem;
+	/* PREV VAL: 0.7rem 1.2rem; */
 }
 
 .genericButtonDark:hover {
@@ -40,11 +43,12 @@
 
 /* Page-specific styles */
 .btnnewbatchform {
-  position: relative;
-  left: 2em;
+	position: relative;
+	left: 2em;
 }
 
 @media (max-width: 431px) {
+
 	.genericButtonLight,
 	.genericButtonLight:hover,
 	.genericButtonDark,

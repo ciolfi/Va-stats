@@ -1,8 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN BEGINS (NEXTUI) ---*/
+/* Note: narrower visible area was attained
+    with a hack involving pushing the default
+    select box to a higher relative location
+    within its parent container above. 
+    Top border of parent container is the new
+    'top border' of the select input. Also, 
+    border colors had to be adjusted as needed. 
+    Education dropdown container and input. */
+
+.dropdowndiv { 
+  /* border: 2px solid black;    */
+  /* border-color: orange;
+  border-width: 2px;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: black; */
+  overflow: hidden;
+  width: 60%;
+}
+.edu_qualifications {
+  background-color: white;
+  border-color: black;
+  border-width: 2px;
+  position: relative;
+  top: 0em;
+  width: 100%;
+}
+/*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN ENDS (NEXTUI) ---*/
 
 /* Textbox tabbing focus border */
+/* .edu_qualifications:focus, */
 .txtboxdropdown:focus,
 .reginput:focus,
 .regtextareagoals:focus,
@@ -95,7 +123,6 @@
   width: 50%;
 }
 
-
 .requiredelement {
   /* color: black; */
   color: red;
@@ -149,6 +176,7 @@ Does not include:
 }
 
 .fdsetlearning {
+  border: 2px solid black;
   margin-top: 2em;
 }
 
@@ -193,11 +221,6 @@ Does not include:
   width: 30%;
 }
 
-/* .btnradiocourse [type='radio']{
-  width: 2px solid black;
-} */
-
-/* input[type='radio']{ */
 .btnradiocourse {
   outline: 2px solid #000;
   /* accent-color: 2px solid #000; */
@@ -411,11 +434,6 @@ Does not include:
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  /* .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  } */
-
   .card:hover span {
     transform: translateX(4px);
   }

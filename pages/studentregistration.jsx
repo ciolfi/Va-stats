@@ -1,23 +1,19 @@
 "use client";
+// Education inputs (dropdown, textbox)
+import { NextUIProvider, Select, SelectItem } from "@nextui-org/react";
+import { edcredentials } from "../components/data";
+
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
-import { NextUIProvider } from '@nextui-org/react';
 import React from "react";
-import ReactDOM from 'react-dom'; // Education dynamic textbox creation
-import Router from "next/router";                   // Popup confirmation
-
+import Router from "next/router";   // Popup confirmation
 import styles from "../styles/StudentReg.module.css";
-
-// Education input
-import Combobox from "react-widgets/Combobox";
-import "react-widgets/styles.css";
-
-import { useSession } from 'next-auth/react';
-import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
+import { useForm } from "react-hook-form";
 import { useRef } from 'react';
+import { useSession } from 'next-auth/react';
 
 let worldData = require("../utils/countries+states.json");
 var userRole = "STAFF";
@@ -78,6 +74,7 @@ export default function Page() {
   const htmlSummary = "HTML is our broad course on critical website languages. The student will acquire skills in HTML, CSS, JavaScript, and ARIA Fundamentals for accessible Web development. The ideal student has a Bachelor degree, skill with computers and touch screen phones, and proficiency using MS Office and screen readers like NVDA and JAWS. The course is 2 months long with 90 minutes per class.";
   const mobtechSummary = "The Mobile Technology course will enable a person with visual impairment to effectively use the modern-day smartphone for day-to-day work, mobility and comfort. Additionally, the student will learn essential nomenclature related to hardware and software. The ideal student is 12+ years of age and has an Android mobile device.";
   const cssSummary = "The CSS course is for people who want to develop the skills to style websites. Since CSS works with HTML in creating websites, this is a great follow up course for those who took our HTML course. Website creation focuses on separating content (HTML) and design (CSS). The student will acquire a deep understanding of the manipulation of color, fonts, and a variety of other web page characteristics.";
+  const excelSummary = "Excel is Microsoft's universally popular spreadsheet software. It is used for a variety of purposes including: record-keeping, business analytics, as a 'database' when higher-level database functinality is not required.";
 
   /*-------- COURSE CHOICE SUMMARIES ITEM ----------*/
   const [Option3, setOption3] = useState(() => []);
@@ -101,7 +98,7 @@ export default function Page() {
 
   const getSummaries = (e) => {
     // See constants section above for returned values
-    if (e == "python") {
+    if (e == "Python") {
       return pythonSummary;
     }
     else if (e == "C") {
@@ -124,6 +121,9 @@ export default function Page() {
     }
     else if (e == "CSS") {
       return cssSummary;
+    }
+    else if (e == "Excel") {
+      return excelSummary;
     }
     else {
       return "AN UNKNOWN course was chosen ...";
@@ -262,34 +262,33 @@ export default function Page() {
   );
 
   /*-------------- EDUCATION DROPDOWN BEGINS --------------*/
-  let widget = (
-    <Combobox
-      autoComplete="off"
-      // border="3px"
-      // color="black"
-      // defaultValue={"Below 10th standard"}
-      className={styles.txtboxdropdown}
-      dropUp
-      data={[
-        "Below 10th standard",
-        "10 standard",
-        "12 standard",
-        "Diploma",
-        "ITI",
-        "Undergraduate",
-        "Graduate",
-        "Post-graduate",
-        "Professional degree",
-        "Other (also 'Ed. Details')"
-      ]}
-      id="edu_qualifications"
-      maxLength="80"
-      name="edu_qualifications"
-      placeholder="Highest level: 80-char max"
-      role="presentation"
-      required
-    />
-  );
+  // let widget = (
+  //   <DropdownList
+  //     autoComplete="off"
+  //     className={styles.txtboxdropdown}
+  //     dropUp
+  //     data={[
+  //       "Below 10th standard",
+  //       "10 standard",
+  //       "12 standard",
+  //       "Diploma",
+  //       "ITI",
+  //       "Undergraduate",
+  //       "Graduate",
+  //       "Post-graduate",
+  //       "Professional degree",
+  //       "Other (also 'Ed. Details')"
+  //     ]}
+  //     id="edu_qualifications"
+  //     filter='false'
+  //     height="0.5em"
+  //     maxLength="80"
+  //     name="edu_qualifications"
+  //     placeholder="Highest level: 80-char max"
+  //     role="presentation"
+  //     required
+  //   />
+  // );
   /*-------------- EDUCATION DROPDOWN ENDS --------------*/
 
   // EMPLOYMENT STATUS
@@ -348,7 +347,7 @@ export default function Page() {
   };
 
   return (
-    // NextUIProvider BELOW: FOR SSRPROVIDER ERRORS
+    // NextUIProvider BELOW: FOR EDUCATION DROPDOWN
     <NextUIProvider>
       <>
         {contentLoading ?
@@ -357,14 +356,6 @@ export default function Page() {
           </div>
           : <></>
         }
-
-        {/* Course summary dialog */}
-        {/* <dialog id="favDialog">
-        <form method="dialog">
-          <p>{courseSummary}</p>
-          <button>Close dialog</button>
-        </form>
-      </dialog> */}
 
         <div className={styles.mynavbar}>
           <Navbar user_role={userRole} className={styles.navstudents} />
@@ -609,25 +600,51 @@ export default function Page() {
                         </tr>
 
                         {/*----- EDU QUALIFICATIONS ROW BEGINS -----*/}
-                        <tr className={styles.regrow}>
+                        {/* <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_qualifications">
                               Education (choose or type)
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
-                          <td className={styles.inputtd}>
+                          <td className={styles.eduqualifications}>
                             {widget}
                           </td>
-                        </tr>
+                        </tr> */}
                         {/*----- EDU QUALIFICATIONS ROW ENDS -----*/}
+
+                        {/*--- NEW EDU QUALIFICATIONS ROW BEGINS ---*/}
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="edu_qualifications">
+                              Education
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.dropdowndiv}>
+                            <Select                        
+                              aria-label="Education attained"
+                              class="bg-content-content1 bg-white text-left indent-0.4 focus:border-4 focus:border-blue-600 ps-1"      
+                              name="edu_qualifications"
+                              radius="none"
+                              isRequired
+                              size="sm" 
+                            >
+                              {edcredentials.map((credential) => (
+                                <SelectItem key={credential.label} value={credential}>
+                                  {credential.label}
+                                </SelectItem>
+                              ))}
+                            </Select>
+                          </td>
+                        </tr>
+                        {/*--- NEW EDU QUALIFICATIONS ROW ENDS ---*/}
 
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_details">
                               Education Details
                             </label>
-                            {/* <span className={styles.requiredelement}>&#42;</span> */}
                           </td>
                           <td className={styles.inputtd}>
                             <input
@@ -638,7 +655,6 @@ export default function Page() {
                               name="edu_details"
                               type="text"
                               role="presentation"
-                              required
                             />
                           </td>
                         </tr>
@@ -700,7 +716,7 @@ export default function Page() {
                             <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autoComplete="off" required>
                               <option></option>
                               {courseOptions1}
-                              <option selected="selected">Select First Choice</option>
+                              {/* <option selected="selected">Select First Choice</option> */}
                             </select>
                           </td>
                         </tr>
@@ -717,7 +733,7 @@ export default function Page() {
                             <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
                               <option></option>
                               {courseOptions2}
-                              <option selected="selected">Select Second Choice</option>
+                              {/* <option selected="selected">Select Second Choice</option> */}
                             </select>
                           </td>
                         </tr>
@@ -736,7 +752,7 @@ export default function Page() {
                             <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
                               <option></option>
                               {courseOptions3}
-                              <option selected="selected">Select Third Choice</option>
+                              {/* <option selected="selected">Select Third Choice</option> */}
                             </select>
                           </td>
                         </tr>
@@ -900,7 +916,6 @@ export default function Page() {
 
         </div>    {/* Container closing tag */}
       </>
-    </NextUIProvider >
-    //)
+    </NextUIProvider>
   );
 }
