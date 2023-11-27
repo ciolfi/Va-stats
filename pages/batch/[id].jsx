@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Navbar from "../../components/Navbar";
 import styles from "../../styles/Home.module.css";
+import tableStyles from "../../styles/Table.module.css";
 import Link from "next/link";
 import Head from 'next/head';
 import Table from "@/components/Table";
@@ -65,6 +66,7 @@ export default function Page() {
   const [documentsData, setDocumentsData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
+  const [selectedIDs, setSelectedIDs] = useState([]);
 
   const [contentLoading, setContentLoading] = useState(false);
 
@@ -113,6 +115,16 @@ export default function Page() {
     }
   };
 
+  const handleChange = (e) => {
+    const checked = e.target.checked
+    const id = e.target.value
+    if (checked) {
+      setSelectedIDs([...selectedIDs, id])
+    } else {
+      setSelectedIDs(selectedIDs.filter((id) => id !== id))
+    }
+  }
+
   const optionChangeHandler = (e) => {
     const { name, value } = e.target;
     setSelectedStudent(value);
@@ -157,6 +169,12 @@ export default function Page() {
       const record = getStudentRecordByName(studentRes.students, student.name);
       const course = getCourseNameById(batchesRes.batches, batchId);
       if ([record.first_choice, record.second_choice, record.third_choice].includes(course)) {
+        student = {
+          ...student,
+          first_choice: record.first_choice,
+          second_choice: record.second_choice,
+          third_choice: record.third_choice
+        };
         studentList.push(student);
       }
     });
@@ -237,6 +255,10 @@ export default function Page() {
       console.error("Error adding student to batch");
     }
     setContentLoading(false);
+  };
+
+  const addStudentMulti = async (students) => {
+    students.forEach((studentId) => {addStudent(studentId);});
   };
 
   /* ---------------------------------- API SECTION -----------------------------------*/
@@ -632,8 +654,10 @@ export default function Page() {
             </div>
 
             {showManagement && (
+              unassignedStudents.length != 0 ?
+              (
               <div>
-                <div className={styles.batchManagementContainer}>
+                {/* <div className={styles.batchManagementContainer}>
                   <h2>Assign Students to batch</h2>
                   <select className={styles.batchManagementList} onChange={(e) => optionChangeHandler(e)}>
                       <option></option>
@@ -648,7 +672,52 @@ export default function Page() {
                   <button className={styles.batchManagementButton} onClick={() => addStudent(selectedStudent)} >
                     Add to Batch
                   </button>
+                </div> */}
+                <div className={tableStyles.tableWrapper}>
+                  <div className={styles.genericTableHeader}>
+                    <h2>Assign Students to Batch</h2>
+                  </div>
+                  <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0">
+                    <thead>
+                      <tr>
+                        <th>Select</th>
+                        <th>Student</th>
+                        <th>First Choice</th>
+                        <th>Second Choice</th>
+                        <th>Third Choice</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {unassignedStudents.map((student) => {
+                        return (
+                          <tr key={student.id}>
+                            <td>
+                              <input
+                                type='checkbox'
+                                value={student.id}
+                                onChange={handleChange}
+                                checked={selectedIDs.includes(student.id.toString())}
+                              />
+                            </td>
+                            <td> {student.name} </td>
+                            <td> {student.first_choice} </td>
+                            <td> {student.second_choice} </td>
+                            <td> {student.third_choice} </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
                 </div>
+                <button className={styles.batchManagementButton} onClick={() => addStudentMulti(selectedIDs)} >
+                  Add Students to Batch
+                </button>
+              </div>
+              )
+              :
+              <div>
+                <h2>Assign Students to Batch</h2>
+                <p><br></br>All prospective students are already added to the batch.</p>
               </div>
             )}
 
