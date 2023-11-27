@@ -116,14 +116,14 @@ export default function Page() {
   };
 
   const handleChange = (e) => {
-    const checked = e.target.checked
-    const id = e.target.value
+    const checked = e.target.checked;
+    const id = e.target.value;
     if (checked) {
-      setSelectedIDs([...selectedIDs, id])
+      setSelectedIDs([...selectedIDs, id]);
     } else {
-      setSelectedIDs(selectedIDs.filter((id) => id !== id))
+      setSelectedIDs(selectedIDs.filter((id) => id !== id));
     }
-  }
+  };
 
   const optionChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -704,7 +704,7 @@ export default function Page() {
                             <td> {student.second_choice} </td>
                             <td> {student.third_choice} </td>
                           </tr>
-                        )
+                        );
                       })}
                     </tbody>
                   </table>
