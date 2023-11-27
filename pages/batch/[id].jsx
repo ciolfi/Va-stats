@@ -681,7 +681,8 @@ export default function Page() {
                     <thead>
                       <tr>
                         <th>Select</th>
-                        <th>Student</th>
+                        <th>ID</th>
+                        <th>Name</th>
                         <th>First Choice</th>
                         <th>Second Choice</th>
                         <th>Third Choice</th>
@@ -699,6 +700,7 @@ export default function Page() {
                                 checked={selectedIDs.includes(student.id.toString())}
                               />
                             </td>
+                            <td> {student.id} </td>
                             <td> {student.name} </td>
                             <td> {student.first_choice} </td>
                             <td> {student.second_choice} </td>
