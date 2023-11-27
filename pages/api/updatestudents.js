@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, email, name, phone_number, gender, age, location, objectives, vision_impairment, usable_vision, registration_date, is_qualified } = req.body;
+    const { id, email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, edu_details, employment_status, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date } = req.body;
 
     const dbconnection = await mysql.createConnection({
       host: process.env.MYSQL_HOST,
@@ -14,11 +14,11 @@ export default async function handler(req, res) {
     try {
       const query = `
         UPDATE vastudents
-        SET email = ?, name = ?, phone_number = ?, gender = ?, age = ?, location = ?, objectives = ?, vision_impairment = ?, usable_vision = ?, registration_date = ?, is_qualified = ?
+        SET email = ?, name = ?, phone_number = ?, alt_ph_num = ?, city = ?, state = ?, country = ?, gender = ?, age = ?, edu_qualifications = ?, edu_details = ?, employment_status = ?, first_choice = ?, second_choice = ?, third_choice = ?, visual_acuity = ?, percent_loss = ?, impairment_history = ?, source = ?, registration_date = ?
         WHERE id = ?;
       `;
 
-      const values = [email, name, phone_number, gender, age, location, objectives, vision_impairment, usable_vision, registration_date, is_qualified, id];
+      const values = [email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, edu_details, employment_status, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date, id];
       await dbconnection.execute(query, values);
       res.status(200).json({ message: 'Student updated successfully' });
       dbconnection.end();
