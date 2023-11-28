@@ -67,7 +67,8 @@ export default function Page() {
   const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
-  const [assignmentName, setAssignmentName] = useState("");
+  const [assignmentNameAdd, setAssignmentNameAdd] = useState("");
+  const [assignmentNameDelete, setAssignmentNameDelete] = useState("");
 
   const [showAttendance, setShowAttendance] = useState(true); /* Default active tab is Attendance */
   const [showGrades, setShowGrades] = useState(false);
@@ -791,21 +792,21 @@ export default function Page() {
                   <h2>Add New Assignment</h2>
                   <input
                     type="text"
-                    id="assignmentName"
-                    name="assignmentName"
+                    id="assignmentNameAdd"
+                    name="assignmentNameAdd"
                     className={styles.batchManagementList}
-                    onChange={(e) => setAssignmentName(e.target.value)}
+                    onChange={(e) => setAssignmentNameAdd(e.target.value)}
                   />
-                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentName, id)}>Add Assignment</button>
+                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assignment</button>
                   <h2>Delete Assignment</h2>
                   <input
                     type="text"
-                    id="assignmentName"
-                    name="assignmentName"
+                    id="assignmentNameDelete"
+                    name="assignmentNameDelete"
                     className={styles.batchManagementList}
-                    onChange={(e) => setAssignmentName(e.target.value)}
+                    onChange={(e) => setAssignmentNameDelete(e.target.value)}
                   />
-                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentName, id)}>Delete Assignment</button>
+                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assignment</button>
                 </div>
               {gradesColumn.length > 0 ?
               <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
