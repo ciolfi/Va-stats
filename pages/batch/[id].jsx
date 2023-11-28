@@ -789,7 +789,7 @@ export default function Page() {
             {showGrades && (
               <div>
                 <div className={styles.batchManagementContainer}>
-                  <h2>Add New Assignment</h2>
+                  <h2>Add New Assessment</h2>
                   <input
                     type="text"
                     id="assignmentNameAdd"
@@ -797,8 +797,8 @@ export default function Page() {
                     className={styles.batchManagementList}
                     onChange={(e) => setAssignmentNameAdd(e.target.value)}
                   />
-                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assignment</button>
-                  <h2>Delete Assignment</h2>
+                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assessment</button>
+                  <h2>Delete Assessment</h2>
                   <input
                     type="text"
                     id="assignmentNameDelete"
@@ -806,7 +806,7 @@ export default function Page() {
                     className={styles.batchManagementList}
                     onChange={(e) => setAssignmentNameDelete(e.target.value)}
                   />
-                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assignment</button>
+                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button>
                 </div>
               {gradesColumn.length > 0 ?
               <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
