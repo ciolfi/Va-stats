@@ -13,6 +13,23 @@ import Table from "@/components/Table";
 import TableCol from "@/components/TableCol";
 import Image from 'next/image';
 
+function getTodaysDate() {
+  var date = new Date();
+  // IST timezone shift (+5 hours and 30 minutes)
+  date.setHours(date.getHours() + 5);
+  date.setMinutes(date.getMinutes() + 30);
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  // Current format is: YYYY-MM-DD
+  let currentDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+  return currentDate;
+}
+
 function staffHasAccess(batchInfo, userInfo) {
   var userName = "";
   if (userInfo["lastname"]) {
@@ -56,12 +73,14 @@ export default function Page() {
   const [showGrades, setShowGrades] = useState(false);
   const [showManagement, setShowManagement] = useState(false);
   const [showDocuments, setShowDocuments] = useState(false);
+  const [currentPanel, setCurrentPanel] = useState(0);
 
   const [courseName, setCourseName] = useState("");
   const [batchName, setBatchName] = useState("");
   const [batchLength, setBatchLength] = useState("");
 
   const [attendanceColumn, setAttendanceColumn] = useState([]);
+  const [attendanceColumnStaff, setAttendanceColumnStaff] = useState([]);
   const [attendanceData, setAttendanceData] = useState([]);
   const [documentsData, setDocumentsData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
@@ -99,18 +118,23 @@ export default function Page() {
     switch(name) {
       case "attendance":
         setShowAttendance(true);
+        setCurrentPanel(0);
         break;
       case "grades":
         setShowGrades(true);
+        setCurrentPanel(1);
         break;
       case "management":
         setShowManagement(true);
+        setCurrentPanel(2);
         break;
       case "documents":
         setShowDocuments(true);
+        setCurrentPanel(3);
         break;
       default:
         setShowAttendance(true);
+        setCurrentPanel(0);
         break;
     }
   };
@@ -312,7 +336,7 @@ export default function Page() {
       getBatchData();
       getBatchDocumentData();
     }
-  }, [session]);
+  }, [session, currentPanel]);
   // useEffect(() => {
   //   if (session) {
   //     getUserData();
@@ -385,6 +409,33 @@ export default function Page() {
           height: '70px',
         });
       });
+    }
+    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 50, isRotatedTh:true, isSortable:false });
+    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 200, isRotatedTh:true, isSortable:true });
+    return res;
+  };
+
+  const generateColumnsFromDateStaff = () => {
+    let res = [];
+    if (batchData?.attendance) {
+      const attendanceDates = new Set();
+      const todaysDate = getTodaysDate();
+      batchData.attendance.forEach((attendance) => {
+        attendanceDates.add(attendance.date);
+      });
+      const attendanceDatesList = Array.from(attendanceDates).sort();
+      if (attendanceDatesList.includes(todaysDate)) {
+        res.push({
+          name: todaysDate,
+          accessor: todaysDate,
+          type: 'enum',
+          availableValues: [1, 0, 2],
+          isAttendance: true,
+          isRotatedTh: true,
+          isSortable: false,
+          height: '70px',
+        });
+      }
     }
     res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 50, isRotatedTh:true, isSortable:false });
     res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 200, isRotatedTh:true, isSortable:true });
@@ -495,6 +546,9 @@ export default function Page() {
     setAttendanceColumn(() => {
       return generateColumnsFromDate();
     });
+    setAttendanceColumnStaff(() => {
+      return generateColumnsFromDateStaff();
+    });
     setAttendanceData(() => {
       return generateStudentTableData();
     });
@@ -504,7 +558,7 @@ export default function Page() {
     setDocumentsData(() => {
       return generateStudentDocumentData();
     });
-  }, [batchData]);
+  }, [batchData, currentPanel]);
   // useEffect(() => {
   //   setAttendanceColumn(() => {
   //     return generateColumnsFromDate();
@@ -724,7 +778,10 @@ export default function Page() {
             )}
 
             {showAttendance && (attendanceColumn.length > 0 ?
-              <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
+              (userResponse.role == "STAFF" ?
+                <TableCol columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
+                : <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
+              )
               : <></>
             )}
 
