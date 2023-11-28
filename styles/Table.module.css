@@ -4,6 +4,38 @@
   scroll-behavior: smooth;
 }
 
+.tableRow {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+
+.tableColumn {
+  float: left;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.tableRow::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.buttonContainer {
+  height: 430px;
+  padding: 25px;
+  position: relative;
+}
+
+.buttonCenter {
+  margin-left: -25px;
+  padding: 1px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .genericTable {
   display: block;
   max-width: fit-content;

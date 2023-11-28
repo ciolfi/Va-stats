@@ -709,72 +709,102 @@ export default function Page() {
             </div>
 
             {showManagement && (
-              unassignedStudents.length != 0 ?
-              (
               <div>
-                {/* <div className={styles.batchManagementContainer}>
-                  <h2>Assign Students to batch</h2>
-                  <select className={styles.batchManagementList} onChange={(e) => optionChangeHandler(e)}>
-                      <option></option>
-                  {unassignedStudents.map((student) => {
-                    return (
-                      <option key={student.id} value={student.id} className={styles.unassignedItem}>
-                        {student.name}
-                      </option>
-                    );
-                  })}
-                  </select>
-                  <button className={styles.batchManagementButton} onClick={() => addStudent(selectedStudent)} >
-                    Add to Batch
-                  </button>
-                </div> */}
-                <div className={tableStyles.tableWrapper}>
-                  <div className={styles.genericTableHeader}>
-                    <h2>Assign Students to Batch</h2>
+                <div className={tableStyles.tableRow}>
+                  <div className={tableStyles.tableColumn}>
+                    <div className={styles.genericTableHeader}>
+                      <h2>Assign Students to Batch</h2>
+                    </div>
+                    <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
+                      <thead>
+                        <tr>
+                          <th>Select</th>
+                          <th width="50px">ID</th>
+                          <th width="235px">Name</th>
+                          <th>First Choice</th>
+                          <th>Second Choice</th>
+                          <th>Third Choice</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {unassignedStudents.length != 0 ?
+                        unassignedStudents.map((student) => {
+                          return (
+                            <tr key={student.id}>
+                              <td>
+                                <input
+                                  type='checkbox'
+                                  value={student.id}
+                                  onChange={handleChange}
+                                  checked={selectedIDs.includes(student.id.toString())}
+                                />
+                              </td>
+                              <td> {student.id} </td>
+                              <td> {student.name} </td>
+                              <td> {student.first_choice} </td>
+                              <td> {student.second_choice} </td>
+                              <td> {student.third_choice} </td>
+                            </tr>
+                          );
+                        })
+                        :
+                        <td colSpan="6" style={{ textAlign: "center" }}>All prospective students are already added to the batch.</td>
+                      }
+                      </tbody>
+                    </table>
                   </div>
-                  <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0">
-                    <thead>
-                      <tr>
-                        <th>Select</th>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>First Choice</th>
-                        <th>Second Choice</th>
-                        <th>Third Choice</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {unassignedStudents.map((student) => {
-                        return (
-                          <tr key={student.id}>
-                            <td>
-                              <input
-                                type='checkbox'
-                                value={student.id}
-                                onChange={handleChange}
-                                checked={selectedIDs.includes(student.id.toString())}
-                              />
-                            </td>
-                            <td> {student.id} </td>
-                            <td> {student.name} </td>
-                            <td> {student.first_choice} </td>
-                            <td> {student.second_choice} </td>
-                            <td> {student.third_choice} </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                  <div className={tableStyles.tableColumn}>
+                    <div className={tableStyles.buttonContainer}>
+                      <div className={tableStyles.buttonCenter}>
+                        <button className={styles.batchManagementButton} onClick={() => {addStudentMulti(selectedIDs);setSelectedIDs([]);}} >
+                          &gt;&gt;
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={tableStyles.tableColumn}>
+                    <div className={styles.genericTableHeader}>
+                      <h2>Remove Students from Batch</h2>
+                    </div>
+                    <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
+                      <thead>
+                        <tr>
+                          <th>Select</th>
+                          <th width="50px">ID</th>
+                          <th width="235px">Name</th>
+                          <th>First Choice</th>
+                          <th>Second Choice</th>
+                          <th>Third Choice</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {batchData.students.length != 0 ?
+                        batchData.students.map((student) => {
+                          return (
+                            <tr key={student.id}>
+                              <td>
+                                <input
+                                  type='checkbox'
+                                  value={student.id}
+                                  onChange={handleChange}
+                                  checked={selectedIDs.includes(student.id.toString())}
+                                />
+                              </td>
+                              <td> {student.id} </td>
+                              <td> {student.name} </td>
+                              <td> {student.first_choice} </td>
+                              <td> {student.second_choice} </td>
+                              <td> {student.third_choice} </td>
+                            </tr>
+                          );
+                        })
+                        :
+                        <td colSpan="6" style={{ textAlign: "center" }}>This batch currently does not have any students.</td>
+                      }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <button className={styles.batchManagementButton} onClick={() => addStudentMulti(selectedIDs)} >
-                  Add Students to Batch
-                </button>
-              </div>
-              )
-              :
-              <div>
-                <h2>Assign Students to Batch</h2>
-                <p><br></br>All prospective students are already added to the batch.</p>
               </div>
             )}
 

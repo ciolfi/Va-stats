@@ -57,7 +57,7 @@ export default async function handler(req, res) {
 
   try {
     const studentsQuery = `
-      SELECT s.id, s.email, s.name
+      SELECT s.id, s.email, s.name, s.first_choice, s.second_choice, s.third_choice
       FROM vastudents s
       JOIN vastudent_to_batch sb ON s.id = sb.student_id
       WHERE sb.batch_id = ?
