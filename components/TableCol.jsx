@@ -128,13 +128,13 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 								<div>
 									{editId === column ?
 										<>
-											<Image className={styles.actionItem} alt={'save edit'} src={'/icons/save-icon.svg'} height={20} width={20} onClick={() => saveHandler() } />
-											<Image className={styles.actionItem} alt={'cancel edit'} src={'/icons/cancel-icon.svg'} height={20} width={20} onClick={() => onCancelClick()} />
+											<Image className={styles.actionItem} alt={'Save'} src={'/icons/save-icon.svg'} height={20} width={20} onClick={() => saveHandler() } />
+											<Image className={styles.actionItem} alt={'Cancel'} src={'/icons/cancel-icon.svg'} height={20} width={20} onClick={() => onCancelClick()} />
 										</>
 									:
 										<>
-											{isEditable ? <Image className={styles.actionItem} alt={'edit col'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(column, sortedData())} />: <></>}
-											{column.isAttendance ? <Image className={styles.actionItem} alt={'x col'} src={'/icons/fillx-icon.svg'} height={15} width={15} onClick={() => onFillX(column, sortedData())} />: <></>}
+											{isEditable ? <Image className={styles.actionItem} alt={'Edit'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(column, sortedData())} />: <></>}
+											{column.isAttendance ? <Image className={styles.actionItem} alt={'No Class'} src={'/icons/fillx-icon.svg'} height={15} width={15} onClick={() => onFillX(column, sortedData())} />: <></>}
 										</>
 									}
 								</div>
@@ -181,7 +181,7 @@ function displaySortIcon(sortColumn, accessor, sortAsc) {
 		return <></>;
 	}
 	if (sortAsc) {
-		return <Image alt={'sort-ascending'} src={'/icons/sort-up-icon.svg'} height={16} width={16} />;
+		return <Image alt={'Sort Ascending'} src={'/icons/sort-up-icon.svg'} height={16} width={16} />;
 	}
-	return <Image alt={'sort-descending'} src={'/icons/sort-down-icon.svg'} height={16} width={16} />;
+	return <Image alt={'Sort Descending'} src={'/icons/sort-down-icon.svg'} height={16} width={16} />;
 }
