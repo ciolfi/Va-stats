@@ -820,6 +820,7 @@ export default function Page() {
                             onFocus={() => checkDropdown()}
                             className={styles.reginput}
                             id="percent_loss"
+                            min={0}
                             max={100}
                             name="percent_loss"
                             placeholder="0-100"
