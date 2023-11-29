@@ -2,7 +2,7 @@
 
 export default function Page() {
     return (
-        <NextUIProvider>
+        <>
             <header>
                 <p>Put product name and logo here</p>
             </header>
@@ -17,6 +17,6 @@ export default function Page() {
             <footer>
                 <p>Put copyright info, supplemental links, etc. here</p>
             </footer>
-        </NextUIProvider>
+        </>
     );
 }
