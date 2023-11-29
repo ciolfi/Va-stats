@@ -559,7 +559,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="age">
-                              Birthdate
+                              Date of Birth
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
@@ -681,19 +681,17 @@ export default function Page() {
                             <label htmlFor="objectives">
                               Goal(s)
                             </label>
-                            <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.inputtd}>
                             <textarea
                               className={styles.regtextareagoals}
                               id="objectives"
-                              maxLength="50"
+                              maxLength="100"
                               name="objectives"
                               onKeyDown={(e) => textAreaHandleEnter(e)}
-                              placeholder="50-char max"
+                              placeholder="Reasons for seeking training (100-char max)"
                               width="100%"
                               role="presentation" autoComplete="off"
-                              required
                             />
                           </td>
                         </tr>
@@ -811,7 +809,7 @@ export default function Page() {
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="percent_loss">
-                            Percent of vision loss
+                            Percentage of vision loss
                           </label>
                           <span className={styles.requiredelement}>&#42;</span>
                         </td>
