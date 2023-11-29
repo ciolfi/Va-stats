@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Button from './Button';
 import Link from "next/link";
 
-export default function TableCol({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent, batchId }) {
+export default function TableCol({ columns, tableData, isDelete, onDeleteClick, isEditable, onEditSave, Title, FilterButton, isBatch, isStudent, batchId, isAccessible }) {
 	const [sortColumn, setSortColumn] = useState(columns[0].accessor);
 	const [sortAsc, setSortAsc] = useState(true);
 	const [editId, setEditId] = useState(null);
@@ -142,7 +142,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 								:
 								<div className={tableHeaderClassName}>
 									{column.name}
-									{displaySortIcon(sortColumn, column.accessor, sortAsc)}
+									{column.isSortable ? displaySortIcon(sortColumn, column.accessor, sortAsc) : <></>}
 								</div>
 							}
 							</th>
@@ -154,7 +154,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				{sortedData().map((rowData, index) => {
 					return (
 						<tr key={index}>
-							{generateTableCol(columns, rowData, editId, changeHandler, inputClassName)}
+							{generateTableCol(columns, rowData, editId, changeHandler, inputClassName, isAccessible)}
 						</tr>
 					);
 				})}

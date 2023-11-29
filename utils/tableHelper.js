@@ -80,7 +80,7 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 }
 
 const minAttendance = 50.0;
-export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName) {
+export function generateTableCol(columns, rowData, editId, changeHandler, inputClassName, isAccessible) {
 	const cell = [];
 	var daysPresent = 0;
 	var totalSize = 0; //columns.length - 2;
@@ -131,7 +131,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 		}
 		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
 	}
-	if (isAttendance) {
+	if (isAttendance && !isAccessible) {
 		for (const column of columns) {
 			if(column.isAttendance && Number(rowData[column.accessor]) != 2) {
 				daysPresent += Number(rowData[column.accessor]);

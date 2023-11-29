@@ -438,8 +438,7 @@ export default function Page() {
         });
       }
     }
-    res.unshift({ name: "% att.", accessor: "percent", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 50, isRotatedTh:true, isSortable:false });
-    res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, stickyWidth: 200, isRotatedTh:true, isSortable:true });
+    res.unshift({ name: "Students", accessor: "name", immutable: false, isFirstColumn: true, isSticky: true, stickyWidth: 200, isRotatedTh:true, isSortable:false });
     return res;
   };
 
@@ -810,8 +809,8 @@ export default function Page() {
 
             {showAttendance && (attendanceColumn.length > 0 ?
               (userResponse.role == "STAFF" ?
-                <TableCol columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
-                : <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} />
+                <TableCol columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} isAccessible={true} />
+                : <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} isAccessible={false} />
               )
               : <></>
             )}
