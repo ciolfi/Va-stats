@@ -12,6 +12,58 @@
     "language": "English",
     "orientation": "any",
     "display override": "standalone",
+    "iarc_rating_id": "",
+    "prefer_related_applications": "false",
+    "related_applications": [
+        {
+            "platform": "",
+            "url": "",
+            "id": ""
+        },
+        {
+            "platform": "",
+            "url": ""
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "HomePage",
+            "short_name": "Home",
+            "url": "/",
+            "description": "Vision-Aid Academy home page.",
+            "icons": [
+                {
+                    "src": "/public/icon-192x192.png",
+                    "type": "image/png",
+                    "purpose": "any"
+                }
+            ]
+        }
+    ],
+    "protocol_handlers": [
+        {
+            "protocol": "",
+            "url": ""
+        }
+    ],
+    "categories": [
+        "business",
+        "education",
+        "health",
+        "medical",
+        "productivity"
+    ],
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "screenshots" : [
+        {
+          "src": "/public/va-screenshot.jpg",
+          "sizes": "1280x800",
+          "type": "image/png",
+          "platform": "wide"
+        }
+      ],
     "icons": [
         {
             "src": "/icon-192x192.png",
