@@ -72,12 +72,37 @@ export default function Home() {
   // CODE LINE BELOW: FOR SSRPROVIDER ERRORS
   // const { isBrowser } = useSSR()
 
+  // Service worker registration begins
+  class Index extends React.Component {
+    componentDidMount = () => {
+    if ("serviceWorker" in navigator) {
+          window.addEventListener("load", function () {
+            navigator.serviceWorker.register("/sw.js").then(
+              function (registration) {
+                console.log(
+                  "Service Worker registration successful with scope: ",
+                  registration.scope
+                );
+              },
+              function (err) {
+                console.log("Service Worker registration failed: ", err);
+              }
+            );
+          });
+        }
+      render();
+       {
+        return <div> hello </div>;
+       }
+    }
+  }
+  // Service worker registration ENDS
+
   return (
 
     // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS
     // isBrowser && (
     <NextUIProvider>
-
       <>
         <div>
           <Navbar user_role={userRole} className={styles.topnav} />
