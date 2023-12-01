@@ -18,9 +18,7 @@
         }
     ],
     "display override": [
-        "window-controls-overlay",
-        "standalone",
-        "browser"
+        ["window-controls-overlay"]
     ],
     "iarc_rating_id": "",
     "prefer_related_applications": false,
