@@ -73,29 +73,29 @@ export default function Home() {
   // const { isBrowser } = useSSR()
 
   // Service worker registration begins
-  class Index extends React.Component {
-    componentDidMount = () => {
-    if ("serviceWorker" in navigator) {
-          window.addEventListener("load", function () {
-            navigator.serviceWorker.register("/sw.js").then(
-              function (registration) {
-                console.log(
-                  "Service Worker registration successful with scope: ",
-                  registration.scope
-                );
-              },
-              function (err) {
-                console.log("Service Worker registration failed: ", err);
-              }
-            );
-          });
-        }
-      render();
-       {
-        return <div> hello </div>;
-       }
-    }
-  }
+  // class Index extends React.Component {
+    // componentDidMount = () => {
+    // if ("serviceWorker" in navigator) {
+    //       window.addEventListener("load", function () {
+    //         navigator.serviceWorker.register("./public/sw.js").then(
+    //           function (registration) {
+    //             console.log(
+    //               "Service Worker registration successful with scope: ",
+    //               registration.scope
+    //             );
+    //           },
+    //           function (err) {
+    //             console.log("Service Worker registration failed: ", err);
+    //           }
+    //         );
+    //       });
+    //     }
+    //   render();
+    //    {
+    //     return <div> hello </div>;
+    //    }
+    // };
+  //}
   // Service worker registration ENDS
 
   return (
