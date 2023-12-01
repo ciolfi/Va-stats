@@ -89,7 +89,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
 				<Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/"+Title.toLowerCase()+".php?ID="+batchId}>
-					<a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> {Title} CSV</a>
+					<a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> View/Download {Title}</a>
 				</Link>
 			</div>
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">

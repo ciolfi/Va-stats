@@ -763,17 +763,13 @@ export default function Page() {
                   </div>
                   <div className={tableStyles.tableColumn}>
                     <div className={styles.genericTableHeader}>
-                      <h2>Remove Students from Batch</h2>
+                      <h2>Current Batch</h2>
                     </div>
                     <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
                       <thead>
                         <tr>
-                          <th>Select</th>
                           <th width="50px">ID</th>
                           <th width="235px">Name</th>
-                          <th>First Choice</th>
-                          <th>Second Choice</th>
-                          <th>Third Choice</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -781,19 +777,8 @@ export default function Page() {
                         batchData.students.map((student) => {
                           return (
                             <tr key={student.id}>
-                              <td>
-                                <input
-                                  type='checkbox'
-                                  value={student.id}
-                                  onChange={handleChange}
-                                  checked={selectedIDs.includes(student.id.toString())}
-                                />
-                              </td>
                               <td> {student.id} </td>
                               <td> {student.name} </td>
-                              <td> {student.first_choice} </td>
-                              <td> {student.second_choice} </td>
-                              <td> {student.third_choice} </td>
                             </tr>
                           );
                         })
