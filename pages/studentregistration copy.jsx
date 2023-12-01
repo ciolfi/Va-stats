@@ -291,6 +291,9 @@ export default function Page() {
   // );
   /*-------------- EDUCATION DROPDOWN ENDS --------------*/
 
+  // ORIG EDU DROPDOWN
+  const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
+
   // EMPLOYMENT STATUS
   const [selectedEmpStatus, setSelectedEmpStatus] = React.useState(new Set(["Employed"]));
   const selectedValueEmpStatus = React.useMemo(
@@ -613,8 +616,8 @@ export default function Page() {
                         </tr> */}
                         {/*----- EDU QUALIFICATIONS ROW ENDS -----*/}
 
-                        {/*--- NEW EDU QUALIFICATIONS ROW BEGINS ---*/}
-                        <tr className={styles.regrow}>
+                        {/*--- NEXTUI EDU QUALIFICATIONS ROW BEGINS ---*/}
+                        {/* <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_qualifications">
                               Education
@@ -622,14 +625,14 @@ export default function Page() {
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
                           <td className={styles.dropdowndiv}>
-                            <Select                        
+                            <Select
                               aria-label="Education attained"
                               class="bg-content-content1 bg-white text-left indent-0.4 focus:border-4 focus:border-blue-600 ps-1"
                               className={styles.edu_qualifications}
                               name="edu_qualifications"
                               radius="none"
                               isRequired
-                              size="sm" 
+                              size="sm"
                             >
                               {edcredentials.map((credential) => (
                                 <SelectItem key={credential.label} value={credential}>
@@ -638,8 +641,41 @@ export default function Page() {
                               ))}
                             </Select>
                           </td>
+                        </tr> */}
+                        {/*--- NEXTUI EDU QUALIFICATIONS ROW ENDS ---*/}
+
+                        {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="edu_qualifications">
+                              Education
+                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.dropdowndiv}>
+                            <select
+                              aria-label="Education attained"
+                              className={styles.txtboxdropdown}
+                              name="edu_qualifications"
+                              onChange={e => setSelectedEdu(e.target.value)}
+                              radius="none"
+                              required
+                              value={selectedEdu} // Force select's value to match state var
+                            >
+                              <option value="Below 10th standard">Below 10th standard</option>
+                              <option value="10 standard">10 standard</option>
+                              <option value="12 standard">12 standard</option>
+                              <option value="Diploma">Diploma</option>
+                              <option value="ITI">ITI</option>
+                              <option value="Undergraduate">Undergraduate</option>                             
+                              <option value="Graduate">Graduate</option>
+                              <option value="Post-graduate">Post-graduate</option>
+                              <option value="Professional degree">Professional degree</option>
+                              <option value="Other (specify below)">Other (specify below)</option>
+                            </select>
+                          </td>
                         </tr>
-                        {/*--- NEW EDU QUALIFICATIONS ROW ENDS ---*/}
+                        {/* ORiG EDU QUALIFICATIONS ROW ENDS */}
 
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>

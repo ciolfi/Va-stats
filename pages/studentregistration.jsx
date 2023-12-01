@@ -667,7 +667,7 @@ export default function Page() {
                               <option value="12 standard">12 standard</option>
                               <option value="Diploma">Diploma</option>
                               <option value="ITI">ITI</option>
-                              <option value="Undergraduate">Undergraduate</option>                             
+                              <option value="Undergraduate">Undergraduate</option>
                               <option value="Graduate">Graduate</option>
                               <option value="Post-graduate">Post-graduate</option>
                               <option value="Professional degree">Professional degree</option>

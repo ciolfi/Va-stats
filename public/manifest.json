@@ -7,6 +7,11 @@
     "name": "VisionAid-App",
     "short_name": "VisionAid",
     "description": "Nonprofit app",
+    "id": "https://va-stats.vercel.app/?homescreen=1",
+    "dir": "auto",
+    "language": "English",
+    "orientation": "any",
+    "display override": "standalone",
     "icons": [
         {
             "src": "/icon-192x192.png",
