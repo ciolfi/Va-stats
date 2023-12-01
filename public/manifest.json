@@ -10,10 +10,20 @@
     "id": "https://va-stats.vercel.app/?homescreen=1",
     "dir": "auto",
     "language": "English",
+    "default_locale": "en",
     "orientation": "any",
-    "display override": "standalone",
+    "scope_extensions": [
+        {
+            "origin": "https://va-stats.vercel.app"
+        }
+    ],
+    "display override": [
+        "window-controls-overlay",
+        "standalone",
+        "browser"
+    ],
     "iarc_rating_id": "",
-    "prefer_related_applications": "false",
+    "prefer_related_applications": false,
     "related_applications": [
         {
             "platform": "",
@@ -53,17 +63,57 @@
         "medical",
         "productivity"
     ],
+    "handle_links": "preferred",
+    "launch_handler": {
+        "client_mode": [
+            "focus-existing",
+            "auto"
+        ]
+    },
+    "file_handlers": [
+        {
+            "action": "/open-pdf",
+            "accept": {
+                "application/pdf": [
+                    ".pdf"
+                ]
+            },
+            "icons": [
+                {
+                    "src": "pdf-icon.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                }
+            ],
+            "launch_type": "single-client"
+        },
+        {
+            "action": "/show-model",
+            "accept": {
+                "application/sla": ".stl",
+                "application/octet-stream": ".fbx"
+            },
+            "icons": [
+                {
+                    "src": "3d-printer-icon.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                }
+            ],
+            "launch_type": "multiple-clients"
+        }
+    ],
     "edge_side_panel": {
         "preferred_width": 400
     },
-    "screenshots" : [
+    "screenshots": [
         {
-          "src": "/public/va-screenshot.jpg",
-          "sizes": "1280x800",
-          "type": "image/png",
-          "platform": "wide"
+            "src": "/public/va-screenshot.jpg",
+            "sizes": "1280x800",
+            "type": "image/png",
+            "platform": "wide"
         }
-      ],
+    ],
     "icons": [
         {
             "src": "/icon-192x192.png",
