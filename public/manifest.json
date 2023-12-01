@@ -9,8 +9,7 @@
     "description": "Nonprofit app",
     "id": "https://va-stats.vercel.app/?homescreen=1",
     "dir": "auto",
-    "language": "English",
-    "default_locale": "en",
+    "lang": "en",
     "orientation": "any",
     "scope_extensions": [
         {
