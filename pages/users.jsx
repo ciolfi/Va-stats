@@ -329,7 +329,7 @@ export default function Page() {
 
                 {/* ---------- CSV Download button ---------------- */}
                 <Link className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/staff.php"} legacyBehavior>
-                  <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> Staff CSV</a>
+                  <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> View/Download Staff</a>
                 </Link>
               </p>
               <div className={styles.gridcourses}>
