@@ -7,6 +7,7 @@ import styles from '../styles/Home.module.css';
 import aboutConfig from '@/configs/aboutPage.json';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import { Fragment } from "react";
 import Title from '@/components/Title';
 
 // IMPORTS BELOW REMOVE SSRPROVIDER ERRORS
@@ -36,7 +37,7 @@ export default function Home() {
     const res = await response.json();
     result = res.users[0];                /* LOCAL TESTING */
 
-    if (status == "authenticated"){
+    if (status == "authenticated") {
       userRole = result[0].role;
     }
   };
@@ -74,27 +75,27 @@ export default function Home() {
 
   // Service worker registration begins
   // class Index extends React.Component {
-    // componentDidMount = () => {
-    // if ("serviceWorker" in navigator) {
-    //       window.addEventListener("load", function () {
-    //         navigator.serviceWorker.register("./public/sw.js").then(
-    //           function (registration) {
-    //             console.log(
-    //               "Service Worker registration successful with scope: ",
-    //               registration.scope
-    //             );
-    //           },
-    //           function (err) {
-    //             console.log("Service Worker registration failed: ", err);
-    //           }
-    //         );
-    //       });
-    //     }
-    //   render();
-    //    {
-    //     return <div> hello </div>;
-    //    }
-    // };
+  // componentDidMount = () => {
+  // if ("serviceWorker" in navigator) {
+  //       window.addEventListener("load", function () {
+  //         navigator.serviceWorker.register("./public/sw.js").then(
+  //           function (registration) {
+  //             console.log(
+  //               "Service Worker registration successful with scope: ",
+  //               registration.scope
+  //             );
+  //           },
+  //           function (err) {
+  //             console.log("Service Worker registration failed: ", err);
+  //           }
+  //         );
+  //       });
+  //     }
+  //   render();
+  //    {
+  //     return <div> hello </div>;
+  //    }
+  // };
   //}
   // Service worker registration ENDS
 
@@ -102,8 +103,16 @@ export default function Home() {
 
     // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS
     // isBrowser && (
-    <NextUIProvider>
+    // <NextUIProvider>
       <>
+        {/* Escape single quotes below */}
+        {/* if (typeof navigator.serviceWorker !== 'undefined') { */}
+        {/* <script>
+          if (typeof navigator.serviceWorker !== &lsquo;undefined&rsquo;) {
+            navigator.serviceWorker.register('sw.js')
+          }
+        </script> */}
+
         <div>
           <Navbar user_role={userRole} className={styles.topnav} />
         </div>
@@ -125,7 +134,7 @@ export default function Home() {
             </h1>
 
             <p className={styles.subtitlehm}>
-            {/* <p className={styles.subtitlehm}> */}
+              {/* <p className={styles.subtitlehm}> */}
               Student Training and Tracking  System [STATS]
             </p>
 
@@ -158,8 +167,8 @@ export default function Home() {
         </div>
       </>
 
-    {/* 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS */}
-    </NextUIProvider>
+      // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS 
+    // </NextUIProvider> */}
     //)
 
   );

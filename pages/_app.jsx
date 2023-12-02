@@ -26,12 +26,11 @@ import { useEffect } from "react";
 // 	}
 //   }, []);
 
-function registerSW() {
-	if ('serviceWorker' in navigator) {
-	  navigator.serviceWorker.register('service-worker.js');
-	  //...
-	}
-  }
+// function registerSW() {
+// 	if ('serviceWorker' in navigator) {
+// 		navigator.serviceWorker.register('service-worker.js');
+// 	}
+// }
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
 
@@ -40,7 +39,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => (
 			<Component {...pageProps} />
 		</SessionProvider>
 	</NextUIProvider>
-	
+
 );
 
 export default App;

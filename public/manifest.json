@@ -17,17 +17,18 @@
         }
     ],
     "display override": [
-        ["window-controls-overlay"]
+        [
+            "window-controls-overlay"
+        ]
     ],
     "iarc_rating_id": "",
     "prefer_related_applications": false,
-    "related_applications": [
-    ],
+    "related_applications": [],
     "shortcuts": [
         {
             "name": "HomePage",
             "short_name": "Home",
-            "url": "/",
+            "url": "https://va-stats.vercel.app",
             "description": "Vision-Aid Academy home page.",
             "icons": [
                 {
@@ -38,8 +39,7 @@
             ]
         }
     ],
-    "protocol_handlers": [
-    ],
+    "protocol_handlers": [],
     "categories": [
         "business",
         "education",
@@ -56,35 +56,14 @@
     },
     "file_handlers": [
         {
-            "action": "/open-pdf",
-            "accept": {
-                "application/pdf": [
-                    ".pdf"
-                ]
-            },
             "icons": [
                 {
-                    "src": "pdf-icon.png",
+                    "src": "icon-256x256.png",
                     "sizes": "256x256",
                     "type": "image/png"
                 }
             ],
             "launch_type": "single-client"
-        },
-        {
-            "action": "/show-model",
-            "accept": {
-                "application/sla": ".stl",
-                "application/octet-stream": ".fbx"
-            },
-            "icons": [
-                {
-                    "src": "3d-printer-icon.png",
-                    "sizes": "256x256",
-                    "type": "image/png"
-                }
-            ],
-            "launch_type": "multiple-clients"
         }
     ],
     "edge_side_panel": {
