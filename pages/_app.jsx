@@ -11,16 +11,36 @@ import { SessionProvider } from 'next-auth/react';
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
 
-if ("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("./public/sw.js");
-}
+import { useEffect } from "react";
+
+// if ("serviceWorker" in navigator) {
+// 	navigator.serviceWorker.register("./public/sw.js");
+// }
+
+// Reg svc wkr
+// useEffect(() => {
+// 	if ('serviceWorker' in navigator) {
+// 	  navigator.serviceWorker
+// 		.register('/service-worker.js')
+// 		.then((registration) => console.log('scope is: ', registration.scope));
+// 	}
+//   }, []);
+
+function registerSW() {
+	if ('serviceWorker' in navigator) {
+	  navigator.serviceWorker.register('service-worker.js');
+	  //...
+	}
+  }
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
+
 	<NextUIProvider>
 		<SessionProvider session={session}>
 			<Component {...pageProps} />
 		</SessionProvider>
 	</NextUIProvider>
+	
 );
 
 export default App;
