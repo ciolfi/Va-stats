@@ -7,7 +7,7 @@
     "name": "VisionAid-App",
     "short_name": "VisionAid",
     "description": "Nonprofit app",
-    "id": "https://va-stats.vercel.app/?homescreen=1",
+    "id": "https://va-stats.vercel.app",
     "dir": "auto",
     "lang": "en",
     "orientation": "any",
@@ -22,15 +22,6 @@
     "iarc_rating_id": "",
     "prefer_related_applications": false,
     "related_applications": [
-        {
-            "platform": "",
-            "url": "",
-            "id": ""
-        },
-        {
-            "platform": "",
-            "url": ""
-        }
     ],
     "shortcuts": [
         {
@@ -48,10 +39,6 @@
         }
     ],
     "protocol_handlers": [
-        {
-            "protocol": "",
-            "url": ""
-        }
     ],
     "categories": [
         "business",
