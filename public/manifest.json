@@ -11,6 +11,15 @@
     "dir": "auto",
     "lang": "en",
     "orientation": "any",
+    "share_target": {
+        "action": "/share-action/",
+        "method": "GET",
+        "enctype": "application/x-www-form-urlencoded",
+        "params": {
+            "title": "title",
+            "text": "text"
+        }
+    },
     "scope_extensions": [
         {
             "origin": "https://va-stats.vercel.app"
