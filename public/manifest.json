@@ -20,6 +20,12 @@
             "text": "text"
         }
     },
+    "protocol_handlers": [
+        {
+          "protocol": "web+music",
+          "url": "/play?track=%s"
+        }
+      ],
     "file_handlers": [
         {
             "action": "/open-pdf",
