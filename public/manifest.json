@@ -1,10 +1,10 @@
 {
+    "name": "VisionAid-App",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/pages",
     "start_url": "/pages",
-    "name": "VisionAid-App",
     "short_name": "VisionAid",
     "description": "Nonprofit app",
     "id": "https://va-stats.vercel.app",
@@ -16,12 +16,9 @@
             "origin": "https://va-stats.vercel.app"
         }
     ],
-    "display override": [
-        [
-            "window-controls-overlay"
-        ]
+    "display_override": [
+        "window-controls-overlay"
     ],
-    "iarc_rating_id": "",
     "prefer_related_applications": false,
     "related_applications": [],
     "shortcuts": [

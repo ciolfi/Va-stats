@@ -31,7 +31,7 @@ export default function Home() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({              
         /* AVOID LOCAL TESTING ERRORS: Switch email below to your Gmail.
-        IMPORTANT: Remember to switch back prior to uploading. */
+        IMPORTANT: Remember to switch back prior to uploading.*/
         email: session.user.email
       }),
     };
