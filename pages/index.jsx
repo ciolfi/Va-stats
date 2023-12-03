@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { Fragment } from "react";
 import Title from '@/components/Title';
+// import NoSSR from 'react-no-ssr';
 
 // IMPORTS BELOW REMOVE SSRPROVIDER ERRORS
 // import { NextUIProvider } from '@nextui-org/react';
@@ -29,7 +30,7 @@ export default function Home() {
     const postData = {
       method: "Post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({              
+      body: JSON.stringify({
         /* AVOID LOCAL TESTING ERRORS: Switch email below to your Gmail.
         IMPORTANT: Remember to switch back prior to uploading.*/
         email: session.user.email
@@ -106,70 +107,77 @@ export default function Home() {
     // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS
     // isBrowser && (
     // <NextUIProvider>
-      <>
-        {/* Escape single quotes below */}
-        {/* if (typeof navigator.serviceWorker !== 'undefined') { */}
-        {/* <script>
-          if (typeof navigator.serviceWorker !== &lsquo;undefined&rsquo;) {
-            navigator.serviceWorker.register('sw.js')
-          }
-        </script> */}
 
-        <div>
-          <Navbar user_role={userRole} className={styles.topnav} />
-        </div>
-        <div className={styles.container}>
-          <Head>
-            <title>Vision-Aid</title>
-            <meta name="google-signin-client_id" content="81017730584-986m405knu7rpfudp25kv0hr3td2d76v.apps.googleusercontent.com" />
-            <meta name="description" content="A nonprofit, advocating on behalf of persons with vision issues of any type" />
-            <meta name="theme-color" content="#ffffff" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
-            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-            <link rel="manifest" href="/manifest.json" />
-          </Head>
+    <>
+      {/* Escape single quotes below */}
+      {/* if (typeof navigator.serviceWorker !== 'undefined') { */}
+      {/* <script>
+      if (typeof navigator.serviceWorker !== &lsquo;undefined&rsquo;) {
+        navigator.serviceWorker.register('sw.js')
+      }
+    </script> */}
 
-          <main className={styles.main}>
-            <h1 className={styles.title}>
-              <a href="https://visionaid.org" target="_blank" rel="noreferrer">Vision-Aid</a>
-            </h1>
+      <script>
+        {/* if (typeof navigator.serviceWorker !== 'undefined') { */}  
+          navigator.serviceWorker.register(&lsquo;../sw.js&rsquo;)
+      </script>
 
-            <p className={styles.subtitlehm}>
-              {/* <p className={styles.subtitlehm}> */}
-              Student Training and Tracking  System [STATS]
-            </p>
+      <div>
+        <Navbar user_role={userRole} className={styles.topnav} />
+      </div>
+      <div className={styles.container}>
+        <Head>
+          <title>Vision-Aid</title>
+          <meta name="google-signin-client_id" content="81017730584-986m405knu7rpfudp25kv0hr3td2d76v.apps.googleusercontent.com" />
+          <meta name="description" content="A nonprofit, advocating on behalf of persons with vision issues of any type" />
+          <meta name="theme-color" content="#ffffff" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="manifest" href="../manifest.json" />
+          {/* <script src="main.js"></script>  */}
+        </Head>
 
-            <div className={styles.grid}>
-              <a href="https://www.loom.com/share/4cf53dd3cba945dfa8db2632b275add2" target="_blank" rel="noreferrer" className={styles.card}>
-                <h2>Check out Demo &rarr;</h2>
-                <p></p>
-              </a>
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+            <a href="https://visionaid.org" target="_blank" rel="noreferrer">Vision-Aid</a>
+          </h1>
 
-              <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
-                <h2>About &rarr;</h2>
-                <p>Learn about our organization.</p>
-              </a>
+          <p className={styles.subtitlehm}>
+            {/* <p className={styles.subtitlehm}> */}
+            Student Training and Tracking  System [STATS]
+          </p>
 
-              <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
-                <h2>User Guide &rarr;</h2>
-                <p>Learn how to use the VisionAid STATS platform.</p>
-              </a>
+          <div className={styles.grid}>
+            <a href="https://www.loom.com/share/4cf53dd3cba945dfa8db2632b275add2" target="_blank" rel="noreferrer" className={styles.card}>
+              <h2>Check out Demo &rarr;</h2>
+              <p></p>
+            </a>
 
-              {/* <a className={styles.card}> */}
-              <div className={styles.card}>
-                <h2>Overall Stats</h2>
-                <p>Total Number Students: {studentCountResponse}</p>
-                <p>Total Number Courses: {courseCountResponse}</p>
-                <p>Total Number Batches: {batchCountResponse}</p>
-              </div>
-              {/* </a> */}
+            <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
+              <h2>About &rarr;</h2>
+              <p>Learn about our organization.</p>
+            </a>
+
+            <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
+              <h2>User Guide &rarr;</h2>
+              <p>Learn how to use the VisionAid STATS platform.</p>
+            </a>
+
+            {/* <a className={styles.card}> */}
+            <div className={styles.card}>
+              <h2>Overall Stats</h2>
+              <p>Total Number Students: {studentCountResponse}</p>
+              <p>Total Number Courses: {courseCountResponse}</p>
+              <p>Total Number Batches: {batchCountResponse}</p>
             </div>
-          </main>
-        </div>
-      </>
+            {/* </a> */}
+          </div>
+        </main>
+      </div>
+    </>
 
-      // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS 
+    // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS 
     // </NextUIProvider> */}
     //)
 
