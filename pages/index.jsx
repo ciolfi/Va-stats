@@ -11,7 +11,7 @@ import { Fragment } from "react";
 import Title from '@/components/Title';
 
 // IMPORTS BELOW REMOVE SSRPROVIDER ERRORS
-import { NextUIProvider } from '@nextui-org/react';
+// import { NextUIProvider } from '@nextui-org/react';
 // import { useSSR } from '@nextui-org/react';
 var userRole = "STAFF";
 

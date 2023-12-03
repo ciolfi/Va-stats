@@ -7,13 +7,22 @@ const nextConfig = {
   }
 }
 
-const withPWA = require('next-pwa')({
-  dest: 'public'
-})
+// const withPWA = require('next-pwa')({
+//   dest: 'public'
+// })
 
-module.exports = withPWA({
-  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts', 'svg'],
-})
+const withPWA = require("next-pwa");
+    module.exports = withPWA({
+      pwa: {
+        dest: "public",
+        
+      },
+      pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts', 'svg'],
+    });
+
+// module.exports = withPWA({
+//   pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts', 'svg'],
+// })
 
 // For bfcache Lighthouse error
 module.exports = {

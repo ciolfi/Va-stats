@@ -2,6 +2,9 @@
   "name": "nextjs",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "got": "^12.1.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,20 +12,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@hapi/iron": "^7.0.1",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
-    "@mui/material": "^5.14.2",
     "@mui/styled-engine-sc": "^5.12.0",
     "@mui/x-data-grid": "^6.10.2",
     "@mui/x-date-pickers": "^6.10.2",
     "@nextui-org/button": "^2.0.2",
     "@nextui-org/dropdown": "^2.0.1",
     "@nextui-org/input": "^2.0.0",
-    "@nextui-org/react": "^2.2.9",
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.17",
+    "cookie": "^0.6.0",
     "dayjs": "^1.11.9",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
@@ -57,7 +58,7 @@
     "ssr": "^6.2.59",
     "styled-components": "^5.3.11",
     "tls": "^0.0.1",
-    "webpack": "^5.88.2"
+    "webpack": "^5.89.0"
   },
   "devDependencies": {
     "@react-aria/ssr": "^3.7.1",
@@ -74,7 +75,8 @@
     "react-loading": "^2.0.3",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.1.6",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "workbox-cli": "^7.0.0"
   },
   "peerDependencies": {
     "react": "^18.2.0",

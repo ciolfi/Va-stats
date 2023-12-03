@@ -9,7 +9,7 @@ export const theme = {
 export const plugins = [];
 
 // Added below for NextUI components
-const { nextui } = require("@nextui-org/react");
+// const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -31,16 +31,16 @@ module.exports = {
 
   // Try
   plugins: [
-    nextui({
-      themes: {
-        light: {
-          colors: {
-            // DEFAULT: "#BEF264",
-            foreground: "#000000",
-            background: "#ffffff",
-          },
-        },
-      },
-    }),
+    // nextui({
+    //   themes: {
+    //     light: {
+    //       colors: {
+    //         // DEFAULT: "#BEF264",
+    //         foreground: "#000000",
+    //         background: "#ffffff",
+    //       },
+    //     },
+    //   },
+    // }),
   ],
 };

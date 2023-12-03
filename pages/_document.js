@@ -37,7 +37,7 @@ export default function Document() {
           <link rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
         </noscript>
-      </Head>
+      </Head> 
       <body>
         <Main />
         <NextScript />

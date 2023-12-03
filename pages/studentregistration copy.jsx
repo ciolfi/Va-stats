@@ -1,6 +1,6 @@
 "use client";
 // Education inputs (dropdown, textbox)
-import { NextUIProvider, Select, SelectItem } from "@nextui-org/react";
+// import { NextUIProvider, Select, SelectItem } from "@nextui-org/react";
 import { edcredentials } from "../components/data";
 
 import Head from 'next/head';
@@ -351,7 +351,7 @@ export default function Page() {
 
   return (
     // NextUIProvider BELOW: FOR EDUCATION DROPDOWN
-    <NextUIProvider>
+    // <NextUIProvider>
       <>
         {contentLoading ?
           <div className={styles.overlay}>
@@ -952,6 +952,6 @@ export default function Page() {
 
         </div>    {/* Container closing tag */}
       </>
-    </NextUIProvider>
+    // </NextUIProvider>
   );
 }

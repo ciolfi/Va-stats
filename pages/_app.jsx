@@ -9,7 +9,7 @@ import { SessionProvider } from 'next-auth/react';
 
 // Below required for NextUI components
 import * as React from "react";
-import { NextUIProvider } from "@nextui-org/system";
+// import { NextUIProvider } from "@nextui-org/system";
 
 import { useEffect } from "react";
 
@@ -34,11 +34,11 @@ import { useEffect } from "react";
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
 
-	<NextUIProvider>
+	// <NextUIProvider>
 		<SessionProvider session={session}>
 			<Component {...pageProps} />
 		</SessionProvider>
-	</NextUIProvider>
+	// </NextUIProvider>
 
 );
 
