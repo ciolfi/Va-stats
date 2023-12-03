@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { Fragment } from "react";
 import Title from '@/components/Title';
-// import NoSSR from 'react-no-ssr';
 
 // IMPORTS BELOW REMOVE SSRPROVIDER ERRORS
 // import { NextUIProvider } from '@nextui-org/react';
@@ -116,11 +115,6 @@ export default function Home() {
         navigator.serviceWorker.register('sw.js')
       }
     </script> */}
-
-      <script>
-        {/* if (typeof navigator.serviceWorker !== 'undefined') { */}  
-          navigator.serviceWorker.register(&lsquo;../sw.js&rsquo;)
-      </script>
 
       <div>
         <Navbar user_role={userRole} className={styles.topnav} />
