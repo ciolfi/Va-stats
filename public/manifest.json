@@ -20,6 +20,24 @@
             "text": "text"
         }
     },
+    "file_handlers": [
+        {
+            "action": "/open-pdf",
+            "accept": {
+                "application/pdf": [
+                    ".pdf"
+                ]
+            },
+            "icons": [
+                {
+                    "src": "pdf-icon.png",
+                    "sizes": "256x256",
+                    "type": "image/png"
+                }
+            ],
+            "launch_type": "single-client"
+        }
+    ],
     "scope_extensions": [
         {
             "origin": "https://va-stats.vercel.app"
@@ -45,7 +63,6 @@
             ]
         }
     ],
-    "protocol_handlers": [],
     "categories": [
         "business",
         "education",
@@ -60,18 +77,6 @@
             "auto"
         ]
     },
-    "file_handlers": [
-        {
-            "icons": [
-                {
-                    "src": "icon-256x256.png",
-                    "sizes": "256x256",
-                    "type": "image/png"
-                }
-            ],
-            "launch_type": "single-client"
-        }
-    ],
     "edge_side_panel": {
         "preferred_width": 400
     },
