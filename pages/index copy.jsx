@@ -26,21 +26,13 @@ export default function Home() {
   // API DATA ACCESS
   const getUserData = async () => {
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
-
-    if (session) {
-      var emailval = JSON.stringify({ email: session.user.email })
-    }
-    /* DEVELOPER'S EMAIL FOR LOCAL DEVELOPMENT WITHOUT ERRORS */
-    else {
-      var emailval = 'ciolfi2@gmail.com'
-    }
-
     const postData = {
       method: "Post",
       headers: { "Content-Type": "application/json" },
-      body: emailval,
+      body: JSON.stringify({              /* LOCAL TESTING */
+        email: session.user.email
+      }),
     };
-
     const response = await fetch(apiUrlEndpoint, postData);
     const res = await response.json();
     result = res.users[0];                /* LOCAL TESTING */
@@ -112,70 +104,70 @@ export default function Home() {
     // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS
     // isBrowser && (
     // <NextUIProvider>
-    <>
-      {/* Escape single quotes below */}
-      {/* if (typeof navigator.serviceWorker !== 'undefined') { */}
-      {/* <script>
+      <>
+        {/* Escape single quotes below */}
+        {/* if (typeof navigator.serviceWorker !== 'undefined') { */}
+        {/* <script>
           if (typeof navigator.serviceWorker !== &lsquo;undefined&rsquo;) {
             navigator.serviceWorker.register('sw.js')
           }
         </script> */}
 
-      <div>
-        <Navbar user_role={userRole} className={styles.topnav} />
-      </div>
-      <div className={styles.container}>
-        <Head>
-          <title>Vision-Aid</title>
-          <meta name="google-signin-client_id" content="81017730584-986m405knu7rpfudp25kv0hr3td2d76v.apps.googleusercontent.com" />
-          <meta name="description" content="A nonprofit, advocating on behalf of persons with vision issues of any type" />
-          <meta name="theme-color" content="#ffffff" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
-          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-          <link rel="manifest" href="/manifest.json" />
-        </Head>
+        <div>
+          <Navbar user_role={userRole} className={styles.topnav} />
+        </div>
+        <div className={styles.container}>
+          <Head>
+            <title>Vision-Aid</title>
+            <meta name="google-signin-client_id" content="81017730584-986m405knu7rpfudp25kv0hr3td2d76v.apps.googleusercontent.com" />
+            <meta name="description" content="A nonprofit, advocating on behalf of persons with vision issues of any type" />
+            <meta name="theme-color" content="#ffffff" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="icon" href="/favicon.ico" />
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+            <link rel="manifest" href="/manifest.json" />
+          </Head>
 
-        <main className={styles.main}>
-          <h1 className={styles.title}>
-            <a href="https://visionaid.org" target="_blank" rel="noreferrer">Vision-Aid</a>
-          </h1>
+          <main className={styles.main}>
+            <h1 className={styles.title}>
+              <a href="https://visionaid.org" target="_blank" rel="noreferrer">Vision-Aid</a>
+            </h1>
 
-          <p className={styles.subtitlehm}>
-            {/* <p className={styles.subtitlehm}> */}
-            Student Training and Tracking  System [STATS]
-          </p>
+            <p className={styles.subtitlehm}>
+              {/* <p className={styles.subtitlehm}> */}
+              Student Training and Tracking  System [STATS]
+            </p>
 
-          <div className={styles.grid}>
-            <a href="https://www.loom.com/share/4cf53dd3cba945dfa8db2632b275add2" target="_blank" rel="noreferrer" className={styles.card}>
-              <h2>Check out Demo &rarr;</h2>
-              <p></p>
-            </a>
+            <div className={styles.grid}>
+              <a href="https://www.loom.com/share/4cf53dd3cba945dfa8db2632b275add2" target="_blank" rel="noreferrer" className={styles.card}>
+                <h2>Check out Demo &rarr;</h2>
+                <p></p>
+              </a>
 
-            <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
-              <h2>About &rarr;</h2>
-              <p>Learn about our organization.</p>
-            </a>
+              <a href="https://visionaid.org/about-vision-aid/mission-and-vision" target="_blank" rel="noreferrer" className={styles.card}>
+                <h2>About &rarr;</h2>
+                <p>Learn about our organization.</p>
+              </a>
 
-            <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
-              <h2>User Guide &rarr;</h2>
-              <p>Learn how to use the VisionAid STATS platform.</p>
-            </a>
+              <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
+                <h2>User Guide &rarr;</h2>
+                <p>Learn how to use the VisionAid STATS platform.</p>
+              </a>
 
-            {/* <a className={styles.card}> */}
-            <div className={styles.card}>
-              <h2>Overall Stats</h2>
-              <p>Total Number Students: {studentCountResponse}</p>
-              <p>Total Number Courses: {courseCountResponse}</p>
-              <p>Total Number Batches: {batchCountResponse}</p>
+              {/* <a className={styles.card}> */}
+              <div className={styles.card}>
+                <h2>Overall Stats</h2>
+                <p>Total Number Students: {studentCountResponse}</p>
+                <p>Total Number Courses: {courseCountResponse}</p>
+                <p>Total Number Batches: {batchCountResponse}</p>
+              </div>
+              {/* </a> */}
             </div>
-            {/* </a> */}
-          </div>
-        </main>
-      </div>
-    </>
+          </main>
+        </div>
+      </>
 
-    // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS 
+      // 2 CODE LINES BELOW: FOR SSRPROVIDER ERRORS 
     // </NextUIProvider> */}
     //)
 
