@@ -839,7 +839,7 @@ export default function Page() {
                   <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button>
                 </div>
               {gradesColumn.length > 0 ?
-              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} />
+              <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} isAccessible={userResponse.role == "STAFF"} />
               : <></>}
               </div>
             )}
