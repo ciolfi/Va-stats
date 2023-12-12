@@ -104,7 +104,7 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 					<a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> View/Download {Title}</a>
 				</Link>
 			</div>
-			<table className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">
+			<table tabIndex={0} title={Title} className={styles.genericTable} cellPadding="0" cellSpacing="0" height="350px">
 				<thead>
 					<tr>
 					{columns.map((column) => {
