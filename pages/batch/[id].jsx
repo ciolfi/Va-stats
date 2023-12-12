@@ -808,8 +808,16 @@ export default function Page() {
                     type="text"
                     id="assignmentNameAdd"
                     name="assignmentNameAdd"
+                    title="Add New Assessment"
                     className={styles.batchManagementList}
                     onChange={(e) => setAssignmentNameAdd(e.target.value)}
+                    onKeyUp={(e) => {
+                      if (e.key == 'Enter') {
+                        addAssignment(assignmentNameAdd, id);
+                        document.getElementById("assignmentNameAdd").value = '';
+                        // document.getElementById("assignmentNameAdd").blur();
+                      }
+                    }}
                   />
                   <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assessment</button>
                   <h2>Delete Assessment</h2>
@@ -817,8 +825,16 @@ export default function Page() {
                     type="text"
                     id="assignmentNameDelete"
                     name="assignmentNameDelete"
+                    title="Delete Assessment"
                     className={styles.batchManagementList}
                     onChange={(e) => setAssignmentNameDelete(e.target.value)}
+                    onKeyUp={(e) => {
+                      if (e.key == 'Enter') {
+                        deleteAssignment(assignmentNameAdd, id);
+                        document.getElementById("assignmentNameDelete").value = '';
+                        // document.getElementById("assignmentNameDelete").blur();
+                      }
+                    }}
                   />
                   <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button>
                 </div>
