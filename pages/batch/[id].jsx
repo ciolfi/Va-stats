@@ -11,6 +11,7 @@ import Link from "next/link";
 import Head from 'next/head';
 import Table from "@/components/Table";
 import TableCol from "@/components/TableCol";
+import TableStaff from "@/components/TableStaff";
 import Image from 'next/image';
 
 function getTodaysDate() {
@@ -794,7 +795,7 @@ export default function Page() {
 
             {showAttendance && (attendanceColumn.length > 0 ?
               (userResponse.role == "STAFF" ?
-                <TableCol columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} isAccessible={true} />
+                <TableStaff columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} onEditSave={updateAttendanceBatch} batchId={id} />
                 : <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} isAccessible={false} />
               )
               : <></>

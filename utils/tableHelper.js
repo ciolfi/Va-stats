@@ -145,6 +145,32 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	return cell;
 }
 
+export function generateTableColStaff(columns, rowData, editId, changeHandler, inputClassName) {
+	const cell = [];
+	var rowIdx;
+	for (const column of columns) {
+		let cellContent = null;
+		if (column.name === editId) {
+			cellContent = (
+				<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, rowData.id)}>
+					{column.availableValues.map((value) => {
+						return <option key={value} value={Number(value)}>{ attendanceValues[Number(value)] }</option>;
+					})}
+				</select>
+			);
+		} else {
+			if (column.isAttendance) {
+				rowIdx = Number(rowData[column.accessor]);
+				cellContent = <p style={{color:attendanceStyle[rowIdx]}}>{attendanceValues[rowIdx]}</p>;
+			} else {
+				cellContent = <p>{rowData[column.accessor]}</p>;
+			}
+		}
+		cell.push(<td colSpan={column.isFirstColumn?1:2} key={column.accessor}>{cellContent}</td>);
+	}
+	return cell;
+}
+
 export function sortTable(columnName, data, sortAsc) {
 	if (!columnName) {
 		return data;
