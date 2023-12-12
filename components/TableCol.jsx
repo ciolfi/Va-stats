@@ -87,7 +87,19 @@ export default function TableCol({ columns, tableData, isDelete, onDeleteClick, 
 			<div className={styles.genericTableHeader}>
 				<h2>{Title}</h2>
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
-				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
+				<input
+					id="table-search"
+					className={styles.tableSearch}
+					onInput={(e) => searchTableData(setData, e.target.value, orig.current)}
+					onKeyUp={(e) => {
+						if (e.key == 'Enter') {
+							document.getElementById("table-search").value = '';
+							document.getElementById("table-search").blur();
+						}
+					}}
+					placeholder={`Search in ${Title}`}
+					autoFocus={true}
+				></input>
 				<Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/"+Title.toLowerCase()+".php?ID="+batchId}>
 					<a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> View/Download {Title}</a>
 				</Link>

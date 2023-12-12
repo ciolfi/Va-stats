@@ -94,7 +94,20 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 			<div className={styles.genericTableHeader}>
 				<h2>{Title}</h2>
 				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
-				<input id="table-search" className={styles.tableSearch} onInput={(e) => searchTableData(setData, e.target.value, orig.current)} placeholder={`Search in ${Title}`}></input>
+				<input
+					id="table-search"
+					className={styles.tableSearch}
+					onInput={(e) => searchTableData(setData, e.target.value, orig.current)}
+					onKeyUp={(e) => {
+						if (e.key == 'Enter') {
+							document.getElementById("table-search").value = '';
+							document.getElementById("table-search").blur();
+							window.focus();
+						}
+					}}
+					placeholder={`Search in ${Title}`}
+					autoFocus={true}
+				></input>
 			</div>			
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
 				<thead>
