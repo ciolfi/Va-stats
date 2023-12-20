@@ -1075,6 +1075,11 @@ div .menubutton {
   margin-right: 10px;
 }
 
+.batchManagementForm {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
 .unassignedItem {
   display: flex;
   gap: 0.5rem;

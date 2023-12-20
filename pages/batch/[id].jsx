@@ -86,6 +86,7 @@ export default function Page() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [documentsData, setDocumentsData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
+  const [assessmentsOptions, setAssessmentsOptions] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
   const [selectedIDs, setSelectedIDs] = useState([]);
 
@@ -109,6 +110,12 @@ export default function Page() {
     } else {
       console.error('Error deleting the assignment');
     }
+    setAssignmentNameDelete("");
+    document.getElementById("assignmentNameDelete").selectedIndex = -1;
+  };
+
+  const handleSubmit = () => {
+    setContentLoading(true);
   };
 
   const batchPageLayoutHandler = (e) => {
@@ -475,6 +482,7 @@ export default function Page() {
 
   const generateColumnsFromAssignment = () => {
     let res = [];
+    let options = [];
     if (batchData?.grades) {
       const assignmentNames = new Set();
       batchData.grades.forEach((grade) => {
@@ -482,7 +490,9 @@ export default function Page() {
       });
       assignmentNames.forEach((assignmentName) => {
         res.push({ name: assignmentName, accessor: assignmentName, isRotatedTh: false });
+        options.push(<option value={assignmentName}>{assignmentName}</option>);
       });
+      setAssessmentsOptions(options);
     }
     res.unshift({ name: "Students", accessor: "name", immutable: true, isFirstColumn: true, isSticky: true, width: '150px', isRotatedTh:true, isSortable:true });
     return res;
@@ -804,39 +814,46 @@ export default function Page() {
             {showGrades && (
               <div>
                 <div className={styles.batchManagementContainer}>
-                  <h2>Add New Assessment</h2>
-                  <input
-                    type="text"
-                    id="assignmentNameAdd"
-                    name="assignmentNameAdd"
-                    title="Add New Assessment"
-                    className={styles.batchManagementList}
-                    onChange={(e) => setAssignmentNameAdd(e.target.value)}
-                    onKeyUp={(e) => {
-                      if (e.key == 'Enter') {
-                        addAssignment(assignmentNameAdd, id);
-                        document.getElementById("assignmentNameAdd").value = '';
-                        // document.getElementById("assignmentNameAdd").blur();
-                      }
-                    }}
-                  />
-                  <button className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assessment</button>
+                  {/* {showForm ? */}
+                    <h2>Add New Assessment</h2>
+                    {/* <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonCourse} title="Close Course Form" /> */}
+                    <form action='/api/addassignment' method='post' onSubmit={() => handleSubmit()}>
+                      <ul className={styles.batchManagementForm}>
+                        <li>
+                          <label htmlFor='assignment_name'>Assessment Name:<span className={styles.requiredelement}>&#42;</span></label>
+                          <input type='text' id='assignment_name' name='assignment_name' required />
+                        </li>
+                        <li>
+                          <label htmlFor='assignment_type'>Assessment Type:<span className={styles.requiredelement}>&#42;</span></label>
+                          <input type="radio" id="formative" name="assignment_type" value="Formative" />&nbsp;
+                          <label for="formative">Formative</label>&nbsp;&nbsp;
+                          <input type="radio" id="post" name="assignment_type" value="Post" />&nbsp;
+                          <label for="post">Post</label>
+                        </li>
+                        <li>
+                          <label htmlFor='assignment_weight'>Assessment Weight:<span className={styles.requiredelement}>&#42;</span></label>
+                          <input type='number' id='assignment_weight' name='assignment_weight' min={0} max={100} placeholder="0-100"/><br />
+                          {/* The following hidden parameter was added to pass along the batch ID along with the submitted form data */}
+                          <input type="hidden" name="batch_id" value={id}></input>
+                          <button type='submit' className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assessment</button>&nbsp;&nbsp;
+                          {/* <button type='submit' className={styles.batchManagementButton}>Submit</button>&nbsp;&nbsp; */}
+                          <input type='reset' className={styles.batchManagementButton} value='Reset'></input>
+                        </li>
+                      </ul>
+                    </form>
+                  {/* : <Button onClick={() => setShowForm(true)} text={'+ New Course Form'}></Button>
+                  } */}
                   <h2>Delete Assessment</h2>
-                  <input
-                    type="text"
-                    id="assignmentNameDelete"
+                  <select
                     name="assignmentNameDelete"
+                    id="assignmentNameDelete"
                     title="Delete Assessment"
                     className={styles.batchManagementList}
                     onChange={(e) => setAssignmentNameDelete(e.target.value)}
-                    onKeyUp={(e) => {
-                      if (e.key == 'Enter') {
-                        deleteAssignment(assignmentNameAdd, id);
-                        document.getElementById("assignmentNameDelete").value = '';
-                        // document.getElementById("assignmentNameDelete").blur();
-                      }
-                    }}
-                  />
+                  >
+                      <option></option>
+                      {assessmentsOptions}
+                  </select>
                   <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button>
                 </div>
               {gradesColumn.length > 0 ?
