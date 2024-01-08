@@ -13,6 +13,7 @@ import Table from "@/components/Table";
 import TableCol from "@/components/TableCol";
 import TableStaff from "@/components/TableStaff";
 import Image from 'next/image';
+import Button from '@/components/Button';
 
 function getTodaysDate() {
   var date = new Date();
@@ -89,6 +90,7 @@ export default function Page() {
   const [assessmentsOptions, setAssessmentsOptions] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
   const [selectedIDs, setSelectedIDs] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   const [contentLoading, setContentLoading] = useState(false);
 
@@ -812,38 +814,39 @@ export default function Page() {
             )}
 
             {showGrades && (
-              <div>
-                <div className={styles.batchManagementContainer}>
-                  {/* {showForm ? */}
-                    <h2>Add New Assessment</h2>
-                    {/* <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonCourse} title="Close Course Form" /> */}
+              <div className={styles.gridcourses}>
+                  {showForm ?
+                    <div className={styles.cardcoursesform}>
+                    <h2>Create Assessment &rarr;</h2>
+                    <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonAssessment} title="Close Course Form" />
                     <form action='/api/addassignment' method='post' onSubmit={() => handleSubmit()}>
                       <ul className={styles.batchManagementForm}>
                         <li>
                           <label htmlFor='assignment_name'>Assessment Name:<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' id='assignment_name' name='assignment_name' required />
+                          <input type='text' id='assignment_name' name='assignment_name' required /><br /><br />
                         </li>
                         <li>
                           <label htmlFor='assignment_type'>Assessment Type:<span className={styles.requiredelement}>&#42;</span></label>
                           <input type="radio" id="formative" name="assignment_type" value="Formative" />&nbsp;
                           <label for="formative">Formative</label>&nbsp;&nbsp;
                           <input type="radio" id="post" name="assignment_type" value="Post" />&nbsp;
-                          <label for="post">Post</label>
+                          <label for="post">Post</label><br /><br />
                         </li>
                         <li>
                           <label htmlFor='assignment_weight'>Assessment Weight:<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='number' id='assignment_weight' name='assignment_weight' min={0} max={100} placeholder="0-100"/><br />
                           {/* The following hidden parameter was added to pass along the batch ID along with the submitted form data */}
                           <input type="hidden" name="batch_id" value={id}></input>
-                          <button type='submit' className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Add Assessment</button>&nbsp;&nbsp;
+                          <button type='submit' className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Submit</button>&nbsp;&nbsp;
                           {/* <button type='submit' className={styles.batchManagementButton}>Submit</button>&nbsp;&nbsp; */}
                           <input type='reset' className={styles.batchManagementButton} value='Reset'></input>
                         </li>
                       </ul>
                     </form>
-                  {/* : <Button onClick={() => setShowForm(true)} text={'+ New Course Form'}></Button>
-                  } */}
-                  <h2>Delete Assessment</h2>
+                    </div>
+                  : <Button onClick={() => setShowForm(true)} text={'+ New Assessment Form'}></Button>
+                  }
+                  {/* <h2>Delete Assessment</h2>
                   <select
                     name="assignmentNameDelete"
                     id="assignmentNameDelete"
@@ -854,8 +857,7 @@ export default function Page() {
                       <option></option>
                       {assessmentsOptions}
                   </select>
-                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button>
-                </div>
+                  <button className={styles.batchManagementButton} onClick={() => deleteAssignment(assignmentNameDelete, id)}>Delete Assessment</button> */}
               {gradesColumn.length > 0 ?
               <TableCol columns={gradesColumn} tableData={attendanceData} Title={'Grades'} isEditable={true} onEditSave={updateGradeBatch} batchId={id} isAccessible={userResponse.role == "STAFF"} />
               : <></>}

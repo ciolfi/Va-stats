@@ -1117,6 +1117,12 @@ div .menubutton {
   left: 13em;
 }
 
+.collapseButtonAssessment {
+  position: relative;
+  top: -1.7em;
+  left: 16.5em;
+}
+
 .collapseButtonUsers {
   border: 0px solid green;
   position: relative;
