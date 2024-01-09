@@ -147,9 +147,13 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 
 export function generateTableColStaff(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
-	var rowIdx, rowName;
-	var isPresent = Number(rowData[columns[1].name]) == 1;
-	var isFrozen = editId == null;
+	var rowIdx, rowName, isPresent;
+	for (const column in columns) {
+		if (column.isAttendance) {
+			isPresent = (Number(rowData[column.name]) == 1);
+		}
+	}
+	var isFrozen = (editId == null);
 	let cellContent = null;
 
 	// Name
