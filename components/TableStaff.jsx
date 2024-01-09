@@ -3,6 +3,7 @@
 import styles from '../styles/Table.module.css';
 import { searchTableData, generateTableColStaff, sortTable } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
+import Button from '@/components/Button';
 import Link from "next/link";
 
 export default function TableStaff({ columns, tableData, onEditSave, Title, batchId }) {
@@ -25,10 +26,13 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 	}
 
 	async function saveHandler() {
+		const date = new Date(editDate);
+		const formatDate = moment(date).format('MMMM D, Y');
 		await onEditSave(editedBatch);
 		setEditDate(null);
 		setEditedBatch(null);
 		orig.current = JSON.parse(JSON.stringify(data));
+		confirm(formatDate + " Attendance was edited.");
 	}
 
 	function onEditClick(column, rowData) {
@@ -42,24 +46,16 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 		setData(() => JSON.parse(JSON.stringify(orig.current)));
 	}
 
-	async function onFillX(column, rowData) {
-		setEditDate(column.name);
-		rowData.map((row) => {
-			row[column.accessor] = 2;
-		});
-		setEditedBatch(rowData);
-	}
-
-	const changeHandler = (e, rowId) => {
+	const changeHandler = (e, rowId, editId) => {
 		const { name, value } = e.target;
 		setEditedBatch((prev) => {
 			const found = prev.find((rowData) => rowData["id"] === rowId);
-			found[name] = Number(value);
+			found[editId] = value == "P" ? 1 : 0;
 			return prev;
 		});
 		setData((prev) => {
 			const found = prev.find((rowData) => rowData["id"] === rowId);
-			found[name] = Number(value);
+			found[editId] = value == "P" ? 1 : 0;
 			return prev;
 		});
 	};
@@ -98,24 +94,8 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 				<thead>
 					<tr>
 						<th key="name" className={`${styles.stickyColTh} ${styles.studentNames}`}>Students</th>
-						<th>
-							<div>
-								{editDate === todaysDate ?
-									<img className={styles.actionItem} alt={'Save'} src={'/icons/save-icon.svg'} height={20} width={20} onClick={() => saveHandler() } />
-								:
-									<img className={styles.actionItem} alt={'Edit'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(generateEditId(todaysDate), sortedData())} />
-								}
-							</div>
-						</th>
-						<th>
-							<div>
-								{editDate === todaysDate ?
-									<img className={styles.actionItem} alt={'Cancel'} src={'/icons/cancel-icon.svg'} height={20} width={20} onClick={() => onCancelClick()} />
-								:
-									<img className={styles.actionItem} alt={'No Class'} src={'/icons/fillx-icon.svg'} height={17} width={17} onClick={() => onFillX(generateEditId(todaysDate), sortedData())} />
-								}
-							</div>
-						</th>
+						<th>P</th>
+						<th>A</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -128,6 +108,14 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 					})}
 				</tbody>
 			</table>
+			<br></br>
+			<div>
+				{editDate === todaysDate ?
+				<Button text="Submit" onClick={() => saveHandler() } style={{'width': '100px'}}></Button>
+				:
+				<Button text="Edit" onClick={() => onEditClick(generateEditId(todaysDate), sortedData())} style={{'width': '100px'}}></Button>
+				}
+			</div>
 		</div>
 	);
 }

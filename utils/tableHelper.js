@@ -147,27 +147,29 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 
 export function generateTableColStaff(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
-	var rowIdx;
-	for (const column of columns) {
-		let cellContent = null;
-		if (column.name === editId) {
-			cellContent = (
-				<select className={inputClassName} name={column.accessor} defaultValue={rowData[column.accessor]}  onChange={(e) => changeHandler(e, rowData.id)}>
-					{column.availableValues.map((value) => {
-						return <option key={value} value={Number(value)}>{ attendanceValues[Number(value)] }</option>;
-					})}
-				</select>
-			);
-		} else {
-			if (column.isAttendance) {
-				rowIdx = Number(rowData[column.accessor]);
-				cellContent = <p style={{color:attendanceStyle[rowIdx]}}>{attendanceValues[rowIdx]}</p>;
-			} else {
-				cellContent = <p>{rowData[column.accessor]}</p>;
-			}
-		}
-		cell.push(<td colSpan={column.isFirstColumn?1:2} key={column.accessor}>{cellContent}</td>);
-	}
+	var rowIdx, rowName;
+	var isPresent = Number(rowData[columns[1].name]) == 1;
+	var isFrozen = editId == null;
+	let cellContent = null;
+
+	// Name
+	rowName = rowData["name"].replace(/\s+/g, '');
+	cellContent = <p>{rowData["name"]}</p>;
+	cell.push(<td key={"name"}>{cellContent}</td>);
+
+	// Present
+	cellContent = <input type="radio" name={rowName} id={rowName+"_P"} defaultChecked={isPresent} disabled={isFrozen} value="P" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+	cell.push(<td key={"P"}>{cellContent}</td>);
+
+	// Absent
+	cellContent = <input type="radio" name={rowName} id={rowName+"_A"} defaultChecked={!isPresent} disabled={isFrozen} value="A" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+	cell.push(<td key={"A"}>{cellContent}</td>);
+
+	// TESTING: Adds a column of attendance (A/P) values for reference
+	// rowIdx = Number(rowData[columns[1].name]);
+	// cellContent = <p style={{color:attendanceStyle[rowIdx]}}>{attendanceValues[rowIdx]}</p>;
+	// cell.push(<td key={"date"}>{cellContent}</td>);
+
 	return cell;
 }
 
