@@ -27,7 +27,7 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 
 	async function saveHandler() {
 		const date = new Date(editDate);
-		const formatDate = moment(date).format('MMMM D, Y');
+		const formatDate = moment(date).utcOffset("+05:30").format('MMMM D, Y'); // IST Timezone used
 		await onEditSave(editedBatch);
 		setEditDate(null);
 		setEditedBatch(null);
