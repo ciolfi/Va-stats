@@ -148,9 +148,9 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 export function generateTableColStaff(columns, rowData, editId, changeHandler, inputClassName) {
 	const cell = [];
 	var rowIdx, rowName, isPresent;
-	for (const column in columns) {
-		if (column.isAttendance) {
-			isPresent = (Number(rowData[column.name]) == 1);
+	for (const idx in columns) {
+		if (columns[idx].isAttendance) {
+			isPresent = (Number(rowData[columns[idx].name]) == 1);
 		}
 	}
 	var isFrozen = (editId == null);
