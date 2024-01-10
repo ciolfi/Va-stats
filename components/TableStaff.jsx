@@ -94,8 +94,8 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 				<thead>
 					<tr>
 						<th key="name" className={`${styles.stickyColTh} ${styles.studentNames}`}>Students</th>
-						<th>P</th>
-						<th>A</th>
+						{todaysDate != '' ? <th>P</th> : <></>}
+						{todaysDate != '' ? <th>A</th> : <></>}
 					</tr>
 				</thead>
 				<tbody>
