@@ -102,13 +102,14 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 					{sortedData().map((rowData, index) => {
 						return (
 							<tr key={index}>
-								{generateTableColStaff(columns, rowData, editDate, changeHandler, inputClassName)}
+								{generateTableColStaff(columns, rowData, editDate, changeHandler, todaysDate)}
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
 			<br></br>
+			{todaysDate != ''?
 			<div>
 				{editDate === todaysDate ?
 				<Button text="Submit" onClick={() => saveHandler() } style={{'width': '100px'}}></Button>
@@ -116,6 +117,8 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 				<Button text="Edit" onClick={() => onEditClick(generateEditId(todaysDate), sortedData())} style={{'width': '100px'}}></Button>
 				}
 			</div>
+			: <></>
+			}
 		</div>
 	);
 }

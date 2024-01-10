@@ -145,7 +145,7 @@ export function generateTableCol(columns, rowData, editId, changeHandler, inputC
 	return cell;
 }
 
-export function generateTableColStaff(columns, rowData, editId, changeHandler, inputClassName) {
+export function generateTableColStaff(columns, rowData, editId, changeHandler, todaysDate) {
 	const cell = [];
 	var rowIdx, rowName, isPresent;
 	for (const idx in columns) {
@@ -161,13 +161,15 @@ export function generateTableColStaff(columns, rowData, editId, changeHandler, i
 	cellContent = <p>{rowData["name"]}</p>;
 	cell.push(<td key={"name"}>{cellContent}</td>);
 
-	// Present
-	cellContent = <input type="radio" name={rowName} id={rowName+"_P"} defaultChecked={isPresent} disabled={isFrozen} value="P" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
-	cell.push(<td key={"P"}>{cellContent}</td>);
+	if (todaysDate != '') {
+		// Present
+		cellContent = <input type="radio" name={rowName} id={rowName+"_P"} defaultChecked={isPresent} disabled={isFrozen} value="P" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+		cell.push(<td key={"P"}>{cellContent}</td>);
 
-	// Absent
-	cellContent = <input type="radio" name={rowName} id={rowName+"_A"} defaultChecked={!isPresent} disabled={isFrozen} value="A" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
-	cell.push(<td key={"A"}>{cellContent}</td>);
+		// Absent
+		cellContent = <input type="radio" name={rowName} id={rowName+"_A"} defaultChecked={!isPresent} disabled={isFrozen} value="A" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+		cell.push(<td key={"A"}>{cellContent}</td>);
+	}
 
 	// TESTING: Adds a column of attendance (A/P) values for reference
 	// rowIdx = Number(rowData[columns[1].name]);
