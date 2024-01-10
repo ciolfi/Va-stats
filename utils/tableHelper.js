@@ -153,7 +153,6 @@ export function generateTableColStaff(columns, rowData, editId, changeHandler, t
 			isPresent = (Number(rowData[columns[idx].name]) == 1);
 		}
 	}
-	var isFrozen = (editId == null);
 	let cellContent = null;
 
 	// Name
@@ -163,11 +162,11 @@ export function generateTableColStaff(columns, rowData, editId, changeHandler, t
 
 	if (todaysDate != '') {
 		// Present
-		cellContent = <input type="radio" name={rowName} id={rowName+"_P"} defaultChecked={isPresent} disabled={isFrozen} value="P" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+		cellContent = <input type="radio" name={rowName} id={rowName+"_P"} defaultChecked={isPresent} value="P" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
 		cell.push(<td key={"P"}>{cellContent}</td>);
 
 		// Absent
-		cellContent = <input type="radio" name={rowName} id={rowName+"_A"} defaultChecked={!isPresent} disabled={isFrozen} value="A" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
+		cellContent = <input type="radio" name={rowName} id={rowName+"_A"} defaultChecked={!isPresent} value="A" onChange={(e) => changeHandler(e, rowData.id, editId)} />;
 		cell.push(<td key={"A"}>{cellContent}</td>);
 	}
 

@@ -14,40 +14,21 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 	const [editedBatch, setEditedBatch] = useState(null);
 	const [data, setData] = useState(JSON.parse(JSON.stringify(tableData)));
 	const orig = useRef(JSON.parse(JSON.stringify(tableData)));
-	const inputClassName = styles.editableInput;
 	const sortedData = useCallback(() => sortTable(sortColumn, data, sortAsc), [sortColumn, data, sortAsc]);
-
-	function generateEditId(date) {
-		let data = {};
-		data.name = date;
-		data.accessor = date;
-		data.availableValues = [1, 0, 2];
-		return data;
-	}
 
 	async function saveHandler() {
 		const date = new Date(editDate);
 		const formatDate = moment(date).utcOffset("+05:30").format('MMMM D, Y'); // IST Timezone used
 		await onEditSave(editedBatch);
-		setEditDate(null);
-		setEditedBatch(null);
-		orig.current = JSON.parse(JSON.stringify(data));
-		confirm(formatDate + " Attendance was edited.");
-	}
-
-	function onEditClick(column, rowData) {
-		setEditDate(column.name);
-		setEditedBatch(rowData);
-	}
-
-	function onCancelClick() {
-		setEditDate(null);
-		setEditedBatch(null);
-		setData(() => JSON.parse(JSON.stringify(orig.current)));
+		alert(formatDate + " Attendance was edited.");
 	}
 
 	const changeHandler = (e, rowId, editId) => {
 		const { name, value } = e.target;
+		if (editedBatch.length === 0) {
+			setEditDate(todaysDate);
+			setEditedBatch(data);
+		}
 		setEditedBatch((prev) => {
 			const found = prev.find((rowData) => rowData["id"] === rowId);
 			found[editId] = value == "P" ? 1 : 0;
@@ -62,9 +43,13 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 
 	useEffect(() => {
 		setData(tableData);
-		{columns.forEach(col => {
-			if(col.accessor != "name") setTodaysDate(col.name);
-		})}
+		setEditedBatch(sortedData());
+		columns.forEach(col => {
+			if(col.accessor != "name") {
+				setTodaysDate(col.name);
+				setEditDate(col.name);
+			}
+		})
 		orig.current = JSON.parse(JSON.stringify(tableData));
 	}, [tableData]);
 
@@ -111,11 +96,7 @@ export default function TableStaff({ columns, tableData, onEditSave, Title, batc
 			<br></br>
 			{todaysDate != ''?
 			<div>
-				{editDate === todaysDate ?
 				<Button text="Submit" onClick={() => saveHandler() } style={{'width': '100px'}}></Button>
-				:
-				<Button text="Edit" onClick={() => onEditClick(generateEditId(todaysDate), sortedData())} style={{'width': '100px'}}></Button>
-				}
 			</div>
 			: <></>
 			}
