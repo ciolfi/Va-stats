@@ -89,8 +89,10 @@ export default function Page() {
   const [gradesColumn, setGradesColumn] = useState([]);
   const [assessmentsOptions, setAssessmentsOptions] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
-  const [selectedIDs, setSelectedIDs] = useState([]);
+  const [addSelectedIDs, setAddSelectedIDs] = useState([]);
+  const [deleteSelectedIDs, setDeleteSelectedIDs] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [editBatch, setEditBatch] = useState(false);
 
   const [contentLoading, setContentLoading] = useState(false);
 
@@ -118,6 +120,10 @@ export default function Page() {
 
   const handleSubmit = () => {
     setContentLoading(true);
+  };
+
+  const handleMultiStudentDelete = () => {
+    setEditBatch(true);
   };
 
   const batchPageLayoutHandler = (e) => {
@@ -150,13 +156,23 @@ export default function Page() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChangeAdd = (e) => {
     const checked = e.target.checked;
     const id = e.target.value;
     if (checked) {
-      setSelectedIDs([...selectedIDs, id]);
+      setAddSelectedIDs([...addSelectedIDs, id]);
     } else {
-      setSelectedIDs(selectedIDs.filter((id) => id !== id));
+      setAddSelectedIDs(addSelectedIDs.filter((id) => id !== id));
+    }
+  };
+
+  const handleChangeDelete = (e) => {
+    const checked = e.target.checked;
+    const id = e.target.value;
+    if (checked) {
+      setDeleteSelectedIDs([...deleteSelectedIDs, id]);
+    } else {
+      setDeleteSelectedIDs(deleteSelectedIDs.filter((id) => id !== id));
     }
   };
 
@@ -294,6 +310,36 @@ export default function Page() {
 
   const addStudentMulti = async (students) => {
     students.forEach((studentId) => {addStudent(studentId);});
+    setAddSelectedIDs([]);
+    setDeleteSelectedIDs([]);
+  };
+
+  const deleteStudent = async (studentId) => {
+    if(!studentId) return;
+    setContentLoading(true);
+    // const apiUrlEndpoint = 'https://va-stats.vercel.app/api/addstudenttobatch';
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `deletestudentfrombatch`;
+    const postData = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ studentId, batchId: id }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    const result = await response.json();
+    if (result.success) {
+      fetchUnassignedStudents(id);
+      getBatchData();
+    } else {
+      console.error("Error adding student to batch");
+    }
+    setContentLoading(false);
+  };
+
+  const deleteStudentMulti = async (students) => {
+    students.forEach((studentId) => {deleteStudent(studentId);});
+    setAddSelectedIDs([]);
+    setDeleteSelectedIDs([]);
+    setEditBatch(false);
   };
 
   /* ---------------------------------- API SECTION -----------------------------------*/
@@ -747,8 +793,8 @@ export default function Page() {
                                 <input
                                   type='checkbox'
                                   value={student.id}
-                                  onChange={handleChange}
-                                  checked={selectedIDs.includes(student.id.toString())}
+                                  onChange={handleChangeAdd}
+                                  checked={addSelectedIDs.includes(student.id.toString())}
                                 />
                               </td>
                               <td> {student.id} </td>
@@ -768,9 +814,18 @@ export default function Page() {
                   <div className={tableStyles.tableColumn}>
                     <div className={tableStyles.buttonContainer}>
                       <div className={tableStyles.buttonCenter}>
-                        <button className={styles.batchManagementButton} onClick={() => {addStudentMulti(selectedIDs);setSelectedIDs([]);}} >
+                        <button className={styles.batchManagementButton} onClick={() => {addStudentMulti(addSelectedIDs);}} >
                           &gt;&gt;
                         </button>
+                        {editBatch ?
+                          <button className={styles.batchManagementDeleteButton} onClick={() => {deleteStudentMulti(deleteSelectedIDs);}} >
+                            &lt;&lt;
+                          </button>
+                        :
+                        <button className={styles.batchManagementDeleteButton} onClick={() => {handleMultiStudentDelete();}} >
+                          &nbsp;X&nbsp;
+                        </button>
+                        }
                       </div>
                     </div>
                   </div>
@@ -781,6 +836,7 @@ export default function Page() {
                     <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
                       <thead>
                         <tr>
+                          {editBatch ? <th>Select</th> : <></>}
                           <th width="50px">ID</th>
                           <th width="235px">Name</th>
                         </tr>
@@ -790,6 +846,16 @@ export default function Page() {
                         batchData.students.map((student) => {
                           return (
                             <tr key={student.id}>
+                              {editBatch ?
+                              <td>
+                                <input
+                                  type='checkbox'
+                                  value={student.id}
+                                  onChange={handleChangeDelete}
+                                  checked={deleteSelectedIDs.includes(student.id.toString())}
+                                />
+                              </td>
+                              : <></>}
                               <td> {student.id} </td>
                               <td> {student.name} </td>
                             </tr>
