@@ -397,20 +397,20 @@ export default function Page() {
                         </select>
                         <br /><br />
 
-                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}>&#42;</span></label>
-                        <select required id='trainingprogram1' name='trainingprogram1' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
+                        <label htmlFor='trainingprogram1' className={styles.addstafflabel}>Training Program 1<span className={styles.requiredelement}></span></label>
+                        <select id='trainingprogram1' name='trainingprogram1' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
                         <option></option>
                         {courseOptions1}
                         </select>&nbsp;<br />
 
-                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}>&#42;</span></label>
-                        <select required id='trainingprogram2' name='trainingprogram2' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
+                        <label htmlFor='trainingprogram2' className={styles.addstafflabel}>Training Program 2<span className={styles.requiredelement}></span></label>
+                        <select id='trainingprogram2' name='trainingprogram2' className={styles.addstaffforminputsbox} onChange={(e) => updateChoices(e)}>
                         <option></option>
                         {courseOptions2}
                         </select>&nbsp;<br />
 
-                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}>&#42;</span></label>
-                        <select required id='trainingprogram3' name='trainingprogram3' className={styles.addstaffforminputsbox}>
+                        <label htmlFor='trainingprogram3' className={styles.addstafflabel}>Training Program 3<span className={styles.requiredelement}></span></label>
+                        <select id='trainingprogram3' name='trainingprogram3' className={styles.addstaffforminputsbox}>
                         <option></option>
                         {courseOptions3}
                         </select>&nbsp;<br />
@@ -433,8 +433,8 @@ export default function Page() {
                           <option value='IA'>IA</option>            
                         </select><br /><br />
 
-                        <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}>&#42;</span></label>
-                        <input required type='text' className={styles.addstaffforminputsbox} id='action' name='action' />&nbsp;<br /><br /><br />
+                        <label htmlFor='action' className={styles.addstafflabel}>Action<span className={styles.requiredelement}></span></label>
+                        <input type='text' className={styles.addstaffforminputsbox} id='action' name='action' />&nbsp;<br /><br /><br />
 
                         <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br /><br />
                         <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
