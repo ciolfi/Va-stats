@@ -485,7 +485,7 @@ export default function Page() {
                           <td className={styles.inputlabel}>
                             <label htmlFor="alt_ph_num">
                               {/* Phone2 */}
-                              Parent/Guardian Ph
+                              Parent/Guardian ph
                             </label>
                           </td>
                           <td className={styles.inputtd}>
@@ -697,7 +697,7 @@ export default function Page() {
                         <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="edu_details">
-                              Education Details
+                              Education details
                             </label>
                           </td>
                           <td className={styles.inputtd}>
