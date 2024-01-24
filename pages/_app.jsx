@@ -9,9 +9,6 @@ import { SessionProvider } from 'next-auth/react';
 
 // Below required for NextUI components
 import * as React from "react";
-// import { NextUIProvider } from "@nextui-org/system";
-
-import { useEffect } from "react";
 
 // if ("serviceWorker" in navigator) {
 // 	navigator.serviceWorker.register("./public/sw.js");
@@ -33,13 +30,9 @@ import { useEffect } from "react";
 // }
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
-
-	// <NextUIProvider>
-		<SessionProvider session={session}>
-			<Component {...pageProps} />
-		</SessionProvider>
-	// </NextUIProvider>
-
+	<SessionProvider session={session}>
+		<Component {...pageProps} />
+	</SessionProvider>
 );
 
 export default App;

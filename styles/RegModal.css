@@ -1,0 +1,158 @@
+html, body {
+  height: 97%;
+  margin: 0; padding: 0;
+  min-width: 315px;
+  width: 97%; 
+}
+
+label {
+  font-size: 1.2em;
+}
+
+.App {
+  border: 5px solid lightgrey;
+  border-radius: 0.5em; 
+  height: 100%;
+  min-height: 100%;
+  text-align: center;
+  width: 104%;
+}
+
+.simHeaderCont {
+  align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0em;
+  width: auto;
+}
+
+.valogo {
+  max-width: fit-content;
+  margin-bottom: 1.5em;
+}
+
+.simHeaderText {
+  font-size: largest;
+  position: relative;
+  top: -1.5em;
+}
+
+.simDisclaimer {
+  border-bottom: 3px solid lightgrey;
+  padding-bottom: 1em;
+  position: relative;
+  text-align: center;
+  top: -1em;
+}
+
+.formCont {
+  border: 0px solid green;
+  position: relative;
+  top: -2em;
+}
+
+.div-form-cont {
+  border: 0px solid blue;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+  width: auto;
+}
+
+.form-row {
+  border: 0px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin: 0.5em 0;
+  width: 100%;
+}
+
+.form-label-col {
+  border: 0px solid yellow;
+  text-align: left;
+  width: 40%;
+}
+
+.form-input-col {
+  border: 0px solid cyan;
+  width: 56%;
+}
+
+.textInput {
+  display: flex;
+  font-size: larger;
+  margin-right: -1em;
+  width: 96%;
+}
+
+.simButton {
+  border-radius: 0.5em;
+  font-size: larger;
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.theModal {
+  border: 5px solid gray;
+  background: white;
+  border-radius: 0.5em;
+  font-size: 1.1em;
+  left: 50%;
+  margin: 0 auto;
+  opacity: 1.0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 24em;
+}
+
+.modalContTable {
+  border: 0px solid blue;
+  margin-bottom: 1em;
+  width: 98;
+}
+
+.modalHeader {
+  font-size: larger;
+  font-weight: 500;
+  margin-bottom: 0em;
+}
+
+.modalLabelCont {
+  border: 0px solid green;
+  width: 40%;
+}
+
+.modalDataCont { 
+  border: 0px solid magenta;
+  width: 54%;
+}
+
+.textInput {
+  font-style: oblique;
+  margin-right: 1em;
+}
+
+.modalButton {
+  background-color: white;
+  border-radius: 0.5em;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  float: right;
+}
+
+@media (min-width:1281px) {
+  .App {
+    margin: 0 auto;
+    width: 50%;
+  } 
+}
