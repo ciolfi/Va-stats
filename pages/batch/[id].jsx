@@ -814,15 +814,15 @@ export default function Page() {
                   <div className={tableStyles.tableColumn}>
                     <div className={tableStyles.buttonContainer}>
                       <div className={tableStyles.buttonCenter}>
-                        <button className={styles.batchManagementButton} onClick={() => {addStudentMulti(addSelectedIDs);}} >
+                        <button title={'Add students to Batch'} className={styles.batchManagementButton} onClick={() => {addStudentMulti(addSelectedIDs);}} >
                           &gt;&gt;
                         </button>
                         {editBatch ?
-                          <button className={styles.batchManagementDeleteButton} onClick={() => {deleteStudentMulti(deleteSelectedIDs);}} >
+                          <button title={'Remove students from Batch'} className={styles.batchManagementDeleteButton} onClick={() => {deleteStudentMulti(deleteSelectedIDs);}} >
                             &lt;&lt;
                           </button>
                         :
-                        <button className={styles.batchManagementDeleteButton} onClick={() => {handleMultiStudentDelete();}} >
+                        <button title={'Select students to remove from Batch'} className={styles.batchManagementDeleteButton} onClick={() => {handleMultiStudentDelete();}} >
                           &nbsp;X&nbsp;
                         </button>
                         }
