@@ -1091,7 +1091,7 @@ div .menubutton {
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   cursor: pointer;
   margin-top: 5px;
 }
@@ -1100,18 +1100,26 @@ div .menubutton {
   background-color: #218838;
 }
 
+.batchManagementButton:active {
+  background-color: #176d2a;
+}
+
 .batchManagementDeleteButton {
   background-color: #D11A2A;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   cursor: pointer;
   margin-top: 5px;
 }
 
 .batchManagementDeleteButton:hover {
-  background-color: #D11A2A;
+  background-color: #a60f1b;
+}
+
+.batchManagementDeleteButton:active {
+  background-color: #860c16;
 }
 
 .selectedStudent {
