@@ -75,6 +75,9 @@ export default function Page() {
   const mobtechSummary = "The Mobile Technology course will enable a person with visual impairment to effectively use the modern-day smartphone for day-to-day work, mobility and comfort. Additionally, the student will learn essential nomenclature related to hardware and software. The ideal student is 12+ years of age and has an Android mobile device.";
   const cssSummary = "The CSS course is for people who want to develop the skills to style websites. Since CSS works with HTML in creating websites, this is a great follow up course for those who took our HTML course. Website creation focuses on separating content (HTML) and design (CSS). The student will acquire a deep understanding of the manipulation of color, fonts, and a variety of other web page characteristics.";
   const excelSummary = "Excel is Microsoft's universally popular spreadsheet software. It is used for a variety of purposes including: record-keeping, business analytics, as a 'database' when higher-level database functinality is not required.";
+  const datSummary = "Digital Accessibility Testing";
+  const sepbSummary = "Spoken English Programme Beginner";
+  const chatGptSummary = "AI tools and prompt Engineering";
 
   /*-------- COURSE CHOICE SUMMARIES ITEM ----------*/
   const [Option3, setOption3] = useState(() => []);
@@ -124,6 +127,15 @@ export default function Page() {
     }
     else if (e == "Excel") {
       return excelSummary;
+    }
+    else if (e == "DAT") {
+      return datSummary;
+    }
+    else if (e == "SEP B") {
+      return sepbSummary;
+    }
+    else if (e == "Chatgpt") {
+      return chatGptSummary;
     }
     else {
       return "AN UNKNOWN course was chosen ...";
