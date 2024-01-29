@@ -594,31 +594,7 @@ export default function Page() {
                             />
                           </td>
                         </tr>
-
-                        {/*----- EMPLOYMENT STATUS ROW BEGINS -----*/}
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="employment_status">
-                              Job status                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select
-                              name="employment_status"
-                              id="employment_status"
-                              className={styles.txtboxdropdown}
-                              onSelectionChange={setSelectedEmpStatus}
-                              role="presentation" autoComplete="off"
-                            >
-                              <optgroup label="EmpStatus">
-                                <option value="Employed">Employed</option>
-                                <option value="Unemployed">Unemployed</option>
-                                <option value="Student">Student</option>
-                              </optgroup>
-                            </select>
-                          </td>
-                        </tr>
-
+                        
                         {/*----- EDU QUALIFICATIONS ROW BEGINS -----*/}
                         {/* <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
@@ -710,6 +686,30 @@ export default function Page() {
                               type="text"
                               role="presentation"
                             />
+                          </td>
+                        </tr>
+
+                        {/*----- EMPLOYMENT STATUS ROW BEGINS -----*/}
+                        <tr className={styles.regrow}>
+                          <td className={styles.inputlabel}>
+                            <label htmlFor="employment_status">
+                              Job status                            </label>
+                            <span className={styles.requiredelement}>&#42;</span>
+                          </td>
+                          <td className={styles.inputtd}>
+                            <select
+                              name="employment_status"
+                              id="employment_status"
+                              className={styles.txtboxdropdown}
+                              onSelectionChange={setSelectedEmpStatus}
+                              role="presentation" autoComplete="off"
+                            >
+                              <optgroup label="EmpStatus">
+                                <option value="Employed">Employed</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Student">Student</option>
+                              </optgroup>
+                            </select>
                           </td>
                         </tr>
 
