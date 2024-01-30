@@ -18,8 +18,8 @@ import { searchTableData } from '@/utils/tableHelper';
 
 function getTodaysDate() {
   var date = new Date();
-  // IST timezone shift (+5 hours and 30 minutes)
-  date.setHours(date.getHours() + 5);
+  // IST timezone shift (+10 hours and 30 minutes compared to EST)
+  date.setHours(date.getHours() + 10);
   date.setMinutes(date.getMinutes() + 30);
 
   let day = date.getDate();
