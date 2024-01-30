@@ -50,12 +50,12 @@ under 'Add New Staff Member */
   display: inline-block;
   margin-right: 0em;
   text-align: right;
-  width: 51%;
+  width: 47%;
 }
 
 /* FORM: ADD STAFF: Input boxes */
 .addstaffforminputsbox {
-  width: 49%;
+  width: 53%;
 }
 
 .staffformbutton {
