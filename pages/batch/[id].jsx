@@ -1,7 +1,7 @@
 /* When host is changed: Change values in
 'API SECTIONS' below */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Navbar from "../../components/Navbar";
@@ -14,6 +14,7 @@ import TableCol from "@/components/TableCol";
 import TableStaff from "@/components/TableStaff";
 import Image from 'next/image';
 import Button from '@/components/Button';
+import { searchTableData } from '@/utils/tableHelper';
 
 function getTodaysDate() {
   var date = new Date();
@@ -69,6 +70,7 @@ export default function Page() {
   const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
+  const origUnassignedStudents = useRef([]);
   const [assignmentNameAdd, setAssignmentNameAdd] = useState("");
   const [assignmentNameDelete, setAssignmentNameDelete] = useState("");
 
@@ -230,6 +232,7 @@ export default function Page() {
       }
     });
     setUnassignedStudents(studentList);
+    origUnassignedStudents.current = studentList;
     setContentLoading(false);
   };
 
@@ -770,8 +773,22 @@ export default function Page() {
               <div>
                 <div className={tableStyles.tableRow}>
                   <div className={tableStyles.tableColumn}>
-                    <div className={styles.genericTableHeader}>
+                    <div className={tableStyles.genericTableHeader}>
                       <h2>Assign Students to Batch</h2>
+                      <input
+                        id="table-search"
+                        className={tableStyles.tableSearch}
+                        onInput={(e) => searchTableData(setUnassignedStudents, e.target.value, origUnassignedStudents.current)}
+                        onKeyUp={(e) => {
+                          if (e.key == 'Enter') {
+                            document.getElementById("table-search").value = '';
+                            document.getElementById("table-search").blur();
+                            window.focus();
+                          }
+                        }}
+                        placeholder={`Search in Student list`}
+                        autoFocus={true}
+                      ></input>
                     </div>
                     <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
                       <thead>
@@ -830,7 +847,7 @@ export default function Page() {
                     </div>
                   </div>
                   <div className={tableStyles.tableColumn}>
-                    <div className={styles.genericTableHeader}>
+                    <div className={tableStyles.genericTableHeader}>
                       <h2>Current Batch</h2>
                     </div>
                     <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
