@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   try {
 
     /* ---------------- DATA MODIFICATION SECTION --------------- */
-    const query = "SELECT id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, trainingmode, status FROM vabatches";
+    const query = "SELECT id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, strength, trainingmode, status FROM vabatches";
 
     const values = [];
     const [data] = await dbconnection.execute(query, values);

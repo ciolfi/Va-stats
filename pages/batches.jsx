@@ -222,6 +222,9 @@ export default function Page() {
       accessor: 'currency',
       type: 'enum',
       availableValues: ['INR', 'USD'],
+    }, {
+      name: 'Batch Strength',
+      accessor: 'strength',
     },
 
   ];
@@ -378,15 +381,18 @@ export default function Page() {
                           <input type="radio" id="usd" name="currency" value="USD" />
                           <label for="usd">USD</label><br /><br />
 
+                          <label htmlFor='strength' className={styles.addstafflabel}>Batch Strength<span className={styles.requiredelement}>&#42;</span></label>
+                          <input type='text' className={styles.addstaffforminputsbox} id='strength' name='strength' required /><br /><br />
+
                           <label htmlFor='trainingmode' className={styles.addstafflabel}>Mode of Training<span className={styles.requiredelement}>&#42;</span></label>
                           <input list='trainingmodes' className={styles.addstaffforminputsbox} id='trainingmode' name='trainingmode' required /><br /><br />
                           <datalist id="trainingmodes">
                             <option value="VIRTUAL" />
                             <option value="IN-PERSON" />
                             <option value="SELF-PACED" />
-                          </datalist><br /><br />
+                          </datalist><br />
 
-                          <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br /><br />
+                          <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
                           <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
 
                         </section>

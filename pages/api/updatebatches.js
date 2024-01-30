@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, trainingmode, status } = req.body;
+    const { id, coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, strength, trainingmode, status } = req.body;
 
     const dbconnection = await mysql.createConnection({
       host: process.env.MYSQL_HOST,
@@ -14,11 +14,11 @@ export default async function handler(req, res) {
     try {
       const query = `
         UPDATE vabatches
-        SET coursename = ?, batch = ?, coursestart = ?, courseend = ?, coursedays = ?, coursetimes = ?, instructor = ?, PM = ?, TA = ?, cost = ?, currency = ?, trainingmode = ?, status = ?
+        SET coursename = ?, batch = ?, coursestart = ?, courseend = ?, coursedays = ?, coursetimes = ?, instructor = ?, PM = ?, TA = ?, cost = ?, currency = ?, strength = ?, trainingmode = ?, status = ?
         WHERE id = ?;
       `;
 
-      const values = [coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, trainingmode, status, id];
+      const values = [coursename, batch, coursestart, courseend, coursedays, coursetimes, instructor, PM, TA, cost, currency, strength, trainingmode, status, id];
       await dbconnection.execute(query, values);
       res.status(200).json({ message: 'Batch updated successfully' });
       dbconnection.end();
