@@ -215,7 +215,7 @@ export default function Page() {
       type: 'enum',
       availableValues: ['VIRTUAL', 'IN-PERSON', 'SELF-PACED'],
     }, {
-      name: 'Cost',
+      name: 'Total Cost',
       accessor: 'cost',
     }, {
       name: 'Currency',
@@ -365,7 +365,7 @@ export default function Page() {
 
                         <section className={styles.addbatchformsec3}>
 
-                          <label htmlFor='cost' className={styles.addstafflabel}>Cost<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='cost' className={styles.addstafflabel}>Total Cost<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='cost' name='cost' placeholder='If free, input 0.' required /><br /><br />
 
                           <label htmlFor='currency' className={styles.addstafflabel}>Currency<span className={styles.requiredElement}></span>
