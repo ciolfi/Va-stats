@@ -91,7 +91,8 @@ const Navbar = (user_role) => {
         </noscript> */}
       </Head>
       <nav className={'nav'}>
-        <Link href="/" className={'textlogo'}>
+        {/* <Link href="/" className={'textlogo'} style={{'focus-visible': 'blue'}}> */}
+        <Link href="/" className={'textlogo'} tabIndex="1" autoFocus>
           VISION-AID ACADEMY
         </Link>
         {/*<Link href="https://support.google.com/chrome/answer/9658361?hl=en&co=GENIE.Platform%3DDesktop" target="_blank">

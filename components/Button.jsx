@@ -6,7 +6,8 @@ export default function Button({ text, onClick, iconSrc, isLight, style }) {
 	let textClassName = '';
 	const buttonClassName = isLight ? styles.genericButtonLight : styles.genericButtonDark;
 	if (iconSrc) {
-		const altText = `${text}-icon`;
+		// const altText = `${text}-icon`; // Redundant for screen readers
+		const altText = "";
 		icon = <Image alt={altText} src={iconSrc} height={20} width={20} />;
 		textClassName = styles.buttonText;
 	}

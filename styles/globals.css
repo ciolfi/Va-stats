@@ -213,7 +213,48 @@ a.textlogo {
   font-size: 25px;
   font-weight: 700;
 }
+
+/* Below block does not work */
+/* a.textlogo:focus-visible 
+div:focus 
+div.title:focus 
+a:focus 
+a.navitem 
+h1:focus 
+h2:focus-visible 
+button:focus 
+{
+  outline: 2px solid blue;
+} */
+ 
+a.textlogo:focus-visible {
+  outline: 2px solid blue;
+}
+div:focus {
+  outline: 2px solid blue;
+}
+div.title:focus {
+  outline: 2px solid blue;
+}
+a:focus {
+  outline: 2px solid blue;
+}
+a.navitem {
+  outline: 2px solid blue;
+}
+h1:focus {
+  outline: 2px solid blue;
+}
+h2:focus {
+  outline: 2px solid blue;
+}
+button:focus {
+  outline: 2px solid blue;
+}
 /*-------------- NAV BAR STYLES END -------------*/
+
+.forminstruction {
+}
 
 /* ------------------- Hamburger menu --------------- */
 .nav__menu-bar {
