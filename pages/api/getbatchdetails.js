@@ -64,7 +64,7 @@ export default async function handler(req, res) {
     `;
 
     const gradesQuery = `
-      SELECT student_id, assignment_name, grade
+      SELECT student_id, assignment_name, assignment_type, assignment_weight, grade
       FROM va_grades
       WHERE batch_id = ?
     `;
