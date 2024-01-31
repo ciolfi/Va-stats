@@ -346,8 +346,12 @@ export default function Page() {
   };
 
   /* ---------------------------------- API SECTION -----------------------------------*/
-  const addAssignment = async (assignmentName, batchId) => {
-    if (assignmentName === "") {
+  const addAssignment = async (batch_id) => {
+    document.querySelector('form').reportValidity();
+    const assignment_name = document.getElementById('assignment_name').value;
+    const assignment_type = document.getElementById('formative').checked ? "Formative" : "Post";
+    const assignment_weight = document.getElementById('assignment_weight').value;
+    if (assignment_name === "" || assignment_weight === "") {
       return;
     }
     setContentLoading(true);
@@ -356,11 +360,11 @@ export default function Page() {
     const postData = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ assignmentName, batchId }),
+      body: JSON.stringify({ assignment_name, assignment_type, assignment_weight, batch_id }),
     };
     const response = await fetch(apiUrlEndpoint, postData);
-    const result = await response.json();
-    if (result.success) {
+    // const result = await response.json();
+    if (response.status === 200) {
       getBatchData();
     } else {
       console.error("Error adding assignment");
@@ -910,17 +914,17 @@ export default function Page() {
                         </li>
                         <li>
                           <label htmlFor='assignment_type'>Assessment Type:<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type="radio" id="formative" name="assignment_type" value="Formative" />&nbsp;
+                          <input type="radio" id="formative" name="assignment_type" value="Formative" defaultChecked/>&nbsp;
                           <label for="formative">Formative</label>&nbsp;&nbsp;
                           <input type="radio" id="post" name="assignment_type" value="Post" />&nbsp;
                           <label for="post">Post</label><br /><br />
                         </li>
                         <li>
                           <label htmlFor='assignment_weight'>Assessment Weight:<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='number' id='assignment_weight' name='assignment_weight' min={0} max={100} placeholder="0-100"/><br />
+                          <input type='number' id='assignment_weight' name='assignment_weight' min={0} max={100} placeholder="0-100" required/><br />
                           {/* The following hidden parameter was added to pass along the batch ID along with the submitted form data */}
                           <input type="hidden" name="batch_id" value={id}></input>
-                          <button type='submit' className={styles.batchManagementButton} onClick={() => addAssignment(assignmentNameAdd, id)}>Submit</button>&nbsp;&nbsp;
+                          <button type='button' className={styles.batchManagementButton} onClick={() => addAssignment(id)}>Submit</button>&nbsp;&nbsp;
                           {/* <button type='submit' className={styles.batchManagementButton}>Submit</button>&nbsp;&nbsp; */}
                           <input type='reset' className={styles.batchManagementButton} value='Reset'></input>
                         </li>
