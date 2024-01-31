@@ -109,6 +109,17 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					autoFocus={true}
 				></input>
 			</div>			
+			{Title === "Student Documents and Fees" ?
+			<>
+			<p className={styles.batchTextTotalStudents}>
+				Total collected amount: {data["total_amount"]}&ensp;
+				[Amount 1: {data["total_amount_1"]},&ensp;
+				Amount 2: {data["total_amount_2"]},&ensp;
+				Amount 3: {data["total_amount_3"]}]
+			</p>
+			<br/>
+			</>
+			:<></>}
 			<table className={styles.genericTable} cellPadding="0" cellSpacing="0">
 				<thead>
 					<tr>

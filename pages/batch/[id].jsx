@@ -83,6 +83,11 @@ export default function Page() {
   const [courseName, setCourseName] = useState("");
   const [batchName, setBatchName] = useState("");
   const [batchLength, setBatchLength] = useState("");
+  const [batchTotalCost, setBatchTotalAmount] = useState("");
+  const [batchAmount1, setBatchAmount1] = useState("");
+  const [batchAmount2, setBatchAmount2] = useState("");
+  const [batchAmount3, setBatchAmount3] = useState("");
+  const [batchCurrency, setBatchCurrency] = useState("");
 
   const [attendanceColumn, setAttendanceColumn] = useState([]);
   const [attendanceColumnStaff, setAttendanceColumnStaff] = useState([]);
@@ -428,6 +433,11 @@ export default function Page() {
     setCourseName(data.coursename);
     setBatchName(data.batch);
     setBatchLength(data.students.length);
+    setBatchTotalAmount(documentsData["total_amount"]);
+    setBatchAmount1(documentsData["total_amount_1"]);
+    setBatchAmount2(documentsData["total_amount_2"]);
+    setBatchAmount3(documentsData["total_amount_3"]);
+    setBatchCurrency(data.currency);
     //console.log("Batch data: ", data);
 
     setLoading(false);
@@ -555,6 +565,7 @@ export default function Page() {
 
   const generateStudentDocumentData = () => {
     let res = [];
+    let totalAmount = 0, amount1 = 0, amount2 = 0, amount3 = 0;
     if (batchDocumentData?.documents) {
       res = batchDocumentData.documents.map((student) => {
         let studentDocuments = batchDocumentData.documents.filter((document) => document.id === student.id);
@@ -572,13 +583,24 @@ export default function Page() {
         studentFees.forEach((fee) => {
           studentData["fee_paid"] = fee.fee_paid;
           studentData["amount_1"] = fee.amount_1;
+          totalAmount += fee.amount_1;
+          amount1 += fee.amount_1;
           studentData["amount_2"] = fee.amount_2;
+          totalAmount += fee.amount_2;
+          amount2 += fee.amount_2;
           studentData["amount_3"] = fee.amount_3;
+          totalAmount += fee.amount_3;
+          amount3 += fee.amount_3;
           studentData["nature_of_fee"] = fee.nature_of_fee;
         });
         return studentData;
       });
     }
+
+    res["total_amount"] = totalAmount;
+    res["total_amount_1"] = amount1;
+    res["total_amount_2"] = amount2;
+    res["total_amount_3"] = amount3;
 
     return res;
   };
