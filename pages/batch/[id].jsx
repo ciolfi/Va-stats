@@ -15,20 +15,18 @@ import TableStaff from "@/components/TableStaff";
 import Image from 'next/image';
 import Button from '@/components/Button';
 import { searchTableData } from '@/utils/tableHelper';
+import moment from 'moment-timezone';
 
 function getTodaysDate() {
-  var date = new Date();
-  // IST timezone shift (+10 hours and 30 minutes compared to EST)
-  date.setHours(date.getHours() + 10);
-  date.setMinutes(date.getMinutes() + 30);
+  let currentDate = moment(new Date()).format("YYYY-MM-DD"); // IST Timezone conversion
+  console.log("Todays date: "+currentDate);
 
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  // This arrangement can be altered based on how we want the date's format to appear.
-  // Current format is: YYYY-MM-DD
-  let currentDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  // var estDate = new Date("Thu Feb 01 2024 13:30:55 GMT-0500 (Eastern Standard Time)");
+  // var istDate = new Date("Thu Feb 02 2024 00:00:55 GMT+0530 (Indian Standard Time)");
+  // console.log(estDate);
+  // console.log(istDate);
+  // console.log(moment(estDate).format("YYYY-MM-DD"));
+  // console.log(moment(istDate).format("YYYY-MM-DD"));
 
   return currentDate;
 }
@@ -496,7 +494,8 @@ export default function Page() {
     let res = [];
     if (batchData?.attendance) {
       const attendanceDates = new Set();
-      const todaysDate = getTodaysDate();
+      const todaysDate = moment(new Date()).format("YYYY-MM-DD");
+      console.log("Todays date: " + todaysDate);
       batchData.attendance.forEach((attendance) => {
         attendanceDates.add(attendance.date);
       });
