@@ -86,8 +86,44 @@ export default function Page() {
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getbatchesdata`;
     const response = await fetch(apiUrlEndpoint);
     const res = await response.json();
+    let batchDocumentFees;
+    for (const batch of res.batches) {
+      batchDocumentFees = await getBatchesFeesData(batch.id);
+      batch["total_students"] = batchDocumentFees.fees.length;
+
+      let totalAmount = 0;
+      if (batchDocumentFees?.fees) {
+        for (const student of batchDocumentFees.fees) {
+          totalAmount += student.amount_1;
+          totalAmount += student.amount_2;
+          totalAmount += student.amount_3;
+        }
+        batch["collected_fees"] = totalAmount;
+      } else {
+        batch["collected_fees"] = 0;
+      }
+    }
     setDataResponse(res.batches);
     setContentLoading(false);
+  };
+
+  const getBatchesFeesData = async (id) => {
+    // setContentLoading(true);
+    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getdocumentsfee`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getdocumentsfee`;
+    const postData = {
+      method: "Post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        batch_id: id,
+      }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    const data = await response.json();
+
+    // setLoading(false);
+    // setContentLoading(false);
+    return data;
   };
 
   const getCourseData = async () => {
@@ -215,16 +251,16 @@ export default function Page() {
       type: 'enum',
       availableValues: ['VIRTUAL', 'IN-PERSON', 'SELF-PACED'],
     }, {
-      name: 'Total Cost',
-      accessor: 'cost',
+      name: 'Collected Fees',
+      accessor: 'collected_fees',
     }, {
       name: 'Currency',
       accessor: 'currency',
       type: 'enum',
       availableValues: ['INR', 'USD'],
     }, {
-      name: 'Batch Strength',
-      accessor: 'strength',
+      name: 'Enrollments',
+      accessor: 'total_students',
     },
 
   ];
