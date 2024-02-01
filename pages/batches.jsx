@@ -108,7 +108,7 @@ export default function Page() {
   };
 
   const getBatchesFeesData = async (id) => {
-    // setContentLoading(true);
+    setContentLoading(true);
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getdocumentsfee`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getdocumentsfee`;
     const postData = {
@@ -121,8 +121,8 @@ export default function Page() {
     const response = await fetch(apiUrlEndpoint, postData);
     const data = await response.json();
 
-    // setLoading(false);
-    // setContentLoading(false);
+    setLoading(false);
+    setContentLoading(false);
     return data;
   };
 
