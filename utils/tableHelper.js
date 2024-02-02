@@ -224,3 +224,12 @@ export function filterCompletedBatches(setData, originalData, showOriginal) {
 	const completedBatches = originalData.filter((rowData) => rowData.status === 'COMPLETE');
 	setData(() => completedBatches);
 }
+
+export function filterBatchesByState(setData, originalData, batchState) {
+	if (batchState === 'ALL') {
+		setData(() => JSON.parse(JSON.stringify(originalData)));
+		return;
+	}
+	const filteredBatches = originalData.filter((rowData) => rowData.status === batchState);
+	setData(() => filteredBatches);
+}
