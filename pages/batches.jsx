@@ -259,7 +259,7 @@ export default function Page() {
       type: 'enum',
       availableValues: ['INR', 'USD'],
     }, {
-      name: 'Enrollments',
+      name: 'Enrollment',
       accessor: 'total_students',
     },
 
@@ -404,7 +404,7 @@ export default function Page() {
 
                         <section className={styles.addbatchformsec3}>
 
-                          <label htmlFor='cost' className={styles.addstafflabel}>Total Cost<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='cost' className={styles.addstafflabel}>Unit Cost<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='cost' name='cost' placeholder='If free, input 0.' required /><br /><br />
 
                           <label htmlFor='currency' className={styles.addstafflabel}>Currency<span className={styles.requiredElement}></span>
