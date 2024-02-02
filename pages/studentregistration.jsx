@@ -15,6 +15,12 @@ import { useForm } from "react-hook-form";
 import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
 
+// MUI Datepicker
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 let worldData = require("../utils/countries+states.json");
 var userRole = "STAFF";
 
@@ -364,220 +370,220 @@ export default function Page() {
   return (
     // NextUIProvider BELOW: FOR EDUCATION DROPDOWN
     // <NextUIProvider>
-      <>
-        {contentLoading ?
-          <div className={styles.overlay}>
-            <span className={styles.customLoader}></span>
-          </div>
-          : <></>
-        }
-
-        <div className={styles.mynavbar}>
-          <Navbar user_role={userRole} className={styles.navstudents} tabindex="-1" />
+    <>
+      {contentLoading ?
+        <div className={styles.overlay}>
+          <span className={styles.customLoader}></span>
         </div>
+        : <></>
+      }
 
-        <div className={styles.container}>
-          <Head>
-            <title>
-              student registration-Vision-Aid
-            </title>
+      <div className={styles.mynavbar}>
+        <Navbar user_role={userRole} className={styles.navstudents} tabindex="-1" />
+      </div>
 
-            {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
-            <meta
-              name="format-detection"
-              content="telephone=no, date=no, email=no, address=no"
-            />
-          </Head>
-          <main className={styles.main} suppressHydrationWarning>
-            <div className={styles.title} tabindex="0">
-              <h1>Student Registration</h1>
-            </div>
-            <div className={styles.studregcrsesinfo}>
-              {/* Excel Sharepoint link */}
-              {/* <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a> */}
-              {/* MS HTML conversion from Excel */}
-              <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a>
-            </div>
-            <div>
-              {/* Avoid hydration errors with code below; may not work.
+      <div className={styles.container}>
+        <Head>
+          <title>
+            student registration-Vision-Aid
+          </title>
+
+          {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
+          <meta
+            name="format-detection"
+            content="telephone=no, date=no, email=no, address=no"
+          />
+        </Head>
+        <main className={styles.main} suppressHydrationWarning>
+          <div className={styles.title} tabindex="0">
+            <h1>Student Registration</h1>
+          </div>
+          <div className={styles.studregcrsesinfo}>
+            {/* Excel Sharepoint link */}
+            {/* <a href="https://visionaidus.sharepoint.com/:x:/s/VADocumentLibrary_ExternalUsers/EZXuzdHpaKZGs2oWN_x-zJsBAYgzll9eycWx3SSWjQzwHA?e=1hs447" target="_blank">Courses - Details</a> */}
+            {/* MS HTML conversion from Excel */}
+            <a href="https://visionaid.dreamhosters.com/coursedetails.htm" target="_blank">Courses - Details</a>
+          </div>
+          <div>
+            {/* Avoid hydration errors with code below; may not work.
               <form action='/api/studentapplication' method='post' onSubmit={() => handleSubmit()} suppressHydrationWarning> */}
-              {/* NOTE Re: disabling form autocompletion: use role="presentation" autoComplete="off" for EACH form input. In the code below, they are placed on the same line to underscore they work together. */}
-              <form action='/api/studentapplication' method='post' id='studentRegForm' onSubmit={() => handleSubmit()} autoComplete='off'>
-                <div className={styles.grid}>
-                  {/*------- CARD: TRAINEE -------*/}
-                  <div
-                    className={styles.card}
-                  >
-                    <h2 className={styles.colheading} tabindex="0">
-                      Trainee
-                    </h2>
-                    <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div>
-                    <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
-                      <tbody>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="email">
-                              Email
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              // autoFocus
-                              className={styles.reginput}
-                              id="email"
-                              name="email"
-                              maxLength="50"
-                              type="email"
-                              role="presentation"
-                              autoComplete="off"
-                              required />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="name">
-                              Name
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              id="name"
-                              name="name"
-                              className={styles.reginput}
-                              maxLength="150"
-                              // First entered name must start with an alphabet character and 
-                              // can be followed by any character (dot and spaces included)
-                              pattern="^[a-zA-Z].*[\s\.]*$"
-                              // placeholder="First & last name"
-                              placeholder="As per aadhaar"
-                              type="text"
-                              autoComplete="off"
-                              role="presentation"
-                              required
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="phone_number">
-                              {/* Phone */}
-                              Phone number
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              id="phone_number"
-                              name="phone_number"
-                              // placeholder="10 num only; no dashes"
-                              placeholder="Enter 10 digits only"
-                              type="tel"
-                              pattern="\d{10}"
-                              minLength={10} maxLength={10}
-                              role="presentation" autoComplete="off"
-                              required
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="alt_ph_num">
-                              {/* Phone2 */}
-                              Parent/Guardian phone number
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              id="alt_ph_num"
-                              name="alt_ph_num"
-                              // placeholder="10 num only; no dashes"
-                              placeholder="Enter 10 digits only"
-                              type="tel"
-                              pattern="\d{10}"
-                              minLength={10} maxLength={10}
-                              role="presentation" autoComplete="off"
-                            />
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="country">
-                              Country
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
-                              <option></option>
-                              {countriesOptions}
-                            </select>
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="state">
-                              State
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
-                              <option></option>
-                              {stateOptions}
-                            </select>
-                          </td>
-                        </tr>
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="city">
-                              City
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              className={styles.reginput}
-                              id="city"
-                              maxLength="35"
-                              name="city"
-                              type="text"
-                              role="presentation" autoComplete="off"
-                              required
-                            />
-                          </td>
-                        </tr>
+            {/* NOTE Re: disabling form autocompletion: use role="presentation" autoComplete="off" for EACH form input. In the code below, they are placed on the same line to underscore they work together. */}
+            <form action='/api/studentapplication' method='post' id='studentRegForm' onSubmit={() => handleSubmit()} autoComplete='off'>
+              <div className={styles.grid}>
+                {/*------- CARD: TRAINEE -------*/}
+                <div
+                  className={styles.card}
+                >
+                  <h2 className={styles.colheading} tabindex="0">
+                    Trainee
+                  </h2>
+                  <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div>
+                  <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
+                    <tbody>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="email">
+                            Email
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            // autoFocus
+                            className={styles.reginput}
+                            id="email"
+                            name="email"
+                            maxLength="50"
+                            type="email"
+                            role="presentation"
+                            autoComplete="off"
+                            required />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="name">
+                            Name
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            id="name"
+                            name="name"
+                            className={styles.reginput}
+                            maxLength="150"
+                            // First entered name must start with an alphabet character and 
+                            // can be followed by any character (dot and spaces included)
+                            pattern="^[a-zA-Z].*[\s\.]*$"
+                            // placeholder="First & last name"
+                            placeholder="As per aadhaar"
+                            type="text"
+                            autoComplete="off"
+                            role="presentation"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="phone_number">
+                            {/* Phone */}
+                            Phone number
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="phone_number"
+                            name="phone_number"
+                            // placeholder="10 num only; no dashes"
+                            placeholder="Enter 10 digits only"
+                            type="tel"
+                            pattern="\d{10}"
+                            minLength={10} maxLength={10}
+                            role="presentation" autoComplete="off"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="alt_ph_num">
+                            {/* Phone2 */}
+                            Parent/Guardian phone number
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="alt_ph_num"
+                            name="alt_ph_num"
+                            // placeholder="10 num only; no dashes"
+                            placeholder="Enter 10 digits only"
+                            type="tel"
+                            pattern="\d{10}"
+                            minLength={10} maxLength={10}
+                            role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="country">
+                            Country
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
+                            <option></option>
+                            {countriesOptions}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="state">
+                            State
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
+                            <option></option>
+                            {stateOptions}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="city">
+                            City
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="city"
+                            maxLength="35"
+                            name="city"
+                            type="text"
+                            role="presentation" autoComplete="off"
+                            required
+                          />
+                        </td>
+                      </tr>
 
-                        {/*---------- GENDER DROPDOWN BEGINS -----*/}
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="gender">
-                              Gender
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select
-                              name="gender"
-                              id="gender"
-                              className={styles.txtboxdropdown}
-                              onSelectionChange={setSelectedGender}
-                              role="presentation" autoComplete="off"
-                            >
-                              <optgroup label="Gender">
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                <option value="Other">Other</option>
-                              </optgroup>
-                            </select>
-                          </td>
-                        </tr>
-                        {/*---------- GENDER DROPDOWN ENDS -----*/}
+                      {/*---------- GENDER DROPDOWN BEGINS -----*/}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="gender">
+                            Gender
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select
+                            name="gender"
+                            id="gender"
+                            className={styles.txtboxdropdown}
+                            onSelectionChange={setSelectedGender}
+                            role="presentation" autoComplete="off"
+                          >
+                            <optgroup label="Gender">
+                              <option value="Female">Female</option>
+                              <option value="Male">Male</option>
+                              <option value="Other">Other</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                      </tr>
+                      {/*---------- GENDER DROPDOWN ENDS -----*/}
 
-                        <tr className={styles.regrow}>
+                      {/* <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="age">
                               Date of Birth
@@ -594,226 +600,200 @@ export default function Page() {
                               required
                             />
                           </td>
-                        </tr>
-                        
-                        {/*----- EDU QUALIFICATIONS ROW BEGINS -----*/}
-                        {/* <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="edu_qualifications">
-                              Education (choose or type)
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.eduqualifications}>
-                            {widget}
-                          </td>
                         </tr> */}
-                        {/*----- EDU QUALIFICATIONS ROW ENDS -----*/}
 
-                        {/*--- NEXTUI EDU QUALIFICATIONS ROW BEGINS ---*/}
-                        {/* <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="edu_qualifications">
-                              Education
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.dropdowndiv}>
-                            <Select
-                              aria-label="Education attained"
-                              class="bg-content-content1 bg-white text-left indent-0.4 focus:border-4 focus:border-blue-600 ps-1"
-                              className={styles.edu_qualifications}
-                              name="edu_qualifications"
-                              radius="none"
-                              isRequired
-                              size="sm"
-                            >
-                              {edcredentials.map((credential) => (
-                                <SelectItem key={credential.label} value={credential}>
-                                  {credential.label}
-                                </SelectItem>
-                              ))}
-                            </Select>
-                          </td>
-                        </tr> */}
-                        {/*--- NEXTUI EDU QUALIFICATIONS ROW ENDS ---*/}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="age">
+                            Date of Birth
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            {/* <DemoContainer components={['DatePicker']}> */}
+                              <DatePicker label="Basic date picker" />
+                            {/* </DemoContainer> */}
+                          </LocalizationProvider>
+                        </td>
+                      </tr>
 
-                        {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="edu_qualifications">
-                              Education
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.dropdowndiv}>
-                            <select
-                              aria-label="Education attained"
-                              className={styles.txtboxdropdown}
-                              name="edu_qualifications"
-                              onChange={e => setSelectedEdu(e.target.value)}
-                              radius="none"
-                              required
-                              value={selectedEdu} // Force select's value to match state var
-                            >
-                              <option value="Below 10th standard">Below 10th standard</option>
-                              <option value="10 standard">10 standard</option>
-                              <option value="12 standard">12 standard</option>
-                              <option value="Diploma">Diploma</option>
-                              <option value="ITI">ITI</option>
-                              <option value="Undergraduate">Undergraduate</option>
-                              <option value="Graduate">Graduate</option>
-                              <option value="Post-graduate">Post-graduate</option>
-                              <option value="Professional degree">Professional degree</option>
-                              <option value="Other (specify below)">Other (specify below)</option>
-                            </select>
-                          </td>
-                        </tr>
-                        {/* ORiG EDU QUALIFICATIONS ROW ENDS */}
+                      {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="edu_qualifications">
+                            Education
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.dropdowndiv}>
+                          <select
+                            aria-label="Education attained"
+                            className={styles.txtboxdropdown}
+                            name="edu_qualifications"
+                            onChange={e => setSelectedEdu(e.target.value)}
+                            radius="none"
+                            required
+                            value={selectedEdu} // Force select's value to match state var
+                          >
+                            <option value="Below 10th standard">Below 10th standard</option>
+                            <option value="10 standard">10 standard</option>
+                            <option value="12 standard">12 standard</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="ITI">ITI</option>
+                            <option value="Undergraduate">Undergraduate</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Post-graduate">Post-graduate</option>
+                            <option value="Professional degree">Professional degree</option>
+                            <option value="Other (specify below)">Other (specify below)</option>
+                          </select>
+                        </td>
+                      </tr>
+                      {/* ORiG EDU QUALIFICATIONS ROW ENDS */}
 
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="edu_details">
-                              Education details
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <input
-                              autoComplete="off"
-                              class="bg-content-content1 bg-white focus:border-4 focus:border-blue-600 ps-1"
-                              className={styles.reginput}
-                              id="edu_details"
-                              name="edu_details"
-                              type="text"
-                              role="presentation"
-                            />
-                          </td>
-                        </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="edu_details">
+                            Education details
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            autoComplete="off"
+                            class="bg-content-content1 bg-white focus:border-4 focus:border-blue-600 ps-1"
+                            className={styles.reginput}
+                            id="edu_details"
+                            name="edu_details"
+                            type="text"
+                            role="presentation"
+                          />
+                        </td>
+                      </tr>
 
-                        {/*----- EMPLOYMENT STATUS ROW BEGINS -----*/}
-                        <tr className={styles.regrow}>
-                          <td className={styles.inputlabel}>
-                            <label htmlFor="employment_status">
-                              Job status                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select
-                              name="employment_status"
-                              id="employment_status"
-                              className={styles.txtboxdropdown}
-                              onSelectionChange={setSelectedEmpStatus}
-                              role="presentation" autoComplete="off"
-                            >
-                              <optgroup label="EmpStatus">
-                                <option value="Employed">Employed</option>
-                                <option value="Unemployed">Unemployed</option>
-                                <option value="Student">Student</option>
-                              </optgroup>
-                            </select>
-                          </td>
-                        </tr>
+                      {/*----- EMPLOYMENT STATUS ROW BEGINS -----*/}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="employment_status">
+                            Job status                            </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select
+                            name="employment_status"
+                            id="employment_status"
+                            className={styles.txtboxdropdown}
+                            onSelectionChange={setSelectedEmpStatus}
+                            role="presentation" autoComplete="off"
+                          >
+                            <optgroup label="EmpStatus">
+                              <option value="Employed">Employed</option>
+                              <option value="Unemployed">Unemployed</option>
+                              <option value="Student">Student</option>
+                            </optgroup>
+                          </select>
+                        </td>
+                      </tr>
 
-                      </tbody>
+                    </tbody>
+                  </table>
+                </div>
+                {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
+
+                {/*------------- CARD: COURSES BEGINS -----------*/}
+                <div
+                  className={styles.card}
+                >
+                  <h2 tabindex="0">
+                    Learning
+                  </h2>
+                  {/*-------------- Learning Context -----------*/}
+                  <fieldset className={styles.fdsetlearning}>
+                    <legend style={{ fontWeight: 700 }}>Learning Context</legend>
+                    <table className={styles.tblchoosecourses} role="presentation">
+                      <tr className={styles.regrow}>
+                        <td className={styles.tdlblcrschoice}>
+                          <label htmlFor="objectives">
+                            Goal(s)
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <textarea
+                            className={styles.regtextareagoals}
+                            id="objectives"
+                            maxLength="100"
+                            name="objectives"
+                            onKeyDown={(e) => textAreaHandleEnter(e)}
+                            placeholder="Reasons for seeking training (100-char max)"
+                            width="100%"
+                            role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
                     </table>
-                  </div>
-                  {/*---------- CARD: TRAINEE/TRAINER ENDS --------*/}
+                  </fieldset>
 
-                  {/*------------- CARD: COURSES BEGINS -----------*/}
-                  <div
-                    className={styles.card}
-                  >
-                    <h2 tabindex="0">
-                      Learning
-                    </h2>
-                    {/*-------------- Learning Context -----------*/}
-                    <fieldset className={styles.fdsetlearning}>
-                      <legend style={{ fontWeight: 700 }}>Learning Context</legend>
-                      <table className={styles.tblchoosecourses} role="presentation">
-                        <tr className={styles.regrow}>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="objectives">
-                              Goal(s)
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <textarea
-                              className={styles.regtextareagoals}
-                              id="objectives"
-                              maxLength="100"
-                              name="objectives"
-                              onKeyDown={(e) => textAreaHandleEnter(e)}
-                              placeholder="Reasons for seeking training (100-char max)"
-                              width="100%"
-                              role="presentation" autoComplete="off"
-                            />
-                          </td>
-                        </tr>
-                      </table>
-                    </fieldset>
+                  {/*-------------- Course choices -------------*/}
+                  <fieldset className={styles.fdsetlearning}>
+                    <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
+                    <table className={styles.tblchoosecourses} role="presentation">
 
-                    {/*-------------- Course choices -------------*/}
-                    <fieldset className={styles.fdsetlearning}>
-                      <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
-                      <table className={styles.tblchoosecourses} role="presentation">
+                      {/*----------- 1st choice ----------*/}
+                      <tr>
+                        <td className={styles.tdlblcrschoice}>
+                          <label htmlFor="first_choice">
+                            1st choice
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autoComplete="off" required>
+                            <option></option>
+                            {courseOptions1}
+                            {/* <option selected="selected">Select First Choice</option> */}
+                          </select>
+                        </td>
+                      </tr>
 
-                        {/*----------- 1st choice ----------*/}
-                        <tr>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="first_choice">
-                              1st choice
-                            </label>
-                            <span className={styles.requiredelement}>&#42;</span>
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autoComplete="off" required>
-                              <option></option>
-                              {courseOptions1}
-                              {/* <option selected="selected">Select First Choice</option> */}
-                            </select>
-                          </td>
-                        </tr>
+                      {/*----------- 2nd choice ----------*/}
+                      <tr>
+                        <td className={styles.tdlblcrschoice}>
+                          <label htmlFor="second_choice">
+                            2nd choice
+                          </label>
+                          {/* <span className={styles.requiredelement}>&#42;</span> */}
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
+                            <option></option>
+                            {courseOptions2}
+                            {/* <option selected="selected">Select Second Choice</option> */}
+                          </select>
+                        </td>
+                      </tr>
 
-                        {/*----------- 2nd choice ----------*/}
-                        <tr>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="second_choice">
-                              2nd choice
-                            </label>
-                            {/* <span className={styles.requiredelement}>&#42;</span> */}
-                          </td>
-                          <td className={styles.inputtd}>
-                            <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
-                              <option></option>
-                              {courseOptions2}
-                              {/* <option selected="selected">Select Second Choice</option> */}
-                            </select>
-                          </td>
-                        </tr>
+                      {/*----------- 3rd choice ----------*/}
+                      <tr>
+                        <td className={styles.tdlblcrschoice}>
+                          <label htmlFor="third_choice">
+                            3rd choice
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          {/* Before alert box course summaries */}
+                          {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autoComplete="off" required> */}
 
-                        {/*----------- 3rd choice ----------*/}
-                        <tr>
-                          <td className={styles.tdlblcrschoice}>
-                            <label htmlFor="third_choice">
-                              3rd choice
-                            </label>
-                          </td>
-                          <td className={styles.inputtd}>
-                            {/* Before alert box course summaries */}
-                            {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autoComplete="off" required> */}
+                          <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
+                            <option></option>
+                            {courseOptions3}
+                            {/* <option selected="selected">Select Third Choice</option> */}
+                          </select>
+                        </td>
+                      </tr>
+                    </table>
+                  </fieldset>
 
-                            <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
-                              <option></option>
-                              {courseOptions3}
-                              {/* <option selected="selected">Select Third Choice</option> */}
-                            </select>
-                          </td>
-                        </tr>
-                      </table>
-                    </fieldset>
-
-                    {/*--- Warning re: registering more than one time ---*/}
-                    {/* <fieldset className={styles.fdsetlearning}>
+                  {/*--- Warning re: registering more than one time ---*/}
+                  {/* <fieldset className={styles.fdsetlearning}>
                       <legend style={{ fontWeight: '700', color: 'red' }}>ATTENTION</legend>
                       <table className={styles.tblchoosecourses} role="presentation">
                         <tr className={styles.regrow}>
@@ -825,151 +805,151 @@ export default function Page() {
                         </tr>
                       </table>
                     </fieldset> */}
-                  </div>
-                  {/*------------- CARD: COURSES ENDS ------------*/}
+                </div>
+                {/*------------- CARD: COURSES ENDS ------------*/}
 
-                  {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
-                  <div className={styles.card}>
-                    <h2  tabindex="0">
-                      Miscellaneous
-                    </h2>
-                    <table className={styles.tblmisc} role="presentation">
-                      <tr className={styles.regrow}>
-                        <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
-                          <label htmlFor="visual_acuity">
-                            Visual acuity
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
+                {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
+                <div className={styles.card}>
+                  <h2 tabindex="0">
+                    Miscellaneous
+                  </h2>
+                  <table className={styles.tblmisc} role="presentation">
+                    <tr className={styles.regrow}>
+                      <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
+                        <label htmlFor="visual_acuity">
+                          Visual acuity
+                        </label>
+                        <span className={styles.requiredelement}>&#42;</span>
+                      </td>
 
-                        {/*-------------- VISION DROPDOWN BEGINS ------------*/}
-                        <td className={styles.inputtd}>
-                          <select
-                            onFocus={() => checkDropdown()}
-                            name="visual_acuity"
-                            id="visual_acuity"
-                            className={styles.txtboxdropdown}
-                            onSelectionChange={setSelectedVision}
-                            role="presentation" autoComplete="off"
-                            required
-                          >
-                            <option value="LowVision">Low Vision</option>
-                            <option value="Blind">Blind</option>
-                          </select>
-                        </td>
-                        {/*--------------- VISION DROPDOWN ENDS ---------------*/}
-                      </tr>
+                      {/*-------------- VISION DROPDOWN BEGINS ------------*/}
+                      <td className={styles.inputtd}>
+                        <select
+                          onFocus={() => checkDropdown()}
+                          name="visual_acuity"
+                          id="visual_acuity"
+                          className={styles.txtboxdropdown}
+                          onSelectionChange={setSelectedVision}
+                          role="presentation" autoComplete="off"
+                          required
+                        >
+                          <option value="LowVision">Low Vision</option>
+                          <option value="Blind">Blind</option>
+                        </select>
+                      </td>
+                      {/*--------------- VISION DROPDOWN ENDS ---------------*/}
+                    </tr>
 
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="percent_loss">
-                            Percentage of vision loss
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            onFocus={() => checkDropdown()}
-                            className={styles.reginput}
-                            id="percent_loss"
-                            min={0}
-                            max={100}
-                            name="percent_loss"
-                            placeholder="0-100"
-                            type="number"
-                            role="presentation" autoComplete="off"
-                            required
-                          />
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="impairment_history">
-                            Vision impairment history (brief; feel free to leave it empty)
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <textarea
-                            name="impairment_history"
-                            id="impairment_history"
-                            maxLength={200}
-                            placeholder='200-char max'
-                            className={styles.regtextareaimpair}
-                            rows="10"
-                            cols="20"
-                            type="text"
-                            onKeyDown={(e) => textAreaHandleEnter(e)}
-                            role="presentation" autoComplete="off">
-                          </textarea>
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="source">
-                            How you found us
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="source"
-                            maxLength={50}
-                            name="source"
-                            placeholder="E.g., internet, 50-char. max."
-                            ref={refSource}
-                            type="textbox"
-                            role="presentation" autoComplete="off"
-                          />
-                        </td>
-                      </tr>
-                    </table>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        <label htmlFor="percent_loss">
+                          Percentage of vision loss
+                        </label>
+                        <span className={styles.requiredelement}>&#42;</span>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <input
+                          onFocus={() => checkDropdown()}
+                          className={styles.reginput}
+                          id="percent_loss"
+                          min={0}
+                          max={100}
+                          name="percent_loss"
+                          placeholder="0-100"
+                          type="number"
+                          role="presentation" autoComplete="off"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        <label htmlFor="impairment_history">
+                          Vision impairment history (brief; feel free to leave it empty)
+                        </label>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <textarea
+                          name="impairment_history"
+                          id="impairment_history"
+                          maxLength={200}
+                          placeholder='200-char max'
+                          className={styles.regtextareaimpair}
+                          rows="10"
+                          cols="20"
+                          type="text"
+                          onKeyDown={(e) => textAreaHandleEnter(e)}
+                          role="presentation" autoComplete="off">
+                        </textarea>
+                      </td>
+                    </tr>
+                    <tr className={styles.regrow}>
+                      <td className={styles.inputlabel}>
+                        <label htmlFor="source">
+                          How you found us
+                        </label>
+                      </td>
+                      <td className={styles.inputtd}>
+                        <input
+                          className={styles.reginput}
+                          id="source"
+                          maxLength={50}
+                          name="source"
+                          placeholder="E.g., internet, 50-char. max."
+                          ref={refSource}
+                          type="textbox"
+                          role="presentation" autoComplete="off"
+                        />
+                      </td>
+                    </tr>
+                  </table>
 
-                    {/* RESET AND SUBMIT BUTTONS 
+                  {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
-                    <div className={styles.frmbtnblocksubres}>
-                      <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
-                      <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
-                    </div>
+                  <div className={styles.frmbtnblocksubres}>
+                    <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
+                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                   </div>
-                  {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
+                </div>
+                {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
 
-                </div>  {/* GRID LAYOUT ENDS */}
-              </form>
-            </div>
-          </main>
+              </div>  {/* GRID LAYOUT ENDS */}
+            </form>
+          </div>
+        </main>
 
-          <footer className={styles.footernewreg}>
-            <Link
-              href='privacypolicy.html'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Privacy
-            </Link>&nbsp;|&nbsp;
-            <Link
-              href='termsofservice.html'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Terms
-            </Link>&nbsp;|&nbsp;
-            <a
-              href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <span className={styles.logo}>
-                Powered by{" "}
-                <Image src='/vercel.svg'
-                  alt='Vercel Logo'
-                  width={72}
-                  height={16} />
-              </span>
-            </a>
-          </footer>
+        <footer className={styles.footernewreg}>
+          <Link
+            href='privacypolicy.html'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Privacy
+          </Link>&nbsp;|&nbsp;
+          <Link
+            href='termsofservice.html'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Terms
+          </Link>&nbsp;|&nbsp;
+          <a
+            href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <span className={styles.logo}>
+              Powered by{" "}
+              <Image src='/vercel.svg'
+                alt='Vercel Logo'
+                width={72}
+                height={16} />
+            </span>
+          </a>
+        </footer>
 
-        </div>    {/* Container closing tag */}
-      </>
+      </div>    {/* Container closing tag */}
+    </>
     // </NextUIProvider>
   );
 }
