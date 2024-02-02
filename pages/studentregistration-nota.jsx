@@ -373,13 +373,13 @@ export default function Page() {
         }
 
         <div className={styles.mynavbar}>
-          <Navbar user_role={userRole} className={styles.navstudents} tabindex="-1" />
+          <Navbar user_role={userRole} className={styles.navstudents} />
         </div>
 
         <div className={styles.container}>
           <Head>
             <title>
-              student registration-Vision-Aid
+              Student Registration
             </title>
 
             {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
@@ -389,7 +389,7 @@ export default function Page() {
             />
           </Head>
           <main className={styles.main} suppressHydrationWarning>
-            <div className={styles.title} tabindex="0">
+            <div className={styles.title}>
               <h1>Student Registration</h1>
             </div>
             <div className={styles.studregcrsesinfo}>
@@ -408,10 +408,9 @@ export default function Page() {
                   <div
                     className={styles.card}
                   >
-                    <h2 className={styles.colheading} tabindex="0">
+                    <h2>
                       Trainee
                     </h2>
-                    <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div>
                     <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                       <tbody>
                         <tr className={styles.regrow}>
@@ -463,7 +462,7 @@ export default function Page() {
                           <td className={styles.inputlabel}>
                             <label htmlFor="phone_number">
                               {/* Phone */}
-                              Phone number
+                              Mobile phone
                             </label>
                             <span className={styles.requiredelement}>&#42;</span>
                           </td>
@@ -486,7 +485,7 @@ export default function Page() {
                           <td className={styles.inputlabel}>
                             <label htmlFor="alt_ph_num">
                               {/* Phone2 */}
-                              Parent/Guardian phone number
+                              Parent/Guardian ph
                             </label>
                           </td>
                           <td className={styles.inputtd}>
@@ -723,7 +722,7 @@ export default function Page() {
                   <div
                     className={styles.card}
                   >
-                    <h2 tabindex="0">
+                    <h2>
                       Learning
                     </h2>
                     {/*-------------- Learning Context -----------*/}
@@ -830,7 +829,7 @@ export default function Page() {
 
                   {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
                   <div className={styles.card}>
-                    <h2  tabindex="0">
+                    <h2>
                       Miscellaneous
                     </h2>
                     <table className={styles.tblmisc} role="presentation">
