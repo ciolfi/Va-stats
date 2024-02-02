@@ -63,7 +63,7 @@
 /* Search box with placeholder text */
 .tableSearch {
   border: 2px solid black;
-  margin-left: 1em;
+  margin-left: 0.5em;
   font-size: 1rem;
   font-weight: 700;
 }

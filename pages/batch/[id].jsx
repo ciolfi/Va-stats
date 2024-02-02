@@ -68,6 +68,7 @@ export default function Page() {
   const [selectedStudent, setSelectedStudent] = useState("");
 
   const [unassignedStudents, setUnassignedStudents] = useState([]);
+  const [toggleUnassignedStudents, setToggleUnassignedStudents] = useState(true);
   const origUnassignedStudents = useRef([]);
 
   const [showAttendance, setShowAttendance] = useState(true); /* Default active tab is Attendance */
@@ -227,7 +228,7 @@ export default function Page() {
     data.students.forEach((student) => {
       const record = getStudentRecordByName(studentRes.students, student.name);
       const course = getCourseNameById(batchesRes.batches, batchId);
-      if ([record.first_choice, record.second_choice, record.third_choice].includes(course)) {
+      if (!toggleUnassignedStudents || [record.first_choice, record.second_choice, record.third_choice].includes(course)) {
         student = {
           ...student,
           first_choice: record.first_choice,
@@ -240,6 +241,11 @@ export default function Page() {
     setUnassignedStudents(studentList);
     origUnassignedStudents.current = studentList;
     setContentLoading(false);
+  };
+
+  const handleToggleUnassignedStudents = () => {
+    setToggleUnassignedStudents(!toggleUnassignedStudents);
+    // fetchUnassignedStudents(id);
   };
 
   /* ---------------------------------- API SECTION -----------------------------------*/
@@ -289,7 +295,7 @@ export default function Page() {
 
   useEffect(() => {
     fetchUnassignedStudents(id);
-  }, [id]);
+  }, [id, toggleUnassignedStudents]);
 
   useEffect(() => {
     //console.log("Current unassigned students state: ", unassignedStudents);
@@ -859,7 +865,10 @@ export default function Page() {
                         }}
                         placeholder={`Search in Student list`}
                         autoFocus={true}
-                      ></input>
+                      ></input>&nbsp;
+                      <button title={'Toggle unassigned student list'} className={styles.batchManagementButton} onClick={() => {handleToggleUnassignedStudents();}} >
+                        {toggleUnassignedStudents?"Show all students":"Show interested students"}
+                      </button>
                     </div>
                     <table className={tableStyles.genericTable} cellPadding="0" cellSpacing="0" height="400px">
                       <thead>
