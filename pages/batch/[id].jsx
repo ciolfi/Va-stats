@@ -754,7 +754,7 @@ export default function Page() {
       type: 'enum',
       availableValues: ['Formative', 'Post'],
     }, {
-      name: 'Weight',
+      name: '% Weight',
       accessor: 'assignment_weight',
     },
   ];
