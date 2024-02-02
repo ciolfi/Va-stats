@@ -583,7 +583,7 @@ export default function Page() {
                       </tr>
                       {/*---------- GENDER DROPDOWN ENDS -----*/}
 
-                      {/* <tr className={styles.regrow}>
+                      <tr className={styles.regrow}>
                           <td className={styles.inputlabel}>
                             <label htmlFor="age">
                               Date of Birth
@@ -600,9 +600,9 @@ export default function Page() {
                               required
                             />
                           </td>
-                        </tr> */}
+                        </tr>
 
-                      <tr className={styles.regrow}>
+                      {/* <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="age">
                             Date of Birth
@@ -611,12 +611,13 @@ export default function Page() {
                         </td>
                         <td className={styles.inputtd}>
                           <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            {/* <DemoContainer components={['DatePicker']}> */}
-                              <DatePicker label="Basic date picker" />
-                            {/* </DemoContainer> */}
+                            <DatePicker
+                              disableFuture
+                              className="myDatePicker"
+                            />
                           </LocalizationProvider>
                         </td>
-                      </tr>
+                      </tr> */}
 
                       {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
                       <tr className={styles.regrow}>
@@ -810,7 +811,7 @@ export default function Page() {
 
                 {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
                 <div className={styles.card}>
-                  <h2 tabindex="0">
+                  <h2 tabIndex="0">
                     Miscellaneous
                   </h2>
                   <table className={styles.tblmisc} role="presentation">
