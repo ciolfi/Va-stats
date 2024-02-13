@@ -11,6 +11,10 @@ export default async function handler(req, res) {
     const body = req.body;
     // const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
     const currentDate = new Date();
+
+    // TRY MUI
+    // const age = new Date.parse(age);
+
     const data = await executeQuery({
       /*----- COLS: 21 NOT including: id -----*/
       query: "INSERT INTO vastudents (email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, edu_details, employment_status, objectives, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",

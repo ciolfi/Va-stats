@@ -35,13 +35,24 @@
 } */
 /*--- STUDENTREGISTRATION.JSX: EDUCATION DROPDOWN ENDS (NEXTUI) ---*/
 
+.myDatePicker ::placeholder{
+  color: black;
+  font-size: small;
+  font-weight: 600;
+  opacity: 1;
+}
+
 /* Student Registration page: date picker */
 .myDatePicker fieldset.MuiOutlinedInput-notchedOutline {
   border: 2px solid black;
 }
 .myDatePicker .Mui-focused fieldset.MuiOutlinedInput-notchedOutline {
-  border-color: blue;
-  outline-width: 4px;
+  /* border-color: blue; */
+  /* outline-width: 5px; */
+  border: 3px solid blue;
+  /* font-size:xx-small; */
+  font-weight: 500;
+  opacity: 1;
 }
 
 /* MODAL FOR STUDENT REGISTRATION CONFIRMATION */
