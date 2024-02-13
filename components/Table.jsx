@@ -1,7 +1,7 @@
 /* THIS PAGE: Handles the code for all tables in the app. */
 'use client';
 import styles from '../styles/Table.module.css';
-import { searchTableData, generateTableRow, sortTable, filterCompletedBatches } from '@/utils/tableHelper';
+import { searchTableData, generateTableRow, sortTable, filterBatchesByState } from '@/utils/tableHelper';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Button from './Button';
@@ -79,9 +79,9 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		setEditedBatch(null);
 	}
 
-	function onShowCompletedBatchesClick() {
-		filterCompletedBatches(setData, orig.current, showOriginal);
-		setShowOriginal((prev) => !prev);
+	function onFilterBatchesByState(event) {
+		const {name, value} = event.target;
+		filterBatchesByState(setData, orig.current, value);
 	}
 
 	useEffect(() => {
@@ -93,7 +93,6 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		<div className={styles.tableWrapper}>
 			<div className={styles.genericTableHeader}>
 				<h2>{Title}</h2>
-				{FilterButton ? <Button onClick={() => onShowCompletedBatchesClick()} text={showCompletedBatchesText} isLight={false}/> : <></>}
 				<input
 					id="table-search"
 					className={styles.tableSearch}
@@ -107,8 +106,18 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					}}
 					placeholder={`Search in ${Title}`}
 					autoFocus={true}
-				></input>
-			</div>			
+				></input>&nbsp;
+				{FilterButton ?
+				<label for="batch-filter">Filter batches:
+					<select id="batch-filter" type='text' className={inputClassName} onChange={(e) => onFilterBatchesByState(e)}>
+						<option value='ALL' defaultValue='ALL'>ALL</option>
+						<option value='UNSTARTED'>UNSTARTED</option>
+						<option value='ONGOING'>ONGOING</option>
+						<option value='COMPLETED'>COMPLETE</option>
+					</select>
+				</label>
+				:<></>}
+			</div>
 			{Title === "Student Documents and Fees" ?
 			<>
 			<p className={styles.batchTextTotalStudents}>
