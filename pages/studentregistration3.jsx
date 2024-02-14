@@ -438,9 +438,26 @@ export default function Page() {
                   <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div>
                   <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                     <tbody>
-
-                      
-
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="email">
+                            Email
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            // autoFocus
+                            className={styles.reginput}
+                            id="email"
+                            name="email"
+                            maxLength="50"
+                            type="email"
+                            role="presentation"
+                            autoComplete="off"
+                            required />
+                        </td>
+                      </tr>
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="name">
@@ -462,6 +479,97 @@ export default function Page() {
                             type="text"
                             autoComplete="off"
                             role="presentation"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="phone_number">
+                            {/* Phone */}
+                            Phone number
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="phone_number"
+                            name="phone_number"
+                            // placeholder="10 num only; no dashes"
+                            placeholder="Enter 10 digits only"
+                            type="tel"
+                            pattern="\d{10}"
+                            minLength={10} maxLength={10}
+                            role="presentation" autoComplete="off"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="alt_ph_num">
+                            {/* Phone2 */}
+                            Parent/Guardian phone number
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="alt_ph_num"
+                            name="alt_ph_num"
+                            // placeholder="10 num only; no dashes"
+                            placeholder="Enter 10 digits only"
+                            type="tel"
+                            pattern="\d{10}"
+                            minLength={10} maxLength={10}
+                            role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="country">
+                            Country
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
+                            <option></option>
+                            {countriesOptions}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="state">
+                            State
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
+                            <option></option>
+                            {stateOptions}
+                          </select>
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="city">
+                            City
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="city"
+                            maxLength="35"
+                            name="city"
+                            type="text"
+                            role="presentation" autoComplete="off"
                             required
                           />
                         </td>
@@ -493,7 +601,25 @@ export default function Page() {
                       </tr>
                       {/*---------- GENDER DROPDOWN ENDS -----*/}
 
-                      {/*---------- DATE OF BIRTH BEGINS -----*/}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="age">
+                            Date of Birth
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            type="date"
+                            id="age"
+                            name="age"
+                            className={styles.reginput}
+                            role="presentation" autoComplete="off"
+                            required
+                          />
+                        </td>
+                      </tr>
+
                       {/* <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="age">
@@ -515,154 +641,6 @@ export default function Page() {
                           </LocalizationProvider>
                         </td>
                       </tr> */}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="age">
-                            Date of Birth
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            type="date"
-                            id="age"
-                            name="age"
-                            className={styles.reginput}
-                            role="presentation" autoComplete="off"
-                            required
-                          />
-                        </td>
-                      </tr>
-                      {/*---------- DATE OF BIRTH ENDS -----*/}
-
-                      {/*------------- EMAIL BEGINS --------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="email">
-                            Email
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            // autoFocus
-                            className={styles.reginput}
-                            id="email"
-                            name="email"
-                            maxLength="50"
-                            type="email"
-                            role="presentation"
-                            autoComplete="off"
-                            required />
-                        </td>
-                      </tr>
-                      {/*------------ EMAIL ENDS ---------*/}
-
-                      {/*---------- PHONE BEGINS ---------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          {/* Changed from 'Phone' per stakeholder */}
-                          <label htmlFor="phone_number">               
-                            Phone number
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="phone_number"
-                            name="phone_number"
-                            // placeholder="10 num only; no dashes"
-                            placeholder="Enter 10 digits only"
-                            type="tel"
-                            pattern="\d{10}"
-                            minLength={10} maxLength={10}
-                            role="presentation" autoComplete="off"
-                            required
-                          />
-                        </td>
-                      </tr>
-                      {/*---------- PHONE ENDS ---------*/}
-                      
-                      {/*------- PARENT/GUARDIAN PH # BEGINS -------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="alt_ph_num">
-                            {/* Changed from Phone2 per stakeholder */}
-                            Parent/Guardian phone number
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="alt_ph_num"
-                            name="alt_ph_num"
-                            // placeholder="10 num only; no dashes"
-                            placeholder="Enter 10 digits only"
-                            type="tel"
-                            pattern="\d{10}"
-                            minLength={10} maxLength={10}
-                            role="presentation" autoComplete="off"
-                          />
-                        </td>
-                      </tr>
-                      {/*------- PARENT/GUARDIAN PH # ENDS -------*/}
-
-                      {/*------------ COUNTRY BEGINS -------------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="country">
-                            Country
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
-                            <option></option>
-                            {countriesOptions}
-                          </select>
-                        </td>
-                      </tr>
-                      {/*------------ COUNTRY ENDS -------------*/}
-
-                      {/*------------- STATE BEGINS ------------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="state">
-                            State
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
-                            <option></option>
-                            {stateOptions}
-                          </select>
-                        </td>
-                      </tr>
-                      {/*------------- STATE ENDS ------------*/}
-
-                      {/*------------- CITY BEGINS -----------*/}
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="city">
-                            City
-                          </label>
-                          <span className={styles.requiredelement}>&#42;</span>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="city"
-                            maxLength="35"
-                            name="city"
-                            type="text"
-                            role="presentation" autoComplete="off"
-                            required
-                          />
-                        </td>
-                      </tr>
-                      {/*------------- CITY ENDS -----------*/}
 
                       {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
                       <tr className={styles.regrow}>
@@ -697,7 +675,6 @@ export default function Page() {
                       </tr>
                       {/* ORiG EDU QUALIFICATIONS ROW ENDS */}
 
-                      {/*---- EDUCATION DETAILS BEGINS ----*/}
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="edu_details">
@@ -716,9 +693,8 @@ export default function Page() {
                           />
                         </td>
                       </tr>
-                      {/*---- EDUCATION DETAILS ENDS ----*/}
 
-                      {/*------- JOB STATUS BEGINS ------*/}
+                      {/*----- EMPLOYMENT STATUS ROW BEGINS -----*/}
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="employment_status">
@@ -741,7 +717,6 @@ export default function Page() {
                           </select>
                         </td>
                       </tr>
-                      {/*------- JOB STATUS ENDS ------*/}
 
                     </tbody>
                   </table>
