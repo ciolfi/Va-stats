@@ -296,6 +296,9 @@ export default function Page() {
   // DISABILITY DROPDOWN
   const [selectedDisability, setSelectedDisability] = useState('');
   console.log("Disability: "+selectedDisability);
+  if ((selectedDisability == 'Other disability')||(selectedDisability == 'Non-disabled')){
+    alert('Sorry, you are not eligible to apply.');
+  }
 
   // EDUCATION DROPDOWN
   const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
