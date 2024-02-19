@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   // Cols: 21, including ID
   try {
-    const query = "SELECT id, email, name, phone_number, alt_ph_num, city, state, country, gender, age, edu_qualifications, edu_details, employment_status, objectives, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date FROM vastudents";
+    const query = "SELECT id, name, gender, age, email, phone_number, alt_ph_num, country, state, city, disability, edu_qualifications, edu_details, employment_status, objectives, first_choice, second_choice, third_choice, visual_acuity, percent_loss, impairment_history, source, registration_date FROM vastudents";
 
     const values = [];
     const [data] = await dbconnection.execute(query, values);

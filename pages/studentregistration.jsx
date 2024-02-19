@@ -1,4 +1,10 @@
 "use client";
+// NOTE: IF FORM FIELDS ARE EDITED, YOU MUST ALSO EDIT:
+// /pages/students.jsx (1 sec.), 
+// /pages/api/studentapplication.js (2 secs.), 
+// /pages/api/getstudentsdata.js (1 sec.)
+// DreamHost CSV files: csvfunctions.php (3 secs.), students.php (1 sec.)
+
 // Education inputs (dropdown, textbox)
 // import { NextUIProvider, Select, SelectItem } from "@nextui-org/react";
 import { edcredentials } from "../components/data";
@@ -277,6 +283,8 @@ export default function Page() {
     updateCountriesOptions();
   }, []);
 
+
+
   /*-------------------- GENDER DROPDOWN -------------------*/
   // GENDER
   const [selectedGender, setSelectedGender] = React.useState(new Set(["Female"]));
@@ -285,37 +293,11 @@ export default function Page() {
     [selectedGender]
   );
 
-  /*-------------- EDUCATION DROPDOWN BEGINS --------------*/
-  // let widget = (
-  //   <DropdownList
-  //     autoComplete="off"
-  //     className={styles.txtboxdropdown}
-  //     dropUp
-  //     data={[
-  //       "Below 10th standard",
-  //       "10 standard",
-  //       "12 standard",
-  //       "Diploma",
-  //       "ITI",
-  //       "Undergraduate",
-  //       "Graduate",
-  //       "Post-graduate",
-  //       "Professional degree",
-  //       "Other (also 'Ed. Details')"
-  //     ]}
-  //     id="edu_qualifications"
-  //     filter='false'
-  //     height="0.5em"
-  //     maxLength="80"
-  //     name="edu_qualifications"
-  //     placeholder="Highest level: 80-char max"
-  //     role="presentation"
-  //     required
-  //   />
-  // );
-  /*-------------- EDUCATION DROPDOWN ENDS --------------*/
+  // DISABILITY DROPDOWN
+  const [selectedDisability, setSelectedDisability] = useState('');
+  console.log("Disability: "+selectedDisability);
 
-  // ORIG EDU DROPDOWN
+  // EDUCATION DROPDOWN
   const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
 
   // EMPLOYMENT STATUS
@@ -439,8 +421,7 @@ export default function Page() {
                   <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                     <tbody>
 
-                      
-
+                      {/*--------------- NAME BEGINS -----------*/}
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="name">
@@ -466,6 +447,7 @@ export default function Page() {
                           />
                         </td>
                       </tr>
+                      {/*--------------- NAME ENDS -------------*/}
 
                       {/*---------- GENDER DROPDOWN BEGINS -----*/}
                       <tr className={styles.regrow}>
@@ -518,7 +500,7 @@ export default function Page() {
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="age">
-                            Date of Birth
+                            Date of birth
                           </label>
                           <span className={styles.requiredelement}>&#42;</span>
                         </td>
@@ -562,7 +544,7 @@ export default function Page() {
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           {/* Changed from 'Phone' per stakeholder */}
-                          <label htmlFor="phone_number">               
+                          <label htmlFor="phone_number">
                             Phone number
                           </label>
                           <span className={styles.requiredelement}>&#42;</span>
@@ -582,14 +564,14 @@ export default function Page() {
                           />
                         </td>
                       </tr>
-                      {/*---------- PHONE ENDS ---------*/}
-                      
-                      {/*------- PARENT/GUARDIAN PH # BEGINS -------*/}
+                      {/*------------- PHONE ENDS -------------*/}
+
+                      {/*----- PARENT/GUARDIAN PH # BEGINS ----*/}
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="alt_ph_num">
                             {/* Changed from Phone2 per stakeholder */}
-                            Parent/Guardian phone number
+                            Parent/guardian phone number
                           </label>
                         </td>
                         <td className={styles.inputtd}>
@@ -597,7 +579,6 @@ export default function Page() {
                             className={styles.reginput}
                             id="alt_ph_num"
                             name="alt_ph_num"
-                            // placeholder="10 num only; no dashes"
                             placeholder="Enter 10 digits only"
                             type="tel"
                             pattern="\d{10}"
@@ -617,7 +598,15 @@ export default function Page() {
                           <span className={styles.requiredelement}>&#42;</span>
                         </td>
                         <td className={styles.inputtd}>
-                          <select name="country" id="country" className={styles.reginput} onChange={(e) => updateStateOptions(e)} role="presentation" autoComplete="off" required>
+                          <select
+                            autoComplete="off"
+                            className={styles.reginput}
+                            id="country"
+                            name="country"
+                            onChange={(e) => updateStateOptions(e)}
+                            required
+                            role="presentation"
+                          >
                             <option></option>
                             {countriesOptions}
                           </select>
@@ -634,7 +623,14 @@ export default function Page() {
                           <span className={styles.requiredelement}>&#42;</span>
                         </td>
                         <td className={styles.inputtd}>
-                          <select name="state" id="state" className={styles.reginput} role="presentation" autoComplete="off" required>
+                          <select
+                            autoComplete="off"
+                            className={styles.reginput}
+                            id="state"
+                            name="state"
+                            required
+                            role="presentation"
+                          >
                             <option></option>
                             {stateOptions}
                           </select>
@@ -652,19 +648,48 @@ export default function Page() {
                         </td>
                         <td className={styles.inputtd}>
                           <input
+                            autoComplete="off"
                             className={styles.reginput}
                             id="city"
                             maxLength="35"
                             name="city"
-                            type="text"
-                            role="presentation" autoComplete="off"
+                            role="presentation"
                             required
+                            type="text"
                           />
                         </td>
                       </tr>
                       {/*------------- CITY ENDS -----------*/}
 
-                      {/* ORiG EDU QUALIFICATIONS ROW BEGINS */}
+                      {/*--- NATURE OF DISABILITY BEGINS ---*/}
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="disability">
+                            Nature of disability
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.dropdowndiv}>
+                          <select
+                            aria-label="Nature of disability"
+                            className={styles.txtboxdropdown}
+                            name="disability"
+                            onChange={e => setSelectedDisability(e.target.value)}
+                            // onSelectionChange={setSelectedDisability}
+                            radius="none"
+                            required
+                            value={selectedDisability} // Force select's value to match state var
+                          >
+                            <option value="Visually impaired">Visually impaired</option>
+                            <option value="VI with other disability">VI with other disability</option>
+                            <option value="Other disability">Other disability</option>
+                            <option value="Non-disabled">Non-disabled</option>
+                          </select>
+                        </td>
+                      </tr>
+                      {/*---- NATURE OF DISABILITY ENDS ----*/}
+
+                      {/*---------- EDUCATION BEGINS -------*/}
                       <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="edu_qualifications">
@@ -695,7 +720,7 @@ export default function Page() {
                           </select>
                         </td>
                       </tr>
-                      {/* ORiG EDU QUALIFICATIONS ROW ENDS */}
+                      {/*---------- EDUCATION ENDS --------*/}
 
                       {/*---- EDUCATION DETAILS BEGINS ----*/}
                       <tr className={styles.regrow}>
@@ -727,11 +752,12 @@ export default function Page() {
                         </td>
                         <td className={styles.inputtd}>
                           <select
-                            name="employment_status"
-                            id="employment_status"
+                            autoComplete="off"
                             className={styles.txtboxdropdown}
+                            id="employment_status"
+                            name="employment_status"
                             onSelectionChange={setSelectedEmpStatus}
-                            role="presentation" autoComplete="off"
+                            role="presentation"
                           >
                             <optgroup label="EmpStatus">
                               <option value="Employed">Employed</option>
