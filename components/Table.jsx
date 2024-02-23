@@ -113,7 +113,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 						<option value='ALL' defaultValue='ALL'>ALL</option>
 						<option value='UNSTARTED'>UNSTARTED</option>
 						<option value='ONGOING'>ONGOING</option>
-						<option value='COMPLETED'>COMPLETE</option>
+						<option value='COMPLETE'>COMPLETE</option>
 					</select>
 				</label>
 				:<></>}
