@@ -119,7 +119,7 @@ export default function Page() {
         </div>
       );
     } else {
-        if (userResponse.role === "MANAGEMENT" || userResponse.role === "PM") {
+        if (userResponse.role === "ADMINISTRATOR" || userResponse.role === "MANAGEMENT") {
           return (
           <>
             <div className={styles.mynavbar}>

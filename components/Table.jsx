@@ -136,7 +136,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 							Students
 						</th> */}
 						{/* {isDelete || isEditable? <th width={'6%'}>Actions</th> : <></>} */}
-						{true?
+						{isDelete || isEditable?
 						<th className={`${styles.actionscolheading} ${actionClass}`} style={actionLeftOverride}>
 							Actions
 						</th> : <></>}
@@ -177,7 +177,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 					{sortedData().map((rowData, index) => {
 						return (
 							<tr key={index}>
-								{true ?
+								{isDelete || isEditable ?
 									<td className={styles.stickyColTd} key={rowData.accessor} style={actionLeftOverride}>
 										{editId === rowData.id ? 
 											<>
