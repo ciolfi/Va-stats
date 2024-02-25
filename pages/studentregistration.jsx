@@ -420,7 +420,7 @@ return (
                 className={styles.card}
               >
                 <h2 className={styles.colheading} tabindex="0">
-                  Trainee
+                  Personal Information
                 </h2>
                 <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div>
                 <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
