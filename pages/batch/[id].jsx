@@ -359,11 +359,15 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const addAssignment = async (batch_id) => {
-    document.querySelector('form').reportValidity();
+    if (!document.querySelector('form').reportValidity()){
+      return;
+    }
+    const currentAssessments = assessmentsData.map((assessment) => assessment.id);
     const assignment_name = document.getElementById('assignment_name').value;
     const assignment_type = document.getElementById('formative').checked ? "Formative" : "Post";
     const assignment_weight = document.getElementById('assignment_weight').value;
-    if (assignment_name === "" || assignment_weight === "") {
+    if (currentAssessments.includes(assignment_name)) {
+      alert("Assessment already exists, please use a different name");
       return;
     }
     setContentLoading(true);

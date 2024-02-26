@@ -17,15 +17,15 @@ export default async function handler(req, res) {
         });
     }
 
-    // res.status(200).json({ success: true });
+    res.status(200).json({ success: true });
   } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "An error occurred" });
   }
 
-  res.writeHead(301, {
-    Location: '/batch/'+body.batch_id,
-  });
+  // res.writeHead(301, {
+  //   Location: '/batch/'+body.batch_id,
+  // });
 
-  res.end();
+  // res.end();
 }
