@@ -789,12 +789,14 @@ export default function Page() {
                 <div
                   className={styles.card}
                 >
-                  <h2 tabindex="0">
+                  {/* <h2 tabindex="0">
                     Learning
-                  </h2>
+                  </h2> */}
                   {/*-------------- Learning Context -----------*/}
-                  <fieldset className={styles.fdsetlearning}>
-                    <legend style={{ fontWeight: 700 }}>Learning Context</legend>
+                  {/* <fieldset className={styles.fdsetlearning}> */}
+                  <fieldset className={styles.sregfieldsetlearn}>
+                    {/* <legend style={{ fontWeight: 700 }}>Learning Context</legend> */}
+                    <legend className={styles.sregfslegend}>Learning Context</legend>
                     <table className={styles.tblchoosecourses} role="presentation">
                       <tr className={styles.regrow}>
                         <td className={styles.tdlblcrschoice}>
@@ -819,8 +821,8 @@ export default function Page() {
                   </fieldset>
 
                   {/*-------------- Course choices -------------*/}
-                  <fieldset className={styles.fdsetlearning}>
-                    <legend style={{ fontWeight: 700 }}>Course Priorities</legend>
+                  <fieldset className={styles.sregfieldsetcourses}>
+                    <legend className={styles.sregfslegend}>Course Priorities</legend>
                     <table className={styles.tblchoosecourses} role="presentation">
 
                       {/*----------- 1st choice ----------*/}
@@ -894,105 +896,105 @@ export default function Page() {
                 </div>
                 {/*------------- CARD: COURSES ENDS ------------*/}
 
-                {/*------------- CARD: MISCELLANEOUS BEGINS ----------*/}
+                {/*------------- CARD: MEDICAL BEGINS ----------*/}
                 <div className={styles.card}>
-                  <h2 tabIndex="0">
-                    Miscellaneous
-                  </h2>
                   <table className={styles.tblmisc} role="presentation">
-                    <tr className={styles.regrow}>
-                      <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
-                        <label htmlFor="visual_acuity">
-                          Visual acuity
-                        </label>
-                        <span className={styles.requiredelement}>&#42;</span>
-                      </td>
+                    <fieldset className={styles.sregfieldsetmedical}>
+                      <legend className={styles.sregfslegendmedical}>Medical</legend>
+                      <tr className={styles.regrow}>
+                        <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
+                          <label htmlFor="visual_acuity">
+                            Visual acuity
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
 
-                      {/*-------------- VISION DROPDOWN BEGINS ------------*/}
-                      <td className={styles.inputtd}>
-                        <select
-                          onFocus={() => checkDropdown()}
-                          name="visual_acuity"
-                          id="visual_acuity"
-                          className={styles.txtboxdropdown}
-                          onSelectionChange={setSelectedVision}
-                          role="presentation" autoComplete="off"
-                          required
-                        >
-                          <option value="LowVision">Low Vision</option>
-                          <option value="Blind">Blind</option>
-                        </select>
-                      </td>
-                      {/*--------------- VISION DROPDOWN ENDS ---------------*/}
-                    </tr>
+                        {/*-------------- VISION DROPDOWN BEGINS ------------*/}
+                        <td className={styles.inputtd}>
+                          <select
+                            onFocus={() => checkDropdown()}
+                            name="visual_acuity"
+                            id="visual_acuity"
+                            className={styles.txtboxdropdown}
+                            onSelectionChange={setSelectedVision}
+                            role="presentation" autoComplete="off"
+                            required
+                          >
+                            <option value="LowVision">Low Vision</option>
+                            <option value="Blind">Blind</option>
+                          </select>
+                        </td>
+                        {/*--------------- VISION DROPDOWN ENDS ---------------*/}
+                      </tr>
 
-                    <tr className={styles.regrow}>
-                      <td className={styles.inputlabel}>
-                        <label htmlFor="percent_loss">
-                          Percentage of vision loss
-                        </label>
-                        <span className={styles.requiredelement}>&#42;</span>
-                      </td>
-                      <td className={styles.inputtd}>
-                        <input
-                          onFocus={() => checkDropdown()}
-                          className={styles.reginput}
-                          id="percent_loss"
-                          // min={0}
-                          // max={100}
-                          // min="1"
-                          // max="10"
-                          name="percent_loss"
-                          // onChange={(e) => checkVisionLoss(e)}
-                          // onBlur={(e) => checkVisionLoss(e)}
-                          // onBlur={() => alert("You entered: "+this.value)}
-                          placeholder="1-99"
-                          type="number"
-                          role="presentation" autoComplete="off"
-                          required
-                        />
-                      </td>
-                    </tr>
-                    <tr className={styles.regrow}>
-                      <td className={styles.inputlabel}>
-                        <label htmlFor="impairment_history">
-                          Vision impairment history (brief; feel free to leave it empty)
-                        </label>
-                      </td>
-                      <td className={styles.inputtd}>
-                        <textarea
-                          name="impairment_history"
-                          id="impairment_history"
-                          maxLength={200}
-                          placeholder='200-char max'
-                          className={styles.regtextareaimpair}
-                          rows="10"
-                          cols="20"
-                          type="text"
-                          onKeyDown={(e) => textAreaHandleEnter(e)}
-                          role="presentation" autoComplete="off">
-                        </textarea>
-                      </td>
-                    </tr>
-                    <tr className={styles.regrow}>
-                      <td className={styles.inputlabel}>
-                        <label htmlFor="source">
-                          How you found us
-                        </label>
-                      </td>
-                      <td className={styles.inputtd}>
-                        <input
-                          className={styles.reginput}
-                          id="source"
-                          maxLength={50}
-                          name="source"
-                          placeholder="E.g., internet, 50-char. max."
-                          ref={refSource}
-                          type="textbox"
-                          role="presentation" autoComplete="off"
-                        />
-                      </td>
-                    </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="percent_loss">
+                            Percentage of vision loss
+                          </label>
+                          <span className={styles.requiredelement}>&#42;</span>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            onFocus={() => checkDropdown()}
+                            className={styles.reginput}
+                            id="percent_loss"
+                            // min={0}
+                            // max={100}
+                            // min="1"
+                            // max="10"
+                            name="percent_loss"
+                            // onChange={(e) => checkVisionLoss(e)}
+                            // onBlur={(e) => checkVisionLoss(e)}
+                            // onBlur={() => alert("You entered: "+this.value)}
+                            placeholder="1-99"
+                            type="number"
+                            role="presentation" autoComplete="off"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="impairment_history">
+                            Vision impairment history (brief; feel free to leave it empty)
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <textarea
+                            name="impairment_history"
+                            id="impairment_history"
+                            maxLength={200}
+                            placeholder='200-char max'
+                            className={styles.regtextareaimpair}
+                            rows="10"
+                            cols="20"
+                            type="text"
+                            onKeyDown={(e) => textAreaHandleEnter(e)}
+                            role="presentation" autoComplete="off">
+                          </textarea>
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="source">
+                            How you found us
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="source"
+                            maxLength={50}
+                            name="source"
+                            placeholder="E.g., internet, 50-char. max."
+                            ref={refSource}
+                            type="textbox"
+                            role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
+                    </fieldset>
                   </table>
 
                   {/* RESET AND SUBMIT BUTTONS 
@@ -1002,7 +1004,7 @@ export default function Page() {
                     <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
                   </div>
                 </div>
-                {/*--------- CARD: MISCELLANEOUS ENDS --------*/}
+                {/*--------- CARD: MEDICAL ENDS --------*/}
 
               </div>  {/* GRID LAYOUT ENDS */}
             </form>

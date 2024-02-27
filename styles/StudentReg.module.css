@@ -67,9 +67,33 @@
   padding-right: 1em;
 }
 
+.sregfieldsetlearn {
+  border-radius: 1em;
+  margin-top: 0em;
+  padding-right: 1em;
+}
+
 .sregfslegend {
   font-size: x-large;
   font-weight: 700;
+}
+
+.sregfieldsetmedical {
+  border-radius: 1em;
+  margin-top: 0.2em;
+  padding-bottom: 1em;
+  padding-right: 1em;
+}
+
+.sregfslegendmedical {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+.sregfieldsetcourses {
+  border-radius: 1em;
+  margin-top: 1em;
+  padding-right: 1em;
 }
 
 .studregcrsesinfo {
