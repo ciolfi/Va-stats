@@ -61,6 +61,17 @@
   margin: 0.5em 0 0 0.3em;
 }
 
+.sregfieldset {
+  border-radius: 1em;
+  margin-top: -1.2em;
+  padding-right: 1em;
+}
+
+.sregfslegend {
+  font-size: x-large;
+  font-weight: 700;
+}
+
 .studregcrsesinfo {
   color: blue;
   font-size: 1.2em;
@@ -128,6 +139,14 @@
   color: red;
   font-size: 1.5em;
   font-weight: 700;
+}
+
+.requiredelementlower {
+  color: red;
+  font-size: 1.5em;
+  font-weight: 700;
+  position: relative;
+  top: 0.3em;
 }
 
 /* 
