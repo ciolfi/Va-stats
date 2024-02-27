@@ -900,7 +900,7 @@ export default function Page() {
                 <div className={styles.card}>
                   <table className={styles.tblmisc} role="presentation">
                     <fieldset className={styles.sregfieldsetmedical}>
-                      <legend className={styles.sregfslegendmedical}>Medical</legend>
+                      <legend className={styles.sregfslegendmedical}>Medical, Etc.</legend>
                       <tr className={styles.regrow}>
                         <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
                           <label htmlFor="visual_acuity">
