@@ -64,12 +64,13 @@
 .sregfieldset {
   border-radius: 1em;
   margin-top: -1.2em;
-  padding-right: 1em;
+  padding: 0 1em;
+  /* padding-right: 1em; */
 }
 
 .sregfieldsetlearn {
   border-radius: 1em;
-  margin-top: 0em;
+  margin-top: -0.2em;
   padding-right: 1em;
 }
 
@@ -80,7 +81,7 @@
 
 .sregfieldsetmedical {
   border-radius: 1em;
-  margin-top: 0.2em;
+  margin-top: -0.2em;
   padding-bottom: 1em;
   padding-right: 1em;
 }

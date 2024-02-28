@@ -419,15 +419,11 @@ export default function Page() {
                 <div
                   className={styles.card}
                 >
-                  {/* <h2 className={styles.colheading} tabindex="0">
-                    Personal Information
-                  </h2> */}
-                  {/* <div className="forminstruction" tabindex="0">The fields marked with asterisks (*) are required.</div> */}
                   <table id="formtable" className={styles.regtable} role="presentation" style={{ fontWeight: "500" }}>
                     <tbody>
 
                       <fieldset className={styles.sregfieldset}>
-                        <legend className={styles.sregfslegend}>Personal Information</legend>
+                        <legend className={styles.sregfslegend}>Contact Info, Etc.</legend>
                         <div className="forminstruction" tabindex="0">The fields marked with asterisks (<span className={styles.requiredelementlower}>*</span>) are required.</div>
 
                         {/*--------------- NAME BEGINS -----------*/}
