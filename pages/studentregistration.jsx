@@ -400,7 +400,7 @@ export default function Page() {
           />
         </Head>
         <main className={styles.main} suppressHydrationWarning>
-          <div className={styles.title} tabindex="0">
+          <div className={styles.title}>
             <h1>Student Registration</h1>
           </div>
           <div className={styles.studregcrsesinfo}>
@@ -424,7 +424,7 @@ export default function Page() {
 
                       <fieldset className={styles.sregfieldset}>
                         <legend className={styles.sregfslegend}>Contact Info, Etc.</legend>
-                        <div className="forminstruction" tabindex="0">The fields marked with asterisks (<span className={styles.requiredelementlower}>*</span>) are required.</div>
+                        <div className="forminstruction">The fields marked with asterisks (<span className={styles.requiredelementlower}>*</span>) are required.</div>
 
                         {/*--------------- NAME BEGINS -----------*/}
                         <tr className={styles.regrow}>
