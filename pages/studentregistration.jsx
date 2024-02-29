@@ -423,7 +423,8 @@ export default function Page() {
                     <tbody>
 
                       <fieldset className={styles.sregfieldset}>
-                        <legend className={styles.sregfslegend}>Contact Info, Etc.</legend>
+                        {/* <legend className={styles.sregfslegend}>Contact Info, Etc.</legend> */}
+                        <legend className={styles.sregfslegend}>Personal Details</legend>
                         <div className="forminstruction">The fields marked with asterisks (<span className={styles.requiredelementlower}>*</span>) are required.</div>
 
                         {/*--------------- NAME BEGINS -----------*/}
@@ -873,6 +874,25 @@ export default function Page() {
                           </select>
                         </td>
                       </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="source">
+                            How you found us
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            className={styles.reginput}
+                            id="source"
+                            maxLength={50}
+                            name="source"
+                            placeholder="E.g., internet, 50-char. max."
+                            ref={refSource}
+                            type="textbox"
+                            role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
                     </table>
                   </fieldset>
 
@@ -896,7 +916,7 @@ export default function Page() {
                 <div className={styles.card}>
                   <table className={styles.tblmisc} role="presentation">
                     <fieldset className={styles.sregfieldsetmedical}>
-                      <legend className={styles.sregfslegendmedical}>Medical, Etc.</legend>
+                      <legend className={styles.sregfslegendmedical}>Vision Details</legend>
                       <tr className={styles.regrow}>
                         <td className={`${styles["inputlabel"]} ${styles["inputlabelmisc"]}`}>
                           <label htmlFor="visual_acuity">
@@ -971,7 +991,7 @@ export default function Page() {
                           </textarea>
                         </td>
                       </tr>
-                      <tr className={styles.regrow}>
+                      {/* <tr className={styles.regrow}>
                         <td className={styles.inputlabel}>
                           <label htmlFor="source">
                             How you found us
@@ -989,7 +1009,7 @@ export default function Page() {
                             role="presentation" autoComplete="off"
                           />
                         </td>
-                      </tr>
+                      </tr> */}
                     </fieldset>
                   </table>
 
