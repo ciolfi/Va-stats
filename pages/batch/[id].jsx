@@ -16,6 +16,7 @@ import Image from 'next/image';
 import Button from '@/components/Button';
 import { searchTableData } from '@/utils/tableHelper';
 import moment from 'moment-timezone';
+const staffAdminEmails = ["statstrainer1@gmail.com", "vedant.m94@gmail.com"];
 
 function getTodaysDate() {
   let currentDate = moment(new Date()).format("YYYY-MM-DD"); // IST Timezone conversion
@@ -38,13 +39,15 @@ function staffHasAccess(batchInfo, userInfo) {
   } else {
     userName = userInfo["firstname"];
   }
+  let userEmail = userInfo["email"];
   let batchInstructorName = batchInfo["instructor"];
   let userAccessRole = userInfo["role"];
   let permitGranted = false;
   if (userAccessRole != "STAFF") {
     permitGranted = true;
   } else {
-    if (userName === batchInstructorName) {
+    // provides an override for select few email IDs as Master Staff level access
+    if (userName === batchInstructorName || staffAdminEmails.includes(userEmail)) {
       permitGranted = true;
     }
   }
