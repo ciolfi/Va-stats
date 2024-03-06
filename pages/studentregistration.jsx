@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
+// import { TextInput, Button, Select } from 'react-native';
 
 // MUI Datepicker
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -295,12 +296,36 @@ export default function Page() {
     [selectedGender]
   );
 
-  // DISABILITY DROPDOWN
+  /*------------- DISABILITY DROPDOWN BEGINS --------------*/
+  // const [selectedDisability, setSelectedDisability] = useState('');
+  // console.log("Disability: " + selectedDisability);
+  // if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
+  //   alert('Sorry, you are not eligible to apply.');
+  // }
   const [selectedDisability, setSelectedDisability] = useState('');
-  console.log("Disability: " + selectedDisability);
-  if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
-    alert('Sorry, you are not eligible to apply.');
+  // console.log("Disability: " + selectedDisability);
+  const disability = useState('');
+
+  function checkDisability() {
+    if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
+      alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
+    }
   }
+  // const handleFocusOutDisab = () => {
+  //   console.log('Element lost focus');
+  // };
+
+  // const handleOnBlurDisab = () => {
+  //   console.log('Element lost focus');
+  //   if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
+  //     alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
+  //     const inputRef = useRef(null);
+  //     const focus = () => {
+  //       inputRef.current.focus();
+  //     };
+  //   }
+  // };
+  /*------------- DISABILITY DROPDOWN ENDS --------------*/
 
   // EDUCATION DROPDOWN
   const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
@@ -679,12 +704,14 @@ export default function Page() {
                             <select
                               aria-label="Nature of disability"
                               className={styles.txtboxdropdown}
+                              id="disability"
                               name="disability"
                               onChange={e => setSelectedDisability(e.target.value)}
-                              // onSelectionChange={setSelectedDisability}
+                              // onFocusOut={handleFocusOutDisab}
+                              // onBlur={handleOnBlurDisab}
                               radius="none"
                               required
-                              value={selectedDisability} // Force select's value to match state var
+                              value={selectedDisability}
                             >
                               <option value="Visually impaired">Visually impaired</option>
                               <option value="VI with other disability">VI with other disability</option>
@@ -708,7 +735,11 @@ export default function Page() {
                               aria-label="Education attained"
                               className={styles.txtboxdropdown}
                               name="edu_qualifications"
+                              // onFocus={[e => setSelectedDisability(e.target.value)][checkDisability()]}
+                              // onFocus={checkDisability()}
+                              // onFocus={[setSelectedDisability][checkDisability()]}
                               onChange={e => setSelectedEdu(e.target.value)}
+                              // onBlur={checkDisability()}
                               radius="none"
                               required
                               value={selectedEdu} // Force select's value to match state var
@@ -796,7 +827,7 @@ export default function Page() {
                     <legend className={styles.sregfslegend}>Learning Context</legend>
                     <table className={styles.tblchoosecourses} role="presentation">
                       <tr className={styles.regrow}>
-                        <td className={styles.tdlblcrschoice}>
+                        <td className={styles.tdlblgoals}>
                           <label htmlFor="objectives">
                             Goal(s)
                           </label>
@@ -811,6 +842,26 @@ export default function Page() {
                             placeholder="Reasons for seeking training (100-char max)"
                             width="100%"
                             role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="source">
+                            How you found us
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            autoComplete="off"
+                            className={styles.reginput}
+                            id="source"
+                            maxLength={50}
+                            name="source"
+                            placeholder="E.g., internet, 50-char. max."
+                            ref={refSource}
+                            type="textbox"
+                            role="presentation"
                           />
                         </td>
                       </tr>
@@ -872,25 +923,6 @@ export default function Page() {
                             {courseOptions3}
                             {/* <option selected="selected">Select Third Choice</option> */}
                           </select>
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="source">
-                            How you found us
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="source"
-                            maxLength={50}
-                            name="source"
-                            placeholder="E.g., internet, 50-char. max."
-                            ref={refSource}
-                            type="textbox"
-                            role="presentation" autoComplete="off"
-                          />
                         </td>
                       </tr>
                     </table>
@@ -963,7 +995,7 @@ export default function Page() {
                             // onChange={(e) => checkVisionLoss(e)}
                             // onBlur={(e) => checkVisionLoss(e)}
                             // onBlur={() => alert("You entered: "+this.value)}
-                            placeholder="1-99"
+                            placeholder="1-100"
                             type="number"
                             role="presentation" autoComplete="off"
                             required
