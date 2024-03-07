@@ -297,34 +297,16 @@ export default function Page() {
   );
 
   /*------------- DISABILITY DROPDOWN BEGINS --------------*/
-  // const [selectedDisability, setSelectedDisability] = useState('');
-  // console.log("Disability: " + selectedDisability);
-  // if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
-  //   alert('Sorry, you are not eligible to apply.');
-  // }
   const [selectedDisability, setSelectedDisability] = useState('');
-  // console.log("Disability: " + selectedDisability);
   const disability = useState('');
-
   function checkDisability() {
-    if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
+    if ((document.getElementById('disability').value == 'Other disability') || (document.getElementById('disability').value == 'Non-disabled')) {
+      // document.getElementById('disability').focus();
       alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
+      document.getElementById('disability').value = "Visually impaired";
+      document.getElementById('disability').focus();
     }
   }
-  // const handleFocusOutDisab = () => {
-  //   console.log('Element lost focus');
-  // };
-
-  // const handleOnBlurDisab = () => {
-  //   console.log('Element lost focus');
-  //   if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
-  //     alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
-  //     const inputRef = useRef(null);
-  //     const focus = () => {
-  //       inputRef.current.focus();
-  //     };
-  //   }
-  // };
   /*------------- DISABILITY DROPDOWN ENDS --------------*/
 
   // EDUCATION DROPDOWN
@@ -707,8 +689,10 @@ export default function Page() {
                               id="disability"
                               name="disability"
                               onChange={e => setSelectedDisability(e.target.value)}
-                              // onFocusOut={handleFocusOutDisab}
-                              // onBlur={handleOnBlurDisab}
+                              onBlur={() => {
+                                checkDisability();
+                              }
+                              }
                               radius="none"
                               required
                               value={selectedDisability}
@@ -735,14 +719,10 @@ export default function Page() {
                               aria-label="Education attained"
                               className={styles.txtboxdropdown}
                               name="edu_qualifications"
-                              // onFocus={[e => setSelectedDisability(e.target.value)][checkDisability()]}
-                              // onFocus={checkDisability()}
-                              // onFocus={[setSelectedDisability][checkDisability()]}
                               onChange={e => setSelectedEdu(e.target.value)}
-                              // onBlur={checkDisability()}
                               radius="none"
                               required
-                              value={selectedEdu} // Force select's value to match state var
+                              value={selectedEdu}
                             >
                               <option value="Below 10th standard">Below 10th standard</option>
                               <option value="10 standard">10 standard</option>
@@ -886,7 +866,7 @@ export default function Page() {
                             <option></option>
                             {courseOptions1}
                             {/* <option selected="selected">Select First Choice</option> */}
-                          </select><br/>
+                          </select><br />
                           {getSummaries(Option1)}
                         </td>
                       </tr>
@@ -904,7 +884,7 @@ export default function Page() {
                             <option></option>
                             {courseOptions2}
                             {/* <option selected="selected">Select Second Choice</option> */}
-                          </select><br/>
+                          </select><br />
                           {getSummaries(Option2)}
                         </td>
                       </tr>
@@ -924,7 +904,7 @@ export default function Page() {
                             <option></option>
                             {courseOptions3}
                             {/* <option selected="selected">Select Third Choice</option> */}
-                          </select><br/>
+                          </select><br />
                           {getSummaries(Option3)}
                         </td>
                       </tr>
