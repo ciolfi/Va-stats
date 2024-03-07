@@ -156,7 +156,7 @@ export default function Page() {
       return chatGptSummary;
     }
     else {
-      return "AN UNKNOWN course was chosen ...";
+      return ""; // "AN UNKNOWN course was chosen ...";
     }
   };
 
@@ -166,13 +166,13 @@ export default function Page() {
       setOption1(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("First choice summary: " + getSummaries(value));
+      // alert("First choice summary: " + getSummaries(value));
 
     } else if (name === 'second_choice') {
       setOption2(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("Second choice summary: " + getSummaries(value));
+      // alert("Second choice summary: " + getSummaries(value));
 
     }
 
@@ -180,7 +180,7 @@ export default function Page() {
       setOption3(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("Third choice summary: " + getSummaries(value));
+      // alert("Third choice summary: " + getSummaries(value));
 
     }
 
@@ -835,7 +835,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions1}
                             {/* <option selected="selected">Select First Choice</option> */}
-                          </select>
+                          </select><br/>
+                          {getSummaries(Option1)}
                         </td>
                       </tr>
 
@@ -852,7 +853,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions2}
                             {/* <option selected="selected">Select Second Choice</option> */}
-                          </select>
+                          </select><br/>
+                          {getSummaries(Option2)}
                         </td>
                       </tr>
 
@@ -871,7 +873,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions3}
                             {/* <option selected="selected">Select Third Choice</option> */}
-                          </select>
+                          </select><br/>
+                          {getSummaries(Option3)}
                         </td>
                       </tr>
                       <tr className={styles.regrow}>
@@ -1017,7 +1020,19 @@ export default function Page() {
                   NOTE: Backticks, not vertical single quotes, are required below */}
                   <div className={styles.frmbtnblocksubres}>
                     <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
-                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
+                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`} onClick={(e) => {
+                      const flag = confirm("Are you sure you want to reset the form?");
+                      if (!flag) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                      } else {
+                        setOption1("")
+                        setOption2("")
+                        setOption3("")
+                        document.getElementById('studentRegForm').reset();
+                      }
+                    }}>RESET</button>
                   </div>
                 </div>
                 {/*--------- CARD: MEDICAL ENDS --------*/}
