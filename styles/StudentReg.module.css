@@ -219,6 +219,12 @@ Does not include:
   width: 27%;
 }
 
+.tdlblgoals {
+  text-align: right;
+  vertical-align: top;
+  width: 27%;
+}
+
 .fdsetlearning {
   border: 2px solid black;
   margin-top: 2em;

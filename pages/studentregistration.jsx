@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
+// import { TextInput, Button, Select } from 'react-native';
 
 // MUI Datepicker
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -156,7 +157,7 @@ export default function Page() {
       return chatGptSummary;
     }
     else {
-      return "AN UNKNOWN course was chosen ...";
+      return ""; // "AN UNKNOWN course was chosen ...";
     }
   };
 
@@ -166,13 +167,13 @@ export default function Page() {
       setOption1(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("First choice summary: " + getSummaries(value));
+      // alert("First choice summary: " + getSummaries(value));
 
     } else if (name === 'second_choice') {
       setOption2(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("Second choice summary: " + getSummaries(value));
+      // alert("Second choice summary: " + getSummaries(value));
 
     }
 
@@ -180,7 +181,7 @@ export default function Page() {
       setOption3(value);
 
       /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      alert("Third choice summary: " + getSummaries(value));
+      // alert("Third choice summary: " + getSummaries(value));
 
     }
 
@@ -295,12 +296,18 @@ export default function Page() {
     [selectedGender]
   );
 
-  // DISABILITY DROPDOWN
+  /*------------- DISABILITY DROPDOWN BEGINS --------------*/
   const [selectedDisability, setSelectedDisability] = useState('');
-  console.log("Disability: " + selectedDisability);
-  if ((selectedDisability == 'Other disability') || (selectedDisability == 'Non-disabled')) {
-    alert('Sorry, you are not eligible to apply.');
+  const disability = useState('');
+  function checkDisability() {
+    if ((document.getElementById('disability').value == 'Other disability') || (document.getElementById('disability').value == 'Non-disabled')) {
+      // document.getElementById('disability').focus();
+      alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
+      document.getElementById('disability').value = "Visually impaired";
+      document.getElementById('disability').focus();
+    }
   }
+  /*------------- DISABILITY DROPDOWN ENDS --------------*/
 
   // EDUCATION DROPDOWN
   const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
@@ -679,12 +686,16 @@ export default function Page() {
                             <select
                               aria-label="Nature of disability"
                               className={styles.txtboxdropdown}
+                              id="disability"
                               name="disability"
                               onChange={e => setSelectedDisability(e.target.value)}
-                              // onSelectionChange={setSelectedDisability}
+                              onBlur={() => {
+                                checkDisability();
+                              }
+                              }
                               radius="none"
                               required
-                              value={selectedDisability} // Force select's value to match state var
+                              value={selectedDisability}
                             >
                               <option value="Visually impaired">Visually impaired</option>
                               <option value="VI with other disability">VI with other disability</option>
@@ -711,7 +722,7 @@ export default function Page() {
                               onChange={e => setSelectedEdu(e.target.value)}
                               radius="none"
                               required
-                              value={selectedEdu} // Force select's value to match state var
+                              value={selectedEdu}
                             >
                               <option value="Below 10th standard">Below 10th standard</option>
                               <option value="10 standard">10 standard</option>
@@ -796,7 +807,7 @@ export default function Page() {
                     <legend className={styles.sregfslegend}>Learning Context</legend>
                     <table className={styles.tblchoosecourses} role="presentation">
                       <tr className={styles.regrow}>
-                        <td className={styles.tdlblcrschoice}>
+                        <td className={styles.tdlblgoals}>
                           <label htmlFor="objectives">
                             Goal(s)
                           </label>
@@ -811,6 +822,26 @@ export default function Page() {
                             placeholder="Reasons for seeking training (100-char max)"
                             width="100%"
                             role="presentation" autoComplete="off"
+                          />
+                        </td>
+                      </tr>
+                      <tr className={styles.regrow}>
+                        <td className={styles.inputlabel}>
+                          <label htmlFor="source">
+                            How you found us
+                          </label>
+                        </td>
+                        <td className={styles.inputtd}>
+                          <input
+                            autoComplete="off"
+                            className={styles.reginput}
+                            id="source"
+                            maxLength={50}
+                            name="source"
+                            placeholder="E.g., internet, 50-char. max."
+                            ref={refSource}
+                            type="textbox"
+                            role="presentation"
                           />
                         </td>
                       </tr>
@@ -835,7 +866,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions1}
                             {/* <option selected="selected">Select First Choice</option> */}
-                          </select>
+                          </select><br />
+                          {getSummaries(Option1)}
                         </td>
                       </tr>
 
@@ -852,7 +884,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions2}
                             {/* <option selected="selected">Select Second Choice</option> */}
-                          </select>
+                          </select><br />
+                          {getSummaries(Option2)}
                         </td>
                       </tr>
 
@@ -871,26 +904,8 @@ export default function Page() {
                             <option></option>
                             {courseOptions3}
                             {/* <option selected="selected">Select Third Choice</option> */}
-                          </select>
-                        </td>
-                      </tr>
-                      <tr className={styles.regrow}>
-                        <td className={styles.inputlabel}>
-                          <label htmlFor="source">
-                            How you found us
-                          </label>
-                        </td>
-                        <td className={styles.inputtd}>
-                          <input
-                            className={styles.reginput}
-                            id="source"
-                            maxLength={50}
-                            name="source"
-                            placeholder="E.g., internet, 50-char. max."
-                            ref={refSource}
-                            type="textbox"
-                            role="presentation" autoComplete="off"
-                          />
+                          </select><br />
+                          {getSummaries(Option3)}
                         </td>
                       </tr>
                     </table>
@@ -963,7 +978,7 @@ export default function Page() {
                             // onChange={(e) => checkVisionLoss(e)}
                             // onBlur={(e) => checkVisionLoss(e)}
                             // onBlur={() => alert("You entered: "+this.value)}
-                            placeholder="1-99"
+                            placeholder="1-100"
                             type="number"
                             role="presentation" autoComplete="off"
                             required
@@ -1017,7 +1032,19 @@ export default function Page() {
                   NOTE: Backticks, not vertical single quotes, are required below */}
                   <div className={styles.frmbtnblocksubres}>
                     <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
-                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`}>RESET</button>
+                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`} onClick={(e) => {
+                      const flag = confirm("Are you sure you want to reset the form?");
+                      if (!flag) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                      } else {
+                        setOption1("")
+                        setOption2("")
+                        setOption3("")
+                        document.getElementById('studentRegForm').reset();
+                      }
+                    }}>RESET</button>
                   </div>
                 </div>
                 {/*--------- CARD: MEDICAL ENDS --------*/}
