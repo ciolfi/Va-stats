@@ -107,7 +107,7 @@ const Navbar = (user_role) => {
           <div></div>
           <div></div>
         </div>
-        <div className={`${navActive ? 'active' : ''} nav__menu-list`}>
+        <div className={`${navActive ? 'active' : 'hide'} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => {
             if (menu.sessionRequired && !session) {
               return;
