@@ -516,6 +516,8 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
+                              max="2023-10-24"
+                              onfocus="this.max=new Date().toLocaleDateString('fr-ca')"
                               role="presentation" autoComplete="off"
                               required
                             />
