@@ -28,30 +28,35 @@ const MENU_LIST = [
     text: "Student Registration",
     href: "/studentregistration",
     sessionRequired: false,
+    description: 'Student Registration'
   },
   {
     text: "Students",
     href: "/students",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
+    description: 'Student Management'
   },
   {
     text: "Batches",
     href: "/batches",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT','STAFF'],
     sessionRequired: true,
+    description: 'Batch Management'
   },
   {
     text: "Courses",
     href: "/courses",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
+    description: 'Course Management'
   },
   {
     text: "Staff",
     href: "/users",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
+    description: 'Staff Management'
   },
 ];
 
