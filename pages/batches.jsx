@@ -293,7 +293,7 @@ export default function Page() {
             </div>
             <div className={styles.container}>
               <Head>
-                <title>VisionAid</title>
+                <title>Batch Management-Vision-Aid</title>
                 <meta
                   name='description'
                   content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
@@ -485,7 +485,7 @@ export default function Page() {
             </div>
             <div className={styles.container}>
               <Head>
-                <title>VisionAid</title>
+                <title>Batch Management-Vision-Aid</title>
                 <meta
                   name='description'
                   content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
