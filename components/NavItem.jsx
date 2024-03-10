@@ -1,7 +1,9 @@
 import Link from 'next/link';
 const NavItem = ({ text, href, active }) => {
+	
 	return (
-		(<Link
+		(<Link 
+			aria-current={active ? 'page' : undefined}
 			href={href}
 			className={`nav__item ${active ? 'active' : ''}`}>
 			{text}

@@ -14,6 +14,7 @@ import NavItem from './NavItem';
 import Button from './Button';
 import styles from '../styles/Navbar.module.css';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const MENU_LIST = [
   // { text: 'Home', href: '/' },
@@ -58,6 +59,14 @@ const Navbar = (user_role) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
   const { data: session, status } = useSession();
+
+  // Logic to check active nav menu
+  const router = useRouter();
+  
+  const isMenuActive = (href) => {
+    return router.pathname === href;
+  };
+
   const userrole = user_role;
   return (
     <header style={{ backgroundColor: 'white' }}>
@@ -133,7 +142,7 @@ const Navbar = (user_role) => {
                     setNavActive(false);
                   }}
                 >
-                  <NavItem active={activeIdx === idx} {...menu} />
+                  <NavItem active={isMenuActive(menu.href)} {...menu} />
                 </div>
               )}
             </div>
