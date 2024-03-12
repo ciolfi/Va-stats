@@ -264,12 +264,10 @@ export default function Page() {
 
   const updateCountriesOptions = () => {
     const countries = [];
-    var countryinput = document.getElementById('country');
     worldData.map(country => {
       countries.push(<option value={country.name}>{country.name}</option>);
     });
     setCountriesOptions(countries);
-    countryinput.value = 'India';
   }
 
   const updateStateOptions = (e) => {
@@ -620,7 +618,7 @@ export default function Page() {
                               required
                               role="presentation"
                             >
-                              <option></option>
+                              <option value="India">India</option>
                               {countriesOptions}
                             </select>
                           </td>
