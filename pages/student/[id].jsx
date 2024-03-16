@@ -126,7 +126,7 @@ export default function Page() {
               <Navbar user_role={userResponse.role} className={styles.navstudents} />
             </div>
             <Head>
-							<title>VisionAid</title>
+							<title>Student-Enrollment-History-Vision-Aid</title>
 							<meta
 								name='description'
 								content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
@@ -154,6 +154,9 @@ export default function Page() {
 						</Head>
             <br />
             <div>
+              <p className={styles.subtitlestudent}>
+                Student ID: {id}
+							</p>
               <p className={styles.subtitlestudent}>
                 Student: {studentName}
 							</p>
