@@ -163,7 +163,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
 										:
-										<div className={tableHeaderClassName}>
+										<div tabIndex={0} aria-description={`Click ${column.name} header to sort data`} className={tableHeaderClassName}>
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
