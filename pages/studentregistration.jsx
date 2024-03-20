@@ -265,7 +265,11 @@ export default function Page() {
   const updateCountriesOptions = () => {
     const countries = [];
     worldData.map(country => {
-      countries.push(<option value={country.name}>{country.name}</option>);
+      if (country.name == 'India') {
+        countries.push(<option selected value={country.name}>{country.name}</option>);
+      } else {
+        countries.push(<option value={country.name}>{country.name}</option>);
+      }
     });
     setCountriesOptions(countries);
   }
@@ -282,6 +286,7 @@ export default function Page() {
 
   useEffect(() => {
     updateCountriesOptions();
+    updateStateOptions({target:{value:'India'}});
   }, []);
 
 
@@ -618,7 +623,7 @@ export default function Page() {
                               required
                               role="presentation"
                             >
-                              <option value="India">India</option>
+                              <option></option>
                               {countriesOptions}
                             </select>
                           </td>
