@@ -413,13 +413,23 @@ export default function Page() {
     setContentLoading(false);
   };
 
+  // => Below code leads to flipping edit state to initial state on tab change as session gets changed and data gets refreshed
+  // useEffect(() => {
+  //   if (session) {
+  //     getUserData();
+  //     getBatchData();
+  //     getBatchDocumentData();
+  //   }
+  // }, [session, currentPanel]);
+
+  // Added initial call to the batches API
   useEffect(() => {
     if (session) {
       getUserData();
       getBatchData();
       getBatchDocumentData();
     }
-  }, [session, currentPanel]);
+  }, []);
   // useEffect(() => {
   //   if (session) {
   //     getUserData();
