@@ -966,6 +966,7 @@ export default function Page() {
                             // onBlur={(e) => checkVisionLoss(e)}
                             // onBlur={() => alert("You entered: "+this.value)}
                             placeholder="1-99"
+                            onblur="if ((document.getElementById('percent_loss').value > 99)) alert('WARNING: Input must be less than or equal to 99!'); if ((document.getElementById('percent_loss').value < 1)) alert('WARNING: Input must be greater than or equal to 1!')"
                             type="number"
                             role="presentation" autoComplete="off"
                             required
