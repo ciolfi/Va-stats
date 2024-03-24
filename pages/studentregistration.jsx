@@ -517,7 +517,7 @@ export default function Page() {
                               name="age"
                               className={styles.reginput}
                               onfocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toISOString().split('T')[0]" 
-                              onblur="if ((document.getElementById('start').value > this.max)) alert('WARNING: User age is less than 15!')"
+                              onblur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
                               role="presentation" autoComplete="off"
                               required
                             />
