@@ -805,7 +805,7 @@ export default function Page() {
               : <></>
             }
             <Head>
-              <title>VisionAid</title>
+              <title>Batch {batchName} - Vision-Aid-Stats</title>
               <meta
                 name='description'
                 content='A nonprofit, advocating on behalf of persons with vision issues of any type' />

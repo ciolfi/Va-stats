@@ -395,7 +395,7 @@ export default function Page() {
         <Head>
           {/* Title changed per accessibility consultant - Pratik */}
           <title>
-            student registration-Vision-Aid
+            Student Registration - Vision-Aid-Stats
           </title>
 
           {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
