@@ -6,7 +6,7 @@ import styles from '../styles/Table.module.css';
 const dateFields = ['registration_date', 'age', 'joindate'];
 const booleanValues = ["N", "Y"];
 const booleanStyles = ["red", "green"];
-const attendanceValues = ["A", "P", "X"];
+const attendanceValues = ["A", "P", "X", "D"];
 const attendanceStyle = ["red", "green", "black"];
 /** TODO: Need to write a better dateConverter */
 function dateConverter(input){
