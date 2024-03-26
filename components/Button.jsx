@@ -1,7 +1,7 @@
 import styles from '@/styles/Button.module.css';
 import Image from 'next/image';
 
-export default function Button({ text, onClick, iconSrc, isLight, style }) {
+export default function Button({ text, onClick, iconSrc, isLight, style,courseName, batch }) {
 	let icon = <></>;
 	let textClassName = '';
 	const buttonClassName = isLight ? styles.genericButtonLight : styles.genericButtonDark;
@@ -16,10 +16,10 @@ export default function Button({ text, onClick, iconSrc, isLight, style }) {
 			className={buttonClassName}
 			onClick={onClick}
 			style={style}
+			aria-label={ text === 'Roster'? `${text} button to view attendance list for training of ${courseName} in batch ${batch}`: text}
 		>
 			{icon}
 			{text ? <span className={textClassName} style={style}>{text}</span>: <></>}
-			
 		</button>
 	);
 }

@@ -293,7 +293,7 @@ export default function Page() {
             </div>
             <div className={styles.container}>
               <Head>
-                <title>VisionAid</title>
+                <title>Batch Management-Vision-Aid</title>
                 <meta
                   name='description'
                   content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
@@ -435,7 +435,7 @@ export default function Page() {
 
                       </form>
                     </div>
-                    : <Button onClick={() => setShowForm(true)} text={'+ New Batch Form'} className={styles.btnnewbatchform} ></Button>
+                    : <Button onClick={() => setShowForm(true)} text={'Create New Batch'} className={styles.btnnewbatchform} ></Button>
                   }
                   <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
                 </div>
@@ -485,7 +485,7 @@ export default function Page() {
             </div>
             <div className={styles.container}>
               <Head>
-                <title>VisionAid</title>
+                <title>Batch Management-Vision-Aid</title>
                 <meta
                   name='description'
                   content='A nonprofit, advocating on behalf of persons with vision issues of any type' />

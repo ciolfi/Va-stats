@@ -163,7 +163,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
 										:
-										<div className={tableHeaderClassName}>
+										<div tabIndex={0} aria-description={`Click ${column.name} header to sort data`} className={tableHeaderClassName}>
 											{column.name}
 											{displaySortIcon(sortColumn, column.accessor, sortAsc)}
 										</div>
@@ -187,7 +187,7 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 										: <>
 										{isDelete ? <Image className={styles.actionItem} alt={'delete row'} src={'/icons/delete-icon.svg'} height={20} width={20} onClick={() => deleteHandler(rowData.id)} /> : <></>}
 										{isEditable ? <Image className={styles.actionItem} alt={'edit row'} src={'/icons/edit-icon.svg'} height={20} width={20} onClick={() => onEditClick(rowData)} />: <></>} </>}										
-										{isBatch ? <Button text="Roster" onClick={() => {router.push("/batch/"+rowData.id);}} style={{'width': 'inherit'}}></Button>: <></>}
+										{isBatch ? <Button text="Roster" courseName={rowData.coursename} batch={rowData.batch} onClick={() => {router.push("/batch/"+rowData.id);}} style={{'width': 'inherit'}}></Button>: <></>}
 										{isStudent ? <Button text="Enrollment History" onClick={() => {router.push("/student/"+rowData.id);}}></Button>: <></>}
 									</td>
 								: <></>}
