@@ -339,7 +339,7 @@ export default function Page() {
           </div>
           <div className={styles.container}>
             <Head>
-              <title>Students-Vision-Aid</title>
+              <title>Students - Vision-Aid-STATS</title>
               <meta
                 name='description'
                 content='A nonprofit, advocating on behalf of persons with vision issues of any type' />
