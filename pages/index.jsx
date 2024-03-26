@@ -121,7 +121,7 @@ export default function Home() {
       </div>
       <div className={styles.container}>
         <Head>
-          <title>Vision-Aid-Stats</title>
+          <title>Vision-Aid-STATS</title>
           <meta name="google-signin-client_id" content="81017730584-986m405knu7rpfudp25kv0hr3td2d76v.apps.googleusercontent.com" />
           <meta name="description" content="A nonprofit, advocating on behalf of persons with vision issues of any type" />
           <meta name="theme-color" content="#ffffff" />
