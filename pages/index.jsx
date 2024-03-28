@@ -153,7 +153,7 @@ export default function Home() {
               <p>Learn about our organization.</p>
             </a>
 
-            <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" rel="noopener noreferrer" className={styles.card}>
+            <a href="/documentation/p2VisionAidSTATS-user-documentation.pdf" target="_blank" rel="noopener noreferrer" className={styles.card}>
               <h2>User Guide &rarr;</h2>
               <p>Learn how to use the VisionAid STATS platform</p>
             </a>
