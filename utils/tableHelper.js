@@ -3,7 +3,7 @@ THIS FILE: Contains the code to edit the
 attendance dropdown in batches.
 */
 import styles from '../styles/Table.module.css';
-const dateFields = ['registration_date', 'age', 'joindate'];
+const dateFields = ['registration_date', 'age', 'joindate', 'lastlogin'];
 const booleanValues = ["N", "Y"];
 const booleanStyles = ["red", "green"];
 const attendanceValues = ["A", "P", "X"];
@@ -74,7 +74,7 @@ export function generateTableRow(columns, rowData, editId, changeHandler, inputC
 			stickyLeftOverride = { '--left-override-th': (leftWidthSticky)+'px' };
 			stickyClass = styles.stickyColTd;
 		}
-		cell.push(<td className={stickyClass} key={column.accessor} style={stickyLeftOverride}>{cellContent}</td>);
+		cell.push(<td className={stickyClass} key={column.accessor} style={{...stickyLeftOverride, whiteSpace:'break-spaces', paddingLeft:'30px'}}>{cellContent}</td>);
 	}
 	return cell;
 }

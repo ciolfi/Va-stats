@@ -261,6 +261,10 @@ export default function Page() {
       name: 'Action',
       accessor: 'action',
     },
+    {
+      name: 'Last Login',
+      accessor: 'lastlogin',
+    },
   ];
 
   if (status === 'unauthenticated') {
