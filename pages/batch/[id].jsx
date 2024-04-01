@@ -413,23 +413,13 @@ export default function Page() {
     setContentLoading(false);
   };
 
-  // => Below code leads to flipping edit state to initial state on tab change as session gets changed and data gets refreshed
-  // useEffect(() => {
-  //   if (session) {
-  //     getUserData();
-  //     getBatchData();
-  //     getBatchDocumentData();
-  //   }
-  // }, [session, currentPanel]);
-
-  // Added initial call to the batches API
   useEffect(() => {
     if (session) {
       getUserData();
       getBatchData();
       getBatchDocumentData();
     }
-  }, []);
+  }, [session, currentPanel]);
   // useEffect(() => {
   //   if (session) {
   //     getUserData();
@@ -500,7 +490,7 @@ export default function Page() {
           name: attendanceDate.includes('T') ? attendanceDate.split('T')[0] : attendanceDate,
           accessor: attendanceDate,
           type: 'enum',
-          availableValues: [1, 0, 2],
+          availableValues: [1, 0, 2, 3],
           isAttendance: true,
           isRotatedTh: true,
           isSortable: false,
@@ -528,7 +518,7 @@ export default function Page() {
           name: todaysDate,
           accessor: todaysDate,
           type: 'enum',
-          availableValues: [1, 0, 2],
+          availableValues: [1, 0, 2, 3],
           isAttendance: true,
           isRotatedTh: true,
           isSortable: false,
@@ -845,6 +835,9 @@ export default function Page() {
                 <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Grades
                 </button>
+                <button name="grades" className={styles.addButton} onClick={(e) => alert("I don't know what to do")} >
+                  Batch Completion report
+                </button>
                 {(userResponse.role != 'STAFF') ?
                 <button name="documents" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Documents & Fees
@@ -987,7 +980,7 @@ export default function Page() {
 
             {showAttendance && (attendanceColumn.length > 0 ?
               (userResponse.role == "STAFF" ?
-                <TableStaff columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} onEditSave={updateAttendanceBatch} batchId={id} />
+                <TableStaff columns={attendanceColumnStaff} tableData={attendanceData} Title={'Attendance'} isEditable={false} onEditSave={updateAttendanceBatch} batchId={id} />
                 : <TableCol columns={attendanceColumn} tableData={attendanceData} Title={'Attendance'} isEditable={true} onEditSave={updateAttendanceBatch} batchId={id} isAccessible={false} />
               )
               : <></>
