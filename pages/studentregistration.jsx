@@ -526,7 +526,8 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              onfocus="this.max=new Date().toLocaleDateString('fr-ca')"
+                              onfocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
+                              onblur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
                               role="presentation" autoComplete="off"
                               required
                             />
@@ -982,6 +983,7 @@ export default function Page() {
                             // onChange={(e) => checkVisionLoss(e)}
                             // onBlur={(e) => checkVisionLoss(e)}
                             // onBlur={() => alert("You entered: "+this.value)}
+                            onblur="if ((document.getElementById('percent_loss').value > 99)) alert('WARNING: Input must be less than or equal to 99!'); if ((document.getElementById('percent_loss').value < 1)) alert('WARNING: Input must be greater than or equal to 1!')"
                             placeholder="1-100"
                             type="number"
                             role="presentation" autoComplete="off"
