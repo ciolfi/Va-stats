@@ -35,28 +35,28 @@ const MENU_LIST = [
     href: "/students",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
-    description: 'Student Management'
+    description: 'Students'
   },
   {
     text: "Batches",
     href: "/batches",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT','STAFF'],
     sessionRequired: true,
-    description: 'Batch Management'
+    description: 'Batches'
   },
   {
     text: "Courses",
     href: "/courses",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
-    description: 'Course Management'
+    description: 'Courses'
   },
   {
     text: "Staff",
     href: "/users",
     allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
     sessionRequired: true,
-    description: 'Staff Management'
+    description: 'Staff'
   },
 ];
 
