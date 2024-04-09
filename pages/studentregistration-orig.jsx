@@ -265,11 +265,7 @@ export default function Page() {
   const updateCountriesOptions = () => {
     const countries = [];
     worldData.map(country => {
-      if (country.name == 'India') {
-        countries.push(<option selected value={country.name}>{country.name}</option>);
-      } else {
-        countries.push(<option value={country.name}>{country.name}</option>);
-      }
+      countries.push(<option value={country.name}>{country.name}</option>);
     });
     setCountriesOptions(countries);
   }
@@ -286,7 +282,6 @@ export default function Page() {
 
   useEffect(() => {
     updateCountriesOptions();
-    updateStateOptions({target:{value:'India'}});
   }, []);
 
 
@@ -330,14 +325,15 @@ export default function Page() {
   );
 
   // VISION LOSS
-  const [selectedPercentVision, setSelectedPercentVision] = useState('');
-  const checkVisionLoss = () => {
+  const checkVisionLoss = (e) => {
+    alert("Entered fct");
     var chosenpercentloss = parseInt((document.getElementById("percent_loss").value));
-    if (!((chosenpercentloss >= 1 ) && (chosenpercentloss < 101))) {
-      alert("Percentage of vision loss must be from 1 to 100.");
-      document.getElementById("percent_loss").value = 1;
-      document.getElementById("percent_loss").focus();
-    } 
+    if ((chosenpercentloss > 0 ) || (chosenpercentloss < 100)) {
+      alert("Within range!");
+    }
+    else{
+      alert("NOT IN RANGE!");
+    }
   }
 
   // ADD COURSE CHOICE 
@@ -400,7 +396,7 @@ export default function Page() {
         <Head>
           {/* Title changed per accessibility consultant - Pratik */}
           <title>
-            Student Registration - Vision-Aid-STATS
+            student registration-Vision-Aid
           </title>
 
           {/* AVOID HYDRATION ERRORS w/ meta tag below; this may not work. */}
@@ -526,8 +522,7 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              onfocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
-                              onblur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
+                              onfocus="this.max=new Date().toLocaleDateString('fr-ca')"
                               role="presentation" autoComplete="off"
                               required
                             />
@@ -625,7 +620,7 @@ export default function Page() {
                               required
                               role="presentation"
                             >
-                              <option></option>
+                              <option value="India">India</option>
                               {countriesOptions}
                             </select>
                           </td>
@@ -975,13 +970,17 @@ export default function Page() {
                             onFocus={() => checkDropdown()}
                             className={styles.reginput}
                             id="percent_loss"
+                            // min={0}
+                            // max={100}
+                            // min="1"
+                            // max="10"
                             name="percent_loss"
-                            onBlur={(e) => checkVisionLoss(e)}
-                            onChange={e => setSelectedPercentVision(e.target.value)}
-                            placeholder="1-100"
+                            // onChange={(e) => checkVisionLoss(e)}
+                            // onBlur={(e) => checkVisionLoss(e)}
+                            onBlur={(e) => alert("You entered: "+this.value)}
+                            placeholder="1-101"
                             type="number"
                             role="presentation" autoComplete="off"
-                            value={selectedPercentVision}
                             required
                           />
                         </td>
