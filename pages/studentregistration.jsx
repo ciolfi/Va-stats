@@ -19,7 +19,7 @@ import styles from "../styles/StudentReg.module.css";
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useRef } from 'react';
-import { useSession } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 // import { TextInput, Button, Select } from 'react-native';
 
 // MUI Datepicker
@@ -33,7 +33,7 @@ var userRole = "STAFF";
 
 export default function Page() {
   useForm(); // Form reset
-  const { data: session, status } = useSession();
+  const { user, error, isLoading } = useUser();
   var result;
 
   // BIRTHDATE MUI
@@ -49,7 +49,7 @@ export default function Page() {
       method: "Post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({              /* LOCAL TESTING */
-        email: session.user.email
+        email: user.email
       }),
     };
     const response = await fetch(apiUrlEndpoint, postData);
@@ -63,7 +63,7 @@ export default function Page() {
 
   useEffect(() => {
     getUserData();
-  }, [session]);
+  }, [user]);
 
   // Line below may work FOR SSRPROVIDER ERRORS:
   // const { isBrowser } = useSSR();

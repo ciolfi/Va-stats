@@ -5,7 +5,7 @@ import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import aboutConfig from '@/configs/aboutPage.json';
-import { useSession } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { useEffect, useState } from 'react';
 import { Fragment } from "react";
 import Title from '@/components/Title';
@@ -20,11 +20,16 @@ export default function Home() {
   const [courseCountResponse, setCourseCountResponse] = useState([]);
   const [studentCountResponse, setStudentCountResponse] = useState([]);
 
-  const { data: session, status } = useSession();
+  const { user, error, isLoading } = useUser();
+  console.log(user, error, isLoading)
   var result;
 
   // API DATA ACCESS
   const getUserData = async () => {
+    if (!user) {
+      return;
+    }
+
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",
@@ -32,7 +37,7 @@ export default function Home() {
       body: JSON.stringify({
         /* AVOID LOCAL TESTING ERRORS: Switch email below to your Gmail.
         IMPORTANT: Remember to switch back prior to uploading.*/
-        email: session.user.email
+        email: user.email
       }),
     };
     const response = await fetch(apiUrlEndpoint, postData);
@@ -46,7 +51,7 @@ export default function Home() {
 
   useEffect(() => {
     getUserData();
-  }, [session]);
+  }, [user]);
 
   const getBatchCount = async () => {
     const apiUrlEndpoint = `api/countbatch`;
