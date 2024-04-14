@@ -5,7 +5,7 @@
 // import "react-datepicker/dist/react-datepicker.css";
 
 import '../styles/globals.css';
-import { SessionProvider } from 'next-auth/react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 // Below required for NextUI components
 import * as React from "react";
@@ -30,9 +30,9 @@ import * as React from "react";
 // }
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => (
-	<SessionProvider session={session}>
+	<UserProvider>
 		<Component {...pageProps} />
-	</SessionProvider>
+	</UserProvider>
 );
 
 export default App;
