@@ -135,6 +135,27 @@ export default function Page() {
 
   const batchPageLayoutHandler = (e) => {
     const { name, value } = e.target;
+
+    // Logic to prompt user if there are any unsaved changes i.e they are in the edit mode
+
+    const editMode = localStorage.getItem('editMode')
+    
+    // Check if the user is clicking on the same tab he already is in
+    const isSameComponent = name === "assessments" && showAssessments ||
+                        name === "attendance" && showAttendance ||
+                        name === "documents" && showDocuments ||
+                        name === "grades" && showGrades ||
+                        name === "management" && showManagement;
+    // If edit mode is on and user tries to go to a different component show the prompt
+    if(editMode === 'true' && !isSameComponent){
+      if (confirm("You have unsaved changes, click on OK to go back and save them. If you click cancel the changes will be lost.") == true) {
+        return
+      }else{
+        localStorage.setItem('editMode', 'false')
+      } 
+    }
+
+
     setShowAttendance(false);
     setShowGrades(false);
     setShowManagement(false);

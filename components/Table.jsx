@@ -89,6 +89,12 @@ export default function Table({ columns, tableData, isDelete, onDeleteClick, isE
 		orig.current = JSON.parse(JSON.stringify(tableData));
 	}, [tableData]);
 
+	// If edit mode is flipped, save it in the local storage for implementing unsaved changes prompting
+	useEffect(() => {
+		if(editId) localStorage.setItem('editMode', 'true')
+		else localStorage.setItem('editMode', 'false')
+	},[editId])
+
 	return (
 		<div className={styles.tableWrapper}>
 			<div className={styles.genericTableHeader}>

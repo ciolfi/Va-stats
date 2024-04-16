@@ -1032,8 +1032,8 @@ export default function Page() {
                   {/* RESET AND SUBMIT BUTTONS 
                   NOTE: Backticks, not vertical single quotes, are required below */}
                   <div className={styles.frmbtnblocksubres}>
-                    <button type="submit" aria-label="Submit form" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
-                    <button type="reset" aria-label="Reset form" className={`${styles.btnreset} ${styles.btngetsfocus}`} onClick={(e) => {
+                    <button type="submit" className={`${styles.btnsubmit} ${styles.btngetsfocus}`} onClick={() => { checkDropdown(); checkSecondCourseChoice(); checkThirdCourseChoice(); }}>SUBMIT</button>
+                    <button type="reset" className={`${styles.btnreset} ${styles.btngetsfocus}`} onClick={(e) => {
                       const flag = confirm("Are you sure you want to reset the form?");
                       if (!flag) {
                         e.preventDefault();
