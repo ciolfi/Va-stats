@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Getting Started.
 
 Follow instructions in Developer Guide for setting up the local development environment.
 
@@ -73,7 +73,7 @@ NOTE REGARDING BATCH ATTENDANCE DROPDOWN:
     - /pages/users.jsx*: name, accessor, htmlFor, id (input attribute)
     - /pages/api/getuserdata.js (if necessary)
   - DreamHost
-    - <https://visionaid.dreamhosters.com/csv/staff.php>: th tag list
+    - [https://visionaid.dreamhosters.com/csv/staff.php](https://visionaid.dreamhosters.com/csv/staff.php): th tag list
     - /csv/csvfunctions.php: fputcsv(), while($row = mysqli_fetch_assoc($result)), get_all_user_records()
 
 *users.jsx file (staff) example: database and UI column names:
@@ -102,8 +102,8 @@ action Action
 ## Errors
 
 - Can't log out? If you get an error preventing you from logging out:
-please modify the /components/Navbar.jsx file per comments
-at the top of the file.
+  please modify the /components/Navbar.jsx file per comments
+  at the top of the file.
 
 ## Dreamhost-mtl folder
 
