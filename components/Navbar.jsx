@@ -9,7 +9,7 @@ import Link from 'next/link';
 import pwaicon from '@/public/pwa-icon.png';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import NavItem from './NavItem';
 import Button from './Button';
 import styles from '../styles/Navbar.module.css';
@@ -24,12 +24,6 @@ const MENU_LIST = [
   //   text: "TestReg",
   //   href: "/testreg"
   // },
-  {
-    text: "Student Registration",
-    href: "/studentregistration",
-    sessionRequired: false,
-    description: 'Student Registration'
-  },
   {
     text: "Students",
     href: "/students",
@@ -63,7 +57,7 @@ const MENU_LIST = [
 const Navbar = (user_role) => {
   const [navActive, setNavActive] = useState(null);
   const [activeIdx, setActiveIdx] = useState(-1);
-  const { data: session, status } = useSession();
+  const { user, error, isLoading } = useUser();
 
   // Logic to check active nav menu
   const router = useRouter();
@@ -123,7 +117,7 @@ const Navbar = (user_role) => {
         </div>
         <div className={`${navActive ? 'active' : 'hide'} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => {
-            if (menu.sessionRequired && !session) {
+            if (menu.sessionRequired && !user) {
               return;
             } else if (menu.sessionRequired && !menu.allowedRoles.includes(user_role.user_role)) {
               return;
@@ -156,12 +150,16 @@ const Navbar = (user_role) => {
 
           {/* Code that switches buttons, depending on whether 
           you're logged in */}
-          {!session ? (
-            <Button text={'Sign in with Google'} iconSrc={'/icons/google-logo.svg'} onClick={() => signIn('google')} isLight={true} />
+          {!user ? (
+            <>
+              <a href="/api/auth/signup">Signup</a>
+              <a href="/api/auth/login">Login</a>
+            </>
           ) : (
             <>
-              <p className={styles.topRightText}>Signed in as {user_role.user_role} : {session.user.email}</p>
-              <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '/' })} isLight={true} className={styles.btnlogout} />
+              <p className={styles.topRightText}>Signed in as {user_role.user_role} : {user.email}</p>
+              <a href="/studentregistration">Student Registration</a>
+              <a href="/api/auth/logout">Logout</a>
               {/* <Button text={'Logout'} onClick={() => signOut({ callbackUrl: '{NEXT_PUBLIC_BASE_URL}' })} isLight={true} className={styles.btnlogout} /> */}
             </>
           )}
