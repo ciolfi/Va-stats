@@ -830,7 +830,7 @@ export default function Page() {
       name: 'Fee Paid',
       accessor: 'fee_paid',
       type: 'enum',
-      availableValues: ['NA', 'Paid', 'Not Paid', 'Waiver', 'Partial Waiver'],
+      availableValues: ['NA', 'Paid', 'Not Paid', 'Waiver', 'Partial Waiver', 'Installment'],
     }, {
       name: 'Amount 1',
       accessor: 'amount_1',
