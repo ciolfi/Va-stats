@@ -781,7 +781,7 @@ export default function Page() {
     setAssessmentsData(() => {
       return generateBatchAssessmentsData();
     });
-  }, [batchData, currentPanel]);
+  }, [batchData, currentPanel, batchDocumentData]);
   // useEffect(() => {
   //   setAttendanceColumn(() => {
   //     return generateColumnsFromDate();
