@@ -5,8 +5,6 @@
 // /pages/api/getstudentsdata.js (1 sec.)
 // DreamHost CSV files: csvfunctions.php (3 secs.), students.php (1 sec.)
 
-// Education inputs (dropdown, textbox)
-// import { NextUIProvider, Select, SelectItem } from "@nextui-org/react";
 import { edcredentials } from "../components/data";
 
 import Head from 'next/head';
@@ -20,13 +18,6 @@ import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useRef } from 'react';
 import { useSession } from 'next-auth/react';
-// import { TextInput, Button, Select } from 'react-native';
-
-// MUI Datepicker
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 let worldData = require("../utils/countries+states.json");
 var userRole = "STAFF";
@@ -35,12 +26,6 @@ export default function Page() {
   useForm(); // Form reset
   const { data: session, status } = useSession();
   var result;
-
-  // BIRTHDATE MUI
-  // const [date, setDate] = useState(new Date());
-  // const millis = date;
-  // const convdate = new Date(millis);
-  // console.log("Convdate: " + (convdate.getMonth() + 1) + "/" + convdate.getDate() + "/" + convdate.getFullYear());
 
   // API DATA ACCESS
   const getUserData = async () => {
@@ -65,8 +50,52 @@ export default function Page() {
     getUserData();
   }, [session]);
 
+  /*---------------- PHONE VALIDATION (REG AND ALT) BEGINS ---------------*/
+  // const [selectedPhone, setSelectedPhone] = useState('');
+  const checkPhone = () => {
+    var chosenphone = document.getElementById("phone_number").value;
+    var regpattern = /^\d{10}$/;
+    if (regpattern.test(chosenphone) != true) {
+      alert("PHONE NUMBER must be 10 digits; number is being reset to a PLACEHOLDER NUMBER, WHICH MUST BE CHANGED.");
+      document.getElementById("phone_number").value = 1112223333;
+      document.getElementById("phone_number").focus();
+    }
+  }
+  const checkAltPhone = () => {
+    var phoneinput = document.getElementById("alt_ph_num");
+    var regpattern = /^\d{10}$/;
+    if (phoneinput.value != "") {
+      if (regpattern.test(phoneinput.value) != true) {
+        alert("PARENT/GUARDIAN PHONE NUMBER must be 10 digits; number is being reset to a PLACEHOLDER NUMBER, WHICH MUST BE CHANGED.");
+        document.getElementById("alt_ph_num").value = 1112223333;
+        document.getElementById("alt_ph_num").focus();
+      }
+    }
+  }
+  const checkValidPhone = () => {
+    var phoneinput = document.getElementById("phone_number");
+    if (phoneinput.value == 1112223333) {
+      alert("PHONE NUMBER must be 10 digits; number was reset to a PLACEHOLDER NUMBER, WHICH MUST BE CHANGED.");
+      phoneinput.value = 1112223333;
+      phoneinput.focus();
+    }
+  }
+  const checkValidAltPhone = () => {
+    var phoneinput = document.getElementById("alt_ph_num");
+    if (phoneinput.value != "") {
+      if (phoneinput.value == 1112223333) {
+        alert("PARENT/GUARDIAN PHONE NUMBER must be 10 digits; number was reset to a PLACEHOLDER NUMBER, WHICH MUST BE CHANGED.");
+        phoneinput.value = 1112223333;
+        phoneinput.focus();
+      }
+    }
+  }
+  /*----------------- PHONE VALIDATION (REG AND ALT) ENDS ------------*/
+
   // Line below may work FOR SSRPROVIDER ERRORS:
   // const { isBrowser } = useSSR();
+
+  /*------------------------- COURSE OPTIONS BEGIN ------------------*/
 
   const [contentLoading, setContentLoading] = useState(false);
   // const [contentLoading, setContentLoading] = useState(true);
@@ -81,10 +110,7 @@ export default function Page() {
   const [Option1, setOption1] = useState(() => []);
   const [Option2, setOption2] = useState(() => []);
 
-  /*-------- COURSE CHOICE SUMMARIES CODE BEGINS ------*/
-  /*-------- NOTE: This is interim code until
-  data-driven components are implemented ------*/
-
+  /*------------------- COURSE CHOICE SUMMARIES CODE BEGINS --------------------*/
   const pythonSummary = "The Python class goal is to develop skills to write simple applications using Python programming language. We recommend familiarity with other programming languages. The course will be 4-6 months long.";
   const cSummary = "The C language is a fundamental language in the field of computer science. It's powerful and has a wide variety of uses. It has been used to create databases, applications, and even operating systems. The C language is considered both fast and versatile.";
   const cplusplusSummary = "The C++ language is very popular. It gives programmers a great deal of control over system memory and other resources. It facilitates the creation of high-performance applications. C++ has played a key role in the development of a wide variety of software, including video games.";
@@ -98,7 +124,7 @@ export default function Page() {
   const sepbSummary = "Spoken English Programme Beginner";
   const chatGptSummary = "AI tools and prompt Engineering";
 
-  /*-------- COURSE CHOICE SUMMARIES ITEM ----------*/
+  // ?COURSE CHOICE SUMMARIES ITEM
   const [Option3, setOption3] = useState(() => []);
 
   const [choiceChanged, setChoiceChanged] = useState(false);
@@ -157,7 +183,7 @@ export default function Page() {
       return chatGptSummary;
     }
     else {
-      return ""; // "AN UNKNOWN course was chosen ...";
+      return ""; // AN UNKNOWN course was chosen
     }
   };
 
@@ -165,32 +191,18 @@ export default function Page() {
     const { name, value } = e.target;
     if (name === 'first_choice') {
       setOption1(value);
-
-      /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      // alert("First choice summary: " + getSummaries(value));
-
-    } else if (name === 'second_choice') {
+    } 
+    else if (name === 'second_choice') {
       setOption2(value);
-
-      /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      // alert("Second choice summary: " + getSummaries(value));
-
     }
-
     else if (name === 'third_choice') {
       setOption3(value);
-
-      /*----------- COURSE CHOICE SUMMARIES ITEM ----------*/
-      // alert("Third choice summary: " + getSummaries(value));
-
     }
-
     setChoiceChanged(!choiceChanged);
   };
-  /*------------ COURSE CHOICE SUMMARIES CODE ENDS ----------*/
 
   /* INPUT CONSTRAINT: Course choices dropdowns; selection is enforced by
-  the onfocus event in the next form element (Visual Acuity dropdown) */
+  the onFocus event in the next form element (Visual Acuity dropdown) */
   const checkDropdown = (e) => {
     if ((document.getElementById('first_choice').value !== 'Select First Choice')) {
       return;
@@ -261,7 +273,9 @@ export default function Page() {
   useEffect(() => {
     getCourseData();
   }, []);
+  /*---------------------- COURSE OPTIONS END ------------------------*/
 
+  /*---------------------- COUNTRIES/STATES BEGIN --------------------*/
   const updateCountriesOptions = () => {
     const countries = [];
     worldData.map(country => {
@@ -286,31 +300,27 @@ export default function Page() {
 
   useEffect(() => {
     updateCountriesOptions();
-    updateStateOptions({target:{value:'India'}});
+    updateStateOptions({ target: { value: 'India' } });
   }, []);
+  /*---------------------- COUNTRIES/STATES END --------------------*/
 
-
-
-  /*-------------------- GENDER DROPDOWN -------------------*/
-  // GENDER
+  /*------------------------ GENDER DROPDOWN -----------------------*/
   const [selectedGender, setSelectedGender] = React.useState(new Set(["Female"]));
   const selectedValueGender = React.useMemo(
     () => Array.from(selectedGender).join(", ").replaceAll("_", " "),
     [selectedGender]
   );
 
-  /*------------- DISABILITY DROPDOWN BEGINS --------------*/
+  /*---------------------- DISABILITY DROPDOWN ---------------------*/
   const [selectedDisability, setSelectedDisability] = useState('');
   const disability = useState('');
   function checkDisability() {
     if ((document.getElementById('disability').value == 'Other disability') || (document.getElementById('disability').value == 'Non-disabled')) {
-      // document.getElementById('disability').focus();
       alert("Please change the 'Nature of Disability' value. 'Other disability' and 'Non-disabled' are not eligible to apply.");
       document.getElementById('disability').value = "Visually impaired";
       document.getElementById('disability').focus();
     }
   }
-  /*------------- DISABILITY DROPDOWN ENDS --------------*/
 
   // EDUCATION DROPDOWN
   const [selectedEdu, setSelectedEdu] = useState('Below 10th standard');
@@ -333,11 +343,11 @@ export default function Page() {
   const [selectedPercentVision, setSelectedPercentVision] = useState('');
   const checkVisionLoss = () => {
     var chosenpercentloss = parseInt((document.getElementById("percent_loss").value));
-    if (!((chosenpercentloss >= 1 ) && (chosenpercentloss < 101))) {
+    if (!((chosenpercentloss >= 1) && (chosenpercentloss < 101))) {
       alert("Percentage of vision loss must be from 1 to 100.");
       document.getElementById("percent_loss").value = 1;
       document.getElementById("percent_loss").focus();
-    } 
+    }
   }
 
   // ADD COURSE CHOICE 
@@ -381,6 +391,7 @@ export default function Page() {
     Router.push(process.env.NEXT_PUBLIC_BASE_URL + 'testreg', { shallow: true });
   };
 
+  /*----------------------- HTML BEGINS ---------------------*/
   return (
     // NextUIProvider BELOW: FOR EDUCATION DROPDOWN
     // <NextUIProvider>
@@ -447,19 +458,15 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
-                              id="name"
-                              name="name"
+                              autoComplete="off" role="presentation" // They work together
                               className={styles.reginput}
+                              id="name"
                               maxLength="150"
-                              // First entered name must start with an alphabet character and 
-                              // can be followed by any character (dot and spaces included)
+                              name="name"
                               pattern="^[a-zA-Z].*[\s\.]*$"
-                              // placeholder="First & last name"
                               placeholder="As per aadhaar"
-                              type="text"
-                              autoComplete="off"
-                              role="presentation"
                               required
+                              type="text"       
                             />
                           </td>
                         </tr>
@@ -526,8 +533,8 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              onfocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
-                              onblur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
+                              onFocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
+                              onBlur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
                               role="presentation" autoComplete="off"
                               required
                             />
@@ -569,15 +576,19 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
+                              autoComplete="off"
                               className={styles.reginput}
                               id="phone_number"
+                              // maxlength={10}
                               name="phone_number"
-                              // placeholder="10 num only; no dashes"
+                              onBlur={(e) => checkPhone(e)}
+                              // onChange={e => setSelectedPhone(e.target.value)}
+                              // onFocusOut={(e) => checkValidPhone(e)}
+                              pattern="[0-9]{10}"
                               placeholder="Enter 10 digits only"
-                              type="tel"
-                              pattern="\d{10}"
-                              minLength={10} maxLength={10}
-                              role="presentation" autoComplete="off"
+                              // type="number"
+                              role="presentation"
+                              // value={selectedPhone}
                               required
                             />
                           </td>
@@ -594,14 +605,15 @@ export default function Page() {
                           </td>
                           <td className={styles.inputtd}>
                             <input
+                              autoComplete="off"
                               className={styles.reginput}
                               id="alt_ph_num"
                               name="alt_ph_num"
+                              onBlur={(e) => checkAltPhone(e)}
+                              onFocus={(e) => checkValidPhone(e)} // Check phone entry
+                              pattern="[0-9]{10}"
                               placeholder="Enter 10 digits only"
-                              type="tel"
-                              pattern="\d{10}"
-                              minLength={10} maxLength={10}
-                              role="presentation" autoComplete="off"
+                              role="presentation"
                             />
                           </td>
                         </tr>
@@ -622,6 +634,7 @@ export default function Page() {
                               id="country"
                               name="country"
                               onChange={(e) => updateStateOptions(e)}
+                              onFocus={(e) => checkValidPhone(e)} // Check phone entry
                               required
                               role="presentation"
                             >
@@ -645,6 +658,7 @@ export default function Page() {
                               autoComplete="off"
                               className={styles.reginput}
                               id="state"
+                              onFocus={(e) => checkValidAltPhone(e)} // Check alt phone entry
                               name="state"
                               required
                               role="presentation"
@@ -671,6 +685,7 @@ export default function Page() {
                               id="city"
                               maxLength="35"
                               name="city"
+                              // onFocus={(e) => checkValidAltPhone(e)} // Check alt phone entry
                               role="presentation"
                               required
                               type="text"
@@ -723,6 +738,7 @@ export default function Page() {
                             <select
                               aria-label="Education attained"
                               className={styles.txtboxdropdown}
+                              id="edu_qualifications"
                               name="edu_qualifications"
                               onChange={e => setSelectedEdu(e.target.value)}
                               radius="none"
@@ -867,7 +883,16 @@ export default function Page() {
                           <span className={styles.requiredelement}>&#42;</span>
                         </td>
                         <td className={styles.inputtd}>
-                          <select name="first_choice" id="first_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} ref={refFirstChoice} role="presentation" autoComplete="off" required>
+                          <select
+                            name="first_choice"
+                            id="first_choice"
+                            className={styles.reginput}
+                            onChange={(e) => updateChoices(e)}
+                            ref={refFirstChoice}
+                            role="presentation"
+                            autoComplete="off"
+                            required
+                          >
                             <option></option>
                             {courseOptions1}
                             {/* <option selected="selected">Select First Choice</option> */}
@@ -885,7 +910,14 @@ export default function Page() {
                           {/* <span className={styles.requiredelement}>&#42;</span> */}
                         </td>
                         <td className={styles.inputtd}>
-                          <select name="second_choice" id="second_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
+                          <select
+                            name="second_choice"
+                            id="second_choice"
+                            className={styles.reginput}
+                            onChange={(e) => updateChoices(e)}
+                            role="presentation"
+                            autoComplete="off"
+                          >
                             <option></option>
                             {courseOptions2}
                             {/* <option selected="selected">Select Second Choice</option> */}
@@ -905,7 +937,14 @@ export default function Page() {
                           {/* Before alert box course summaries */}
                           {/* <select name="third_choice" id="third_choice" className={styles.reginput} role="presentation" autoComplete="off" required> */}
 
-                          <select name="third_choice" id="third_choice" className={styles.reginput} onChange={(e) => updateChoices(e)} role="presentation" autoComplete="off">
+                          <select
+                            name="third_choice"
+                            id="third_choice"
+                            className={styles.reginput}
+                            onChange={(e) => updateChoices(e)}
+                            role="presentation"
+                            autoComplete="off"
+                          >
                             <option></option>
                             {courseOptions3}
                             {/* <option selected="selected">Select Third Choice</option> */}
