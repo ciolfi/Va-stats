@@ -39,11 +39,18 @@ function staffHasAccess(batchInfo, userInfo) {
   } else {
     userName = userInfo["firstname"];
   }
+
+  // ADDED: DATAENTRY PERMISSION
+  let userDataAccess = userInfo["dataentry"];
+
   let userEmail = userInfo["email"];
   let batchInstructorName = batchInfo["instructor"];
   let userAccessRole = userInfo["role"];
   let permitGranted = false;
-  if (userAccessRole != "STAFF") {
+
+  // ADDED: DATAENTRY PERMISSION
+  // if (userAccessRole != "STAFF") {
+  if ((userAccessRole != "STAFF") || (userDataAccess == "YES")) {
     permitGranted = true;
   } else {
     // provides an override for select few email IDs as Master Staff level access

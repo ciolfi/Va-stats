@@ -1,15 +1,9 @@
 /* 
-FOR LOCAL TESTING, ADJUST/COMMENT OUT SECTIONS BELOW (APPROX. LINE #'S SHOWN):
-76: API endpoint reversal
-111: User login analysis
-214: Authentication analysis
-238: Navbar role attribute
-284: CSV download button attribute
-404: Else block
-
-Roster button requires also editing: 
+EDITS HERE LIKELY REQUIRE EDITS IN THESE: 
+./pages/api/batchcreate.js
+./pages/api/getbatchesdata.js
+./pages/api/updatebatches.js
 ./pages/batch/[id].jsx:
-./components/Table.jsx
 */
 
 import Head from 'next/head';
@@ -239,8 +233,12 @@ export default function Page() {
     }, {
       name: 'TA',
       accessor: 'TA',
-    },
-    {
+    }, {
+      name: 'Data Entry Access',
+      accessor: 'dataentry',
+      type: 'enum',
+      availableValues: ['NO', 'YES'],
+    }, {
       name: 'Status',
       accessor: 'status',
       type: 'enum',
@@ -398,7 +396,14 @@ export default function Page() {
                           <input type='text' className={styles.addstaffforminputsbox} id='PM' name='PM' required /><br /><br />
 
                           <label htmlFor='TA' className={styles.addstafflabel}>Teaching Assistant<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='TA' name='TA' required /><br />
+                          <input type='text' className={styles.addstaffforminputsbox} id='TA' name='TA' required /><br /><br />
+
+                          <label htmlFor='dataentry' className={styles.addstafflabel}>Data Entry Access<span className={styles.requiredelement}>&#42;</span></label>
+                          <input list='dataentryaccess' className={styles.addstaffforminputsbox} id='dataentry' name='dataentry' required /><br /><br />
+                          <datalist id="dataentryaccess">
+                            <option value="NO" />
+                            <option value="YES" />
+                          </datalist><br /><br />
 
                         </section>
 
