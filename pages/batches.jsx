@@ -137,6 +137,8 @@ export default function Page() {
     setCourseOptions(options);
   };
 
+  const [ariaExpanded, setAriaExpanded] = useState(false)
+
   useEffect(() => {
     getPageData();
     getCourseData();
@@ -340,59 +342,69 @@ export default function Page() {
                 <div className={styles.gridcourses}>
                   {showForm ?
                     // <div className={styles.cardbatchform}>
-                    <div className={styles.addbatchform}>
-                      <h2>Create batch. &rarr;</h2>
-                      <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} onClick={() => setShowForm(false)} className={styles.collapseButtonBatches} title="Close Batches Form" />
+                    <div className={styles.addbatchform} id="createNewBatch">
+                      <div>
+                        <h2>Create batch. &rarr;</h2>
+                        <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} 
+                        onClick={() => {
+                          setAriaExpanded(false)
+                          setShowForm(false)
+                        }}
+                        className={styles.collapseButtonBatches} title="Close Batches Form" />
+                
+                      </div>
+                     
+                      <div id="requiredHelper" tabindex="0"><h4>The field mark with asterisks  (*) are Required</h4></div>
+                      <div>
                       <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
-
                         <section className={styles.addbatchformsec1}>
 
                           <label htmlFor='coursename' className={styles.addstafflabel}>Course Name<span className={styles.requiredelement}>&#42;</span></label>
-                          <select name='coursename' id='coursename' className={styles.addstaffforminputsbox} autofocus required>
+                          <select name='coursename' id='coursename' className={styles.addstaffforminputsbox} autoFocus required>
                             {courseOptions}
                           </select><br /><br />
 
-                          <label htmlFor='batch' className={styles.addstafflabel}>Batch<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='batch' className={styles.addstafflabel}>Batch ID<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='batch' name='batch' required /><br /><br />
 
-                          <label htmlFor='coursestart' className={styles.addstafflabel}>Start<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='coursestart' className={styles.addstafflabel}>Course Start Date<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='date' className={styles.addstaffforminputsbox} id='coursestart' name='coursestart' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                          <label htmlFor='courseend' className={styles.addstafflabel}>End<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='courseend' className={styles.addstafflabel}>Course End Date<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                          <label htmlFor='coursedays' className={styles.addstafflabel}>Days<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
                           <span>
-                            <input type='checkbox' id='M' name='coursedays' value="M" />
-                            <label for='M'>M</label>
-                            <input type='checkbox' id='T' name='coursedays' value="T"></input>
-                            <label for='T'>T</label>
-                            <input type='checkbox' id='W' name='coursedays' value="W"></input>
-                            <label for='W'>W</label>
-                            <input type='checkbox' id='Th' name='coursedays' value="Th"></input>
-                            <label for='Th'>Th</label>
-                            <input type='checkbox' id='F' name='coursedays' value="F"></input>
-                            <label for='F'>F</label>
-                            <input type='checkbox' id='Sa' name='coursedays' value="Sa"></input>
-                            <label for='Sa'>Sa</label>
-                            <input type='checkbox' id='Su' name='coursedays' value="Su"></input>
-                            <label for='Su'>Su</label>
+                            <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
+                            <label htmlFor='M'>M</label>
+                            <input type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
+                            <label htmlFor='T'>T</label>
+                            <input type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
+                            <label htmlFor='W'>W</label>
+                            <input type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
+                            <label htmlFor='Th'>Th</label>
+                            <input type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
+                            <label htmlFor='F'>F</label>
+                            <input type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
+                            <label htmlFor='Sa'>Sa</label>
+                            <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
+                            <label htmlFor='Su'>Su</label>
                           </span><br />
 
                         </section>
 
                         <section className={styles.addbatchformsec2}>
 
-                          <label htmlFor='coursetimestart' className={styles.addstafflabel}>Start Time<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='coursetimestart' className={styles.addstafflabel}>Class Start Time<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='time' className={styles.addstaffforminputsbox} id='coursetimestart' name='coursetimestart' defaultValue='12:00' required /><br /><br />
 
-                          <label htmlFor='coursetimeend' className={styles.addstafflabel}>End Time<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='coursetimeend' className={styles.addstafflabel}>Class End Time<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='time' className={styles.addstaffforminputsbox} id='coursetimeend' name='coursetimeend' defaultValue='12:00' required /><br /><br />
 
                           <label htmlFor='instructor' className={styles.addstafflabel}>Instructor<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='instructor' name='instructor' required /><br /><br />
 
-                          <label htmlFor='PM' className={styles.addstafflabel}>PM<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='PM' className={styles.addstafflabel}>Program Manager<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='PM' name='PM' required /><br /><br />
 
                           <label htmlFor='TA' className={styles.addstafflabel}>Teaching Assistant<span className={styles.requiredelement}>&#42;</span></label>
@@ -409,7 +421,7 @@ export default function Page() {
 
                         <section className={styles.addbatchformsec3}>
 
-                          <label htmlFor='cost' className={styles.addstafflabel}>Unit Cost<span className={styles.requiredelement}>&#42;</span></label>
+                          <label htmlFor='cost' className={styles.addstafflabel}>Cost per Student<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='cost' name='cost' placeholder='If free, input 0.' required /><br /><br />
 
                           <label htmlFor='currency' className={styles.addstafflabel}>Currency<span className={styles.requiredElement}></span>
@@ -417,10 +429,14 @@ export default function Page() {
                               &#42;&nbsp;
                             </span>
                           </label>
+
                           <input type="radio" id="rupees" name="currency" value="INR" />
-                          <label for="rupees">INR</label>
+                          <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>
+
                           <input type="radio" id="usd" name="currency" value="USD" />
-                          <label for="usd">USD</label><br /><br />
+                          <label htmlFor="usd" aria-label='Select Dollar as Currency'>USD</label>
+                          
+                          <br /><br />
 
                           <label htmlFor='strength' className={styles.addstafflabel}>Batch Strength<span className={styles.requiredelement}>&#42;</span></label>
                           <input type='text' className={styles.addstaffforminputsbox} id='strength' name='strength' required /><br /><br />
@@ -439,9 +455,14 @@ export default function Page() {
                         </section>
 
                       </form>
+                      </div>
                     </div>
-                    : <Button onClick={() => setShowForm(true)} text={'Create New Batch'} className={styles.btnnewbatchform} ></Button>
+                    : ''
                   }
+                  <Button style={{display:showForm?'none':'block'}} onClick={() => {
+                      setAriaExpanded(true)
+                      setShowForm(true)
+                    }} text={'Create New Batch'} className={styles.btnnewbatchform} ariaExpanded={ariaExpanded} ariaControls='createNewBatch'></Button>
                   <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
                 </div>
 

@@ -67,6 +67,9 @@ export default function Home() {
     setStudentCountResponse(res.count);
   };
   useEffect(() => {
+    // Set edit mode as false when app first loads
+    // This is done to avoid a bug if user closes a tab directly in the middle of an edit, the flag stays true
+    localStorage.setItem('editMode','false')
     getBatchCount();
     getCourseCount();
     getStudentCount();
