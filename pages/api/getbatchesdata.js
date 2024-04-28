@@ -1,6 +1,5 @@
 // FILE CONTENTS: MySQL Courses table query
 
-// import { query } from "../../lib/db";
 import mysql from "mysql2/promise";
 
 export default async function handler(req, res) {

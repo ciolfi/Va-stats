@@ -9,9 +9,9 @@ export default async function handler(req, res) {
 	try {
 		// Get data submitted in request body
 		const body = req.body;
-
+		
 		// View response object in terminal
-		//console.log('body: ', body);
+		// console.log('body: ', body);
 		var coursedays;
 		if (Array.isArray(body.coursedays)) {
 			coursedays = body.coursedays.join("");

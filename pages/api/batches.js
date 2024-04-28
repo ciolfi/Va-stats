@@ -15,7 +15,6 @@ export default async function assetHandler(req, res) {
 					values: [],
 				});
 				res.json(result);
-				//.log(result);
 				return result;
 			}
 			catch (e) {

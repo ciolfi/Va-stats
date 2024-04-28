@@ -11,12 +11,15 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
-import React from 'react';
+// import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 import Button from '@/components/Button';
+
+// FOR MAPPING VALUES to dataentry dropdown
+import DropdownMenuStaff from '../components/DropdownMenuStaff';
 
 export default function Page() {
   // const res = null;
@@ -32,7 +35,7 @@ export default function Page() {
   const [contentLoading, setContentLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
-  const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
+  const allowedRoles = ['ADMINISTRATOR', 'MANAGEMENT', 'STAFF'];
 
   const handleUpdateBatch = async (editedBatch) => {
     setContentLoading(true);
@@ -238,8 +241,8 @@ export default function Page() {
     }, {
       name: 'Data Entry Access',
       accessor: 'dataentry',
-      type: 'enum',
-      availableValues: ['NO', 'YES'],
+      // type: 'enum',
+      // availableValues: ['NO', 'YES'],
     }, {
       name: 'Status',
       accessor: 'status',
@@ -345,124 +348,123 @@ export default function Page() {
                     <div className={styles.addbatchform} id="createNewBatch">
                       <div>
                         <h2>Create batch. &rarr;</h2>
-                        <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30} 
-                        onClick={() => {
-                          setAriaExpanded(false)
-                          setShowForm(false)
-                        }}
-                        className={styles.collapseButtonBatches} title="Close Batches Form" />
-                
+                        <Image alt={'close batches form'} src={'/icons/expand-up.svg'} height={30} width={30}
+                          onClick={() => {
+                            setAriaExpanded(false)
+                            setShowForm(false)
+                          }}
+                          className={styles.collapseButtonBatches} title="Close Batches Form" />
+
                       </div>
-                     
+
                       <div id="requiredHelper" tabindex="0"><h4>The field mark with asterisks  (*) are Required</h4></div>
                       <div>
-                      <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
-                        <section className={styles.addbatchformsec1}>
+                        <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
+                          <section className={styles.addbatchformsec1}>
 
-                          <label htmlFor='coursename' className={styles.addstafflabel}>Course Name<span className={styles.requiredelement}>&#42;</span></label>
-                          <select name='coursename' id='coursename' className={styles.addstaffforminputsbox} autoFocus required>
-                            {courseOptions}
-                          </select><br /><br />
+                            <label htmlFor='coursename' className={styles.addstafflabel}>Course Name<span className={styles.requiredelement}>&#42;</span></label>
+                            <select name='coursename' id='coursename' className={styles.addstaffforminputsbox} autoFocus required>
+                              {courseOptions}
+                            </select><br /><br />
 
-                          <label htmlFor='batch' className={styles.addstafflabel}>Batch ID<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='batch' name='batch' required /><br /><br />
+                            <label htmlFor='batch' className={styles.addstafflabel}>Batch ID<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='batch' name='batch' required /><br /><br />
 
-                          <label htmlFor='coursestart' className={styles.addstafflabel}>Course Start Date<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='date' className={styles.addstaffforminputsbox} id='coursestart' name='coursestart' placeholder="MM/DD/YYYY" required /><br /><br />
+                            <label htmlFor='coursestart' className={styles.addstafflabel}>Course Start Date<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='date' className={styles.addstaffforminputsbox} id='coursestart' name='coursestart' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                          <label htmlFor='courseend' className={styles.addstafflabel}>Course End Date<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
+                            <label htmlFor='courseend' className={styles.addstafflabel}>Course End Date<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                          <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
-                          <span>
-                            <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
-                            <label htmlFor='M'>M</label>
-                            <input type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
-                            <label htmlFor='T'>T</label>
-                            <input type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
-                            <label htmlFor='W'>W</label>
-                            <input type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
-                            <label htmlFor='Th'>Th</label>
-                            <input type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
-                            <label htmlFor='F'>F</label>
-                            <input type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
-                            <label htmlFor='Sa'>Sa</label>
-                            <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
-                            <label htmlFor='Su'>Su</label>
-                          </span><br />
+                            <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
+                            <span>
+                              <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
+                              <label htmlFor='M'>M</label>
+                              <input type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
+                              <label htmlFor='T'>T</label>
+                              <input type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
+                              <label htmlFor='W'>W</label>
+                              <input type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
+                              <label htmlFor='Th'>Th</label>
+                              <input type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
+                              <label htmlFor='F'>F</label>
+                              <input type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
+                              <label htmlFor='Sa'>Sa</label>
+                              <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
+                              <label htmlFor='Su'>Su</label>
+                            </span><br />
 
-                        </section>
+                          </section>
 
-                        <section className={styles.addbatchformsec2}>
+                          <section className={styles.addbatchformsec2}>
 
-                          <label htmlFor='coursetimestart' className={styles.addstafflabel}>Class Start Time<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='time' className={styles.addstaffforminputsbox} id='coursetimestart' name='coursetimestart' defaultValue='12:00' required /><br /><br />
+                            <label htmlFor='coursetimestart' className={styles.addstafflabel}>Class Start Time<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='time' className={styles.addstaffforminputsbox} id='coursetimestart' name='coursetimestart' defaultValue='12:00' required /><br /><br />
 
-                          <label htmlFor='coursetimeend' className={styles.addstafflabel}>Class End Time<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='time' className={styles.addstaffforminputsbox} id='coursetimeend' name='coursetimeend' defaultValue='12:00' required /><br /><br />
+                            <label htmlFor='coursetimeend' className={styles.addstafflabel}>Class End Time<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='time' className={styles.addstaffforminputsbox} id='coursetimeend' name='coursetimeend' defaultValue='12:00' required /><br /><br />
 
-                          <label htmlFor='instructor' className={styles.addstafflabel}>Instructor<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='instructor' name='instructor' required /><br /><br />
+                            <label htmlFor='instructor' className={styles.addstafflabel}>Instructor<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='instructor' name='instructor' required /><br /><br />
 
-                          <label htmlFor='PM' className={styles.addstafflabel}>Program Manager<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='PM' name='PM' required /><br /><br />
+                            <label htmlFor='PM' className={styles.addstafflabel}>Program Manager<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='PM' name='PM' required /><br /><br />
 
-                          <label htmlFor='TA' className={styles.addstafflabel}>Teaching Assistant<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='TA' name='TA' required /><br /><br />
+                            <label htmlFor='TA' className={styles.addstafflabel}>Teaching Assistant<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='TA' name='TA' required /><br /><br />
 
-                          <label htmlFor='dataentry' className={styles.addstafflabel}>Data Entry Access<span className={styles.requiredelement}>&#42;</span></label>
-                          <input list='dataentryaccess' className={styles.addstaffforminputsbox} id='dataentry' name='dataentry' required /><br /><br />
-                          <datalist id="dataentryaccess">
-                            <option value="NO" />
-                            <option value="YES" />
-                          </datalist><br /><br />
+                            <label htmlFor='dataentry' className={styles.addstafflabel}>Data Entry Access<span className={styles.requiredelement}>&#42;</span></label>
+                            <DropdownMenuStaff
+                              id='dataentry'
+                              name='dataentry'
+                              required
+                            />
+                          </section>
 
-                        </section>
+                          <section className={styles.addbatchformsec3}>
 
-                        <section className={styles.addbatchformsec3}>
+                            <label htmlFor='cost' className={styles.addstafflabel}>Cost per Student<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='cost' name='cost' placeholder='If free, input 0.' required /><br /><br />
 
-                          <label htmlFor='cost' className={styles.addstafflabel}>Cost per Student<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='cost' name='cost' placeholder='If free, input 0.' required /><br /><br />
+                            <label htmlFor='currency' className={styles.addstafflabel}>Currency<span className={styles.requiredElement}></span>
+                              <span style={{ color: 'red', paddingRight: '1em' }}>
+                                &#42;&nbsp;
+                              </span>
+                            </label>
 
-                          <label htmlFor='currency' className={styles.addstafflabel}>Currency<span className={styles.requiredElement}></span>
-                            <span style={{ color: 'red', paddingRight: '1em' }}>
-                              &#42;&nbsp;
-                            </span>
-                          </label>
+                            <input type="radio" id="rupees" name="currency" value="INR" />
+                            <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>
 
-                          <input type="radio" id="rupees" name="currency" value="INR" />
-                          <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>
+                            <input type="radio" id="usd" name="currency" value="USD" />
+                            <label htmlFor="usd" aria-label='Select Dollar as Currency'>USD</label>
 
-                          <input type="radio" id="usd" name="currency" value="USD" />
-                          <label htmlFor="usd" aria-label='Select Dollar as Currency'>USD</label>
-                          
-                          <br /><br />
+                            <br /><br />
 
-                          <label htmlFor='strength' className={styles.addstafflabel}>Batch Strength<span className={styles.requiredelement}>&#42;</span></label>
-                          <input type='text' className={styles.addstaffforminputsbox} id='strength' name='strength' required /><br /><br />
+                            <label htmlFor='strength' className={styles.addstafflabel}>Batch Strength<span className={styles.requiredelement}>&#42;</span></label>
+                            <input type='text' className={styles.addstaffforminputsbox} id='strength' name='strength' required /><br /><br />
 
-                          <label htmlFor='trainingmode' className={styles.addstafflabel}>Mode of Training<span className={styles.requiredelement}>&#42;</span></label>
-                          <input list='trainingmodes' className={styles.addstaffforminputsbox} id='trainingmode' name='trainingmode' required /><br /><br />
-                          <datalist id="trainingmodes">
-                            <option value="VIRTUAL" />
-                            <option value="IN-PERSON" />
-                            <option value="SELF-PACED" />
-                          </datalist><br />
+                            <label htmlFor='trainingmode' className={styles.addstafflabel}>Mode of Training<span className={styles.requiredelement}>&#42;</span></label>
+                            <input list='trainingmodes' className={styles.addstaffforminputsbox} id='trainingmode' name='trainingmode' required /><br /><br />
+                            <datalist id="trainingmodes">
+                              <option value="VIRTUAL" />
+                              <option value="IN-PERSON" />
+                              <option value="SELF-PACED" />
+                            </datalist><br />
 
-                          <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
-                          <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
+                            <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
+                            <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
 
-                        </section>
+                          </section>
 
-                      </form>
+                        </form>
                       </div>
                     </div>
                     : ''
                   }
-                  <Button style={{display:showForm?'none':'block'}} onClick={() => {
-                      setAriaExpanded(true)
-                      setShowForm(true)
-                    }} text={'Create New Batch'} className={styles.btnnewbatchform} ariaExpanded={ariaExpanded} ariaControls='createNewBatch'></Button>
+                  <Button style={{ display: showForm ? 'none' : 'block' }} onClick={() => {
+                    setAriaExpanded(true)
+                    setShowForm(true)
+                  }} text={'Create New Batch'} className={styles.btnnewbatchform} ariaExpanded={ariaExpanded} ariaControls='createNewBatch'></Button>
                   <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
                 </div>
 
