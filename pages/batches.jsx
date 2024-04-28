@@ -343,6 +343,8 @@ export default function Page() {
                 </p>
 
                 <div className={styles.gridcourses}>
+                  {(userResponse[0]["role"] != "STAFF") ?
+                  <>
                   {showForm ?
                     // <div className={styles.cardbatchform}>
                     <div className={styles.addbatchform} id="createNewBatch">
@@ -465,10 +467,13 @@ export default function Page() {
                     </div>
                     : ''
                   }
-                  <Button style={{ display: showForm ? 'none' : 'block' }} onClick={() => {
+                  <Button style={{display:showForm?'none':'block'}} onClick={() => {
                     setAriaExpanded(true)
                     setShowForm(true)
                   }} text={'Create New Batch'} className={styles.btnnewbatchform} ariaExpanded={ariaExpanded} ariaControls='createNewBatch'></Button>
+                  </>
+                  :<></>
+                  }
                   <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
                 </div>
 
