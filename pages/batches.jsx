@@ -408,7 +408,11 @@ export default function Page() {
                             <input type='text' className={styles.addstaffforminputsbox} id='instructor' name='instructor' required /><br /><br />
 
                             <label htmlFor='PM' className={styles.addstafflabel}>Program Manager<span className={styles.requiredelement}>&#42;</span></label>
-                            <input type='text' className={styles.addstaffforminputsbox} id='PM' name='PM' required /><br /><br />
+                            <DropdownMenuStaff
+                              id='PM'
+                              name='PM'
+                              required
+                            /><br /><br />
 
                             <label htmlFor='TA' className={styles.addstafflabel}>Teaching Assistant<span className={styles.requiredelement}>&#42;</span></label>
                             <input type='text' className={styles.addstaffforminputsbox} id='TA' name='TA' required /><br /><br />
