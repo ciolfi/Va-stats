@@ -548,7 +548,59 @@ div .menubutton {
   width: 28vw;
 }
 
-/*--- Desktop: 'Add batch' form ends ----*/
+/* Days of the week checkboxes and labels BEGINS */
+
+.addcheckboxeslabel {
+  border: 0px solid green;
+  /* display: inline-block; */
+  font-weight: 700;
+  left: 0.2em;
+  position: relative;
+  text-align: right;
+  width: 50%;
+}
+
+.wrappercheckboxes {
+  border: 0px solid blue;
+  /* height: 100vh; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0em;
+
+}
+.containercheckboxes {
+  border: 0px solid red;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 0.8em;
+  left: -0.1em;
+  position: relative;
+  width: 57%;
+}
+
+.checkBox {
+  border: 0px solid orange;
+  /* 2 PROPS BELOW ARE CRITICAL */
+  break-inside: avoid;
+  display: inline-block;
+  margin: 0.2em;
+}
+
+.inputdays {
+  margin-right: 0.15em;
+}
+
+.labeldays {
+  font-size: 0.8em;
+  font-weight: 700;
+  margin-left: -0.2em;
+  width: 30px;
+}
+/* Days of the week checkboxes and labels ENDS */
+
+/*---------------- Desktop: 'Add batch' form ends -------------*/
 
 .studentapplicationform {
   border: 1px solid black;

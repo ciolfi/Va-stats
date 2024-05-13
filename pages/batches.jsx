@@ -357,7 +357,7 @@ export default function Page() {
 
                       </div>
 
-                      <div id="requiredHelper" tabindex="0"><h4>The field mark with asterisks  (*) are Required</h4></div>
+                      <div id="requiredHelper" tabindex="0"><h4>The fields marked with asterisks  (*) are Required</h4></div>
                       <div>
                         <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
                           <section className={styles.addbatchformsec1}>
@@ -376,7 +376,7 @@ export default function Page() {
                             <label htmlFor='courseend' className={styles.addstafflabel}>Course End Date<span className={styles.requiredelement}>&#42;</span></label>
                             <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                            <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
+                            {/* <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
                             <span>
                               <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
                               <label htmlFor='M'>M</label>
@@ -392,7 +392,85 @@ export default function Page() {
                               <label htmlFor='Sa'>Sa</label>
                               <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
                               <label htmlFor='Su'>Su</label>
-                            </span><br />
+                            </span><br /> */}
+
+                            {/* ------------- CHECKBOXES BEGIN --------------- */}
+                            {/* <div class="wrapper-checkboxes">
+                              <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label> */}
+                            {/* <div class="wrapper-checkboxes"> */}
+                            {/* <div class="container-checkboxes">
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-mon" type="checkbox" />
+                                    <label class="label-days">Monday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-tue" type="checkbox" />
+                                    <label class="label-days">Tuesday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-wed" type="checkbox" />
+                                    <label class="label-days">Wednesday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-thu" type="checkbox" />
+                                    <label class="label-days">Thursday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-fri" type="checkbox" />
+                                    <label class="label-days">Friday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-sat" type="checkbox" />
+                                    <label class="label-days">Saturday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-sun" type="checkbox" />
+                                    <label class="label-days">Sunday</label>
+                                  </span>
+                              </div> */}
+                            {/* </div> */}
+                            <div className={styles.wrappercheckboxes}>
+                              <label htmlFor='coursedays' className={styles.addcheckboxeslabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
+                              <div className={styles.containercheckboxes}>
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
+                                  <label className={styles.labeldays} htmlFor='M'>M</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
+                                  <label className={styles.labeldays} htmlFor='T'>T</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input  className={styles.inputdays} type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
+                                  <label className={styles.labeldays} htmlFor='W'>W</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
+                                  <label className={styles.labeldays} htmlFor='Th'>Th</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
+                                  <label className={styles.labeldays} htmlFor='F'>F</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
+                                  <label className={styles.labeldays} htmlFor='Sa'>Sa</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
+                                  <label className={styles.labeldays} htmlFor='Su'>Su</label>
+                                </span>
+                              </div>
+                            </div>
+                            <br />
+
+                            {/* ------------- CHECKBOXES END --------------- */}
 
                           </section>
 
