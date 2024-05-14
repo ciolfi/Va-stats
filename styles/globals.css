@@ -192,7 +192,7 @@ main {
 }
 
 /*-------------- NAV BAR STYLES BEGIN -------------*/
-/* Left side of navbar, including 'VISION-AID ACADEMY' */
+/* This is the light green banner at the top of most pages. */
 nav {
   align-items: center;
   /* background-color: rgb(8, 127, 72); */
@@ -202,8 +202,6 @@ nav {
   background-color: #c5e8cf;
   color: #000;
   display: flex;
-  /* Increase height to accommodate login text above button */
-  /* height: 13vh;  */
   height: 21vh; 
   justify-content: space-between;
   padding-left: 1em;
