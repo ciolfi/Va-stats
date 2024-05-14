@@ -202,7 +202,9 @@ nav {
   background-color: #c5e8cf;
   color: #000;
   display: flex;
-  height: 13vh; /* Increase to accommodate login text above button */
+  /* Increase height to accommodate login text above button */
+  /* height: 13vh;  */
+  height: 21vh; 
   justify-content: space-between;
   padding-left: 1em;
 }

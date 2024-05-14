@@ -443,7 +443,7 @@ export default function Page() {
                                 </span>
 
                                 <span className={styles.checkBox}>
-                                  <input  className={styles.inputdays} type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
                                   <label className={styles.labeldays} htmlFor='W'>W</label>
                                 </span>
 
@@ -514,8 +514,8 @@ export default function Page() {
                               </span>
                             </label>
 
-                            <input type="radio" id="rupees" name="currency" value="INR" />
-                            <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>
+                            <input className={styles.currencyradiobtn} type="radio" id="rupees" name="currency" value="INR" />
+                            <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>&nbsp;&nbsp;
 
                             <input type="radio" id="usd" name="currency" value="USD" />
                             <label htmlFor="usd" aria-label='Select Dollar as Currency'>USD</label>
@@ -531,10 +531,14 @@ export default function Page() {
                               <option value="VIRTUAL" />
                               <option value="IN-PERSON" />
                               <option value="SELF-PACED" />
-                            </datalist><br />
+                            </datalist>
 
-                            <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
-                            <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
+                            {/* <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
+                            <button type='submit' className={styles.staffformbutton}>SUBMIT</button> */}
+                            <div className={styles.resetsubmitbtnsbatches}>
+                              <input type='reset' value='Reset' className={styles.resetbtnbatches} /><br />
+                              <button type='submit' className={styles.submitbtnbatches}>SUBMIT</button>
+                            </div>
 
                           </section>
 
