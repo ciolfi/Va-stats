@@ -9,11 +9,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-const DropdownMenuStaff = ({ id }) => {
+const DropdownMenuPm = ({ id }) => {
     const [options, setOptions] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(process.env.NEXT_PUBLIC_API_URL + 'dropdownDataStaff');
+            const response = await fetch(process.env.NEXT_PUBLIC_API_URL + 'dropdownDataPm');
             const data = await response.json();
             setOptions(data);
         };
@@ -21,8 +21,7 @@ const DropdownMenuStaff = ({ id }) => {
     }, []);
 
     return (
-        <select className={styles.addstaffforminputsbox} id="dataentry" name="dataentry">
-            {/* <select className={styles.addstaffforminputsbox}> */}
+        <select className={styles.addstaffforminputsbox} id="PM" name="PM">
             {options.map((option) => (
                 <option
                     key={option.id}
@@ -34,4 +33,4 @@ const DropdownMenuStaff = ({ id }) => {
     );
 };
 
-export default DropdownMenuStaff;
+export default DropdownMenuPm;
