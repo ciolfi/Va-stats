@@ -1,3 +1,6 @@
+// NOTE: If default data should be entered when student is added to
+// a batch, MySQL table column default and default value below must BOTH be set.
+
 import { executeQuery } from "../../lib/db";
 
 function formatDate(date) {
@@ -110,9 +113,13 @@ export default async function handler(req, res) {
     }
 
     try {
+      // await executeQuery({
+      //   query: `INSERT INTO va_fees (batch_id, student_id) VALUES (?, ?)`,
+      //   values: [batchId, studentId],
+      // });
       await executeQuery({
-        query: `INSERT INTO va_fees (batch_id, student_id) VALUES (?, ?)`,
-        values: [batchId, studentId],
+        query: `INSERT INTO va_fees (batch_id, student_id, fee_paid) VALUES (?, ?, ?)`,
+        values: [batchId, studentId, 'NA'],
       });
     } catch (error) {
       console.log('Error inserting fees record:', error);

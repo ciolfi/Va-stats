@@ -1,5 +1,4 @@
-/* When host is changed: Change values in
-'API SECTIONS' below */
+/* When host is changed: Change values in 'API SECTIONS' below. */
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
