@@ -1,5 +1,4 @@
-/* When host is changed: Change values in
-'API SECTIONS' below */
+/* When host is changed: Change values in 'API SECTIONS' below. */
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
@@ -293,7 +292,7 @@ export default function Page() {
     const result = await response.json();
     console.log('result', result.success);
     if (result.success) {
-      console.log("its was a sucesss");
+      console.log("It was a sucesss");
       getBatchData();
     } else {
       console.error("Error updating grade");
@@ -441,15 +440,6 @@ export default function Page() {
     setContentLoading(false);
   };
 
- // => Below code leads to flipping edit state to initial state on tab change as session gets changed and data gets refreshed
-  // useEffect(() => {
-  //   if (session) {
-  //     getUserData();
-  //     getBatchData();
-  //     getBatchDocumentData();
-  //   }
-  // }, [session, currentPanel]);
-
   // Added initial call to the batches API
   useEffect(() => {
     if (session) {
@@ -458,12 +448,6 @@ export default function Page() {
       getBatchDocumentData();
     }
   }, []);
-  // useEffect(() => {
-  //   if (session) {
-  //     getUserData();
-  //     getBatchData();
-  //   }
-  // });
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const getBatchData = async () => {
@@ -911,19 +895,8 @@ export default function Page() {
               <link rel='preconnect'
                 href='https://fonts.gstatic.com'
                 crossOrigin="true" />
-
-              {/* <link rel='preload'
-                as='style'
-                href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              <link rel='stylesheet'
-                href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-                media='print'
-                onLoad="this.media='all'" />
-              <noscript>
-                <link rel='stylesheet'
-                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-              </noscript> */}
             </Head>
+
             {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
             <p className={styles.titlebatchspecific}>
               Course: {courseName}, Batch: {batchName}
@@ -1198,26 +1171,11 @@ export default function Page() {
                 <link rel='preconnect'
                   href='https://fonts.gstatic.com'
                   crossOrigin="true" />
-
-                {/* <link rel='preload'
-                  as='style'
-                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-                <link rel='stylesheet'
-                  href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-                  media='print'
-                  onLoad="this.media='all'" />
-                <noscript>
-                  <link rel='stylesheet'
-                    href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-                </noscript> */}
               </Head>
-              {/* <p className={styles.title}>Course: {courseName}, Batch: {batchName}</p> */}
               <p className={styles.titlebatchspecific}>
                 Course: {courseName}, Batch: {batchName}
               </p>
               <div className='autherrorcontainer'>
-                {/* <img src='logo-mainsite.png' alt='VisionAid logo' /> */}
-                {/* <Image src='logo-mainsite.png' alt='VisionAid logo' /> */}
                 <span className='autherrortext'>
                   Access denied.&nbsp;
                   <Link href='/batches' className='autherrorlink'>

@@ -18,7 +18,8 @@ import { useEffect, useState } from 'react';
 import Table from '@/components/Table';
 import Button from '@/components/Button';
 
-// FOR MAPPING VALUES to dataentry dropdown
+// FOR MAPPING VALUES to PM and dataentry dropdowns
+import DropdownMenuPm from '../components/DropdownMenuPm';
 import DropdownMenuStaff from '../components/DropdownMenuStaff';
 
 export default function Page() {
@@ -37,6 +38,7 @@ export default function Page() {
   const [editingId, setEditingId] = useState(null);
   const allowedRoles = ['ADMINISTRATOR', 'MANAGEMENT', 'STAFF'];
 
+  /*--------------- UPDATE/DELETE BATCH BEGINS -------------------*/
   const handleUpdateBatch = async (editedBatch) => {
     setContentLoading(true);
     const response = await fetch('/api/updatebatches', {
@@ -75,8 +77,9 @@ export default function Page() {
     }
     setContentLoading(false);
   };
+  /*--------------- UPDATE/DELETE BATCH ENDS -------------------*/
 
-  /* ---------------------------------- API SECTION -----------------------------------*/
+  /* --------- API SECTION: GET BATCH DATA, ETC BEGINS----------*/
   const getPageData = async () => {
     setContentLoading(true);
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getbatchesdata`;
@@ -150,11 +153,7 @@ export default function Page() {
   useEffect(() => {
     getCourseOptions();
   }, [courseResponse]);
-  // useEffect(() => {
-  //   getCourseOptions();
-  // });
 
-  /*------------- BEGIN LOCAL TESTING BLOCK -----------*/
   var result;
 
   const getUserData = async () => {
@@ -178,12 +177,12 @@ export default function Page() {
     setContentLoading(true);
   };
 
+  /* --------- API SECTION: GET BATCH DATA, ETC ENDS ---------*/
+
+  /*------------ SESSION & USER AUTHENTICATION BEGINS --------*/
   useEffect(() => {
     getUserData();
   }, [session]);
-  // useEffect(() => {
-  //   getUserData();
-  // });
 
   result = userResponse;
 
@@ -203,8 +202,9 @@ export default function Page() {
   if (loading) {
     return <p>Loading...</p>;
   }
-  /*------------- END LOCAL TESTING BLOCK -----------*/
+  /*------------ SESSION & USER AUTHENTICATION ENDS --------*/
 
+  /*-------------- GRAY BANNER COLUMNS SEC BEGINS ----------*/
   const batchesColumns = [
     {
       name: 'Id',
@@ -241,21 +241,9 @@ export default function Page() {
     }, {
       name: 'Data Entry Access',
       accessor: 'dataentry',
-      // type: 'enum',
-      // availableValues: ['NO', 'YES'],
-    }, {
-      name: 'Status',
-      accessor: 'status',
-      type: 'enum',
-      availableValues: ['UNSTARTED', 'ONGOING', 'COMPLETE'],
-    }, {
-      name: 'Training Mode',
-      accessor: 'trainingmode',
-      type: 'enum',
-      availableValues: ['VIRTUAL', 'IN-PERSON', 'SELF-PACED'],
     }, {
       name: 'Collected Fees',
-      accessor: 'collected_fees',
+      accessor: 'cost',
     }, {
       name: 'Currency',
       accessor: 'currency',
@@ -263,12 +251,23 @@ export default function Page() {
       availableValues: ['INR', 'USD'],
     }, {
       name: 'Enrollment',
-      accessor: 'total_students',
+      accessor: 'strength',
+    }, {
+      name: 'Training Mode',
+      accessor: 'trainingmode',
+      type: 'enum',
+      availableValues: ['VIRTUAL', 'IN-PERSON', 'SELF-PACED'],
+    }, {
+      name: 'Status',
+      accessor: 'status',
+      type: 'enum',
+      availableValues: ['UNSTARTED', 'ONGOING', 'COMPLETE'],
     },
-
+    
   ];
+  /*----------- GRAY BANNER COLUMNS SEC ENDS ----------*/
 
-  /*------------- BEGIN LOCAL TESTING BLOCK -----------*/
+  /*----------- CHECK AUTH/LOAD PAGE BEGINS -----------*/
   if (status === 'authenticated' || status === 'unauthenticated') {
     if ((result.length === 0)) {
       return (
@@ -285,12 +284,10 @@ export default function Page() {
     }
     else {
       if (allowedRoles.includes(result[0].role)) {
-        /*------------- END LOCAL TESTING BLOCK -----------*/
 
         return (
           <>
             <div className={styles.mynavbar}>
-
               {/* LOCAL TESTING LINE: COMMENT OUT USER_ROLE FOR LOCAL TESTING BELOW */}
               <Navbar user_role={result[0].role} className={styles.navstudents} />
             </div>
@@ -305,23 +302,9 @@ export default function Page() {
                 <link rel='icon' href='/favicon.ico' />
                 <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
                 <link rel='manifest' href='/manifest.json' />
-
                 <link rel='preconnect'
                   href='https://fonts.gstatic.com'
                   crossOrigin="true" />
-
-                {/* <link rel='preload'
-									as='style'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-								<link rel='stylesheet'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-									media='print'
-									onLoad="this.media='all'" />
-								<noscript>
-									<link rel='stylesheet'
-										href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-								</noscript> */}
-
               </Head>
 
               <main className={styles.mainstudents}>
@@ -334,19 +317,17 @@ export default function Page() {
                 <p className={styles.subtitlenonhm}>
                   Batch Management
 
-                  {/* LOCAL TESTING LINE BELOW: ADD 'legacyBehavior' ATTRIB FOR LOCAL TESTING */}
-                  {/* ---------- CSV Download button ---------------- */}
+                  {/*------------ CSV DOWNLOAD BUTTON --------------*/}
                   <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv/batches.php"}>
-                    {/* <Link legacyBehavior className={styles.csvbutton} href={"https://visionaid.dreamhosters.com/csv"}> */}
                     <a target="_blank" className={styles.csvbutton}><i className="fa fa-download"></i> View/Download Batches</a>
                   </Link>
                 </p>
 
+                {/*---------------- FORM BEGINS -------------------*/}
                 <div className={styles.gridcourses}>
                   {(userResponse[0]["role"] != "STAFF") ?
                   <>
                   {showForm ?
-                    // <div className={styles.cardbatchform}>
                     <div className={styles.addbatchform} id="createNewBatch">
                       <div>
                         <h2>Create batch. &rarr;</h2>
@@ -356,10 +337,9 @@ export default function Page() {
                             setShowForm(false)
                           }}
                           className={styles.collapseButtonBatches} title="Close Batches Form" />
-
                       </div>
 
-                      <div id="requiredHelper" tabindex="0"><h4>The field mark with asterisks  (*) are Required</h4></div>
+                      <div id="requiredHelper" tabindex="0"><h4>The fields marked with asterisks  (*) are Required</h4></div>
                       <div>
                         <form action='/api/batchcreate' method='post' onSubmit={() => handleSubmit()}>
                           <section className={styles.addbatchformsec1}>
@@ -378,7 +358,7 @@ export default function Page() {
                             <label htmlFor='courseend' className={styles.addstafflabel}>Course End Date<span className={styles.requiredelement}>&#42;</span></label>
                             <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
 
-                            <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
+                            {/* <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
                             <span>
                               <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
                               <label htmlFor='M'>M</label>
@@ -394,7 +374,86 @@ export default function Page() {
                               <label htmlFor='Sa'>Sa</label>
                               <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
                               <label htmlFor='Su'>Su</label>
-                            </span><br />
+                            </span><br /> */}
+
+                            {/* ------------- CHECKBOXES BEGIN --------------- */}
+                            {/* <div class="wrapper-checkboxes">
+                              <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label> */}
+                            {/* <div class="wrapper-checkboxes"> */}
+                            {/* <div class="container-checkboxes">
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-mon" type="checkbox" />
+                                    <label class="label-days">Monday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-tue" type="checkbox" />
+                                    <label class="label-days">Tuesday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-wed" type="checkbox" />
+                                    <label class="label-days">Wednesday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-thu" type="checkbox" />
+                                    <label class="label-days">Thursday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-fri" type="checkbox" />
+                                    <label class="label-days">Friday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-sat" type="checkbox" />
+                                    <label class="label-days">Saturday</label>
+                                  </span>
+                                  <span class="checkBox">
+                                    <input class="input-days" title="checkbox-sun" type="checkbox" />
+                                    <label class="label-days">Sunday</label>
+                                  </span>
+                              </div> */}
+                            {/* </div> */}
+
+                            {/*-------- COURSEDAYS CHECKBOXES BEGIN -----------*/}
+                            <div className={styles.wrappercheckboxes}>
+                              <label htmlFor='coursedays' className={styles.addcheckboxeslabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
+                              <div className={styles.containercheckboxes}>
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
+                                  <label className={styles.labeldays} htmlFor='M'>M</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T" />
+                                  <label className={styles.labeldays} htmlFor='T'>T</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W" />
+                                  <label className={styles.labeldays} htmlFor='W'>W</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th" />
+                                  <label className={styles.labeldays} htmlFor='Th'>Th</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F" />
+                                  <label className={styles.labeldays} htmlFor='F'>F</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa" />
+                                  <label className={styles.labeldays} htmlFor='Sa'>Sa</label>
+                                </span>
+
+                                <span className={styles.checkBox}>
+                                  <input className={styles.inputdays} type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su" />
+                                  <label className={styles.labeldays} htmlFor='Su'>Su</label>
+                                </span>
+                              </div>
+                            </div>
+                            <br />
+                            {/*-------- COURSEDAYS CHECKBOXES BEGIN -----------*/}
 
                           </section>
 
@@ -410,7 +469,7 @@ export default function Page() {
                             <input type='text' className={styles.addstaffforminputsbox} id='instructor' name='instructor' required /><br /><br />
 
                             <label htmlFor='PM' className={styles.addstafflabel}>Program Manager<span className={styles.requiredelement}>&#42;</span></label>
-                            <DropdownMenuStaff
+                            <DropdownMenuPm
                               id='PM'
                               name='PM'
                               required
@@ -438,8 +497,8 @@ export default function Page() {
                               </span>
                             </label>
 
-                            <input type="radio" id="rupees" name="currency" value="INR" />
-                            <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>
+                            <input className={styles.currencyradiobtn} type="radio" id="rupees" name="currency" value="INR" />
+                            <label htmlFor="rupees" aria-label='Select Rupee as Currency'>INR</label>&nbsp;&nbsp;
 
                             <input type="radio" id="usd" name="currency" value="USD" />
                             <label htmlFor="usd" aria-label='Select Dollar as Currency'>USD</label>
@@ -455,14 +514,16 @@ export default function Page() {
                               <option value="VIRTUAL" />
                               <option value="IN-PERSON" />
                               <option value="SELF-PACED" />
-                            </datalist><br />
+                            </datalist>
 
-                            <input type='reset' value='Reset' className={styles.staffformbutton} /><br /><br />
-                            <button type='submit' className={styles.staffformbutton}>SUBMIT</button>
+                            <div className={styles.resetsubmitbtnsbatches}>
+                              <input type='reset' value='Reset' className={styles.resetbtnbatches} /><br />
+                              <button type='submit' className={styles.submitbtnbatches}>SUBMIT</button>
+                            </div>
 
                           </section>
-
                         </form>
+
                       </div>
                     </div>
                     : ''
@@ -475,9 +536,11 @@ export default function Page() {
                   :<></>
                   }
                   <Table columns={batchesColumns} tableData={dataResponse} isDelete={(userResponse[0]["role"] != "STAFF")} onDeleteClick={handleDeleteBatch} isEditable={(userResponse[0]["role"] != "STAFF")} onEditSave={handleUpdateBatch} Title={'Batches List'} FilterButton={true} isBatch={true} />
+
                 </div>
 
-                {/* <footer className={styles.footer}>
+                {/*------------- FOOTER SECTION BEGINS ---------------
+                <footer className={styles.footer}>
                   <Link
                     href='privacypolicy.html'
                     target='_blank'
@@ -505,7 +568,8 @@ export default function Page() {
                         height={16} />
                     </span>
                   </a>
-                </footer> */}
+                </footer> 
+                ------------- FOOTER SECTION ENDS ---------------*/}
 
               </main >
             </div >
@@ -513,7 +577,7 @@ export default function Page() {
         );
       }
 
-      /*------------- BEGIN LOCAL TESTING BLOCK ------------*/
+      /*------------- UNAUTHENTICATED SEC BEGINS------------*/
       else {
         return (
           <>
@@ -531,30 +595,17 @@ export default function Page() {
                 <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
                 <link rel='manifest' href='/manifest.json' />
                 <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin="true" />
-
-                {/* <link rel='preload'
-									as='style'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-								<link rel='stylesheet'
-									href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap'
-									media='print'
-									onLoad="this.media='all'" />
-								<noscript>
-									<link rel='stylesheet'
-										href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' />
-								</noscript> */}
-
               </Head>
 
               <main className={styles.mainstudents}>
                 <p className={styles.subtitlenonhm}>
                   Batch Management
                 </p>
-
                 <div className={styles.gridcourses}>
-                  {/* <Table columns={batchesColumns} tableData={dataResponse} Title={'Batches List'} /> */}
                 </div>
-                {/* <footer className={styles.footer}>
+
+                {/*------ UNAUTHENTICATED SEC FOOTER BEGINS ------
+                <footer className={styles.footer}>
 									<Link
 										href='privacypolicy.html'
 										target='_blank'
@@ -582,7 +633,10 @@ export default function Page() {
 												height={16} />
 										</span>
 									</a>
-								</footer> */}
+								</footer> 
+                {/*------ UNAUTHENTICATED SEC FOOTER ENDS ------*/}
+
+                {/* -------- UNAUTHENTICATED SEC ENDS---------- */}
               </main>
             </div>
           </>
@@ -591,4 +645,3 @@ export default function Page() {
     }
   }
 }
-/*------------- END LOCAL TESTING BLOCK ------------*/
