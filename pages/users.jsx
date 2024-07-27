@@ -162,6 +162,9 @@ export default function Page() {
   // The /api/getuserdata below is different than the call to 'getusers';
   // this data is used to edit an INDIVIDUAL USER (note: getUserData, without an 's')
   const getUserData = async () => {
+    if (!session?.user.email) {
+      return;
+    }
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",

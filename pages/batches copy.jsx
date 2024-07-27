@@ -122,6 +122,9 @@ export default function Page() {
   var result;
 
   const getUserData = async () => {
+    if (!session?.user.email) {
+      return;
+    }
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
