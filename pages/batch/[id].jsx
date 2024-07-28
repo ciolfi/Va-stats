@@ -85,6 +85,7 @@ export default function Page() {
   const [showManagement, setShowManagement] = useState(false);
   const [showDocuments, setShowDocuments] = useState(false);
   const [showAssessments, setShowAssessments] = useState(false);
+  const [showBatchCompletion, setShowBatchCompletion] = useState(false);
   const [currentPanel, setCurrentPanel] = useState(0);
 
   const [courseName, setCourseName] = useState("");
@@ -101,6 +102,7 @@ export default function Page() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [documentsData, setDocumentsData] = useState([]);
   const [assessmentsData, setAssessmentsData] = useState([]);
+  const [batchCompletionData, setBatchCompletionData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
   const [assessmentsOptions, setAssessmentsOptions] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
@@ -151,7 +153,8 @@ export default function Page() {
                         name === "attendance" && showAttendance ||
                         name === "documents" && showDocuments ||
                         name === "grades" && showGrades ||
-                        name === "management" && showManagement;
+                        name === "management" && showManagement ||
+                        name === "batchCompletion" && showBatchCompletion;
     // If edit mode is on and user tries to go to a different component show the prompt
     if(editMode === 'true' && !isSameComponent){
       if (confirm("You have unsaved changes, click on OK to go back and save them. If you click cancel the changes will be lost.") == true) {
@@ -167,6 +170,7 @@ export default function Page() {
     setShowManagement(false);
     setShowDocuments(false);
     setShowAssessments(false);
+    setShowBatchCompletion(false);
     switch(name) {
       case "attendance":
         setShowAttendance(true);
@@ -187,6 +191,10 @@ export default function Page() {
       case "assessments":
         setShowAssessments(true);
         setCurrentPanel(4);
+        break;
+      case "batchCompletion":
+        setShowBatchCompletion(true);
+        setCurrentPanel(5);
         break;
       default:
         setShowAttendance(true);
@@ -623,6 +631,19 @@ export default function Page() {
     return res;
   };
 
+  const generateBatchCompletionData = () => {
+    if (!batchData?.students?.length) {
+      return [];
+    }
+
+    console.log(batchData);
+
+    return batchData.students.map(({ name, email}) => ({
+      name,
+      email
+    }));
+  }
+
   const generateStudentDocumentData = () => {
     let res = [];
     let totalAmount = 0, amount1 = 0, amount2 = 0, amount3 = 0;
@@ -731,30 +752,31 @@ export default function Page() {
     }
   }
 
-  const batchCompletionReportHandler = () => {
-    let rows = [];
-    attendanceData.forEach((student) => {
-      let studentRow = [];
-      studentRow.push(student.name);
-      let totalAttendance = 0;
-      let totalClasses = 0;
-      attendanceColumn.forEach((column) => {
-        if (column.accessor !== 'name' && column.accessor !== 'percent') {
-          if (student[column.accessor] === 1) {
-            totalAttendance++;
-          }
-          if (student[column.accessor] !== 3) {
-            totalClasses++;
-          }
-        }
-      });
-      studentRow.push(totalAttendance);
-      studentRow.push(totalClasses);
-      studentRow.push((totalAttendance / totalClasses) * 100);
-      rows.push(studentRow);
-    });
-    exportToCsv('batch_completion_report.csv', studentRow);
-  }
+  // TODO: Implement csv export once table is complete
+  // const batchCompletionReportHandler = () => {
+  //   let rows = [];
+  //   let studentRow = [];
+  //   attendanceData.forEach((student) => {
+  //     studentRow.push(student.name);
+  //     let totalAttendance = 0;
+  //     let totalClasses = 0;
+  //     attendanceColumn.forEach((column) => {
+  //       if (column.accessor !== 'name' && column.accessor !== 'percent') {
+  //         if (student[column.accessor] === 1) {
+  //           totalAttendance++;
+  //         }
+  //         if (student[column.accessor] !== 3) {
+  //           totalClasses++;
+  //         }
+  //       }
+  //     });
+  //     studentRow.push(totalAttendance);
+  //     studentRow.push(totalClasses);
+  //     studentRow.push((totalAttendance / totalClasses) * 100);
+  //     rows.push(studentRow);
+  //   });
+  //   exportToCsv('batch_completion_report.csv', studentRow);
+  // }
 
   useEffect(() => {
     setAttendanceColumn(() => {
@@ -774,6 +796,9 @@ export default function Page() {
     });
     setAssessmentsData(() => {
       return generateBatchAssessmentsData();
+    });
+    setBatchCompletionData(() => {
+      return generateBatchCompletionData();
     });
   }, [batchData, currentPanel, batchDocumentData]);
   // useEffect(() => {
@@ -857,6 +882,19 @@ export default function Page() {
     },
   ];
 
+  const batchCompletionColumns = [
+    { name: 'Student Name', accessor: 'name' },
+    { name: 'Email Id', accessor: 'email' },
+    { name: 'Phone No', accessor: '' },
+    { name: 'Visual Acuity', accessor: '' },
+    { name: 'Gender', accessor: '' },
+    { name: 'Attendance Percentage', accessor: '' },
+    { name: 'Post Assessment Score (100)', accessor: '' },
+    { name: 'Completion Status', accessor: '' },
+    { name: 'Reason for status', accessor: '' },
+    { name: 'Certification Eligibility', accessor: '' }
+  ]
+
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -915,7 +953,7 @@ export default function Page() {
                 <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Grades
                 </button>
-                <button name="grades" className={styles.addButton} onClick={(e) => batchCompletionReportHandler()} >
+                <button name="batchCompletion" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Completion report
                 </button>
                 {(userResponse.role != 'STAFF') ?
@@ -1113,6 +1151,10 @@ export default function Page() {
 
             {showDocuments && (
               <Table columns={docsColumns} tableData={documentsData} isEditable={true} Title={'Student Documents and Fees'} onEditSave={updateDocumentsFee} />
+            )}
+
+            {showBatchCompletion && (
+              <Table columns={batchCompletionColumns} tableData={batchCompletionData} isEditable={false} Title={'Batch Completion Report'} />
             )}
           </div>
 
