@@ -862,7 +862,7 @@ export default function Page() {
     { name: 'Post Assessment Score (100)', accessor: 'grade' },
     { name: 'Completion Status', accessor: 'completion_status' },
     { name: 'Reason for status', accessor: 'reason_for_status' },
-    { name: 'Certification Eligibility', accessor: 'cetification_elegibility' }
+    { name: 'Certification Eligibility', accessor: 'certification_eligibility' }
   ]
 
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
