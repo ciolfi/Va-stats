@@ -642,7 +642,7 @@ export default function Page() {
       const attendance = ((studentAttendance.filter((attendance) => attendance.is_present).length / studentAttendance.length) * 100)
             .toFixed(1) + "%";
       // calculate student final grade
-      const studentScores = batchData.grades.filter((grade) => grade.student_id === id);
+      const studentScores = batchData.grades.filter((grade) => grade.student_id === id && grade.assignment_type === 'Post');
       const grade = studentScores.reduce((acc, score) => acc + (score.grade * score.assignment_weight), 0).toFixed(0);
       return {
         name,
