@@ -25,6 +25,9 @@ export default function Home() {
 
   // API DATA ACCESS
   const getUserData = async () => {
+    if (!session?.user.email) {
+      return;
+    }
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
     const postData = {
       method: "Post",

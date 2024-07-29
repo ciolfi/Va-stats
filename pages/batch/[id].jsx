@@ -85,6 +85,7 @@ export default function Page() {
   const [showManagement, setShowManagement] = useState(false);
   const [showDocuments, setShowDocuments] = useState(false);
   const [showAssessments, setShowAssessments] = useState(false);
+  const [showBatchCompletion, setShowBatchCompletion] = useState(false);
   const [currentPanel, setCurrentPanel] = useState(0);
 
   const [courseName, setCourseName] = useState("");
@@ -101,6 +102,7 @@ export default function Page() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [documentsData, setDocumentsData] = useState([]);
   const [assessmentsData, setAssessmentsData] = useState([]);
+  const [batchCompletionData, setBatchCompletionData] = useState([]);
   const [gradesColumn, setGradesColumn] = useState([]);
   const [assessmentsOptions, setAssessmentsOptions] = useState([]);
   const allowedRoles = ['ADMINISTRATOR','MANAGEMENT','STAFF'];
@@ -151,7 +153,8 @@ export default function Page() {
                         name === "attendance" && showAttendance ||
                         name === "documents" && showDocuments ||
                         name === "grades" && showGrades ||
-                        name === "management" && showManagement;
+                        name === "management" && showManagement ||
+                        name === "batchCompletion" && showBatchCompletion;
     // If edit mode is on and user tries to go to a different component show the prompt
     if(editMode === 'true' && !isSameComponent){
       if (confirm("You have unsaved changes, click on OK to go back and save them. If you click cancel the changes will be lost.") == true) {
@@ -167,6 +170,7 @@ export default function Page() {
     setShowManagement(false);
     setShowDocuments(false);
     setShowAssessments(false);
+    setShowBatchCompletion(false);
     switch(name) {
       case "attendance":
         setShowAttendance(true);
@@ -187,6 +191,10 @@ export default function Page() {
       case "assessments":
         setShowAssessments(true);
         setCurrentPanel(4);
+        break;
+      case "batchCompletion":
+        setShowBatchCompletion(true);
+        setCurrentPanel(5);
         break;
       default:
         setShowAttendance(true);
@@ -255,7 +263,7 @@ export default function Page() {
     const response = await fetch(apiUrlEndpoint, postData);
     const data = await response.json();
     var studentList = [];
-    data.students.forEach((student) => {
+    data.students?.forEach((student) => {
       const record = getStudentRecordByName(studentRes.students, student.name);
       const course = getCourseNameById(batchesRes.batches, batchId);
       if (!toggleUnassignedStudents || [record.first_choice, record.second_choice, record.third_choice].includes(course)) {
@@ -420,6 +428,9 @@ export default function Page() {
 
   /* ---------------------------------- API SECTION -----------------------------------*/
   const getUserData = async () => {
+    if (!session?.user.email) {
+      return;
+    }
     setContentLoading(true);
     // const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
     const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `getuserdata`;
@@ -620,6 +631,35 @@ export default function Page() {
     return res;
   };
 
+  const generateBatchCompletionData = () => {
+    if (!batchData?.students?.length) {
+      return [];
+    }
+
+    return batchData.students.map(({ id, name, email, phone_number, gender, visual_acuity}) => {
+      // calcualte student attendance
+      const studentAttendance = batchData.attendance.filter((attendance) => attendance.student_id === id && attendance.is_present !== 2); 
+      const attendance = ((studentAttendance.filter((attendance) => attendance.is_present === 1).length / studentAttendance.length) * 100)
+            .toFixed(1) + "%";
+      // calculate student final grade
+      const studentScores = batchData.grades.filter((grade) => grade.student_id === id && grade.assignment_type === 'Post');
+      const grade = studentScores.reduce((acc, score) => acc + (score.grade * score.assignment_weight / 100), 0).toFixed(0) + '%';
+      return {
+        name,
+        email,
+        phone_number,
+        gender,
+        visual_acuity,
+        attendance,
+        grade,
+        // TODO: add the rest of the fields
+        completion_status: '',
+        reason_for_status: '',
+        cetification_elegibility: ''
+      };
+    });
+  }
+
   const generateStudentDocumentData = () => {
     let res = [];
     let totalAmount = 0, amount1 = 0, amount2 = 0, amount3 = 0;
@@ -688,69 +728,24 @@ export default function Page() {
   };
 
   function exportToCsv(filename, rows) {
-    var processRow = function (row) {
-        var finalVal = '';
-        for (var j = 0; j < row.length; j++) {
-            var innerValue = row[j] === null ? '' : row[j].toString();
-            if (row[j] instanceof Date) {
-                innerValue = row[j].toLocaleString();
-            };
-            var result = innerValue.replace(/"/g, '""');
-            if (result.search(/("|,|\n)/g) >= 0)
-                result = '"' + result + '"';
-            if (j > 0)
-                finalVal += ',';
-            finalVal += result;
-        }
-        return finalVal + '\n';
-    };
-
-    var csvFile = '';
-    for (var i = 0; i < rows.length; i++) {
-        csvFile += processRow(rows[i]);
+    const processHeader = (firstItem) => {
+      return Object.keys(firstItem).join(',') + '\n';
     }
+    // TODO: Handle null / dates / special characters
+    const processRows = (rows) => {
+      return rows.map((item) => Object.values(item).join(',')).join('\n');
+    }
+    const csvFile = processHeader(rows[0]) + processRows(rows);
 
     var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-        navigator.msSaveBlob(blob, filename);
-    } else {
-        var link = document.createElement("a");
-        if (link.download !== undefined) { // feature detection
-            // Browsers that support HTML5 download attribute
-            var url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", filename);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
-  }
-
-  const batchCompletionReportHandler = () => {
-    let rows = [];
-    attendanceData.forEach((student) => {
-      let studentRow = [];
-      studentRow.push(student.name);
-      let totalAttendance = 0;
-      let totalClasses = 0;
-      attendanceColumn.forEach((column) => {
-        if (column.accessor !== 'name' && column.accessor !== 'percent') {
-          if (student[column.accessor] === 1) {
-            totalAttendance++;
-          }
-          if (student[column.accessor] !== 3) {
-            totalClasses++;
-          }
-        }
-      });
-      studentRow.push(totalAttendance);
-      studentRow.push(totalClasses);
-      studentRow.push((totalAttendance / totalClasses) * 100);
-      rows.push(studentRow);
-    });
-    exportToCsv('batch_completion_report.csv', studentRow);
+    var link = document.createElement("a");
+    var url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   useEffect(() => {
@@ -771,6 +766,9 @@ export default function Page() {
     });
     setAssessmentsData(() => {
       return generateBatchAssessmentsData();
+    });
+    setBatchCompletionData(() => {
+      return generateBatchCompletionData();
     });
   }, [batchData, currentPanel, batchDocumentData]);
   // useEffect(() => {
@@ -854,6 +852,19 @@ export default function Page() {
     },
   ];
 
+  const batchCompletionColumns = [
+    { name: 'Student Name', accessor: 'name' },
+    { name: 'Email Id', accessor: 'email' },
+    { name: 'Phone No', accessor: 'phone_number' },
+    { name: 'Visual Acuity', accessor: 'visual_acuity' },
+    { name: 'Gender', accessor: 'gender' },
+    { name: 'Attendance Percentage', accessor: 'attendance' },
+    { name: 'Post Assessment Score (100)', accessor: 'grade' },
+    { name: 'Completion Status', accessor: 'completion_status' },
+    { name: 'Reason for status', accessor: 'reason_for_status' },
+    { name: 'Certification Eligibility', accessor: 'cetification_elegibility' }
+  ]
+
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
     return (
       <div className='autherrorcontainer'>
@@ -912,7 +923,7 @@ export default function Page() {
                 <button name="grades" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Grades
                 </button>
-                <button name="grades" className={styles.addButton} onClick={(e) => batchCompletionReportHandler()} >
+                <button name="batchCompletion" className={styles.addButton} onClick={(e) => batchPageLayoutHandler(e)} >
                   Batch Completion report
                 </button>
                 {(userResponse.role != 'STAFF') ?
@@ -1111,6 +1122,19 @@ export default function Page() {
             {showDocuments && (
               <Table columns={docsColumns} tableData={documentsData} isEditable={true} Title={'Student Documents and Fees'} onEditSave={updateDocumentsFee} />
             )}
+
+            {showBatchCompletion && (
+                (userResponse.role == "STAFF" ? 
+                <div className="flex">
+                  <button className={styles.batchManagementButton} onClick={() => exportToCsv('batch_completion_report.csv', batchCompletionData)}>Export to CSV</button>
+                  <TableStaff columns={batchCompletionColumns} tableData={batchCompletionData} Title={'Batch Completion Report'} isEditable={false} batchId={id} />
+                </div>
+                :
+                <div className="flex flex-col">
+                  <button className={styles.batchManagementButton + " w-40 ml-auto"} onClick={() => exportToCsv('batch_completion_report.csv', batchCompletionData)}>Export to CSV</button>
+                  <Table columns={batchCompletionColumns} tableData={batchCompletionData} isEditable={false} Title={'Batch Completion Report'} />
+                </div>
+            ))}
           </div>
 
           {/* <footer className={styles.footer}>

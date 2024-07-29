@@ -150,6 +150,9 @@ export default function Page() {
 
     /* ---------------------------------- API SECTION -----------------------------------*/
     const getUserData = async () => {
+      if (!session?.user.email) {
+        return;
+      }
       setContentLoading(true);
       const apiUrlEndpoint = `https://va-stats.vercel.app/api/getuserdata`;
       //const apiUrlEndpoint = `http://localhost:3000/api/getuserdata`;
