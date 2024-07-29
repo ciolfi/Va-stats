@@ -655,7 +655,7 @@ export default function Page() {
         // TODO: add the rest of the fields
         completion_status: '',
         reason_for_status: '',
-        cetification_elegibility: ''
+        certification_eligibility: ''
       };
     });
   }
