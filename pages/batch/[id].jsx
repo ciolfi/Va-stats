@@ -263,7 +263,7 @@ export default function Page() {
     const response = await fetch(apiUrlEndpoint, postData);
     const data = await response.json();
     var studentList = [];
-    data.students.forEach((student) => {
+    data.students?.forEach((student) => {
       const record = getStudentRecordByName(studentRes.students, student.name);
       const course = getCourseNameById(batchesRes.batches, batchId);
       if (!toggleUnassignedStudents || [record.first_choice, record.second_choice, record.third_choice].includes(course)) {
@@ -632,7 +632,7 @@ export default function Page() {
   };
 
   const generateBatchCompletionData = () => {
-    if (!batchData?.students?.length || !batchData.attendance || !!batchData.attendance) {
+    if (!batchData?.students?.length) {
       return [];
     }
 
