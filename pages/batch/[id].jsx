@@ -632,16 +632,32 @@ export default function Page() {
   };
 
   const generateBatchCompletionData = () => {
-    if (!batchData?.students?.length) {
+    if (!batchData?.students?.length || !batchData.attendance || !!batchData.attendance) {
       return [];
     }
 
-    console.log(batchData);
-
-    return batchData.students.map(({ name, email}) => ({
-      name,
-      email
-    }));
+    return batchData.students.map(({ id, name, email, phone_number, gender, visual_acuity}) => {
+      // calcualte student attendance
+      const studentAttendance = batchData.attendance.filter((attendance) => attendance.student_id === id);
+      const attendance = ((studentAttendance.filter((attendance) => attendance.is_present).length / studentAttendance.length) * 100)
+            .toFixed(1) + "%";
+      // calculate student final grade
+      const studentScores = batchData.grades.filter((grade) => grade.student_id === id);
+      const grade = studentScores.reduce((acc, score) => acc + (score.grade * score.assignment_weight), 0).toFixed(0);
+      return {
+        name,
+        email,
+        phone_number,
+        gender,
+        visual_acuity,
+        attendance,
+        grade,
+        // TODO: add the rest of the fields
+        completion_status: '',
+        reason_for_status: '',
+        cetification_elegibility: ''
+      };
+    });
   }
 
   const generateStudentDocumentData = () => {
@@ -712,71 +728,25 @@ export default function Page() {
   };
 
   function exportToCsv(filename, rows) {
-    var processRow = function (row) {
-        var finalVal = '';
-        for (var j = 0; j < row.length; j++) {
-            var innerValue = row[j] === null ? '' : row[j].toString();
-            if (row[j] instanceof Date) {
-                innerValue = row[j].toLocaleString();
-            };
-            var result = innerValue.replace(/"/g, '""');
-            if (result.search(/("|,|\n)/g) >= 0)
-                result = '"' + result + '"';
-            if (j > 0)
-                finalVal += ',';
-            finalVal += result;
-        }
-        return finalVal + '\n';
-    };
-
-    var csvFile = '';
-    for (var i = 0; i < rows.length; i++) {
-        csvFile += processRow(rows[i]);
+    const processHeader = (firstItem) => {
+      return Object.keys(firstItem).join(',') + '\n';
     }
+    // TODO: Handle null / dates / special characters
+    const processRows = (rows) => {
+      return rows.map((item) => Object.values(item).join(',')).join('\n');
+    }
+    const csvFile = processHeader(rows[0]) + processRows(rows);
 
     var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-        navigator.msSaveBlob(blob, filename);
-    } else {
-        var link = document.createElement("a");
-        if (link.download !== undefined) { // feature detection
-            // Browsers that support HTML5 download attribute
-            var url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", filename);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
+    var link = document.createElement("a");
+    var url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
-
-  // TODO: Implement csv export once table is complete
-  // const batchCompletionReportHandler = () => {
-  //   let rows = [];
-  //   let studentRow = [];
-  //   attendanceData.forEach((student) => {
-  //     studentRow.push(student.name);
-  //     let totalAttendance = 0;
-  //     let totalClasses = 0;
-  //     attendanceColumn.forEach((column) => {
-  //       if (column.accessor !== 'name' && column.accessor !== 'percent') {
-  //         if (student[column.accessor] === 1) {
-  //           totalAttendance++;
-  //         }
-  //         if (student[column.accessor] !== 3) {
-  //           totalClasses++;
-  //         }
-  //       }
-  //     });
-  //     studentRow.push(totalAttendance);
-  //     studentRow.push(totalClasses);
-  //     studentRow.push((totalAttendance / totalClasses) * 100);
-  //     rows.push(studentRow);
-  //   });
-  //   exportToCsv('batch_completion_report.csv', studentRow);
-  // }
 
   useEffect(() => {
     setAttendanceColumn(() => {
@@ -885,14 +855,14 @@ export default function Page() {
   const batchCompletionColumns = [
     { name: 'Student Name', accessor: 'name' },
     { name: 'Email Id', accessor: 'email' },
-    { name: 'Phone No', accessor: '' },
-    { name: 'Visual Acuity', accessor: '' },
-    { name: 'Gender', accessor: '' },
-    { name: 'Attendance Percentage', accessor: '' },
-    { name: 'Post Assessment Score (100)', accessor: '' },
-    { name: 'Completion Status', accessor: '' },
-    { name: 'Reason for status', accessor: '' },
-    { name: 'Certification Eligibility', accessor: '' }
+    { name: 'Phone No', accessor: 'phone_number' },
+    { name: 'Visual Acuity', accessor: 'visual_acuity' },
+    { name: 'Gender', accessor: 'gender' },
+    { name: 'Attendance Percentage', accessor: 'attendance' },
+    { name: 'Post Assessment Score (100)', accessor: 'grade' },
+    { name: 'Completion Status', accessor: 'completion_status' },
+    { name: 'Reason for status', accessor: 'reason_for_status' },
+    { name: 'Certification Eligibility', accessor: 'cetification_elegibility' }
   ]
 
   if (status === 'unauthenticated' || userResponse.isactive === 0) {
@@ -1154,8 +1124,17 @@ export default function Page() {
             )}
 
             {showBatchCompletion && (
-              <Table columns={batchCompletionColumns} tableData={batchCompletionData} isEditable={false} Title={'Batch Completion Report'} />
-            )}
+                (userResponse.role == "STAFF" ? 
+                <div className="flex">
+                  <button className={styles.batchManagementButton} onClick={() => exportToCsv('batch_completion_report.csv', batchCompletionData)}>Export to CSV</button>
+                  <TableStaff columns={batchCompletionColumns} tableData={batchCompletionData} Title={'Batch Completion Report'} isEditable={false} batchId={id} />
+                </div>
+                :
+                <div className="flex flex-col">
+                  <button className={styles.batchManagementButton + " w-40 ml-auto"} onClick={() => exportToCsv('batch_completion_report.csv', batchCompletionData)}>Export to CSV</button>
+                  <Table columns={batchCompletionColumns} tableData={batchCompletionData} isEditable={false} Title={'Batch Completion Report'} />
+                </div>
+            ))}
           </div>
 
           {/* <footer className={styles.footer}>
