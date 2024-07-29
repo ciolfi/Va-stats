@@ -638,12 +638,12 @@ export default function Page() {
 
     return batchData.students.map(({ id, name, email, phone_number, gender, visual_acuity}) => {
       // calcualte student attendance
-      const studentAttendance = batchData.attendance.filter((attendance) => attendance.student_id === id);
-      const attendance = ((studentAttendance.filter((attendance) => attendance.is_present).length / studentAttendance.length) * 100)
+      const studentAttendance = batchData.attendance.filter((attendance) => attendance.student_id === id && attendance.is_present !== 2); 
+      const attendance = ((studentAttendance.filter((attendance) => attendance.is_present === 1).length / studentAttendance.length) * 100)
             .toFixed(1) + "%";
       // calculate student final grade
       const studentScores = batchData.grades.filter((grade) => grade.student_id === id && grade.assignment_type === 'Post');
-      const grade = studentScores.reduce((acc, score) => acc + (score.grade * score.assignment_weight), 0).toFixed(0);
+      const grade = studentScores.reduce((acc, score) => acc + (score.grade * score.assignment_weight / 100), 0).toFixed(0) + '%';
       return {
         name,
         email,
