@@ -362,26 +362,26 @@ export default function Page() {
                                 <input type='date' className={styles.addstaffforminputsbox} id='courseend' name='courseend' placeholder="MM/DD/YYYY" required /><br /><br />
 
                                 {/* <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
-                            <span>
-                              <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
-                              <label htmlFor='M'>M</label>
-                              <input type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
-                              <label htmlFor='T'>T</label>
-                              <input type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
-                              <label htmlFor='W'>W</label>
-                              <input type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
-                              <label htmlFor='Th'>Th</label>
-                              <input type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
-                              <label htmlFor='F'>F</label>
-                              <input type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
-                              <label htmlFor='Sa'>Sa</label>
-                              <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
-                              <label htmlFor='Su'>Su</label>
-                            </span><br /> */}
+                                <span>
+                                  <input type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
+                                  <label htmlFor='M'>M</label>
+                                  <input type='checkbox' aria-label="Tuesday" id='T' name='coursedays' value="T"></input>
+                                  <label htmlFor='T'>T</label>
+                                  <input type='checkbox' aria-label="Wednesday" id='W' name='coursedays' value="W"></input>
+                                  <label htmlFor='W'>W</label>
+                                  <input type='checkbox' aria-label="Thursday" id='Th' name='coursedays' value="Th"></input>
+                                  <label htmlFor='Th'>Th</label>
+                                  <input type='checkbox' id='F' aria-label="Friday" name='coursedays' value="F"></input>
+                                  <label htmlFor='F'>F</label>
+                                  <input type='checkbox' aria-label="Saturday" id='Sa' name='coursedays' value="Sa"></input>
+                                  <label htmlFor='Sa'>Sa</label>
+                                  <input type='checkbox' aria-label="Sunday" id='Su' name='coursedays' value="Su"></input>
+                                  <label htmlFor='Su'>Su</label>
+                                </span><br /> */}
 
                                 {/* ------------- CHECKBOXES BEGIN --------------- */}
                                 {/* <div class="wrapper-checkboxes">
-                              <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label> */}
+                                <label htmlFor='coursedays' className={styles.addstafflabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label> */}
                                 {/* <div class="wrapper-checkboxes"> */}
                                 {/* <div class="container-checkboxes">
                                   <span class="checkBox">
@@ -412,7 +412,7 @@ export default function Page() {
                                     <input class="input-days" title="checkbox-sun" type="checkbox" />
                                     <label class="label-days">Sunday</label>
                                   </span>
-                              </div> */}
+                                </div> */}
                                 {/* </div> */}
 
                                 {/*-------- COURSEDAYS CHECKBOXES BEGIN -----------*/}
@@ -420,8 +420,8 @@ export default function Page() {
                                   <label htmlFor='coursedays' className={styles.addcheckboxeslabel} tabIndex="0">Select Class Days<span className={styles.requiredelement}>&#42;</span></label>
                                   <div className={styles.containercheckboxes}>
 
-                                  {/* <fieldset className={'${styles["fieldsetDaysCurr"]} ${styles["fieldsetDays"]}'}> */}
-                                  <fieldset className={styles.fieldsetDays}>
+                                    {/* <fieldset className={'${styles["fieldsetDaysCurr"]} ${styles["fieldsetDays"]}'}> */}
+                                    <fieldset className={styles.fieldsetDays}>
                                       <span className={styles.checkBox}>
                                         <input className={styles.inputdays} type='checkbox' aria-label="Monday" id='M' name='coursedays' value="M" />
                                         <label className={styles.labeldays} htmlFor='M'>M</label>
@@ -526,8 +526,8 @@ export default function Page() {
                                 </datalist>
 
                                 <div className={styles.resetsubmitbtnsbatches}>
-                                  <input type='reset' value='Reset' className={styles.resetbtnbatches} /><br />
-                                  <button type='submit' className={styles.submitbtnbatches}>SUBMIT</button>
+                                  <input type='reset' aria-live='polite' value='Reset' className={styles.resetbtnbatches} /><br />
+                                  <button type='submit' aria-live='polite' className={styles.submitbtnbatches}>SUBMIT</button>
                                 </div>
 
                               </section>
