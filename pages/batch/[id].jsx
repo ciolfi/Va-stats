@@ -331,6 +331,25 @@ export default function Page() {
     setContentLoading(false);
   };
 
+  const updateAssignment = async (assignmentData) => {
+    setContentLoading(true);
+    // const apiUrlEndpoint = `https://va-stats.vercel.app/api/updatedocumentsfee`;
+    const apiUrlEndpoint = process.env.NEXT_PUBLIC_API_URL + `updateassignment`;
+    const postData = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ batchId: id, assignmentData }),
+    };
+    const response = await fetch(apiUrlEndpoint, postData);
+    if (response.ok) {
+      console.log("Assessment updated successfully");
+      await getBatchData();
+    } else {
+      console.error("Error updating the assessment");
+    }
+    setContentLoading(false);
+  };
+
   useEffect(() => {
     fetchUnassignedStudents(id);
   }, [id, toggleUnassignedStudents]);
@@ -1115,7 +1134,7 @@ export default function Page() {
                   </div>
                 : <Button onClick={() => setShowForm(true)} text={'+ New Assessment Form'}></Button>
                 }
-                <Table columns={assessmentsColumns} tableData={assessmentsData} isDelete={true} onDeleteClick={deleteAssignment} isEditable={true} Title={'Assessments'} onEditSave={updateDocumentsFee} />
+                <Table columns={assessmentsColumns} tableData={assessmentsData} isDelete={true} onDeleteClick={deleteAssignment} isEditable={true} Title={'Assessments'} onEditSave={updateAssignment} />
               </div>
             )}
 
