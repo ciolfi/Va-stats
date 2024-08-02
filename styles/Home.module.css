@@ -617,28 +617,55 @@ div .menubutton {
   margin-right: 0.1em;
 }
 
+.resetsubmitbtnsmsgs {
+  height: auto;
+  margin-top: 1em;
+  vertical-align: text-top;
+}
+
+.resetsubmitmsgs {
+  color: darkgreen;
+  font-weight: 700;
+  margin-left: 0.5em;
+  margin-right: 1em;
+  padding-right: 1.5em;
+  text-align: right;
+  width: 47%;
+  z-index: 1;
+}
+.resetsubmitbtnsbatchescont {
+}
 /* DESKTOP: Add a batch: reset and submit btns BEGINS */
 .resetsubmitbtnsbatches {
   float: right;
-  height: auto;
-  margin-top: 0.8em;
-  margin-bottom: -1em;
   padding: 0;
   position: relative;
-  top: -1.5em;
+  text-align: right;
+  top: -1.3em;
+  width: 53%;
+}
+.resetbtnbatches {
+  margin-top: 0em;
 }
 .resetbtnbatches,
-.submitbtnbatches
-{
-  border: 2.5px solid black;
-  border-radius: 0.5em;
-  float: right;
+.submitbtnbatches {
+  border-radius: 0.2em;
   margin: 0.4em 0;
-  padding: 0.2em;
+  margin-top: 0em;
+  padding: 0em;
 }
 .resetbtnbatches:focus,
 .submitbtnbatches:focus {
   outline: 2px solid blue;
+}
+
+.submitbtnbatches {
+  float: right;
+  margin-top: 0em;
+}
+
+.createnewbatchreset {
+  margin-top: 0em;
 }
 /* DESKTOP: Add a batch: reset and submit btns ENDS */
 

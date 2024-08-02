@@ -6,6 +6,7 @@ EDITS HERE LIKELY REQUIRE EDITS IN THESE:
 ./pages/batch/[id].jsx:
 */
 
+'use client';
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
@@ -37,6 +38,7 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const allowedRoles = ['ADMINISTRATOR', 'MANAGEMENT', 'STAFF'];
+
 
   /*--------------- UPDATE/DELETE BATCH BEGINS -------------------*/
   const handleUpdateBatch = async (editedBatch) => {
@@ -178,6 +180,16 @@ export default function Page() {
 
   const handleSubmit = () => {
     setContentLoading(true);
+    // var batchsubmitfeedback = document.getElementById('newbatchsubmitfeedback');
+    // var reply = batchsubmitfeedback.innerHTML = "Submission attempted; check for errors.";
+    // return reply;
+  };
+
+  /*--------------- BUTTON HANDLERS: RESET/SUBMIT ----------------*/
+  const handleNewBatchReset = () => {
+    var resetsubmitfeedback = document.getElementById('newbatchresetfeedback');
+    var reply = resetsubmitfeedback.innerHTML = "Form was reset!";
+    return reply;
   };
 
   /* --------- API SECTION: GET BATCH DATA, ETC ENDS ---------*/
@@ -525,11 +537,39 @@ export default function Page() {
                                   <option value="SELF-PACED" />
                                 </datalist>
 
-                                <div className={styles.resetsubmitbtnsbatches}>
-                                  <input type='reset' aria-live='polite' value='Reset' className={styles.resetbtnbatches} /><br />
-                                  <button type='submit' aria-live='polite' className={styles.submitbtnbatches}>SUBMIT</button>
-                                </div>
+                                {/* Buttons and messages div */}
+                                <div className={styles.resetsubmitbtnsmsgs} >
 
+                                  {/* JS dynamically inserts aria msg into innerHTML of div below*/}
+                                  <div className={styles.resetsubmitmsgs} >
+                                    <div id="newbatchresetfeedback" aria-live="polite"></div>
+                                    <div id="newbatchsubmitfeedback" aria-live="polite"></div>
+                                  </div>
+
+                                  {/* Reset and submit buttons */}
+                                  <div className={styles.resetsubmitbtnsbatches}>
+                                    <div className={styles.resetsubmitbtnsbatchescont}>
+                                      <input
+                                        aria-live='polite'
+                                        className={styles.resetbtnbatches}
+                                        id="createnewbatchreset"
+                                        onClick={handleNewBatchReset}
+                                        type='reset'
+                                        value='Reset'
+                                      />
+                                    </div>
+                                    <div className={styles.resetsubmitbtnsbatchescont}>
+                                      <button
+                                        aria-live='polite'
+                                        className={styles.submitbtnbatches}
+                                        // onClick={handleNewBatchSubmit}
+                                        type='submit'
+                                      >
+                                        SUBMIT
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
                               </section>
                             </form>
 
