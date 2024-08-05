@@ -707,7 +707,7 @@ export default function Page() {
                           </td>
                           <td className={styles.dropdowndiv}>
                             <select
-                              aria-label="Nature of disability"
+                              // aria-label="Nature of disability"
                               className={styles.txtboxdropdown}
                               id="disability"
                               name="disability"
@@ -739,7 +739,7 @@ export default function Page() {
                           </td>
                           <td className={styles.dropdowndiv}>
                             <select
-                              aria-label="Education attained"
+                              // aria-label="Education attained"
                               className={styles.txtboxdropdown}
                               id="edu_qualifications"
                               name="edu_qualifications"

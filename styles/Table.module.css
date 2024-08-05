@@ -36,18 +36,34 @@
   transform: translateY(-50%);
 }
 
+/*------- Table accessibility issue BEGINS -------*/
 .genericTable {
   display: block;
   max-width: fit-content;
   /* margin: 0 auto; */
   white-space: nowrap;
-  border: 3px solid rgba(0, 0, 0, 0.3);
+  /* border: 3px solid rgba(0, 0, 0, 0.3); */
+  border: 0px solid red;
   overflow-x: scroll;
   position: sticky;
   table-layout: fixed;
   width: 100%;
   max-height: 500px;
 }
+
+/* .genericTable > tbody > tr { */
+.stickyColTd {
+  border: 0px solid orange;
+}
+
+.stickyColTd :first-child {
+  border: 0px solid blue;
+}
+
+.stickyColTd :nth-child(2) {
+  border: 0px solid cyan;
+}
+/*------- Table accessibility issue ENDS -------*/
 
 /* ---------- TABLE HEADER BEGINS --------- */
 /* Headings like 'Students List' */

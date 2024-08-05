@@ -631,7 +631,7 @@ div .menubutton {
   padding-right: 1.5em;
   text-align: right;
   width: 47%;
-  z-index: 1;
+  /* z-index: 1; */
 }
 .resetsubmitbtnsbatchescont {
 }
