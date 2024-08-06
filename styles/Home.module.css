@@ -11,6 +11,24 @@ To view this, see /pages/students.jsx */
 @tailwind components;
 @tailwind utilities; */
 
+/* Skip link (skips to main content; visible only when tab is pressed) */
+.skip { 
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  display: none;
+}
+ 
+.skip :focus {
+  position:static;
+  width:auto;
+  height:auto;
+  display: block;
+}
+
 .title {
   position: relative;
   top: 0.3em;

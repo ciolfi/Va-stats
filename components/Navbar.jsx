@@ -33,28 +33,28 @@ const MENU_LIST = [
   {
     text: "Students",
     href: "/students",
-    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    allowedRoles: ['ADMINISTRATOR', 'MANAGEMENT'],
     sessionRequired: true,
     description: 'Students'
   },
   {
     text: "Batches",
     href: "/batches",
-    allowedRoles: ['ADMINISTRATOR','MANAGEMENT','STAFF'],
+    allowedRoles: ['ADMINISTRATOR', 'MANAGEMENT', 'STAFF'],
     sessionRequired: true,
     description: 'Batches'
   },
   {
     text: "Courses",
     href: "/courses",
-    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    allowedRoles: ['ADMINISTRATOR', 'MANAGEMENT'],
     sessionRequired: true,
     description: 'Courses'
   },
   {
     text: "Staff",
     href: "/users",
-    allowedRoles: ['ADMINISTRATOR','MANAGEMENT'],
+    allowedRoles: ['ADMINISTRATOR', 'MANAGEMENT'],
     sessionRequired: true,
     description: 'Staff'
   },
@@ -67,7 +67,7 @@ const Navbar = (user_role) => {
 
   // Logic to check active nav menu
   const router = useRouter();
-  
+
   const isMenuActive = (href) => {
     return router.pathname === href;
   };
@@ -91,7 +91,7 @@ const Navbar = (user_role) => {
 
         {/* Fonts below are commented out because 
         they're handled in ./pages/_document.js */}
-        
+
         {/* <link rel='preload'
           as='style'
           href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap' /> */}
@@ -128,29 +128,29 @@ const Navbar = (user_role) => {
             } else if (menu.sessionRequired && !menu.allowedRoles.includes(user_role.user_role)) {
               return;
             }
-            return(
+            return (
               <div key={menu.text}>
-              {menu.submenu ? (
-                <DropdownMenu
-                  menu={menu}
-                  active={activeIdx === idx}
-                  setActive={() => {
-                    setActiveIdx(idx);
-                    setNavActive(false);
-                  }}
-                  setActiveIdx={setActiveIdx}
-                />
-              ) : (
-                <div
-                  onClick={() => {
-                    setActiveIdx(idx);
-                    setNavActive(false);
-                  }}
-                >
-                  <NavItem active={isMenuActive(menu.href)} {...menu} />
-                </div>
-              )}
-            </div>
+                {menu.submenu ? (
+                  <DropdownMenu
+                    menu={menu}
+                    active={activeIdx === idx}
+                    setActive={() => {
+                      setActiveIdx(idx);
+                      setNavActive(false);
+                    }}
+                    setActiveIdx={setActiveIdx}
+                  />
+                ) : (
+                  <div
+                    onClick={() => {
+                      setActiveIdx(idx);
+                      setNavActive(false);
+                    }}
+                  >
+                    <NavItem active={isMenuActive(menu.href)} {...menu} />
+                  </div>
+                )}
+              </div>
             );
           })}
 

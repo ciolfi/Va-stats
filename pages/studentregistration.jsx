@@ -194,7 +194,7 @@ export default function Page() {
     const { name, value } = e.target;
     if (name === 'first_choice') {
       setOption1(value);
-    } 
+    }
     else if (name === 'second_choice') {
       setOption2(value);
     }
@@ -406,8 +406,17 @@ export default function Page() {
         : <></>
       }
 
+      {/* <span className={styles.skip}>
+        <a href="#maincontent" className={styles.skip}>Skip to main content</a>
+      </span> */}
+
       <div className={styles.mynavbar}>
+        <span className={styles.skip}>
+          <a href="#maincontent" className={styles.skip}>Skip to main content</a>
+        </span>
+
         <Navbar user_role={userRole} className={styles.navstudents} tabindex="-1" />
+        {/* <Navbar user_role={userRole} className={styles.navstudents} /> */}
       </div>
 
       <div className={styles.container}>
@@ -423,7 +432,10 @@ export default function Page() {
             content="telephone=no, date=no, email=no, address=no"
           />
         </Head>
-        <main className={styles.main} suppressHydrationWarning>
+        <main className={styles.main}
+          id="maincontent"
+          suppressHydrationWarning
+        >
           <div className={styles.title}>
             <h1>Student Registration</h1>
           </div>
@@ -469,7 +481,7 @@ export default function Page() {
                               pattern="^[a-zA-Z].*[\s\.]*$"
                               placeholder="As per aadhaar"
                               required
-                              type="text"       
+                              type="text"
                             />
                           </td>
                         </tr>
