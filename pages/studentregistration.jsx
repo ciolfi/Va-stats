@@ -53,6 +53,27 @@ export default function Page() {
     getUserData();
   }, [session]);
 
+  /*--------- Calendar input: prevent future date BEGINS--------*/
+    const checkDate = () => {
+      console.log('ENTERED CHECKDATE()!');
+      var inputDate = document.getElementById('age');
+      const inputDateObj = new Date(inputDate.value);
+      const today = new Date();
+      if (isNaN(inputDateObj)) {
+        console.error('Invalid date format');
+        return;
+      }
+      if (inputDateObj > today) {
+        // console.log('Input date is greater than today');
+        inputDate.value = null;
+        alert("Please enter today's date or earlier!");
+        inputDate.focus();
+      } else {
+        // console.log('Input date is not greater than today');
+      }
+    };
+    /*--------- Calendar input: prevent future date ENDS --------*/
+
   /*---------------- PHONE VALIDATION (REG AND ALT) BEGINS ---------------*/
   // const [selectedPhone, setSelectedPhone] = useState('');
   const checkPhone = () => {
@@ -548,9 +569,11 @@ export default function Page() {
                               id="age"
                               name="age"
                               className={styles.reginput}
-                              onFocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
-                              onBlur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
-                              role="presentation" autoComplete="off"
+                              //onFocus="this.max=new Date(new Date().setFullYear(new Date().getFullYear()-15)).toLocaleDateString('fr-ca')"
+                              // onBlur="if ((document.getElementById('age').value > this.max)) alert('WARNING: User age is less than 15!')"
+                              onBlur={checkDate}
+                              role="presentation" 
+                              autoComplete="off"
                               required
                             />
                           </td>
